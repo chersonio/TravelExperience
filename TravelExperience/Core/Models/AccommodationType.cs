@@ -1,6 +1,6 @@
-﻿namespace TravelExperience.Models
+﻿namespace TravelExperience.Core.Models
 {
-    public enum AccommodationType
+    public enum AccommodationType // AccommodationType.Room
     {
         Room,
         Apartment,

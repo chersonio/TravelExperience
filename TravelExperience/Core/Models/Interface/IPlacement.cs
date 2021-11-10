@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using TravelExperience.Core.Models;
 
 namespace TravelExperience.Models.Interface
 {
-    interface IPlacement
+    public interface IPlacement
     {
-        int PlacementID { get; set; }
-        User Host { get; set; }
+        ApplicationUser Host { get; set; }
         int HostID { get; set; }
-        DateTime CreationDate { get; set; }
+        ICollection<ApplicationUser> AppUsers { get; set; }
 
+        Location Location { get; set; }
+
+
+        DateTime CreationDate { get; set; }
         DateTime AvailableDates { get; set; } // ???
         DateTime BookedDates { get; set; } // ???
         string Title { get; set; }
@@ -17,16 +21,15 @@ namespace TravelExperience.Models.Interface
         string Description { get; set; }
         bool Shared { get; set; }
         double Price { get; set; }
-        Location Location { get; set; }
-
-        Dictionary<string, bool> Utilities { get; set; } // you can change by having the key the equivalent value 
-
-        ICollection<User> Users { get; set; }
+        Dictionary<string, bool> Utilities { get; set; } // Utility["Wifi"]
+        // you can change by having the key the equivalent value 
 
         int MaxCapacity { get; set; } // maybe we ll need more for capacities (Experience)
 
+        List<string> PhotoFilePaths { get; set; }
+
         //for accommodation
-        // wifi , kitchen, fireplace, tv..
+        // Wifi , Kitchen, Fireplace, Tv.., SelfCheckIn
 
         //for experience
         // mountain, sea, painting etc...

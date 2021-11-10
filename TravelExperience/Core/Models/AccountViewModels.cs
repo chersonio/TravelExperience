@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace TravelExperience.Models
+namespace TravelExperience.Core.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
@@ -14,7 +14,6 @@ namespace TravelExperience.Models
     {
         public string ReturnUrl { get; set; }
     }
-
     public class SendCodeViewModel
     {
         public string SelectedProvider { get; set; }
