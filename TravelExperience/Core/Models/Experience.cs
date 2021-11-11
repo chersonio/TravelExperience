@@ -14,14 +14,17 @@ namespace TravelExperience.Core.Models
         public int ExperienceID { get; set; }
 
         [Required]
-        public ApplicationUser Host { get; set; }
+        [Display(Name = "Host")]
+        public int TravelerID { get; set; } // ta peiraksa apo User kai UserID
+        [Required]
+        public Traveler Traveler { get; set; } // ta peiraksa apo User kai UserID
 
         [Required]
-        [ForeignKey("AppUsers")]
-        public int HostID { get; set; }
+        public ICollection<Traveler> Travelers { get; set; }
 
-        public ICollection<ApplicationUser> AppUsers { get; set; }
 
+        [Required]
+        public bool IsBooking { get; set; }
 
         [Required]
         public Location Location { get; set; }
@@ -31,26 +34,20 @@ namespace TravelExperience.Core.Models
         public int LocationID { get; set; }
 
 
-        public DateTime CreationDate { get; set; } // otan to dimiourgeis
-
         [Required]
-        public DateTime AvailableDates { get; set; } // otan tha mporei na ginei to book
-
+        public int Duration { get; set; } // ntemi gia required
         [Required]
-        public DateTime BookedDates { get; set; } // pote einai pxiasmeno
+        public List<string> PhotoFilePaths { get; set; }
 
-        public DateTime HoursAvailable { get; set; }
 
         [Required]
         public string Title { get; set; }
 
         [Required]
         public string Description { get; set; }
-        public bool Shared { get; set; }
 
         [Required]
         public double Price { get; set; }
-
 
         [Required]
         public Dictionary<string, bool> Utilities { get; set; }
@@ -58,7 +55,15 @@ namespace TravelExperience.Core.Models
         [Required]
         public int MaxCapacity { get; set; }
 
-        public int Duration { get; set; } // ntemi gia required
-        public List<string> PhotoFilePaths { get; set; }
+        [Required]
+        public DateTime CreationDate { get; set; }
+
+        [Required]
+        public DateTime AvailableDates { get; set; }
+
+        [Required]
+        public DateTime BookedDates { get; set; }
+
+        public bool Shared { get; set; }
     }
 }

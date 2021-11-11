@@ -1,6 +1,8 @@
-﻿namespace TravelExperience.Persistence.EntityConfiguration
-{
-    public class UserConfiguration /*: EntityConfiguration<AppUser>*/
-    {
-    }
-}
+﻿//using TravelExperience.Core.Models;
+
+//namespace TravelExperience.Persistence.EntityConfiguration
+//{
+//    public class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
+//    {
+//    }
+//}

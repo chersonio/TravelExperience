@@ -8,6 +8,7 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            MigrationsDirectory = @"Persistence\Migrations";
         }
 
         protected override void Seed(ApplicationDbContext context)

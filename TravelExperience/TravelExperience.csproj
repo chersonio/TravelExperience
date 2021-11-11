@@ -171,19 +171,20 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Core\Models\ApplicationUser.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Persistence\Migrations\202111102055544_Initial.cs" />
-    <Compile Include="Persistence\Migrations\202111102055544_Initial.designer.cs">
-      <DependentUpon>202111102055544_Initial.cs</DependentUpon>
+    <Compile Include="Persistence\Migrations\202111112024229_NewInitial.cs" />
+    <Compile Include="Persistence\Migrations\202111112024229_NewInitial.designer.cs">
+      <DependentUpon>202111112024229_NewInitial.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Core\Models\AccommodationType.cs" />
     <Compile Include="Core\Models\AccountViewModels.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
     <Compile Include="Core\Models\Experience.cs" />
-    <Compile Include="Core\Models\ApplicationUser.cs" />
+    <Compile Include="Core\Models\Traveler.cs" />
     <Compile Include="Core\Models\Interface\IPlacement.cs" />
     <Compile Include="Core\Models\Location.cs" />
     <Compile Include="Core\Models\ManageViewModels.cs" />
@@ -270,8 +271,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Persistence\Migrations\202111102055544_Initial.resx">
-      <DependentUpon>202111102055544_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Persistence\Migrations\202111112024229_NewInitial.resx">
+      <DependentUpon>202111112024229_NewInitial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

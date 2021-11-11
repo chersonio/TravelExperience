@@ -13,7 +13,7 @@ namespace TravelExperience.Persistence
             {
             }
 
-            public DbSet<ApplicationUser> AppUsers { get; set; }
+            public DbSet<Traveler> Travelers { get; set; }
             public DbSet<Location> Locations { get; set; }
             public DbSet<Accommodation> Accommodations { get; set; }
             public DbSet<Experience> Experiences { get; set; }
@@ -23,14 +23,14 @@ namespace TravelExperience.Persistence
                 return new ApplicationDbContext();
             }
 
-            protected override void OnModelCreating(DbModelBuilder modelBuilder)
-            {
-                //modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
+            //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+            //{
+            //    //modelBuilder.Configurations.Add(new UserConfiguration());
 
-                //modelBuilder.Configurations.Add(new GigConfiguration());
+            //    //modelBuilder.Configurations.Add(new GigConfiguration());
 
-                base.OnModelCreating(modelBuilder);
-            }
+            //    base.OnModelCreating(modelBuilder);
+            //}
         }
     }
 }

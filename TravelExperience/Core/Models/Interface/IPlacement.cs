@@ -6,27 +6,34 @@ namespace TravelExperience.Models.Interface
 {
     public interface IPlacement
     {
-        ApplicationUser Host { get; set; }
-        int HostID { get; set; }
-        ICollection<ApplicationUser> AppUsers { get; set; }
-
-        Location Location { get; set; }
 
 
-        DateTime CreationDate { get; set; }
-        DateTime AvailableDates { get; set; } // ???
-        DateTime BookedDates { get; set; } // ???
+        int TravelerID { get; set; }
+
+        Traveler Traveler { get; set; }
+
+
+        ICollection<Traveler> Travelers { get; set; } 
+
         string Title { get; set; }
-
         string Description { get; set; }
-        bool Shared { get; set; }
+
         double Price { get; set; }
         Dictionary<string, bool> Utilities { get; set; } // Utility["Wifi"]
         // you can change by having the key the equivalent value 
 
         int MaxCapacity { get; set; } // maybe we ll need more for capacities (Experience)
 
+        Location Location { get; set; }
+
+        DateTime CreationDate { get; set; }
+        DateTime AvailableDates { get; set; } // ???
+        DateTime BookedDates { get; set; } // ???
         List<string> PhotoFilePaths { get; set; }
+
+
+        bool Shared { get; set; } // moirasia dwmatiou klp
+
 
         //for accommodation
         // Wifi , Kitchen, Fireplace, Tv.., SelfCheckIn

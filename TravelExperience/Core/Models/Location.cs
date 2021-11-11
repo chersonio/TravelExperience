@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TravelExperience.Core.Models
 {
@@ -30,5 +31,8 @@ namespace TravelExperience.Core.Models
 
         [Required]
         public int Floor { get; set; } // ntemi gia to an prepei na mpei edw...
+
+        [NotMapped]
+        public string FullAddress => $"{Address} {AddressNo} - {City} {Country} {PostalCode}";
     }
 }

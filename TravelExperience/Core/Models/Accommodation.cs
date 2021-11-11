@@ -19,51 +19,60 @@ namespace TravelExperience.Core.Models
         [Display(Name = "Placement")]
         public int PlacementID { get; set; }
 
-        public ICollection<ApplicationUser> AppUsers { get; set; }
 
         [Required]
-        public ApplicationUser Host { get; set; }
+        //[Display(Name = "Host")]
+        public int TravelerID { get; set; }
 
         [Required]
-        [ForeignKey("AppUsers")]
-        public int HostID { get; set; }
+        public Traveler Traveler { get; set; }
+
+        [Required]
+        public ICollection<Traveler> Travelers { get; set; }
+
+        [Required]
+        public bool IsBooking { get; set; }
+
+        [Required]
+        [ForeignKey("Location")]
+        public int LocationID { get; set; }
+
+        //[Required]
+        //public ApplicationUser Host { get; set; }
+
+        //[Required]
+        //[ForeignKey("ApplicationUser")]
+        //public int HostID { get; set; }
 
         [Required]
         [StringLength(50)]
         public string Title { get; set; }
 
-        [Required]
-        public DateTime AvailableDates { get; set; }
-
-        [Required]
-        public DateTime BookedDates { get; set; }
-
-        [Required]
-        public DateTime CreationDate { get; set; }
 
         [Required]
         [StringLength(250)]
         public string Description { get; set; }
 
         [Required]
-        public Dictionary<string, bool> Utilities { get; set; }
-
-        public bool Shared { get; set; } // description needed ???
+        public ICollection<Traveler> Users { get; set; }
 
         [Required]
         public double Price { get; set; }
-
         [Required]
-        public Location Location { get; set; }
-
-        [Required]
-        [ForeignKey("Location")]
-        public int LocationID { get; set; }
-
+        public Dictionary<string, bool> Utilities { get; set; }
         [Required]
         public int MaxCapacity { get; set; }
-
-
+        [Required]
+        public Location Location { get; set; }
+        [Required]
+        public DateTime CreationDate { get; set; }
+        [Required]
+        public DateTime AvailableDates { get; set; }
+        [Required]
+        public DateTime BookedDates { get; set; }
+        [Required]
         public List<string> PhotoFilePaths { get; set; }
+
+        public bool Shared { get; set; }
     }
 }
