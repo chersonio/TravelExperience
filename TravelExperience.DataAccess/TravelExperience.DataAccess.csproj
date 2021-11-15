@@ -54,6 +54,7 @@
     <Compile Include="Core\Entities\Accommodation.cs" />
     <Compile Include="Core\Entities\Booking.cs" />
     <Compile Include="Core\Entities\Experience.cs" />
+    <Compile Include="Core\Entities\Host.cs" />
     <Compile Include="Core\Entities\Traveler.cs" />
     <Compile Include="Core\Interfaces\IAccommodationRepository.cs" />
     <Compile Include="Core\Interfaces\IExperienceRepository.cs" />
@@ -61,9 +62,13 @@
     <Compile Include="Core\Interfaces\ITravelerRepository.cs" />
     <Compile Include="Core\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
-    <Compile Include="Persistence\Migrations\202111141157399_Initial.cs" />
-    <Compile Include="Persistence\Migrations\202111141157399_Initial.designer.cs">
-      <DependentUpon>202111141157399_Initial.cs</DependentUpon>
+    <Compile Include="Persistence\Migrations\202111151928559_Initial.cs" />
+    <Compile Include="Persistence\Migrations\202111151928559_Initial.designer.cs">
+      <DependentUpon>202111151928559_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\Migrations\202111151939268_AddedHostTable.cs" />
+    <Compile Include="Persistence\Migrations\202111151939268_AddedHostTable.designer.cs">
+      <DependentUpon>202111151939268_AddedHostTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Persistence\Repositories\ExperienceRepository.cs" />
@@ -83,8 +88,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Persistence\Migrations\202111141157399_Initial.resx">
-      <DependentUpon>202111141157399_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Persistence\Migrations\202111151928559_Initial.resx">
+      <DependentUpon>202111151928559_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\202111151939268_AddedHostTable.resx">
+      <DependentUpon>202111151939268_AddedHostTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
