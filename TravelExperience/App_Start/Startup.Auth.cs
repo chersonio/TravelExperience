@@ -5,9 +5,9 @@ using Microsoft.Owin.Security.Cookies;
 using Owin;
 using System;
 using TravelExperience.Core.Models;
-using static TravelExperience.Persistence.ApplicationDbContextBase;
+using TravelExperience.DataAccess.Persistence;
 
-namespace TravelExperience
+namespace TravelExperience.MVC
 {
     public partial class Startup
     {

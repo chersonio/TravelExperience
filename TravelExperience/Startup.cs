@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(TravelExperience.Startup))]
-namespace TravelExperience
+[assembly: OwinStartupAttribute(typeof(TravelExperience.MVC.Startup))]
+namespace TravelExperience.MVC
 {
     public partial class Startup
     {

@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using TravelExperience.Core.Models;
 
-namespace TravelExperience.Controllers
+namespace TravelExperience.MVC.Controllers
 {
     [Authorize]
     public class ManageController : Controller

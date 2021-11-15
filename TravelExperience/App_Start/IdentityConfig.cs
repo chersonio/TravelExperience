@@ -7,9 +7,9 @@ using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using TravelExperience.Core.Models;
-using static TravelExperience.Persistence.ApplicationDbContextBase;
+using TravelExperience.DataAccess.Persistence;
 
-namespace TravelExperience
+namespace TravelExperience.MVC
 {
     public class EmailService : IIdentityMessageService
     {

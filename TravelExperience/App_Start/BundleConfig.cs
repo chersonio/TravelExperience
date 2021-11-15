@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace TravelExperience
+namespace TravelExperience.MVC
 {
     public class BundleConfig
     {
