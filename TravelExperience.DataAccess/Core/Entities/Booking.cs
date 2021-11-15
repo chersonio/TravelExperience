@@ -20,7 +20,9 @@ namespace TravelExperience.DataAccess.Core.Entities
 
         public decimal Price { get; set; }
 
+        [ForeignKey("Host")]
         public int HostID { get; set; }
+        public Host Host { get; set; }
 
         [ForeignKey("Traveler")]// den ebala gia ta accom kai exp
         public int TravelerID { get; set; }
