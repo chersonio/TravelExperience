@@ -1,0 +1,69 @@
+﻿@model IEnumerable<TravelExperience.DataAccess.Core.Entities.Booking>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Accommodation.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Experience.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Traveler.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HostID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingStartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingEndDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Accommodation.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Experience.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Traveler.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HostID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookingStartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookingEndDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BookingID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BookingID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BookingID })
+        </td>
+    </tr>
+}
+
+</table>

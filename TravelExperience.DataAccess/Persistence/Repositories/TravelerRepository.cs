@@ -32,6 +32,12 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public IEnumerable<Traveler> GetAll()
         {
+            _context.Travelers.ToList();
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Traveler> GetTravelersForAccommodationID(int? id)
+        {
             throw new NotImplementedException();
         }
 

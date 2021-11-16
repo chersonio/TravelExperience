@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class Initil : DbMigration
     {
         public override void Up()
         {
@@ -45,7 +45,9 @@
                 .PrimaryKey(t => t.BookingID)
                 .ForeignKey("dbo.Accommodations", t => t.AccommodationID, cascadeDelete: true)
                 .ForeignKey("dbo.Experiences", t => t.ExperienceID, cascadeDelete: true)
+                .ForeignKey("dbo.Hosts", t => t.HostID, cascadeDelete: true)
                 .ForeignKey("dbo.Travelers", t => t.TravelerID, cascadeDelete: true)
+                .Index(t => t.HostID)
                 .Index(t => t.TravelerID)
                 .Index(t => t.AccommodationID)
                 .Index(t => t.ExperienceID);
@@ -71,6 +73,24 @@
                 .PrimaryKey(t => t.ExperienceID);
             
             CreateTable(
+                "dbo.Hosts",
+                c => new
+                    {
+                        HostID = c.Int(nullable: false, identity: true),
+                        FirstName = c.String(nullable: false, maxLength: 50),
+                        LastName = c.String(nullable: false, maxLength: 50),
+                        DateOfBirth = c.DateTime(nullable: false),
+                        VAT = c.String(nullable: false, maxLength: 12),
+                        IdentificationNo = c.String(nullable: false, maxLength: 10),
+                        Address = c.String(),
+                        AddressNo = c.Int(nullable: false),
+                        City = c.String(nullable: false),
+                        Country = c.String(nullable: false),
+                        PostalCode = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.HostID);
+            
+            CreateTable(
                 "dbo.Travelers",
                 c => new
                     {
@@ -93,12 +113,15 @@
         public override void Down()
         {
             DropForeignKey("dbo.Bookings", "TravelerID", "dbo.Travelers");
+            DropForeignKey("dbo.Bookings", "HostID", "dbo.Hosts");
             DropForeignKey("dbo.Bookings", "ExperienceID", "dbo.Experiences");
             DropForeignKey("dbo.Bookings", "AccommodationID", "dbo.Accommodations");
             DropIndex("dbo.Bookings", new[] { "ExperienceID" });
             DropIndex("dbo.Bookings", new[] { "AccommodationID" });
             DropIndex("dbo.Bookings", new[] { "TravelerID" });
+            DropIndex("dbo.Bookings", new[] { "HostID" });
             DropTable("dbo.Travelers");
+            DropTable("dbo.Hosts");
             DropTable("dbo.Experiences");
             DropTable("dbo.Bookings");
             DropTable("dbo.Accommodations");

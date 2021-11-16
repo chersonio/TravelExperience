@@ -7,13 +7,13 @@ namespace TravelExperience.DataAccess.Persistence.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class Initil : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initil));
         
         string IMigrationMetadata.Id
         {
-            get { return "202111151928559_Initial"; }
+            get { return "202111162030002_Initil"; }
         }
         
         string IMigrationMetadata.Source

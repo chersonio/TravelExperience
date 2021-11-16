@@ -15,6 +15,8 @@ namespace TravelExperience.DataAccess.Persistence
 
         public IExperienceRepository Experiences { get; private set; }
 
+        public IHostRepository Hosts { get; private set; }
+
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
@@ -22,6 +24,7 @@ namespace TravelExperience.DataAccess.Persistence
             Travelers = new TravelerRepository(_context);
             Accommodations = new AccommodationRepository(_context);
             Experiences = new ExperienceRepository(_context);
+            Hosts = new HostRepository(_context);
         }
 
         public void Complete()

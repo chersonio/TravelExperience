@@ -21,7 +21,8 @@ namespace TravelExperience.DataAccess.Core.Entities
         public string Description { get; set; }
 
         [Required]
-        public Dictionary<string, bool> Utilities { get; set; }
+        public Dictionary<string, bool> Utilities { get; set; } // den einai stin DB
+
         [Required]
         public int MaxCapacity { get; set; }
 
@@ -31,8 +32,9 @@ namespace TravelExperience.DataAccess.Core.Entities
         public DateTime AvailableDates { get; set; }
         [Required]
         public DateTime BookedDates { get; set; }
+
         [Required]
-        public List<string> PhotoFilePaths { get; set; }
+        public List<string> MediaFilePaths { get; set; }  // den einai stin DB
 
         public bool Shared { get; set; }
 
@@ -52,7 +54,7 @@ namespace TravelExperience.DataAccess.Core.Entities
         public int PostalCode { get; set; }
 
         [Required]
-        public IDictionary<int, int> MapPoints { get; set; }
+        public IDictionary<int, int> MapPoints { get; set; }  // den einai stin DB
 
 
         [NotMapped]
