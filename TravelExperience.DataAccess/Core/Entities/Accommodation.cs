@@ -25,7 +25,7 @@ namespace TravelExperience.DataAccess.Core.Entities
         public AccommodationType AccommodationType { get; set; }
 
         [Required]
-        public Dictionary<string, bool> Utilities { get; set; } // + katharistria(isws kai extra xrewsi)
+        public Dictionary<string, bool> Utilities { get; set; }  // den einai stin DB
         [Required]
         public int MaxCapacity { get; set; }
 
@@ -36,7 +36,7 @@ namespace TravelExperience.DataAccess.Core.Entities
         [Required]
         public DateTime BookedDates { get; set; }
         [Required]
-        public List<string> PhotoFilePaths { get; set; }
+        public List<string> MediaFilePaths { get; set; }  // den einai stin DB
 
         public bool Shared { get; set; }
 
@@ -56,10 +56,10 @@ namespace TravelExperience.DataAccess.Core.Entities
         public int PostalCode { get; set; }
 
         [Required]
-        public IDictionary<int, int> MapPoints { get; set; }
+        public IDictionary<int, int> MapPoints { get; set; }  // den einai stin DB
 
         [Required]
-        public int Floor { get; set; } // ntemi gia to an prepei na mpei edw...
+        public int Floor { get; set; }
 
         [NotMapped]
         public string FullAddress => $"{Address} {AddressNo} - {City} {Country} {PostalCode}";

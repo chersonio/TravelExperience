@@ -39,6 +39,10 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
         {
             throw new NotImplementedException();
         }
+        public IEnumerable<Accommodation> GetAllForTravelerID(int? hostID)
+        {
+            return _context.Bookings.Where(x => x.HostID == 0).Select(x => x.Accommodation).ToList();
+        }
 
         public Booking GetById(int? id)
         {

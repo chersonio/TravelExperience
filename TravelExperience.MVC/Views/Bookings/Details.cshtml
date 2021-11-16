@@ -1,0 +1,74 @@
+﻿@model TravelExperience.DataAccess.Core.Entities.Booking
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Booking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Accommodation.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Accommodation.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Experience.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Experience.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Traveler.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Traveler.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HostID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HostID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingStartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingEndDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookingID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

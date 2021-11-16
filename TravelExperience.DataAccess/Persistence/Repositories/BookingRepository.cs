@@ -40,12 +40,13 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public IEnumerable<Booking> GetAll()
         {
+            //db.Bookings.Include(b => b.Accommodation).Include(b => b.Experience).Include(b => b.Traveler);
             throw new NotImplementedException();
         }
 
         public Booking GetById(int? id)
         {
-            throw new NotImplementedException();
+            return _context.Bookings.Find(id); // just that simple?
         }
 
         public void Update(Booking booking)

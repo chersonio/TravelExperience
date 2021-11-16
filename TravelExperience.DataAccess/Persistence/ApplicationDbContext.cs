@@ -15,7 +15,7 @@ namespace TravelExperience.DataAccess.Persistence
 
         public DbSet<Traveler> Travelers { get; set; }
         public DbSet<Host> Hosts { get; set; }
-        public DbSet<Accommodation> Accomodations { get; set; }
+        public DbSet<Accommodation> Accommodations { get; set; }
         public DbSet<Experience> Experiences { get; set; }
         public DbSet<Booking> Bookings { get; set; }
 
