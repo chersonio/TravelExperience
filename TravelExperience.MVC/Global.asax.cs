@@ -1,6 +1,8 @@
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using TravelExperience.MVC.App_Start;
 
 namespace TravelExperience.MVC
 {
@@ -8,6 +10,10 @@ namespace TravelExperience.MVC
     {
         protected void Application_Start()
         {
+            // Added these to start with the project
+            // for AutoFac
+            ContainerConfig.RegisterContainer();
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

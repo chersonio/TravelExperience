@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DataAccess.Core.Interfaces;
@@ -7,46 +9,63 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 {
     public class ExperienceRepository : IExperienceRepository
     {
-        private readonly ApplicationDbContext _context;
+        private readonly AppDBContext _context;
 
-        public ExperienceRepository(ApplicationDbContext context)
+        public ExperienceRepository(AppDBContext context)
         {
             _context = context;
         }
 
         public void Create(Experience experience)
         {
-            throw new System.NotImplementedException();
+            if (experience == null)
+                throw new ArgumentException(nameof(experience));
+
+            _context.Experiences.Add(experience);
         }
 
         public void Delete(int? id)
         {
-            throw new System.NotImplementedException();
-        }
+            if (id == null)
+                throw new ArgumentException(nameof(id));
 
-        public void Dispose()
-        {
-            throw new System.NotImplementedException();
+            Experience experience = _context.Experiences.Find(id); // or .GetById()
+
+            if (experience == null)
+                throw new Exception("Experience not found");
+
+            _context.Experiences.Remove(experience);
         }
 
         public IQueryable<Experience> Get()
         {
-            throw new System.NotImplementedException();
+            return _context.Experiences;
         }
 
         public IEnumerable<Experience> GetAll()
         {
-            throw new System.NotImplementedException();
+            return _context.Bookings.Select(x => x.Experience).ToList();
         }
 
-        public Booking GetById(int? id)
+        public Experience GetById(int? id)
         {
-            throw new System.NotImplementedException();
+            if (id == null)
+                throw new ArgumentException(nameof(id));
+
+            return _context.Experiences.Find(id);
         }
 
         public void Update(Experience experience)
         {
-            throw new System.NotImplementedException();
+            if (experience == null)
+                throw new ArgumentException(nameof(experience));
+
+            _context.Entry(experience).State = EntityState.Modified;
+        }
+
+        public void Dispose()
+        {
+            _context.Dispose();
         }
     }
 }

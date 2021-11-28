@@ -9,7 +9,7 @@ namespace TravelExperience.DataAccess.Core.Interfaces
     {
         IEnumerable<Experience> GetAll();
         IQueryable<Experience> Get();
-        Booking GetById(int? id);
+        Experience GetById(int? id);
         void Create(Experience experience);
         void Update(Experience experience);
         void Delete(int? id);
