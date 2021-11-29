@@ -10,9 +10,9 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
     public class BookingRepository : IBookingRepository
     {
 
-        private readonly ApplicationDbContext _context;
+        private readonly AppDBContext _context;
 
-        public BookingRepository(ApplicationDbContext context)
+        public BookingRepository(AppDBContext context)
         {
             _context = context;
         }
@@ -20,63 +20,60 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public void Create(Booking booking)
         {
-            throw new NotImplementedException();
+            if (booking == null)
+                throw new ArgumentException(nameof(booking));
+
+            _context.Bookings.Add(booking);
         }
 
         public void Delete(int? id)
         {
-            throw new NotImplementedException();
-        }
+            if (id == null)
+                throw new ArgumentException(nameof(id));
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
+            Booking booking = _context.Bookings.Find(id); // or .GetById()
+
+            if (booking == null)
+                throw new Exception("Booking not found");
+
+            _context.Bookings.Remove(booking);
         }
 
         public IQueryable<Booking> Get()
         {
-            throw new NotImplementedException();
+            return _context.Bookings;
         }
 
         public IEnumerable<Booking> GetAll()
         {
-            //db.Bookings.Include(b => b.Accommodation).Include(b => b.Experience).Include(b => b.Traveler);
-            throw new NotImplementedException();
+            return _context
+                .Bookings
+                .Include(x => x.Accommodation)
+                .Include(x => x.Experience)
+                .Include(x => x.User)
+                .ToList();
         }
 
         public Booking GetById(int? id)
         {
-            return _context.Bookings.Find(id); // just that simple?
+            if (id == null)
+                throw new ArgumentException(nameof(id));
+
+            return _context.Bookings.Find(id);
         }
 
         public void Update(Booking booking)
         {
-            throw new NotImplementedException();
+            if (booking == null)
+                throw new ArgumentException(nameof(booking));
+
+            _context.Entry(booking).State = EntityState.Modified;
         }
 
-        public void GetBookingsByFilters(decimal minPrice = 0, decimal maxPrice = 0) // kanonika prepei na mpei object giati mporei na kanei pollaplo filtering. isws na zitaei kai eisagwgi Queryable (IQueryable query, object searchTerms)
+
+        public void Dispose()
         {
-            var bookingsToFilter = _context.Bookings
-                .Include(b => b.Accommodation)
-                .Include(b => b.Experience)
-                .Include(b => b.Price)
-                .Include(b => b.BookingStartDate)
-                .Include(b => b.BookingEndDate);
-
-            FilterByPrice(ref bookingsToFilter, minPrice, maxPrice);
-
-        }
-
-        public void FilterByPrice(ref IQueryable<Booking> query, decimal min = 0, decimal max = 0) // instead of booking a more clever way to search.
-        {
-            if (min != 0)
-            {
-                query = query.Where(b => b.Price >= min); // parse is unstable
-            }
-            if (max != 0)
-            {
-                query = query.Where(b => b.Price <= max);
-            }
+            _context.Dispose();
         }
     }
 }

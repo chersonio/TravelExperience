@@ -1,77 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web;
 
 namespace TravelExperience.DataAccess.Core.Entities
 {
     public class Accommodation
     {
         [Key]
-        [Display(Name = "AccommodationID")]//
         public int AccommodationID { get; set; }
 
         public ICollection<Booking> Bookings { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [Required, StringLength(50)]
         public string Title { get; set; }
 
-        [Required]
-        [StringLength(250)]
+        [Required, StringLength(250)]
         public string Description { get; set; }
 
+        //Utilities
         [Required]
-        public AccommodationType AccommodationType { get; set; }
+        public virtual ICollection<AccommodationUtilities> AccommodationUtilities { get; set; }
 
-        [Required]
-        public Dictionary<string, bool> Utilities { get; set; }  // den einai stin DB
+        // Location
+        //[ForeignKey("Location")]
+        public int LocationID { get; set; }
+        public Location Location { get; set; }
+
         [Required]
         public int MaxCapacity { get; set; }
 
-        [Required]
-        public DateTime CreationDate { get; set; }
-        [Required]
-        public DateTime AvailableDates { get; set; }
-        [Required]
-        public DateTime BookedDates { get; set; }
-        [Required]
-        public List<string> MediaFilePaths { get; set; }  // den einai stin DB
-
-        public bool Shared { get; set; }
-
-        [Required]
-        public string Address { get; set; }
-
-        [Required]
-        public int AddressNo { get; set; }
-
-        [Required]
-        public string City { get; set; }
-
-        [Required]
-        public string Country { get; set; }
-
-        [Required]
-        public int PostalCode { get; set; }
-
-        [Required]
-        public IDictionary<int, int> MapPoints { get; set; }  // den einai stin DB
-
-        [Required]
-        public int Floor { get; set; }
+        // Accommodation type
+        public string AccommodationTypeID { get; set; }
 
         [NotMapped]
-        public string FullAddress => $"{Address} {AddressNo} - {City} {Country} {PostalCode}";
+        public AccommodationType AccommodationType { get; set; }
 
-    }
-    public enum AccommodationType // AccommodationType.Room
-    {
-        Room,
-        Apartment,
-        Villa,
-        Hostel,
-        Hotel,
-        BedAndBreakFast
+        public bool Shared { get; set; }
+        public int Floor { get; set; }
+
+        // Images
+        [DisplayName("Primary Image")]
+        public string Thumbnail { get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase ImageFile { get; set; }
+
+        [NotMapped]
+        public List<HttpPostedFileBase> SecondaryImages { get; set; }
+
+        [DisplayName("Secondary Images")]
+        public virtual IEnumerable<Image> Images { get; set; }
+
+
+
     }
 }

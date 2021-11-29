@@ -1,0 +1,53 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+
+@{
+    ViewBag.Title = "Privacy Policy and Terms of Service";
+}
+
+<h2><strong>Please read carefully the following Privacy Policy and Terms of Service. </strong></h2>
+<p>
+    Thank you for using <strong>TravelExperience!</strong>
+</p>
+
+<p>
+    These Terms of Service (“Terms”) are a binding legal agreement between you and TravelExperience that govern your use of the websites, applications, and other offerings from TravelExperience (collectively, the “TravelExperience Platform”). When used in these Terms, “TravelExperience,” “we,” “us,” or “our” refers to the TravelExperience entity set out on Schedule 1 with whom you are contracting.
+</p>
+<p>
+    The TravelExperience Platform offers an online venue that enables users (“Members”) to publish, offer, search for, and book services. Members who publish and offer services are “Hosts” and Members who search for, book, or use services are “Guests.” Hosts offer accommodations (“Accommodations”), activities, excursions, and events (“Experiences”), and a variety of travel and other services (collectively, “Host Services,” and each Host Service offering, a “Listing”). You must register an account to access and use many features of the TravelExperience Platform, and must keep your account information accurate. As the provider of the TravelExperience Platform, TravelExperience does not own, control, offer or manage any Listings or Host Services. TravelExperience is not a party to the contracts concluded directly between Hosts and Guests, nor is TravelExperience a real estate broker or insurer. TravelExperience is not acting as an agent in any capacity for any Member, except as specified in the Payments Terms of Service (“Payment Terms”). To learn more about TravelExperience’s role see Section 16.
+</p>
+
+<p> We maintain other terms and policies that supplement these Terms like our Privacy Policy, which describes our collection and use of personal data, and our Payments Terms, which govern any payment services provided to Members by the TravelExperience payment entities ("TravelExperience Payments").</p>
+
+<p>
+    If you Host, you are responsible for understanding and complying with all laws, rules, regulations and contracts with third parties that apply to your Host Services.
+</p>
+
+<h3><strong>Host Terms</strong></h3>
+<p><strong>5. Hosting on TravelExperience.</strong></p>
+<p><strong>5.1 Host.</strong> As a Host, TravelExperience offers you the opportunity to share your Accommodation, Experience, or other Host Service with our vibrant community of Guests - and earn money doing it. It’s easy to create a Listing and you are in control of how you host - set your price, availability, and rules for each Listing.</p>
+<p><strong>5.2 Contracting with Guests.</strong> When you accept a booking request, or receive a booking confirmation through the TravelExperience Platform, you are entering into a contract directly with the Guest, and are responsible for delivering your Host Service under the terms and at the price specified in your Listing. You are also agreeing to pay applicable fees like TravelExperience’s service fee (and applicable taxes) for each booking. TravelExperience Payments will deduct amounts you owe from your payout unless we and you agree to a different method. Any terms, policies or conditions that you include in any supplemental contract with Guests must: (i) be consistent with these Terms, our Policies, and the information provided in your Listing, and (ii) be prominently disclosed in your Listing description.</p>
+<p><strong>5.3 Independence of Hosts.</strong> Your relationship with TravelExperience is that of an independent individual or entity and not an employee, agent, joint venturer, or partner of TravelExperience, except that TravelExperience Payments acts as a payment collection agent as described in the Payments Terms. TravelExperience does not direct or control your Host Service, and you agree that you have complete discretion whether and when to provide Host Services, and at what price and on what terms to offer them.</p>
+<p><strong>6. Managing Your Listing.</strong></p>
+<p><strong>6.1Creating and Managing Your Listing.</strong> The TravelExperience Platform provides tools that make it easy for you to set up and manage a Listing. Your Listing must include complete and accurate information about your Host Service, your price, other charges like cleaning fees, resort fees, security deposits, offline fees, and any rules or requirements that apply to your Guests or Listing. You are responsible for keeping your Listing information (including calendar availability) and content (like photos) up-to-date and accurate at all times. We recommend that you obtain appropriate insurance for your Host Services and suggest you carefully review policy terms and conditions including coverage details and exclusions. You may only maintain one Listing per Accommodation, but may have multiple Listings for a single property if it has multiple places to stay. Any offer of an Experience is subject to our Additional Terms for Experience Hosts.</p>
+<p><strong>6.2 Know Your Legal Obligations.</strong>You are responsible for understanding and complying with any laws, rules, regulations, and contracts with third parties that apply to your Listing or Host Services. For example: Some landlords and leases, or homeowner and condominium association rules, restrict or prohibit subletting, short-term rentals and/or longer-term stays. Some cities have zoning or other laws that restrict the short-term rental of residential properties. Some jurisdictions require Hosts to register, get a permit, or obtain a license before providing certain Host Services (such as short-term rentals, longer-term stays, preparing food, serving alcohol for sale, guiding tours, or operating a vehicle). In some places, the Host Services you want to offer may be prohibited altogether. Some jurisdictions require that you register Guests who stay at your Accommodation. Some jurisdictions have laws that create tenancy rights for Guests and additional obligations for Hosts. For example, some places have landlord-tenant, rent control, and eviction laws that may apply to longer stays. Check your local rules to learn what rules apply to the Host Services you plan to offer. Information we provide regarding legal requirements is for informational purposes only and you should independently confirm your obligations. You are responsible for handling and using personal data of Guests and others in compliance with applicable privacy laws and these Terms, including our Host Privacy Standards. If you have questions about how local laws apply you should always seek legal advice.</p>
+<p><strong>6.3 Your Responsibilities.</strong> You are responsible and liable for your own acts and omissions and are also responsible for the acts and omissions of anyone you allow to participate in providing your Host Services. You are responsible for setting your price and establishing rules and requirements for your Listing. You must describe any and all fees and charges in your Listing description and may not collect any additional fees or charges outside the TravelExperience Platform except those expressly authorized by our Offline Fee Policy. Do not encourage Guests to create third-party accounts, submit reviews, provide their contact information, or take other actions outside the TravelExperience Platform in violation of our Off-Platform Policy.</p>
+
+
+@*@using (Html.BeginForm("New", "Accommodations", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+    <form action='@Html.ActionLink("AddUserRole","BecomeAHost")' onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy'); return false; }">
+
+        <input type="checkbox" name="checkbox" value="check" id="agree" /> I have read and agree to the Terms and Conditions and Privacy Policy
+        <input type="submit" name="submit" value="submit" />
+
+    </form>
+    }*@
+@using (Html.BeginForm("AddHost", "BecomeAHost", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <input type="submit"
+           value="Agree & Continue"
+           onclick="location.href='@Url.Action("New", "Accommodations") '" />
+}

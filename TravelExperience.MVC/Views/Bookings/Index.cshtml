@@ -18,19 +18,19 @@
             @Html.DisplayNameFor(model => model.Experience.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Traveler.FirstName)
+            @Html.DisplayNameFor(model => model.User.FirstName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HostID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.BookingStartDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.BookingEndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
         </th>
         <th></th>
     </tr>
@@ -44,19 +44,19 @@
             @Html.DisplayFor(modelItem => item.Experience.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Traveler.FirstName)
+            @Html.DisplayFor(modelItem => item.User.FirstName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HostID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.BookingStartDate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.BookingEndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreationDate)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.BookingID }) |

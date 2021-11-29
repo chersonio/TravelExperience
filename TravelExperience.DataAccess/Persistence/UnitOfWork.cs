@@ -5,26 +5,26 @@ namespace TravelExperience.DataAccess.Persistence
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly ApplicationDbContext _context;
-
+        private readonly AppDBContext _context;
 
         public IBookingRepository Bookings { get; private set; }
-        public ITravelerRepository Travelers { get; private set; }
-
         public IAccommodationRepository Accommodations { get; private set; }
-
         public IExperienceRepository Experiences { get; private set; }
+        public IImagesRepository Images { get; private set; }
+        public IUtilityRepository Utilities { get; private set; }
+        public IAccommodationUtilitiesRepository AccommodationUtilities { get; private set; }
+        public IApplicationUserRepository Users { get; private set; }
 
-        public IHostRepository Hosts { get; private set; }
-
-        public UnitOfWork(ApplicationDbContext context)
+        public UnitOfWork(AppDBContext context)
         {
             _context = context;
             Bookings = new BookingRepository(_context);
-            Travelers = new TravelerRepository(_context);
             Accommodations = new AccommodationRepository(_context);
             Experiences = new ExperienceRepository(_context);
-            Hosts = new HostRepository(_context);
+            Images = new ImagesRepository(_context);
+            Utilities = new UtilityRepository(_context);
+            AccommodationUtilities = new AccommodationUtilitiesRepository(_context);
+            Users = new ApplicationUserRepository(_context);
         }
 
         public void Complete()
