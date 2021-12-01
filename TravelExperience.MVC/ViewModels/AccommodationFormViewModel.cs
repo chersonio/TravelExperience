@@ -1,43 +1,39 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using TravelExperience.DataAccess.Core.Entities;
 
 namespace TravelExperience.MVC.ViewModels
 {
     public class AccommodatiosFormViewModel
     {
-        [Required]
-        [StringLength(50)]
-        public string Title { get; set; }
-
-        [Required]
-        [StringLength(250)]
-        public string Description { get; set; }
-
-        [Required]
+        public Accommodation Accommodation { get; set; }
+        public ApplicationUser User { get; set; }
+        public IEnumerable<Utility> Utilities { get; set; }
         public AccommodationType AccommodationType { get; set; }
 
-        [Required]
-        public int MaxCapacity { get; set; }
+        //[Required]
+        //[StringLength(50)]
+        //public string Title { get; set; }
 
-        public bool Shared { get; set; }
+        //[Required]
+        //[StringLength(250)]
+        //public string Description { get; set; }
 
-        [Required]
-        public string Address { get; set; }
+        //[Required]
 
-        [Required]
-        public int AddressNo { get; set; }
+        //public string AccommodationTypeID { get; set; }
+        //public AccommodationType AccommodationType { get; set; }
 
-        [Required]
-        public string City { get; set; }
+        //[Required]
+        //public int MaxCapacity { get; set; }
 
-        [Required]
-        public string Country { get; set; }
+        //public bool Shared { get; set; }
 
-        [Required]
-        public int PostalCode { get; set; }
+        //public Location Location { get; set; }
 
-        [Required]
-        public int Floor { get; set; }
+        //public int Floor { get; set; }
+
 
     }
 }
