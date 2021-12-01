@@ -5,7 +5,7 @@ using TravelExperience.DataAccess.Core.Entities;
 
 namespace TravelExperience.MVC.ViewModels
 {
-    internal class BookingViewModel
+    internal class BookingFormViewModel
     {
         [Key]
         public int BookingID { get; set; }

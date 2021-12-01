@@ -1,16 +1,4 @@
-﻿namespace TravelExperience.DataAccess.Persistence.Migrations
-{
-    using System;
-    using System.Data.Entity.Migrations;
-
-    public partial class Initial1 : DbMigration
-    {
-        public override void Up()
-        {
-            RenameColumn(table: "dbo.Bookings", name: "Id", newName: "UserId");
-            RenameIndex(table: "dbo.Bookings", name: "IX_Id", newName: "IX_UserId");
-
-            Sql("INSERT INTO Travelers (FirstName,LastName,DateOfBirth,VAT,IdentificationNo,Address,AddressNo,City,Country,PostalCode) " +
+﻿tName,LastName,DateOfBirth,VAT,IdentificationNo,Address,AddressNo,City,Country,PostalCode) " +
                 "VALUES ('Dylan','Villarreal',1991-03-09,'123456799','BN123453','Koemtzi',43,'Athens','Greece',11235), " +
                 "('Akira','Houston',1985-10-05,'223456790','LK123451','Agiou Thoma',56,'Irakleio','Greece',20008)," +
                 "('Everett','Myers',1981-08-13,'563457789','IU123446','Makrigianni',8,'Karditsa','Greece',30050)," +
