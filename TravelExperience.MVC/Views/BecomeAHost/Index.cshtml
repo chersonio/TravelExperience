@@ -33,17 +33,6 @@
 <p><strong>6.3 Your Responsibilities.</strong> You are responsible and liable for your own acts and omissions and are also responsible for the acts and omissions of anyone you allow to participate in providing your Host Services. You are responsible for setting your price and establishing rules and requirements for your Listing. You must describe any and all fees and charges in your Listing description and may not collect any additional fees or charges outside the TravelExperience Platform except those expressly authorized by our Offline Fee Policy. Do not encourage Guests to create third-party accounts, submit reviews, provide their contact information, or take other actions outside the TravelExperience Platform in violation of our Off-Platform Policy.</p>
 
 
-@*@using (Html.BeginForm("New", "Accommodations", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-
-    <form action='@Html.ActionLink("AddUserRole","BecomeAHost")' onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy'); return false; }">
-
-        <input type="checkbox" name="checkbox" value="check" id="agree" /> I have read and agree to the Terms and Conditions and Privacy Policy
-        <input type="submit" name="submit" value="submit" />
-
-    </form>
-    }*@
 @using (Html.BeginForm("AddHost", "BecomeAHost", FormMethod.Post))
 {
     @Html.AntiForgeryToken()

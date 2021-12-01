@@ -3,101 +3,241 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<!doctype html>
-<html lang="en">
-<body>
-    <div class="container-fluid" style="height:100vh">
-        <section class="section section-top section-full">
 
-            <!-- Cover -->
-            <div class="bg-cover" style="background-image: url(https://images.unsplash.com/photo-1542833278-f4deb3180291?ixlib=rb-1.2.1&auto=format&fit=crop&w=1487&q=80);
-                                         position: absolute;
-                                         top: 0;
-                                         left: 0;
-                                         right: 0;
-                                         bottom: 0;
-                                         background-repeat: no-repeat;
-                                         background-position: 50%;
-                                         background-size: cover;"></div>
+<!DOCTYPE html>
+<html>
+<head>
 
-            <!-- Overlay -->
-            <div class="bg-overlay"></div>
+    <!-- The name between <title> tag defines the title of the document. -->
 
-            <!-- Triangles -->
-            <div class="bg-triangle bg-triangle-light bg-triangle-bottom bg-triangle-left"></div>
-            <div class="bg-triangle bg-triangle-light bg-triangle-bottom bg-triangle-right"></div>
+    <title>Vacation Rentals, Homes & Experiences</title>
 
-            <!-- Content -->
-            <div class="container">
-                <div class="row justify-content-center align-items-center">
-                    <div class="col-md-8 col-lg-7">
+    <!-- Bootstrap 4 is designed to be responsive to mobile devices. Mobile-first styles are part of the core framework.
+    To ensure proper rendering and touch zooming, add the following <meta> tag inside the <head> element: -->
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-                    </div>
-                </div> <!-- / .row -->
-            </div> <!-- / .container -->
+    <!-- Bootstrap link -->
 
-        </section>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
-        <div class="container">
+    <!-- Font selection link -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- The Styles used has been stored and saved in another file named "style.css" and linked through <link> tag as shown below: -->
+
+    <link rel="stylesheet" href="custom.css">
+    <link rel="shortcut icon" sizes="76x76" type="image/x-icon" href="index.ico" />
+</head>
+<body class="background_img">
+    <!-- This is to make the Form Contents appear on the Image -->
+
+    <div class="row" style="font-size:14px;">
+        I travel not to go anywhere, but to go.<br />
+        I travel for travel’s sake.<br />
+        The great affair is to move.<br />
+    </div>
+        <div class="row" style="font-size:12px;">
+            -Robert Louis Stevenson
+        </div>
+
+        <form class="container mt-3 rounded" style=" align-self:center; max-width: 500px; padding: 30px 30px 60px 30px; background-color: rgba(113, 99, 71, 0.5); font-family: Helvetica;  font-weight: 600; color:azure;">
+            <h1 style="font-size: 2em; font-weight: bold; margin-bottom: 15px;">FIND A PERFECT VACATION</h1>
+            <div class="form-group" style=" font-size: small;">
+                <label>WHERE</label><br>
+                <input class="form-control" type="text" placeholder="Anywhere" name="destination" />
+            </div>
+            <div class="input-group-prepend" style=" font-size: small;">
+                <label>CHECK IN</label> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+                <label>CHECK OUT</label><br>
+            </div>
+            <div class="input-group" style=" font-size: small;">
+                <input class="form-control" type="date" placeholder="dd-mm-yyyy" name="checkin" />
+                <input class="form-control" type="date" placeholder="dd-mm-yyyy" name="checkout" />
+            </div>
+            <br>
+            <div class="form-group" style=" font-size: small;">
+                <label>GUESTS</label><br>
+                                     <select class="custom-select">
+                                         <option selected>1 guest</option>
+                                         <option>2 guests</option>
+                                         <option>3 guests</option>
+                                         <option>4 guests</option>
+                                         <option>5 guests</option>
+                                         <option>6 guests</option>
+                                         <option>7 guests</option>
+                                         <option>8 guests</option>
+                                         <option>9 guests</option>
+                                         <option>10 guests</option>
+                                     </select><br>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg" style="float:left;">Search</button>
+            </div>
+        </form> <br />
+
+        <!-- Form Ends here. -->
+        <!-- The below section displays the Reviews and Feedbacks given by the users. -->
+
+        <div style="margin: 370px 400px 20px 20px; font-size: 14px; font-family: Helvetica; color: darkslategrey;">
+            <h3>What guests are saying about homes round the world.</h3>
+        </div>
+
+        <!-- Reviews and Feedbacks which uses Bootstrap Grid property, includes images  -->
+
+        <div class="container" style="padding: 5px;">
             <div class="row">
-                <div class="col-sm-5">
-                    <div class="card bg-light mb-3" style="max-width: 45rem;">
-                        <div class="card-body">
-                            <h1 class="h3 mb-3">Book homes, hotels, and more on TravelExperience</h1>
-                            <form>
-                                <div class="form-group">
-                                    <div class="row px-3">
-                                        <label class="mb-0" for="locationInput mb-0 mt-5">WHERE?</label>
-                                        <input type="email" class="form-control w-100 br0" id="locationInput" aria-describedby="locationInputHelp" placeholder="Anywhere!">
-                                        <small id="locationInputHelp" class="form-text text-muted sr-only">Please type in your desired destination.</small>
-                                    </div>
-                                </div>
-                                <div class="row px-3">
-                                    <div class="col-sm-6 px-0">
-                                        Start Date: <input class="br0" id="startDate" />
-                                    </div>
-                                    <div class="col-sm-6 px-0 br0">
-                                        End Date: <input class="br0" id="endDate" />
-                                    </div>
-                                </div>
+                <div class="col-md-4">
+                    <img class="rounded" src="https://a0.muscache.com/im/pictures/01de0512-9191-474b-b5c1-7d0766f733ca.jpg?aki_policy=large" width="100%" height="100%">
+                </div>
+                <div class="col-md-4">
+                    <img class="rounded" src="https://a0.muscache.com/im/pictures/5440673/a183e798_original.jpg?aki_policy=large" width="100%" height="100%">
+                </div>
+                <div class="col-md-4">
+                    <img class="rounded" src="https://a0.muscache.com/im/pictures/49982382/37c921e0_original.jpg?aki_policy=large" width="100%" height="100%">
+                </div>
+            </div>
+        </div>
 
+        <!-- Reviews and Feedbacks which displays star ratings -->
 
-                                <div class="row px-3">
-                                    <div class="col-sm-6 px-0 br0">
-                                        <div class="form-group">
-                                            <label class="mb-0 mt-3" for="exampleFormControlSelect1">HOW MANY?</label>
-                                            <select class="form-control" id="exampleFormControlSelect1">
-                                                <option>1 guest</option>
-                                                <option>2 guests</option>
-                                                <option>3 guests</option>
-                                                <option>4 guests</option>
-                                                <option>5 guests</option>
-                                                <option>6 guests</option>
-                                                <option>7 guests</option>
-                                                <option>8 guests</option>
-                                                <option>9 guests</option>
-                                                <option>10 guests</option>
-                                                <option>11 guests</option>
-                                                <option>12 guests</option>
-                                                <option>13 guests</option>
-                                                <option>14 guests</option>
-                                                <option>15 guests</option>
-                                                <option>16 guests</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+        <div class="container" style="padding: 5px;">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                </div>
+            </div>
+        </div>
 
-                            <a href="#" class="btn btn-danger btn-block">Search</a>
+        <!-- Reviews and Feedbacks which uses Bootstrap Grid property, includes text -->
+
+        <div class="container" style="padding: 3px; font-size: 14px; font-family: Helvetica;">
+            <div class="row">
+                <div class="col-md-4">
+                    <p>
+                        Diana and KC have been the perfect host. Even though they were in another country, they made sure all our needs are fulfilled.
+                        From sho...
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p>I had no idea I had family members in Mumbai, and this is very much how I felt leaving Soraya and Fabia. Their hospitality and generosity are...</p>
+                </div>
+                <div class="col-md-4">
+                    <p>My name is Jeannette, and I stayed with my partner Matthew at Magpie Villa for a little under a week last week. Staying in Amita's...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews and Feedbacks of data about a particular user -->
+
+        <div class="container" style="margin-bottom: 10px;">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="https://a0.muscache.com/im/pictures/user/4c563997-a43c-49f6-adcc-8c684ebf19ac.jpg?aki_policy=profile_x_medium" height="48" width="48" style="border-radius: 50%;">
+                        </div>
+                        <div class="col-md-10">
+                            <p style="font-weight: bold; font-family: Helvetica; margin: 0;">Umar</p>
+                            <p>India</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="https://a0.muscache.com/im/users/31258848/profile_pic/1429084173/original.jpg?aki_policy=large" height="48" width="48" style="border-radius: 50%;">
+                        </div>
+                        <div class="col-md-10">
+                            <p style="font-weight: bold; font-family: Helvetica; margin: 0;">Nicolas</p>
+                            <p>India</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="https://a0.muscache.com/im/pictures/user/86bb51e6-f846-41ec-9a36-2985407d3c26.jpg?aki_policy=profile_x_medium" height="48" width="48" style="border-radius: 50%;">
+                        </div>
+                        <div class="col-md-10">
+                            <p style="font-weight: bold; font-family: Helvetica; margin: 0;">Matthew</p>
+                            <p>United States</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="container" style="margin-bottom: 50px; color: #484848;">
+            <div class="row">
+                <div class="col-md-10">
+                    <h3 style="margin-top: 50px;">ANOTHER DIV SECTION CAN BE ADDED HERE e.g. Stavro's Host page</h3>
 
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="container" style="margin-top: 70px;">
+            <div class="row">
+                <div class="col-md-3">
+                    <section>
+                        <h6 style="margin-left: 40px;">Airbnb</h6>
+                        <ul style="list-style: none;">
+                            <li><a href="#">Help</a></li>
+                            <li><a href="#">Policies</a></li>
+                            <li><a href="#">Terms</a></li>
+                            <li><a href="#">Privacy</a></li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="col-md-3">
+                    <section>
+                        <h6 style="margin-left: 40px;">Discover</h6>
+                        <ul style="list-style: none;">
+                            <li><a href="#">Trust & Safety</a></li>
+                            <li><a href="#">Site Map</a></li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="col-md-3">
+                    <section>
+                        <h6 style="margin-left: 40px;">Hosting</h6>
+                        <ul style="list-style: none;">
+                            <li><a href="#">Why Host</a></li>
+                            <li><a href="#">Responsible Hosting</a></li>
+                            <li><a href="#">Open Homes</a>&emsp;<a href="#"><button type="button" class="btn btn-primary new">New</button></a></li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="col-md-3">
+                    <section>
+                        <h5 style="margin-left: 40px;">
+                            <a href="#" style="color: #636e72;"><i class="fa fa-facebook" style="padding-right: 15px;"></i></a>
+                            <a href="#" style="color: #636e72;"><i class="fa fa-twitter" style="padding-right: 15px;"></i></a>
+                            <a href="#" style="color: #636e72;"><i class="fa fa-instagram" style="padding-right: 15px;"></i></a>
+                        </h5>
+                    </section>
+                </div>
+            </div>
+        </div>
     <section>
         <h1 class="text-center">- Hot new places to visit -</h1>
 
@@ -152,7 +292,4 @@
 </body>
 </html>
 
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
