@@ -30,6 +30,74 @@ textarea {
     background-color: #ebebeb;
 }
 
-    #IdentityForm input {
+#IdentityForm input {
         max-width: unset;
     }
+/*body {
+    font-family: 'Cabin', sans-serif;
+    font-size: 14px;
+    line-height: 1.6em;
+    font-weight: 400;
+    color: #989ea1;
+}*/
+
+.background_img {
+    background-image: url("http://solaris-html.themerex.net/images/slider_3.jpg");
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+/* For styling NavBar */
+.navbar.navbar-expand-lg.navbar-light li a {
+    color:azure;
+    margin-bottom: 20px;
+    padding: 14px 16px;
+    font-size: 15px;
+    font-weight:500;
+    font-family:Arial, Helvetica, sans-serif;
+    border: 2px groove;
+}
+
+    .navbar.navbar-expand-lg.navbar-light li a:hover {
+        color: rgb(0, 106, 112);
+        
+    }
+
+.checked {
+    color: rgb(0,132,137)
+}
+
+.btn-primary.btn-lg {
+    background-color: rgb(255,90,95);
+    border-color: rgb(255,90,95);
+    font-size: 16px;
+}
+
+.container li a {
+    color: #767676;
+}
+
+.btn.btn-outline-primary.rounded.nohover {
+    pointer-events: none;
+}
+
+.btn.btn-primary.new {
+    background-color: rgb(0, 106, 112);
+    border: none;
+    font-size: 12px;
+    padding: 1px 4px;
+}
+
+.navbar.navbar-expand-lg.navbar-light.navbar-brand {
+    color: azure;
+    margin-bottom: 20px;
+    padding: 14px 16px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 2px solid;
+}
+

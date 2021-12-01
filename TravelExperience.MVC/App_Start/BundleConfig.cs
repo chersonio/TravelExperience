@@ -9,7 +9,11 @@ namespace TravelExperience.MVC
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/bootstrap.js",
+                         "~/Scripts/bootbox.js",
+                         "~/Scripts/Datatables/jquery.dataTables.js",
+                         "~/Scripts/Datatables/dataTables.bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
