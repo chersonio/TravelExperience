@@ -176,13 +176,9 @@
     <Compile Include="Core\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Core\Interfaces\IUtilityRepository.cs" />
     <Compile Include="Persistence\AppDBContext.cs" />
-    <Compile Include="Persistence\Migrations\202111292206040_ChangeUtilities.cs" />
-    <Compile Include="Persistence\Migrations\202111292206040_ChangeUtilities.designer.cs">
-      <DependentUpon>202111292206040_ChangeUtilities.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Migrations\202111292230333_seedUtilities.cs" />
-    <Compile Include="Persistence\Migrations\202111292230333_seedUtilities.designer.cs">
-      <DependentUpon>202111292230333_seedUtilities.cs</DependentUpon>
+    <Compile Include="Persistence\Migrations\202112012127157_ChangedUtilities.cs" />
+    <Compile Include="Persistence\Migrations\202112012127157_ChangedUtilities.designer.cs">
+      <DependentUpon>202112012127157_ChangedUtilities.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Repositories\AccommodationUtilitiesRepository.cs" />
     <Compile Include="Persistence\Repositories\ImagesRepository.cs" />
@@ -209,11 +205,8 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Persistence\Migrations\202111292206040_ChangeUtilities.resx">
-      <DependentUpon>202111292206040_ChangeUtilities.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\202111292230333_seedUtilities.resx">
-      <DependentUpon>202111292230333_seedUtilities.cs</DependentUpon>
+    <EmbeddedResource Include="Persistence\Migrations\202112012127157_ChangedUtilities.resx">
+      <DependentUpon>202112012127157_ChangedUtilities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

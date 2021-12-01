@@ -3,11 +3,12 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class ChangeUtilities : DbMigration
+    public partial class ChangedUtilities : DbMigration
     {
         public override void Up()
         {
             AddColumn("dbo.Utilities", "Name", c => c.String());
+            AddColumn("dbo.Utilities", "Value", c => c.Boolean(nullable: false));
             DropColumn("dbo.AccommodationUtilities", "Exists");
             DropColumn("dbo.Utilities", "BeachFrontID");
             DropColumn("dbo.Utilities", "BeachFront");
@@ -86,6 +87,7 @@
             AddColumn("dbo.Utilities", "BeachFront", c => c.Boolean(nullable: false));
             AddColumn("dbo.Utilities", "BeachFrontID", c => c.String());
             AddColumn("dbo.AccommodationUtilities", "Exists", c => c.Boolean(nullable: false));
+            DropColumn("dbo.Utilities", "Value");
             DropColumn("dbo.Utilities", "Name");
         }
     }
