@@ -33,7 +33,11 @@ namespace TravelExperience.MVC.Controllers
         public ActionResult New()
         {
 
-            var viewModel = new AccommodatiosFormViewModel();
+            var viewModel = new AccommodatiosFormViewModel()
+            {
+                Utilities = _unitOfWork.Utilities.GetAll()
+            };
+
             return View(viewModel);
         }
 
@@ -44,32 +48,34 @@ namespace TravelExperience.MVC.Controllers
         public ActionResult New(AccommodatiosFormViewModel viewModel)
         {
             var userId = User.Identity.GetUserId();
+            //viewModel.Utilities = _unitOfWork.Ut
             //var user = _unitOfWork.Users.GetById(userId);
 
-            var accommodationType = viewModel.AccommodationType;
+            //var accommodationType = viewModel.AccommodationType;
 
-            var location = new Location()
-            {
-                Address = viewModel.Address,
-                AddressNo = viewModel.AddressNo,
-                City = viewModel.City,
-                Country = viewModel.Country,
-                PostalCode = viewModel.PostalCode,
-            }; // apothikevetai?
+            //var location = new Location()
+            //{
+            //    Address = viewModel.Address,
+            //    AddressNo = viewModel.AddressNo,
+            //    City = viewModel.City,
+            //    Country = viewModel.Country,
+            //    PostalCode = viewModel.PostalCode,
+            //}; // apothikevetai?
 
-            var accommodation = new Accommodation()
-            {
-                Title = viewModel.Title,
-                Description = viewModel.Description,
-                AccommodationType = (AccommodationType)accommodationType,
-                MaxCapacity = viewModel.MaxCapacity,
-                Shared = viewModel.Shared,
-                Location = location,
-                Floor = viewModel.PostalCode
-            };
+            //var accommodation = new Accommodation()
+            //{
+            //    Title = viewModel.Title,
+            //    Description = viewModel.Description,
+            //    AccommodationType = (AccommodationType)accommodationType,
+            //    MaxCapacity = viewModel.MaxCapacity,
+            //    Shared = viewModel.Shared,
+            //    Location = location,
+            //    Floor = viewModel.PostalCode
+            //};
 
-            _unitOfWork.Accommodations.Create(accommodation);
-            _unitOfWork.Complete();
+            //_unitOfWork.Accommodations.Create(accommodation);
+            //_unitOfWork.Complete();
+
 
             return RedirectToAction("Index", "Home");
         }

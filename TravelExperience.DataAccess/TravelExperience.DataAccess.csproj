@@ -176,21 +176,13 @@
     <Compile Include="Core\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Core\Interfaces\IUtilityRepository.cs" />
     <Compile Include="Persistence\AppDBContext.cs" />
-    <Compile Include="Persistence\Migrations\202111291644254_Initial.cs" />
-    <Compile Include="Persistence\Migrations\202111291644254_Initial.designer.cs">
-      <DependentUpon>202111291644254_Initial.cs</DependentUpon>
+    <Compile Include="Persistence\Migrations\202111292206040_ChangeUtilities.cs" />
+    <Compile Include="Persistence\Migrations\202111292206040_ChangeUtilities.designer.cs">
+      <DependentUpon>202111292206040_ChangeUtilities.cs</DependentUpon>
     </Compile>
-    <Compile Include="Persistence\Migrations\202111291731277_AddSeed.cs" />
-    <Compile Include="Persistence\Migrations\202111291731277_AddSeed.designer.cs">
-      <DependentUpon>202111291731277_AddSeed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Migrations\202111291750361_AddSeed2.cs" />
-    <Compile Include="Persistence\Migrations\202111291750361_AddSeed2.designer.cs">
-      <DependentUpon>202111291750361_AddSeed2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Migrations\202111291755096_AddSeed3.cs" />
-    <Compile Include="Persistence\Migrations\202111291755096_AddSeed3.designer.cs">
-      <DependentUpon>202111291755096_AddSeed3.cs</DependentUpon>
+    <Compile Include="Persistence\Migrations\202111292230333_seedUtilities.cs" />
+    <Compile Include="Persistence\Migrations\202111292230333_seedUtilities.designer.cs">
+      <DependentUpon>202111292230333_seedUtilities.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Repositories\AccommodationUtilitiesRepository.cs" />
     <Compile Include="Persistence\Repositories\ImagesRepository.cs" />
@@ -217,17 +209,11 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Persistence\Migrations\202111291644254_Initial.resx">
-      <DependentUpon>202111291644254_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Persistence\Migrations\202111292206040_ChangeUtilities.resx">
+      <DependentUpon>202111292206040_ChangeUtilities.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\202111291731277_AddSeed.resx">
-      <DependentUpon>202111291731277_AddSeed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\202111291750361_AddSeed2.resx">
-      <DependentUpon>202111291750361_AddSeed2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\202111291755096_AddSeed3.resx">
-      <DependentUpon>202111291755096_AddSeed3.cs</DependentUpon>
+    <EmbeddedResource Include="Persistence\Migrations\202111292230333_seedUtilities.resx">
+      <DependentUpon>202111292230333_seedUtilities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

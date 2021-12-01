@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -21,7 +22,13 @@ namespace TravelExperience.DataAccess.Core.Entities
 
         //Utilities
         [Required]
-        public virtual ICollection<AccommodationUtilities> AccommodationUtilities { get; set; }
+        public ICollection<AccommodationUtilities> AccommodationUtilities { get; set; }
+
+        public Accommodation()
+        {
+            AccommodationUtilities = new Collection<AccommodationUtilities>();
+        }
+
 
         // Location
         //[ForeignKey("Location")]
@@ -51,7 +58,7 @@ namespace TravelExperience.DataAccess.Core.Entities
         public List<HttpPostedFileBase> SecondaryImages { get; set; }
 
         [DisplayName("Secondary Images")]
-        public virtual IEnumerable<Image> Images { get; set; }
+        public IEnumerable<Image> Images { get; set; }
 
 
 
