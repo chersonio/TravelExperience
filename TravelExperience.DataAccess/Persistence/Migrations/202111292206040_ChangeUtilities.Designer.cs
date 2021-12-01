@@ -7,13 +7,13 @@ namespace TravelExperience.DataAccess.Persistence.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddSeed2 : IMigrationMetadata
+    public sealed partial class ChangeUtilities : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddSeed2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeUtilities));
         
         string IMigrationMetadata.Id
         {
-            get { return "202111291750361_AddSeed2"; }
+            get { return "202111292206040_ChangeUtilities"; }
         }
         
         string IMigrationMetadata.Source
