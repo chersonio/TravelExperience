@@ -44,7 +44,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public IEnumerable<Accommodation> GetAll()
         {
-            return _context.Bookings.Select(x => x.Accommodation).ToList();
+            return _context.Accommodations.Include(x => x.Location).ToList();
         }
 
         public IEnumerable<Accommodation> GetAllForTravelerID(int? hostID)
