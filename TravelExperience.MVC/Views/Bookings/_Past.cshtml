@@ -1,0 +1,57 @@
+﻿@model IEnumerable<TravelExperience.DataAccess.Core.Entities.Booking>
+@*@model IEnumerable<TravelExperience.DataAccess.Core.Entities.Location>*@
+
+<h2>Hello Past Trips!</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Accommodation.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingStartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingEndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (HttpContext.Current.User.Identity.IsAuthenticated && HttpContext.Current.User.Identity.Name.Equals(User.Identity)) {
+
+            if (item.BookingStartDate <= DateTime.Now)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Accommodation.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.BookingID }) 
+
+            </td>
+        </tr>
+            }
+        }
+    }
+
+</table>
