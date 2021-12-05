@@ -15,6 +15,9 @@ namespace TravelExperience.DataAccess.Persistence
         public IAccommodationUtilitiesRepository AccommodationUtilities { get; private set; }
         public IApplicationUserRepository Users { get; private set; }
 
+        public IAccommodationTypeRepository AccommodationTypes { get; set; }
+
+        public ILocationRepository Locations { get; set; }
         public UnitOfWork(AppDBContext context)
         {
             _context = context;
@@ -25,6 +28,8 @@ namespace TravelExperience.DataAccess.Persistence
             Utilities = new UtilityRepository(_context);
             AccommodationUtilities = new AccommodationUtilitiesRepository(_context);
             Users = new ApplicationUserRepository(_context);
+            AccommodationTypes = new AccommodationTypeRepository(_context);
+            Locations = new LocationRepository(_context);
         }
 
         public void Complete()

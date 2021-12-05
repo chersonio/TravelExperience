@@ -33,7 +33,7 @@ namespace TravelExperience.DataAccess.Core.Entities
 
         public int AccommodationID { get; set; }
 
-        public IEnumerable<Accommodation> Accommodations { get; set; }
+        public ICollection<Accommodation> Accommodations { get; set; }
 
         //[ForeignKey("Accommodation")]
         //public int AccommodationID { get; set; }

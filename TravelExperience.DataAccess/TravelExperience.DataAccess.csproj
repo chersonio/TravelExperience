@@ -161,6 +161,7 @@
   <ItemGroup>
     <Compile Include="Core\Entities\Accommodation.cs" />
     <Compile Include="Core\Entities\AccommodationType.cs" />
+    <Compile Include="Core\Entities\AccommodationType1.cs" />
     <Compile Include="Core\Entities\AccommodationUtilities.cs" />
     <Compile Include="Core\Entities\Booking.cs" />
     <Compile Include="Core\Entities\Experience.cs" />
@@ -169,27 +170,47 @@
     <Compile Include="Core\Entities\Location.cs" />
     <Compile Include="Core\Entities\Utility.cs" />
     <Compile Include="Core\Interfaces\IAccommodationRepository.cs" />
+    <Compile Include="Core\Interfaces\IAccommodationTypeRepository.cs" />
     <Compile Include="Core\Interfaces\IAccommodationUtilitiesRepository.cs" />
     <Compile Include="Core\Interfaces\IExperienceRepository.cs" />
     <Compile Include="Core\Interfaces\IBookingRepository.cs" />
     <Compile Include="Core\Interfaces\IImagesRepository.cs" />
+    <Compile Include="Core\Interfaces\ILocationRepository.cs" />
     <Compile Include="Core\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Core\Interfaces\IUtilityRepository.cs" />
     <Compile Include="Persistence\AppDBContext.cs" />
-    <Compile Include="Persistence\Migrations\202111292206040_ChangeUtilities.cs" />
-    <Compile Include="Persistence\Migrations\202111292206040_ChangeUtilities.designer.cs">
-      <DependentUpon>202111292206040_ChangeUtilities.cs</DependentUpon>
+    <Compile Include="Persistence\Configurations\AccommodationConfiguration.cs" />
+    <Compile Include="Persistence\Configurations\AccommodationUtilitiesConfiguration.cs" />
+    <Compile Include="Persistence\Configurations\ApplicationUserConfiguration.cs" />
+    <Compile Include="Persistence\Configurations\BookingConfiguration.cs" />
+    <Compile Include="Persistence\Migrations\202112012023311_Init.cs" />
+    <Compile Include="Persistence\Migrations\202112012023311_Init.designer.cs">
+      <DependentUpon>202112012023311_Init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Persistence\Migrations\202111292230333_seedUtilities.cs" />
-    <Compile Include="Persistence\Migrations\202111292230333_seedUtilities.designer.cs">
-      <DependentUpon>202111292230333_seedUtilities.cs</DependentUpon>
+    <Compile Include="Persistence\Migrations\202112012133170_AddHostIdToAccommodations.cs" />
+    <Compile Include="Persistence\Migrations\202112012133170_AddHostIdToAccommodations.designer.cs">
+      <DependentUpon>202112012133170_AddHostIdToAccommodations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Persistence\Migrations\202112051224094_accommodationICollection.cs" />
+    <Compile Include="Persistence\Migrations\202112051224094_accommodationICollection.designer.cs">
+      <DependentUpon>202112051224094_accommodationICollection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\Migrations\202112051719593_FixAccommodationType.cs" />
+    <Compile Include="Persistence\Migrations\202112051719593_FixAccommodationType.designer.cs">
+      <DependentUpon>202112051719593_FixAccommodationType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\Migrations\202112051749444_populateAccommodationTypes.cs" />
+    <Compile Include="Persistence\Migrations\202112051749444_populateAccommodationTypes.designer.cs">
+      <DependentUpon>202112051749444_populateAccommodationTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\Repositories\AccommodationTypeRepository.cs" />
     <Compile Include="Persistence\Repositories\AccommodationUtilitiesRepository.cs" />
     <Compile Include="Persistence\Repositories\ImagesRepository.cs" />
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Persistence\Repositories\ExperienceRepository.cs" />
     <Compile Include="Persistence\Repositories\AccommodationRepository.cs" />
     <Compile Include="Core\Interfaces\IApplicationUserRepository.cs" />
+    <Compile Include="Persistence\Repositories\LocationRepository.cs" />
     <Compile Include="Persistence\Repositories\SearchFilters\BookingsSearchFilter.cs" />
     <Compile Include="Persistence\Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Persistence\Repositories\BookingRepository.cs" />
@@ -199,7 +220,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\Dtos\" />
-    <Folder Include="Persistence\Configurations\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -209,11 +229,20 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Persistence\Migrations\202111292206040_ChangeUtilities.resx">
-      <DependentUpon>202111292206040_ChangeUtilities.cs</DependentUpon>
+    <EmbeddedResource Include="Persistence\Migrations\202112012023311_Init.resx">
+      <DependentUpon>202112012023311_Init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\202111292230333_seedUtilities.resx">
-      <DependentUpon>202111292230333_seedUtilities.cs</DependentUpon>
+    <EmbeddedResource Include="Persistence\Migrations\202112012133170_AddHostIdToAccommodations.resx">
+      <DependentUpon>202112012133170_AddHostIdToAccommodations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\202112051224094_accommodationICollection.resx">
+      <DependentUpon>202112051224094_accommodationICollection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\202112051719593_FixAccommodationType.resx">
+      <DependentUpon>202112051719593_FixAccommodationType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\202112051749444_populateAccommodationTypes.resx">
+      <DependentUpon>202112051749444_populateAccommodationTypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

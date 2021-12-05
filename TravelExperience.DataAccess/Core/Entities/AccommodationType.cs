@@ -1,12 +1,18 @@
-﻿namespace TravelExperience.DataAccess.Core.Entities
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TravelExperience.DataAccess.Core.Entities
 {
-    public enum AccommodationType // AccommodationType.Room
+    public class AccommodationType
     {
-        Room = 1,
-        Apartment = 2,
-        Villa = 3,
-        Hostel = 4,
-        Hotel = 5,
-        BedAndBreakFast = 6
+        [Key]
+        public int TypeId { get; set; }
+
+        public string Name { get; set; }
+
     }
 }

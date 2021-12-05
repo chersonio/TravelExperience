@@ -7,13 +7,13 @@ namespace TravelExperience.DataAccess.Persistence.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class ChangeUtilities : IMigrationMetadata
+    public sealed partial class AddHostIdToAccommodations : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeUtilities));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddHostIdToAccommodations));
         
         string IMigrationMetadata.Id
         {
-            get { return "202111292206040_ChangeUtilities"; }
+            get { return "202112012133170_AddHostIdToAccommodations"; }
         }
         
         string IMigrationMetadata.Source

@@ -20,6 +20,10 @@ namespace TravelExperience.DataAccess.Core.Entities
         [Required, StringLength(250)]
         public string Description { get; set; }
 
+        public string HostID { get; set; }
+
+        public ApplicationUser Host { get; set; } //optional
+
         //Utilities
         [Required]
         public ICollection<AccommodationUtilities> AccommodationUtilities { get; set; }
@@ -39,9 +43,7 @@ namespace TravelExperience.DataAccess.Core.Entities
         public int MaxCapacity { get; set; }
 
         // Accommodation type
-        public string AccommodationTypeID { get; set; }
-
-        [NotMapped]
+        public int AccommodationTypeID { get; set; }
         public AccommodationType AccommodationType { get; set; }
 
         public bool Shared { get; set; }
