@@ -8,6 +8,8 @@ namespace TravelExperience.DataAccess.Core.Interfaces
         IAccommodationRepository Accommodations { get; }
         IExperienceRepository Experiences { get; }
 
+        IUtilityRepository Utilities { get; }
+
         IApplicationUserRepository Users { get; }
         void Complete();
     }

@@ -1,0 +1,67 @@
+﻿@model TravelExperience.MVC.ViewModels.AccommodatiosFormViewModel
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Add an accommodation</h2>
+
+@using (Html.BeginForm("Save", "Songs"))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Accommodation.Title)
+        @Html.TextBoxFor(model => model.Accommodation.Title, new { @class = "form-control" })
+
+        @Html.ValidationMessageFor(model => model.Accommodation.Title, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Accommodation.Description)
+        @Html.TextBoxFor(model => model.Accommodation.Description, new { @class = "form-control" })
+
+        @Html.ValidationMessageFor(model => model.Accommodation.Description, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Accommodation.AccommodationUtilities)
+        @Html.DropDownListFor(model => model.Utilities, new SelectList(Model.Utilities, "UtilitiesOfAccommodationID", "Name"), "", new { @class = "form-control" })
+
+        @Html.ValidationMessageFor(model => model.Accommodation.Title, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Accommodation.Location)
+        @Html.TextBoxFor(model => model.Accommodation.Location, new { @class = "form-control" })
+
+        @Html.ValidationMessageFor(model => model.Accommodation.Location, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Accommodation.AccommodationType)
+        @*@Html.DropDownListFor(model => model.Accommodation.AccommodationType, new SelectList(Enum.GetValues(typeof(model.AccommodationType))), "Select type", new { @class = "form-control" })*@
+        @Html.EnumDropDownListFor(model => model.AccommodationType)
+
+        @Html.ValidationMessageFor(model => model.Accommodation.AccommodationType, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Accommodation.Shared)
+        @Html.CheckBoxFor(model => model.Accommodation.Shared, new { @class = "form-control" })
+
+        @Html.ValidationMessageFor(model => model.Accommodation.Shared, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Accommodation.Floor)
+        @Html.TextBoxFor(model => model.Accommodation.Floor, new { @class = "form-control" })
+
+        @Html.ValidationMessageFor(model => model.Accommodation.Floor, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Accommodation.Thumbnail)
+        @Html.TextBoxFor(model => model.Accommodation.Thumbnail, new { @class = "form-control" })
+
+        @Html.ValidationMessageFor(model => model.Accommodation.Thumbnail, "", new { @class = "text-danger" })
+    </div>
+}
+

@@ -176,9 +176,11 @@
     <Compile Include="Core\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Core\Interfaces\IUtilityRepository.cs" />
     <Compile Include="Persistence\AppDBContext.cs" />
+
     <Compile Include="Persistence\Migrations\202112012032308_Initial.cs" />
     <Compile Include="Persistence\Migrations\202112012032308_Initial.designer.cs">
       <DependentUpon>202112012032308_Initial.cs</DependentUpon>
+
     </Compile>
     <Compile Include="Persistence\Repositories\AccommodationUtilitiesRepository.cs" />
     <Compile Include="Persistence\Repositories\ImagesRepository.cs" />
@@ -205,8 +207,10 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+
     <EmbeddedResource Include="Persistence\Migrations\202112012032308_Initial.resx">
       <DependentUpon>202112012032308_Initial.cs</DependentUpon>
+
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

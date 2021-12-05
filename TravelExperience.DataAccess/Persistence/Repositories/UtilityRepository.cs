@@ -37,7 +37,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public IEnumerable<Utility> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Utilities.ToList();
         }
 
         public Utility GetById(int? id)
