@@ -1,0 +1,68 @@
+﻿@model TravelExperience.MVC.ViewModels.MainPageViewModel
+
+
+<div class="row thumb-container">
+    @for (int i = 0; i < 3; i++)
+    {
+        var accomLink = Model.RandomAccommodations.ToArray()[i]; // need random
+
+        <div class="col-md-4 accom-thumb-link" style="background-image: url(@accomLink.Thumbnail)">
+
+            <a href="">
+                <div class=" black-box-mask">
+                    <div style="height:88%">
+                        <h2>
+                            @accomLink.Location.City.ToString()
+                        </h2>
+                    </div> 
+                    <div>
+                        <h2>
+                            @Model.Bookings.FirstOrDefault(x => x.AccommodationID == accomLink.AccommodationID).BookingStartDate.ToString("dd-MMM-yy")
+                        </h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+
+</div>
+
+<style>
+
+    .thumb-container {
+        justify-content: space-evenly;
+    }
+
+    .accom-thumb-link a {
+        text-decoration: none;
+        height: 240px;
+    }
+
+    .accom-thumb-link {
+        position: relative;
+        border-radius: 2%;
+        max-width: 31%;
+        height: 240px;
+        background-size: cover;
+        margin: 5px;
+    }
+
+    .black-box-mask {
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 2%;
+        text-align: center;
+        font-size: 16px;
+        color: #fff;
+        background-color: rgba(00,00,00,0.8);
+        opacity: 0.0;
+    }
+
+        .black-box-mask:hover {
+            opacity: 1.0;
+        }
+</style>
+

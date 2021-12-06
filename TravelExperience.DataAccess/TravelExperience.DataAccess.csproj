@@ -190,6 +190,7 @@
     <Compile Include="Persistence\Migrations\202112012133170_AddHostIdToAccommodations.cs" />
     <Compile Include="Persistence\Migrations\202112012133170_AddHostIdToAccommodations.designer.cs">
       <DependentUpon>202112012133170_AddHostIdToAccommodations.cs</DependentUpon>
+
     </Compile>
     <Compile Include="Persistence\Migrations\202112051224094_accommodationICollection.cs" />
     <Compile Include="Persistence\Migrations\202112051224094_accommodationICollection.designer.cs">
@@ -250,6 +251,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\202112061828305_AddExistsToAccommodationUtilities.resx">
       <DependentUpon>202112061828305_AddExistsToAccommodationUtilities.cs</DependentUpon>
+
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
