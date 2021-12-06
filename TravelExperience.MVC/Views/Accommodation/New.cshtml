@@ -25,6 +25,7 @@
         @{int utilitiesCounter = 0; }
         @foreach (var item in Model.Utilities)
         {
+            //just for the commit
             @Html.CheckBoxFor(modelItem => Model.AccommodationUtilities.ToList()[utilitiesCounter].Exists, new { @class = "form-control" })
             <br />
         }
