@@ -21,10 +21,11 @@
         @Html.ValidationMessageFor(model => model.Accommodation.Description, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
+
+        @{int utilitiesCounter = 0; }
         @foreach (var item in Model.Utilities)
         {
-            @Html.DisplayFor(modelItem => item.Name)  
-            @Html.CheckBoxFor(modelItem => item.IsChecked, new { @class = "form-control" })
+            @Html.CheckBoxFor(modelItem => Model.AccommodationUtilities.ToList()[utilitiesCounter].Exists, new { @class = "form-control" })
             <br />
         }
 
@@ -131,5 +132,7 @@
 
         @Html.ValidationMessageFor(model => model.Accommodation.Thumbnail, "", new { @class = "text-danger" })
     </div>
+
+    <button type="submit" class="btn btn-primary btn-lg">Save</button>
 }
 

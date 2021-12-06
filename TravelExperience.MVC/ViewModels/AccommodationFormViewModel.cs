@@ -22,7 +22,7 @@ namespace TravelExperience.MVC.ViewModels
 
         public Location Location { get; set; }
 
-
+        public IEnumerable<AccommodationUtilities> AccommodationUtilities { get; set; }
 
 
     }

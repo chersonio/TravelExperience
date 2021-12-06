@@ -203,6 +203,10 @@
     <Compile Include="Persistence\Migrations\202112051749444_populateAccommodationTypes.designer.cs">
       <DependentUpon>202112051749444_populateAccommodationTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Persistence\Migrations\202112061828305_AddExistsToAccommodationUtilities.cs" />
+    <Compile Include="Persistence\Migrations\202112061828305_AddExistsToAccommodationUtilities.designer.cs">
+      <DependentUpon>202112061828305_AddExistsToAccommodationUtilities.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistence\Repositories\AccommodationTypeRepository.cs" />
     <Compile Include="Persistence\Repositories\AccommodationUtilitiesRepository.cs" />
     <Compile Include="Persistence\Repositories\ImagesRepository.cs" />
@@ -243,6 +247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\202112051749444_populateAccommodationTypes.resx">
       <DependentUpon>202112051749444_populateAccommodationTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\202112061828305_AddExistsToAccommodationUtilities.resx">
+      <DependentUpon>202112061828305_AddExistsToAccommodationUtilities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
