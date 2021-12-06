@@ -182,6 +182,10 @@
       <DependentUpon>202112012032308_Initial.cs</DependentUpon>
 
     </Compile>
+    <Compile Include="Persistence\Migrations\202112051620009_JustToCheck.cs" />
+    <Compile Include="Persistence\Migrations\202112051620009_JustToCheck.designer.cs">
+      <DependentUpon>202112051620009_JustToCheck.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistence\Repositories\AccommodationUtilitiesRepository.cs" />
     <Compile Include="Persistence\Repositories\ImagesRepository.cs" />
     <Compile Include="Persistence\Migrations\Configuration.cs" />
@@ -211,6 +215,9 @@
     <EmbeddedResource Include="Persistence\Migrations\202112012032308_Initial.resx">
       <DependentUpon>202112012032308_Initial.cs</DependentUpon>
 
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\202112051620009_JustToCheck.resx">
+      <DependentUpon>202112051620009_JustToCheck.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
