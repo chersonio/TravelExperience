@@ -1,69 +1,57 @@
 ﻿@model IEnumerable<TravelExperience.DataAccess.Core.Entities.Booking>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Trips";
 }
 
-<h2>Index</h2>
+<h2>Trips</h2>
+
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Accommodation.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Experience.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BookingStartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BookingEndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Accommodation.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Experience.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookingStartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookingEndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreationDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BookingID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BookingID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BookingID })
-        </td>
-    </tr>
-}
 
-</table>
+<div class="tabs">
+    <ul id="tabstrip" class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#_Past" role="tab" data-toggle="tab">Past</a>
+        </li>
+        <li>
+            <a href="#_Upcoming" role="tab" data-toggle="tab">Upcoming</a>
+        </li>
+    </ul>
+</div>
+
+<div class="tab-content">
+    <div class="tab-pane fade in active" id="_Past">
+        @Html.Partial("_Past")
+    </div>
+    <div class="tab-pane fade" id="_Upcoming">
+        @Html.Partial("_Upcoming")
+    </div>
+</div>
+
+<script>
+    $('#tabstrip a').click(function (e) {
+        e.preventDefault()
+        var tabID = $(this).attr("href").substr(1);
+        $(".tab-pane").each(function () {
+            console.log("clearing " + $(this).attr("id") + " tab");
+            $(this).empty();
+        });
+
+        $.ajax({
+            url: "/@ViewContext.RouteData.Values["Booking"]/" + tabID,
+            cache: false,
+            type: "get",
+            dataType: "html",
+            success: function (result) {
+                $("#" + tabID).html(result);
+            }
+
+        })
+   $(this).tab('show')
+});
+</script>
+

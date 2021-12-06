@@ -11,7 +11,7 @@ using TravelExperience.DataAccess.Core.Interfaces;
 
 namespace TravelExperience.MVC.Controllers
 {
-    [AllowAnonymous]
+    [Authorize]
     public class BookingsController : Controller
     {
         //private ApplicationDbContext db = new ApplicationDbContext();
@@ -137,6 +137,17 @@ namespace TravelExperience.MVC.Controllers
             _unitOfWork.Complete();
 
             return RedirectToAction("Index");
+        }
+
+
+        public ActionResult Past()
+        {
+            return PartialView("_Past");
+        }
+
+        public ActionResult Upcoming()
+        {
+            return PartialView("_Upcoming");
         }
 
         protected override void Dispose(bool disposing)
