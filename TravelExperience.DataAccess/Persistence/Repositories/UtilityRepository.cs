@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DataAccess.Core.Interfaces;
+
 
 namespace TravelExperience.DataAccess.Persistence.Repositories
 {
@@ -39,6 +41,18 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
         {
             return _context.Utilities.ToList();
         }
+        //public IEnumerable<Utility> GetAllToSelectList()
+        //{
+        //    List<Utility> utilityList = new List<Utility>();
+        //    var utilities = GetAll();
+        //    foreach (var item in utilities)
+        //    {
+        //        utilityList.Add(item);
+        //    }
+        //    return new Microsoft.AspNetCore.Mvc.Rendering.SelectList;
+
+
+        //}
 
         public Utility GetById(int? id)
         {
