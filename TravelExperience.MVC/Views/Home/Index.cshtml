@@ -1,5 +1,4 @@
 ﻿@model TravelExperience.MVC.ViewModels.MainPageViewModel
-
 @{
     ViewBag.Title = "Home Page";
 }
@@ -8,238 +7,289 @@
 <html>
 <head>
 
-    <!-- The name between <title> tag defines the title of the document. -->
 
     <title>Vacation Rentals, Homes & Experiences</title>
-
-    <!-- Bootstrap 4 is designed to be responsive to mobile devices. Mobile-first styles are part of the core framework.
-    To ensure proper rendering and touch zooming, add the following <meta> tag inside the <head> element: -->
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap link -->
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-
-    <!-- Font selection link -->
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!-- The Styles used has been stored and saved in another file named "style.css" and linked through <link> tag as shown below: -->
-
+    <link href='https://fonts.googleapis.com/css?family=Julius Sans One' rel='stylesheet'>
     <link rel="stylesheet" href="custom.css">
-    <link rel="shortcut icon" sizes="76x76" type="image/x-icon" href="index.ico" />
-</head>
-<body class="background_img">
-    <!-- This is to make the Form Contents appear on the Image -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <div class="row" style="font-size:14px;">
+
+
+</head>
+
+<body class="background_img">
+
+
+    <div class="row" style="font-size: 15px; font-family:'Julius Sans One', sans-serif;">
         I travel not to go anywhere, but to go.<br />
         I travel for travel’s sake.<br />
         The great affair is to move.<br />
     </div>
-        <div class="row" style="font-size:12px;">
-            -Robert Louis Stevenson
+
+    <div class="row" style="font-size: 12px; font-family: 'Julius Sans One', sans-serif;">
+        -Robert Louis Stevenson
+    </div>
+
+    <form class="container mt-3 rounded" style=" align-self:center; max-width: 500px; padding: 30px 30px 60px 30px; background-color: rgba(113, 99, 71, 0.5); font-family: Helvetica;  font-weight: 600; color:azure;">
+        <h1 style="font-size: 2em; font-weight: bold; margin-bottom: 15px; font-family: 'Julius Sans One', sans-serif;">FIND A PERFECT VACATION</h1>
+        <div class="form-group" style=" font-size: small;">
+            <label>WHERE</label><br>
+            <input class="form-control" type="text" placeholder="Anywhere" name="destination" style="font-size:small;" />
         </div>
-
-        <form class="container mt-3 rounded" style=" align-self:center; max-width: 500px; padding: 30px 30px 60px 30px; background-color: rgba(113, 99, 71, 0.5); font-family: Helvetica;  font-weight: 600; color:azure;">
-            <h1 style="font-size: 2em; font-weight: bold; margin-bottom: 15px;">FIND A PERFECT VACATION</h1>
-            <div class="form-group" style=" font-size: small;">
-                <label>WHERE</label><br>
-                <input class="form-control" type="text" placeholder="Anywhere" name="destination" />
-            </div>
-            <div class="input-group-prepend" style=" font-size: small;">
-                <label>CHECK IN</label> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
-                <label>CHECK OUT</label><br>
-            </div>
-            <div class="input-group" style=" font-size: small;">
-                <input class="form-control" type="date" placeholder="dd-mm-yyyy" name="checkin" />
-                <input class="form-control" type="date" placeholder="dd-mm-yyyy" name="checkout" />
-            </div>
-            <br>
-            <div class="form-group" style=" font-size: small;">
-                <label>GUESTS</label><br>
-                                     <select class="custom-select">
-                                         <option selected>1 guest</option>
-                                         <option>2 guests</option>
-                                         <option>3 guests</option>
-                                         <option>4 guests</option>
-                                         <option>5 guests</option>
-                                         <option>6 guests</option>
-                                         <option>7 guests</option>
-                                         <option>8 guests</option>
-                                         <option>9 guests</option>
-                                         <option>10 guests</option>
-                                     </select><br>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-lg" style="float:left;">Search</button>
-            </div>
-        </form> <br />
-
-        <!-- Form Ends here. -->
-        <!-- The below section displays the Reviews and Feedbacks given by the users. -->
-
-        <div style="margin: 370px 400px 20px 20px; font-size: 14px; font-family: Helvetica; color: darkslategrey;">
-            <h3>What guests are saying about homes round the world.</h3>
+        <div class="input-group-prepend" style=" font-size: small;">
+            <label>CHECK IN</label> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+            <label>CHECK OUT</label><br>
         </div>
+        <div class="input-group">
+            <input class="form-control" type="date" placeholder="dd-mm-yyyy" name="checkin" style="font-size:small;" />
+            <input class="form-control" type="date" placeholder="dd-mm-yyyy" name="checkout" style="font-size:small;" />
+        </div>
+        <br>
+        <div class="form-group" style=" font-size: small;">
+            <label>GUESTS</label><br>
+            <select class="custom-select" style="height:30px;" ;>
+                <option selected>1 guest</option>
+                <option>2 guests</option>
+                <option>3 guests</option>
+                <option>4 guests</option>
+                <option>5 guests</option>
+                <option>6 guests</option>
+                <option>7 guests</option>
+                <option>8 guests</option>
+                <option>9 guests</option>
+                <option>10 guests</option>
+            </select><br>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg" style="float:left;">Search</button>
+        </div>
+    </form> <br />
 
-        <!-- Reviews and Feedbacks which uses Bootstrap Grid property, includes images  -->
 
-        <div class="container" style="padding: 5px;">
-            <div class="row">
-                <div class="col-md-4">
-                    <img class="rounded" src="https://a0.muscache.com/im/pictures/01de0512-9191-474b-b5c1-7d0766f733ca.jpg?aki_policy=large" width="100%" height="100%">
-                </div>
-                <div class="col-md-4">
-                    <img class="rounded" src="https://a0.muscache.com/im/pictures/5440673/a183e798_original.jpg?aki_policy=large" width="100%" height="100%">
-                </div>
-                <div class="col-md-4">
-                    <img class="rounded" src="https://a0.muscache.com/im/pictures/49982382/37c921e0_original.jpg?aki_policy=large" width="100%" height="100%">
-                </div>
+    <div style="margin: 370px 400px 20px 20px; font-size: 14px; font-family: Helvetica; color: darkslategrey;">
+        <h3>What guests are saying about homes round the world.</h3>
+    </div>
+
+    <div class="container" style="padding: 5px;">
+        <div class="row">
+            <div class="col-md-4">
+                <img class="rounded" src="https://a0.muscache.com/im/pictures/01de0512-9191-474b-b5c1-7d0766f733ca.jpg?aki_policy=large" width="100%" height="100%">
+            </div>
+            <div class="col-md-4">
+                <img class="rounded" src="https://a0.muscache.com/im/pictures/5440673/a183e798_original.jpg?aki_policy=large" width="100%" height="100%">
+            </div>
+            <div class="col-md-4">
+                <img class="rounded" src="https://a0.muscache.com/im/pictures/49982382/37c921e0_original.jpg?aki_policy=large" width="100%" height="100%">
             </div>
         </div>
+    </div>
 
-        <!-- Reviews and Feedbacks which displays star ratings -->
+    <div class="container" style="padding: 5px;">
+        <div class="row">
+            <div class="col-md-4">
 
-        <div class="container" style="padding: 5px;">
-            <div class="row">
-                <div class="col-md-4">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                </div>
-                <div class="col-md-4">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                </div>
-                <div class="col-md-4">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                </div>
+                <img class="rounded" src="https://a0.muscache.com/im/pictures/01de0512-9191-474b-b5c1-7d0766f733ca.jpg?aki_policy=large" width="100%" height="100%">
+            </div>
+            <div class="col-md-4">
+                <img class="rounded" src="https://a0.muscache.com/im/pictures/5440673/a183e798_original.jpg?aki_policy=large" width="100%" height="100%">
+            </div>
+            <div class="col-md-4">
+                <img class="rounded" src="https://a0.muscache.com/im/pictures/49982382/37c921e0_original.jpg?aki_policy=large" width="100%" height="100%">
+
             </div>
         </div>
+    </div>
 
-        <!-- Reviews and Feedbacks which uses Bootstrap Grid property, includes text -->
+    <!-- Reviews and Feedbacks which displays star ratings -->
 
-        <div class="container" style="padding: 3px; font-size: 14px; font-family: Helvetica;">
-            <div class="row">
-                <div class="col-md-4">
-                    <p>
-                        Diana and KC have been the perfect host. Even though they were in another country, they made sure all our needs are fulfilled.
-                        From sho...
-                    </p>
-                </div>
-                <div class="col-md-4">
-                    <p>I had no idea I had family members in Mumbai, and this is very much how I felt leaving Soraya and Fabia. Their hospitality and generosity are...</p>
-                </div>
-                <div class="col-md-4">
-                    <p>My name is Jeannette, and I stayed with my partner Matthew at Magpie Villa for a little under a week last week. Staying in Amita's...</p>
-                </div>
+    <div class="container" style="padding: 5px;">
+        <div class="row">
+            <div class="col-md-4">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+            </div>
+            <div class="col-md-4">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+            </div>
+            <div class="col-md-4">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
             </div>
         </div>
+    </div>
 
-        <!-- Reviews and Feedbacks of data about a particular user -->
 
-        <div class="container" style="margin-bottom: 10px;">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <img src="https://a0.muscache.com/im/pictures/user/4c563997-a43c-49f6-adcc-8c684ebf19ac.jpg?aki_policy=profile_x_medium" height="48" width="48" style="border-radius: 50%;">
-                        </div>
-                        <div class="col-md-10">
-                            <p style="font-weight: bold; font-family: Helvetica; margin: 0;">Umar</p>
-                            <p>India</p>
-                        </div>
+    <div class="container" style="padding: 3px; font-size: 14px; font-family: Helvetica;">
+        <div class="row">
+            <div class="col-md-4">
+                <p>
+                    Diana and KC have been the perfect host. Even though they were in another country, they made sure all our needs are fulfilled.
+                    From sho...
+                </p>
+            </div>
+            <div class="col-md-4">
+                <p>I had no idea I had family members in Mumbai, and this is very much how I felt leaving Soraya and Fabia. Their hospitality and generosity are...</p>
+            </div>
+            <div class="col-md-4">
+                <p>My name is Jeannette, and I stayed with my partner Matthew at Magpie Villa for a little under a week last week. Staying in Amita's...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-bottom: 10px;">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="https://a0.muscache.com/im/pictures/user/4c563997-a43c-49f6-adcc-8c684ebf19ac.jpg?aki_policy=profile_x_medium" height="48" width="48" style="border-radius: 50%;">
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <img src="https://a0.muscache.com/im/users/31258848/profile_pic/1429084173/original.jpg?aki_policy=large" height="48" width="48" style="border-radius: 50%;">
-                        </div>
-                        <div class="col-md-10">
-                            <p style="font-weight: bold; font-family: Helvetica; margin: 0;">Nicolas</p>
-                            <p>India</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <img src="https://a0.muscache.com/im/pictures/user/86bb51e6-f846-41ec-9a36-2985407d3c26.jpg?aki_policy=profile_x_medium" height="48" width="48" style="border-radius: 50%;">
-                        </div>
-                        <div class="col-md-10">
-                            <p style="font-weight: bold; font-family: Helvetica; margin: 0;">Matthew</p>
-                            <p>United States</p>
-                        </div>
+                    <div class="col-md-10">
+                        <p style="font-weight: bold; font-family: Helvetica; margin: 0;">Umar</p>
+                        <p>India</p>
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="https://a0.muscache.com/im/users/31258848/profile_pic/1429084173/original.jpg?aki_policy=large" height="48" width="48" style="border-radius: 50%;">
+                    </div>
+                    <div class="col-md-10">
+                        <p style="font-weight: bold; font-family: Helvetica; margin: 0;">Nicolas</p>
+                        <p>India</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="https://a0.muscache.com/im/pictures/user/86bb51e6-f846-41ec-9a36-2985407d3c26.jpg?aki_policy=profile_x_medium" height="48" width="48" style="border-radius: 50%;">
+                    </div>
+                    <div class="col-md-10">
+                        <p style="font-weight: bold; font-family: Helvetica; margin: 0;">Matthew</p>
+                        <p>United States</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="container" style="margin-bottom: 50px; color: #484848;">
-            <div class="row">
-                <div class="col-md-10">
-                    <h3 style="margin-top: 50px;">ANOTHER DIV SECTION CAN BE ADDED HERE e.g. Stavro's Host page</h3>
+    </div> <br />
 
-                </div>
+
+    <div class="image_bg1" style="max-width:stretch;">
+        <h1 class="sc_title sc_title_style_3 sc_align_right">REYKJAVIK</h1>
+        <h5 class="sc_undertitle sc_undertitle_style_2">ICELAND</h5>
+        <a href="#" class="button" style="font-size:medium;">Browse Accommodations</a>
+    </div> <hr />
+
+    <div class="image_bg2" style="max-width:stretch;">
+        <h1 class="sc_title sc_title_style_3 sc_align_right">SABANA WESTPUNT</h1>
+        <h5 class="sc_undertitle sc_undertitle_style_2">CURACAO</h5>
+        <a href="#" class="button" style="font-size:medium;">Browse Accommodations</a>
+    </div>  <hr />
+
+    <div class="image_bg3" style="max-width:stretch;">
+        <h1 class="sc_title sc_title_style_3 sc_align_right">SEOUL</h1>
+        <h5 class="sc_undertitle sc_undertitle_style_2">SOUTH KOREA</h5>
+        <a href="#" class="button" style="font-size:medium;">Browse Accommodations</a>
+    </div>  <hr />
+
+
+    <div class="container" style="margin-top: 70px;">
+        <div class="row">
+            <div class="col-md-3">
+                <section>
+                    <h6 style="margin-left: 40px;">Airbnb</h6>
+                    <ul style="list-style: none;">
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Policies</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </section>
+            </div>
+
+
+    @*<------ Chersonio: Random suggested accommodation links ----->*@
+
+    <div style="margin: 370px 400px 20px 20px; font-size: 14px; font-family: Helvetica; color: darkslategrey;">
+        <h1>Hot new places to visit</h1>
+    </div>
+
+    <div class="container" style="padding: 5px;">
+
+        @Html.Partial("_SuggestedRandomAccommodations", Model)
+    </div>
+    <br />
+
+          
+          
+            <div class="col-md-3">
+                <section>
+                    <h6 style="margin-left: 40px;">Discover</h6>
+                    <ul style="list-style: none;">
+                        <li><a href="#">Trust & Safety</a></li>
+                        <li><a href="#">Site Map</a></li>
+                    </ul>
+                </section>
+            </div>
+            <div class="col-md-3">
+                <section>
+                    <h6 style="margin-left: 40px;">Hosting</h6>
+                    <ul style="list-style: none;">
+                        <li><a href="#">Why Host</a></li>
+                        <li><a href="#">Responsible Hosting</a></li>
+                        <li><a href="#">Open Homes</a>&emsp;<a href="#"><button type="button" class="btn btn-primary new">New</button></a></li>
+                    </ul>
+                </section>
+            </div>
+            <div class="col-md-3">
+                <section>
+                    <h5 style="margin-left: 40px;">
+                        <a href="#" style="color: #636e72;"><i class="fa fa-facebook" style="padding-right: 15px;"></i></a>
+                        <a href="#" style="color: #636e72;"><i class="fa fa-twitter" style="padding-right: 15px;"></i></a>
+                        <a href="#" style="color: #636e72;"><i class="fa fa-instagram" style="padding-right: 15px;"></i></a>
+                    </h5>
+                </section>
             </div>
         </div>
-        <hr>
-        <div class="container" style="margin-top: 70px;">
-            <div class="row">
-                <div class="col-md-3">
-                    <section>
-                        <h6 style="margin-left: 40px;">Airbnb</h6>
-                        <ul style="list-style: none;">
-                            <li><a href="#">Help</a></li>
-                            <li><a href="#">Policies</a></li>
-                            <li><a href="#">Terms</a></li>
-                            <li><a href="#">Privacy</a></li>
-                        </ul>
-                    </section>
-                </div>
-                <div class="col-md-3">
-                    <section>
-                        <h6 style="margin-left: 40px;">Discover</h6>
-                        <ul style="list-style: none;">
-                            <li><a href="#">Trust & Safety</a></li>
-                            <li><a href="#">Site Map</a></li>
-                        </ul>
-                    </section>
-                </div>
-                <div class="col-md-3">
-                    <section>
-                        <h6 style="margin-left: 40px;">Hosting</h6>
-                        <ul style="list-style: none;">
-                            <li><a href="#">Why Host</a></li>
-                            <li><a href="#">Responsible Hosting</a></li>
-                            <li><a href="#">Open Homes</a>&emsp;<a href="#"><button type="button" class="btn btn-primary new">New</button></a></li>
-                        </ul>
-                    </section>
-                </div>
-                <div class="col-md-3">
-                    <section>
-                        <h5 style="margin-left: 40px;">
-                            <a href="#" style="color: #636e72;"><i class="fa fa-facebook" style="padding-right: 15px;"></i></a>
-                            <a href="#" style="color: #636e72;"><i class="fa fa-twitter" style="padding-right: 15px;"></i></a>
-                            <a href="#" style="color: #636e72;"><i class="fa fa-instagram" style="padding-right: 15px;"></i></a>
-                        </h5>
-                    </section>
-                </div>
-            </div>
-        </div>
+    </div>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+
+        var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+        $('#startDate').datepicker({
+            uiLibrary: 'bootstrap4',
+            iconsLibrary: 'fontawesome',
+            minDate: today,
+            maxDate: function () {
+                return $('#endDate').val();
+            }
+        });
+        $('#endDate').datepicker({
+            uiLibrary: 'bootstrap4',
+            iconsLibrary: 'fontawesome',
+            minDate: function () {
+                return $('#startDate').val();
+            }
+        });
+
+    </script>
+
 </body>
 </html>
-
 
 

@@ -16,6 +16,8 @@ namespace TravelExperience.DataAccess.Core.Entities
         [NotMapped]
         public bool IsChecked { get; set; }
             
+        //public bool Value { get; set; }
+
 
         //public string BeachFrontID { get; set; }
         //public bool BeachFront { get; set; }

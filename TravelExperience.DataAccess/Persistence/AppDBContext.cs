@@ -5,6 +5,7 @@ using TravelExperience.DataAccess.Persistence.Configurations;
 //using TravelExperience.DataAccess.Persistence.Configurations;
 
 
+
 namespace TravelExperience.DataAccess.Persistence.Repositories
 {
     public class AppDBContext : IdentityDbContext<ApplicationUser>

@@ -10,8 +10,6 @@ namespace TravelExperience.MVC
     {
         protected void Application_Start()
         {
-            // Added these to start with the project
-            // for AutoFac
             ContainerConfig.RegisterContainer();
 
             AreaRegistration.RegisterAllAreas();
