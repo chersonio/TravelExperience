@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using TravelExperience.DataAccess.Core.Entities;
-//using TravelExperience.DataAccess.Persistence.Configurations;
 
 
 namespace TravelExperience.DataAccess.Persistence.Repositories

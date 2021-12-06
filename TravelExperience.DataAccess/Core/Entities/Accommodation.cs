@@ -60,7 +60,5 @@ namespace TravelExperience.DataAccess.Core.Entities
         [DisplayName("Secondary Images")]
         public IEnumerable<Image> Images { get; set; }
 
-
-
     }
 }

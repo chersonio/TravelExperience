@@ -11,7 +11,8 @@ namespace TravelExperience.DataAccess.Core.Entities
         public ICollection<AccommodationUtilities> AccommodationUtilities { get; set; }
 
         public string Name { get; set; }
-        public bool Value { get; set; }
+
+        //public bool Value { get; set; }
 
         //public string BeachFrontID { get; set; }
         //public bool BeachFront { get; set; }
