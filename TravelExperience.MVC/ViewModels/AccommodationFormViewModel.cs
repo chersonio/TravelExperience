@@ -15,7 +15,7 @@ namespace TravelExperience.MVC.ViewModels
         //public bool IsChecked { get; set; }
 
         //public int[] UtilityId { get; set; } //array to represent the selected values
-        //public MultiSelectList UtilityNames { get; set; } // MultiSelectList to hold the options
+        //public MultiSelectList UtilityNames { get; set; } // MultiSelectList to hold the options f
 
         public int TypesId { get; set; }
         public IEnumerable<AccommodationType> AccommodationTypes { get; set; }
