@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using TravelExperience.DataAccess.Core.Entities;
 using System.Linq;
 using System.Data.Entity;
+using System.Web.Mvc;
 
 namespace TravelExperience.MVC.ViewModels
 {
@@ -14,22 +15,17 @@ namespace TravelExperience.MVC.ViewModels
         public ApplicationUser User { get; set; }
         public IEnumerable<Utility> Utilities { get; set; }
         public SelectList UtilitiesSelectList { get; set; }
+        public int TypesId { get; set; }
+        public IEnumerable<AccommodationType> AccommodationTypes { get; set; }
+
+        public Location Location { get; set; }
         //public bool IsChecked { get; set; }
 
         //public int[] UtilityId { get; set; } //array to represent the selected values
         //public MultiSelectList UtilityNames { get; set; } // MultiSelectList to hold the options
         public IEnumerable<AccommodationUtilities> AccommodationUtilities { get; set; }
 
-        //[Required]
-        //[StringLength(50)]
-        //public string Title { get; set; }
 
-        public int TypesId { get; set; }
-        public IEnumerable<AccommodationType> AccommodationTypes { get; set; }
-
-        public Location Location { get; set; }
-
-        public IEnumerable<AccommodationUtilities> AccommodationUtilities { get; set; }
 
 
     }
