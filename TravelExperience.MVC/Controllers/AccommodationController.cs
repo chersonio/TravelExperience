@@ -33,7 +33,7 @@ namespace TravelExperience.MVC.Controllers
         public ActionResult New()
         {
 
-            var viewModel = new AccommodatiosFormViewModel()
+            var viewModel = new AccommodationsFormViewModel()
             {
                 Utilities = _unitOfWork.Utilities.GetAll()
             };
@@ -45,36 +45,45 @@ namespace TravelExperience.MVC.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult New(AccommodatiosFormViewModel viewModel)
+        public ActionResult New(AccommodationsFormViewModel viewModel)
         {
             var userId = User.Identity.GetUserId();
+
             //viewModel.Utilities = _unitOfWork.Ut
             //var user = _unitOfWork.Users.GetById(userId);
 
             //var accommodationType = viewModel.AccommodationType;
+            var accommodation = new Accommodation()
+            {
+                Title = viewModel.Accommodation.Title,
+                Description = viewModel.Accommodation.Description,
+                AccommodationType = (AccommodationType)viewModel.AccommodationType,
+                MaxCapacity = viewModel.Accommodation.MaxCapacity,
+                Shared = viewModel.Accommodation.Shared,
+                Floor = viewModel.Accommodation.Floor,
+                AccommodationUtilities = viewModel.AccommodationUtilities.ToList(),
+                Thumbnail = viewModel.Accommodation.Thumbnail
+            };
 
-            //var location = new Location()
-            //{
-            //    Address = viewModel.Address,
-            //    AddressNo = viewModel.AddressNo,
-            //    City = viewModel.City,
-            //    Country = viewModel.Country,
-            //    PostalCode = viewModel.PostalCode,
-            //}; // apothikevetai?
+            var location = new Location()
+            {
+                Address = viewModel.Accommodation.Location.Address,
+                AddressNo = viewModel.Accommodation.Location.AddressNo,
+                City = viewModel.Accommodation.Location.City,
+                Country = viewModel.Accommodation.Location.Country,
+                PostalCode = viewModel.Accommodation.Location.PostalCode,
+            };
 
-            //var accommodation = new Accommodation()
+            accommodation.Location = location;
+            // apothikevetai?
+
+            //var utilities = new Utility
             //{
-            //    Title = viewModel.Title,
-            //    Description = viewModel.Description,
-            //    AccommodationType = (AccommodationType)accommodationType,
-            //    MaxCapacity = viewModel.MaxCapacity,
-            //    Shared = viewModel.Shared,
-            //    Location = location,
-            //    Floor = viewModel.PostalCode
+            //    AccommodationUtilities = viewModel.AccommodationUtilities
             //};
 
-            //_unitOfWork.Accommodations.Create(accommodation);
-            //_unitOfWork.Complete();
+            _unitOfWork.Accommodations.Create(accommodation);
+            _unitOfWork.Complete();
 
 
             return RedirectToAction("Index", "Home");

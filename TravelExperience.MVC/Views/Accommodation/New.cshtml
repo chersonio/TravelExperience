@@ -1,11 +1,11 @@
-﻿@model TravelExperience.MVC.ViewModels.AccommodatiosFormViewModel
+﻿@model TravelExperience.MVC.ViewModels.AccommodationsFormViewModel
 @{
     ViewBag.Title = "New";
 }
 
 <h2>Add an accommodation</h2>
 
-@using (Html.BeginForm("Save", "Songs"))
+@using (Html.BeginForm("New", "Accommodation"))
 {
     <div class="form-group">
         @Html.LabelFor(model => model.Accommodation.Title)
@@ -22,10 +22,30 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Accommodation.AccommodationUtilities)
-        @Html.DropDownListFor(model => model.Utilities, new SelectList(Model.Utilities, "UtilitiesOfAccommodationID", "Name"), "", new { @class = "form-control" })
+
+        @{ int utilitiesCounter = 0; }
+
+        @foreach (var item in Model.Utilities)
+        {
+
+            <input type="checkbox" id=@Model.AccommodationUtilities.FirstOrDefault().UtilityID name=@item.Name>
+
+            @*@Html.CheckBoxFor(m => utilExist,)*@
+            @Html.Label(item.Name);
+            <br />
+        }
+        @*bool utilExist = Model.AccommodationUtilities.Any(x => x.Utility.Name == item.Name);*@
+        @*@Html.DropDownListFor(model => model.Utilities, new SelectList(Model.Utilities, "UtilitiesOfAccommodationID", "Name"), "", new { @class = "form-control" })*@
 
         @Html.ValidationMessageFor(model => model.Accommodation.Title, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Accommodation.AccommodationUtilities)
+        @{ var utilityNames = Model.Utilities.Select(x => x.Name); }
+        @Html.DisplayFor(model => utilityNames, " ")
+
+        @Html.ValidationMessageFor(model => model.Accommodation.AccommodationType, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
@@ -42,12 +62,7 @@
         @Html.ValidationMessageFor(model => model.Accommodation.AccommodationType, "", new { @class = "text-danger" })
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Accommodation.AccommodationUtilities)
-        @Html.EnumDropDownListFor(model => model.AccommodationType)
 
-        @Html.ValidationMessageFor(model => model.Accommodation.AccommodationType, "", new { @class = "text-danger" })
-    </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.Accommodation.Shared)
@@ -68,6 +83,12 @@
         @Html.TextBoxFor(model => model.Accommodation.Thumbnail, new { @class = "form-control" })
 
         @Html.ValidationMessageFor(model => model.Accommodation.Thumbnail, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-default">Save</button>
+        </div>
     </div>
 }
 

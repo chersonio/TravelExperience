@@ -203,7 +203,7 @@
     <Compile Include="Controllers\ExperiencesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Models\RoleName.cs" />
-    <Compile Include="ViewModels\AccommodationFormViewModel.cs" />
+    <Compile Include="ViewModels\AccommodationsFormViewModel.cs" />
     <Compile Include="ViewModels\BookingAccommodationFormViewModel.cs" />
     <Compile Include="ViewModels\BookingFormViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -228,10 +228,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    
     <Content Include="Images\Captureback.PNG" />
     <Content Include="Images\tahiti.jpg" />
-    
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -286,14 +284,10 @@
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\BecomeAHost\Index.cshtml" />
-
     <Content Include="Views\Bookings\_Past.cshtml" />
     <Content Include="Views\Bookings\_Upcoming.cshtml" />
-
     <Content Include="Views\Accommodation\New.cshtml" />
-    
     <Content Include="Views\Shared\_SuggestedRandomAccommodations.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

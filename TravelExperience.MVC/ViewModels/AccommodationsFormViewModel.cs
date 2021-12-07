@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using TravelExperience.DataAccess.Core.Entities;
+using System.Linq;
+using System.Data.Entity;
 
 namespace TravelExperience.MVC.ViewModels
 {
-    public class AccommodatiosFormViewModel
+    public class AccommodationsFormViewModel
     {
         public Accommodation Accommodation { get; set; }
         public ApplicationUser User { get; set; }
         public IEnumerable<Utility> Utilities { get; set; }
         public AccommodationType AccommodationType { get; set; }
+
+        public IEnumerable<AccommodationUtilities> AccommodationUtilities { get; set; }
 
         //[Required]
         //[StringLength(50)]

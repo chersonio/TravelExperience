@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DataAccess.Core.Interfaces;
+using System.Data.Entity;
 
 namespace TravelExperience.DataAccess.Persistence.Repositories
 {
@@ -37,7 +38,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public IEnumerable<Utility> GetAll()
         {
-            return _context.Utilities.ToList();
+            return _context.Utilities.Include(x => x.AccommodationUtilities).ToList();
         }
 
         public Utility GetById(int? id)

@@ -36,7 +36,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public IEnumerable<AccommodationUtilities> GetAll()
         {
-            throw new System.NotImplementedException();
+            return _context.AccommodationUtilities.ToList();
         }
 
         public AccommodationUtilities GetById(int? id)
