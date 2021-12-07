@@ -11,6 +11,10 @@ namespace TravelExperience.DataAccess.Core.Interfaces
         IUtilityRepository Utilities { get; }
 
         IApplicationUserRepository Users { get; }
+
+        IAccommodationTypeRepository AccommodationTypes { get; set; }
+
+        ILocationRepository Locations { get; set; }
         void Complete();
     }
 }

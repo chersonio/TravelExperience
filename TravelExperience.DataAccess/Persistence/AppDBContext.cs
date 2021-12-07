@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using TravelExperience.DataAccess.Core.Entities;
+using TravelExperience.DataAccess.Persistence.Configurations;
+//using TravelExperience.DataAccess.Persistence.Configurations;
+
 
 
 namespace TravelExperience.DataAccess.Persistence.Repositories
@@ -18,17 +21,19 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
         public DbSet<Utility> Utilities { get; set; }
         public DbSet<AccommodationUtilities> AccommodationUtilities { get; set; }
         public DbSet<Location> Locations { get; set; }
+        public DbSet<AccommodationType> AccommodationTypes { get; set; }
 
         public static AppDBContext Create()
         {
             return new AppDBContext();
         }
 
-        // Edw mpainoun ta Configurations gia to AutoFac i to FluentApi
+        // Edw mpainoun ta Configurations gia to FluentApi
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{
-        //    modelBuilder.Configurations.Add(new DepartmentConfiguration());
-        //    modelBuilder.Configurations.Add(new EmployeeConfiguration());
+        //    modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
+        //    modelBuilder.Configurations.Add(new AccommodationConfiguration());
+        //    modelBuilder.Configurations.Add(new BookingConfiguration());
         //    base.OnModelCreating(modelBuilder);
         //}
     }

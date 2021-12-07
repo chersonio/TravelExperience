@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -32,11 +33,25 @@ namespace TravelExperience.MVC.Controllers
         [Authorize]
         public ActionResult New()
         {
+            var utilities = _unitOfWork.Utilities.GetAll();
+            var types = _unitOfWork.AccommodationTypes.GetAll();
 
             var viewModel = new AccommodationsFormViewModel()
             {
-                Utilities = _unitOfWork.Utilities.GetAll()
+                Utilities = utilities,
+                AccommodationTypes=types
+                //UtilitiesSelectList = (Microsoft.AspNetCore.Mvc.Rendering.SelectList)utilitiesSelectList
             };
+            //var viewModel = new AccommodatiosFormViewModel();
+
+            //var utilityNames = _unitOfWork.Utilities.GetAll().Select(u => new
+            //{
+            //    UtilityId = u.UtilitiesOfAccommodationID,
+            //    Name = u.Name
+            //}).ToList();
+
+            //viewModel.UtilityNames = new MultiSelectList(utilityNames, "UtilityId", "Name");
+            //viewModel.UtilityId = new[] { 1, 3, 7 };
 
             return View(viewModel);
         }

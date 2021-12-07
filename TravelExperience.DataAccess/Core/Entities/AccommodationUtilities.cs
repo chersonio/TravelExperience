@@ -13,6 +13,6 @@ namespace TravelExperience.DataAccess.Core.Entities
         public string UtilityID { get; set; }
         public Utility Utility { get; set; }
 
-        //public bool Exists { get; set; }
+        public bool Exists { get; set; }
     }
 }

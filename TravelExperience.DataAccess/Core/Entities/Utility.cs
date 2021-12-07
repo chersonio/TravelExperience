@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TravelExperience.DataAccess.Core.Entities
 {
@@ -12,7 +13,9 @@ namespace TravelExperience.DataAccess.Core.Entities
 
         public string Name { get; set; }
 
-
+        [NotMapped]
+        public bool IsChecked { get; set; }
+            
         //public bool Value { get; set; }
 
         //public string BeachFrontID { get; set; }
