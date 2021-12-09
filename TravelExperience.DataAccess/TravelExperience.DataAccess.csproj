@@ -187,6 +187,10 @@
     <Compile Include="Persistence\Migrations\202112071639216_Initial.designer.cs">
       <DependentUpon>202112071639216_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Persistence\Migrations\202112092014106_xycoordType.cs" />
+    <Compile Include="Persistence\Migrations\202112092014106_xycoordType.designer.cs">
+      <DependentUpon>202112092014106_xycoordType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistence\Repositories\AccommodationTypeRepository.cs" />
     <Compile Include="Persistence\Repositories\AccommodationUtilitiesRepository.cs" />
     <Compile Include="Persistence\Repositories\ImagesRepository.cs" />
@@ -215,6 +219,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Persistence\Migrations\202112071639216_Initial.resx">
       <DependentUpon>202112071639216_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\202112092014106_xycoordType.resx">
+      <DependentUpon>202112092014106_xycoordType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -18,33 +18,61 @@
             function initMap() {
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: { lat: 37.98096185419733, lng: 23.732283397775806 },
-                    zoom: 12
+                    zoom: 10
                 });
 
-                var marker1 = new google.maps.Marker({
-                    position: { lat: 37.98096185419733, lng: 23.732283397775806 },
-                    map: map
-                });
-                var marker2 = new google.maps.Marker({
-                    position: { lat: 37.98367965983411, lng: 23.730461897775804 },
-                    map: map
-                });
+                $.get("@Url.Action("GetLocation", "Map")", function (data, status) {
+                    var marker = [];
+                    var contentString = [];
+                    var infowindow = [];
+                    for (var i = 0; i < data.length; i++) {
+                            marker[i] = new google.maps.Marker({
+                                position: { lat: data[i].Xcoord, lng: data[i].Ycoord },
+                                map: map
+                        });
 
-                var contentStringForMarker1 = '<div id="content">' +
-                    '<div id="siteNotice">' +
-                    '</div>' +
-                    '<h1 id="firstHeading" class="firstHeading>AccommodationName</h1>' +
-                    '<div id="bodyContent">' +
-                    '<p><b>AccommodationName</b>,  a small description  of the accommodation</p>' +
-                    '</div>';
+                            contentString[i] = '<div id="content">' +
+                            '<div id="siteNotice">' +
+                            '</div>' +
+                            '<h1 id="firstHeading" class="firstHeading>' + data[i].Address + '</h1>' +
+                            '<div id="bodyContent">' +
+                                '<p><b>' + data[i].AccommodationId + '</b>,  a small description  of the accommodation</p>' +
+                            '</div>';
 
-                var infowindow = new google.maps.InfoWindow({
-                    content: contentStringForMarker1
-                });
+                            infowindow[i] = new google.maps.InfoWindow({
+                            content: contentString[i]
+                            });
 
-                marker1.addListener('click', function () {
-                    infowindow.open(map, marker1);
-                });
+                        var mdl = marker[i];
+
+                        google.maps.event.addListener(marker[i], 'mouseover', (function (mdl, i) {
+                            return function () {
+                                infowindow[i].open(map, marker[i]);
+                            }
+                        })(marker[i], i));
+
+                        google.maps.event.addListener(marker[i], 'mouseout', (function (mdl, i) {
+                            return function () {
+                                infowindow[i].close();
+                            }
+                        })(marker[i], i));
+
+                        //marker[i].addListener('mouseover', function () {
+                        //    infowindow[i].open(map, marker[i]);
+                        //});
+
+                        //marker[i].addListener('mouseout', function () {
+                        //    infowindow[i].close();
+                        //});
+
+                    //marker.addListener('click', function () {
+                    //    infowindow.open(map, marker1);
+                    //});
+                    }
+                    
+                })
+
+                
             }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLxLZZ4ElJQCQT_Ppnc_KoQC30aESetyE&callback=initMap"
