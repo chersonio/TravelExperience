@@ -401,7 +401,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\andalousia1.jpg" />
-
     <Content Include="Images\Captureback.PNG" />
     <Content Include="Images\hungary.jpg" />
     <Content Include="Images\ireland.jpg" />
@@ -468,7 +467,6 @@
     <Content Include="Views\Bookings\_Upcoming.cshtml" />
     <Content Include="Views\Accommodation\New.cshtml" />
     <Content Include="Views\Shared\_SuggestedRandomAccommodations.cshtml" />
-
     <Content Include="Views\Map\Map.cshtml" />
   </ItemGroup>
   <ItemGroup>
