@@ -388,6 +388,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ExperienceFormViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\MapViewModel.cs" />
     <Compile Include="ViewModels\SearchPageMainView.cs" />
   </ItemGroup>
   <ItemGroup>

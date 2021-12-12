@@ -183,13 +183,9 @@
     <Compile Include="Persistence\Configurations\AccommodationUtilitiesConfiguration.cs" />
     <Compile Include="Persistence\Configurations\ApplicationUserConfiguration.cs" />
     <Compile Include="Persistence\Configurations\BookingConfiguration.cs" />
-    <Compile Include="Persistence\Migrations\202112071639216_Initial.cs" />
-    <Compile Include="Persistence\Migrations\202112071639216_Initial.designer.cs">
-      <DependentUpon>202112071639216_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Migrations\202112092014106_xycoordType.cs" />
-    <Compile Include="Persistence\Migrations\202112092014106_xycoordType.designer.cs">
-      <DependentUpon>202112092014106_xycoordType.cs</DependentUpon>
+    <Compile Include="Persistence\Migrations\202112121716209_Initial.cs" />
+    <Compile Include="Persistence\Migrations\202112121716209_Initial.designer.cs">
+      <DependentUpon>202112121716209_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Repositories\AccommodationTypeRepository.cs" />
     <Compile Include="Persistence\Repositories\AccommodationUtilitiesRepository.cs" />
@@ -217,11 +213,8 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Persistence\Migrations\202112071639216_Initial.resx">
-      <DependentUpon>202112071639216_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\202112092014106_xycoordType.resx">
-      <DependentUpon>202112092014106_xycoordType.cs</DependentUpon>
+    <EmbeddedResource Include="Persistence\Migrations\202112121716209_Initial.resx">
+      <DependentUpon>202112121716209_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

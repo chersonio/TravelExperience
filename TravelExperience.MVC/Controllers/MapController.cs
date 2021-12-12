@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TravelExperience.DataAccess.Core.Interfaces;
+using TravelExperience.MVC.ViewModels;
 
 namespace TravelExperience.MVC.Controllers
 {
@@ -20,6 +21,7 @@ namespace TravelExperience.MVC.Controllers
         // GET: Location
         public ActionResult Map()
         {
+
             return View();
         }
 
@@ -29,6 +31,12 @@ namespace TravelExperience.MVC.Controllers
             var data = _unitOfWork.Locations.GetAll();
             return Json(data, JsonRequestBehavior.AllowGet);
         }
+
+        //public ActionResult GetPoints()
+        //{
+        //    var data = _unitOfWork.Locations.GetAll();
+        //    return View("GetLocation", data);
+        //}
 
 
 
