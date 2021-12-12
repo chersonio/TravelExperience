@@ -18,14 +18,14 @@ namespace TravelExperience.MVC.Controllers
         }
         public ActionResult Index()
         {
-            List<Accommodation> randomAccommodations = GetRandomAccommodation(3); // declare number of buttons
+            //List<Accommodation> randomAccommodations = GetRandomAccommodation(3); // declare number of buttons
 
             var viewModel = new MainPageViewModel()
             {
                 Accommodations = _unitOfWork.Accommodations.GetAll(),
                 Experiences = _unitOfWork.Experiences.GetAll(),
                 Bookings = _unitOfWork.Bookings.GetAll(),
-                RandomAccommodations = randomAccommodations,
+                //RandomAccommodations = randomAccommodations,
             };
             return View(viewModel);
         }

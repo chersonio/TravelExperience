@@ -24,9 +24,9 @@ namespace TravelExperience.DataAccess.Core.Entities
         [Required]
         public int PostalCode { get; set; }
 
-        public int Xcoord { get; set; }
+        public float Xcoord { get; set; }
 
-        public int Ycoord { get; set; }
+        public float Ycoord { get; set; }
 
         [NotMapped]
         public string FullAddress => $"{Address} {AddressNo} - {City} {Country} {PostalCode}";

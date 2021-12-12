@@ -41,7 +41,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public IEnumerable<Location> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Locations.ToList();
         }
 
         public Image GetById(int? id)
