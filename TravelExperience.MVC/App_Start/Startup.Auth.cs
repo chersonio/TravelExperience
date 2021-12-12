@@ -5,7 +5,7 @@ using Microsoft.Owin.Security.Cookies;
 using Owin;
 using System;
 using TravelExperience.DataAccess.Core.Entities;
-using TravelExperience.DataAccess.Persistence.Repositories;
+using TravelExperience.DataAccess.Persistence;
 
 namespace TravelExperience.MVC
 {

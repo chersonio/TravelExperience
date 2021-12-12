@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DataAccess.Core.Interfaces;
+using System.Data.Entity;
 
 
 namespace TravelExperience.DataAccess.Persistence.Repositories
@@ -19,47 +20,59 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public void Create(Utility utility)
         {
-            throw new NotImplementedException();
+            if (utility == null)
+                throw new ArgumentException(nameof(utility));
+
+            _context.Utilities.Add(utility);
         }
 
         public void Delete(int? id)
         {
-            throw new NotImplementedException();
-        }
+            if (id == null)
+                throw new ArgumentException(nameof(id));
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
+            Utility utility = _context.Utilities.Find(id); // or .GetById()
+
+            if (utility == null)
+                throw new Exception("Utility not found");
+
+            _context.Utilities.Remove(utility);
         }
 
         public IQueryable<Utility> Get()
         {
-            throw new NotImplementedException();
+            return _context.Utilities;
         }
 
         public IEnumerable<Utility> GetAll()
         {
             return _context.Utilities.ToList();
         }
-        //public IEnumerable<Utility> GetAllToSelectList()
-        //{
-        //    List<Utility> utilityList = new List<Utility>();
-        //    var utilities = GetAll();
-        //    foreach (var item in utilities)
-        //    {
-        //        utilityList.Add(item);
-        //    }
-        //    return new Microsoft.AspNetCore.Mvc.Rendering.SelectList;
 
-
-        //}
 
         public Utility GetById(int? id)
         {
-            throw new NotImplementedException();
+            if (id == null)
+                throw new ArgumentException(nameof(id));
+
+            return _context.Utilities.Find(id);
         }
 
         public void Update(Utility utility)
+        {
+            if (utility == null)
+                throw new ArgumentException(nameof(utility));
+
+            var existingEntity = GetById(utility.UtilityID);
+            if (existingEntity == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            _context.Entry(existingEntity).State = EntityState.Modified;
+            existingEntity = utility;
+        }
+        public void Dispose()
         {
             throw new NotImplementedException();
         }

@@ -398,10 +398,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    
+    <Content Include="Images\andalousia1.jpg" />
     <Content Include="Images\Captureback.PNG" />
+    <Content Include="Images\hungary.jpg" />
+    <Content Include="Images\ireland.jpg" />
+    <Content Include="Images\Korea.jpg" />
+    <Content Include="Images\Le-Palais-Bulles.jpg" />
+    <Content Include="Images\Moroccojpg.jpg" />
+    <Content Include="Images\Round-House-Rondawel-South-.jpg" />
     <Content Include="Images\tahiti.jpg" />
-    
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -456,14 +461,10 @@
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\BecomeAHost\Index.cshtml" />
-
     <Content Include="Views\Bookings\_Past.cshtml" />
     <Content Include="Views\Bookings\_Upcoming.cshtml" />
-
     <Content Include="Views\Accommodation\New.cshtml" />
-    
     <Content Include="Views\Shared\_SuggestedRandomAccommodations.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

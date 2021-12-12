@@ -7,12 +7,20 @@ using System.Threading.Tasks;
 
 namespace TravelExperience.DataAccess.Core.Entities
 {
-    public class AccommodationType
+
+    public enum AccommodationType // AccommodationType.Room
     {
-        [Key]
-        public int TypeId { get; set; }
-
-        public string Name { get; set; }
-
+        [Display(Name = "Room")]
+        Room = 1,
+        [Display(Name = "Apartment")]
+        Apartment = 2,
+        [Display(Name = "Villa")]
+        Villa = 3,
+        [Display(Name = "Hostel")]
+        Hostel = 4,
+        [Display(Name = "Hotel")]
+        Hotel = 5,
+        [Display(Name = "Bed and breakfast")]
+        BedAndBreakFast = 6
     }
 }

@@ -8,7 +8,7 @@ using TravelExperience.DataAccess.Core.Entities;
 
 namespace TravelExperience.DataAccess.Persistence.Configurations
 {
-    class ApplicationUserConfiguration : EntityTypeConfiguration<ApplicationUser>
+    public class ApplicationUserConfiguration : EntityTypeConfiguration<ApplicationUser>
     {
         public ApplicationUserConfiguration()
         {
@@ -42,7 +42,7 @@ namespace TravelExperience.DataAccess.Persistence.Configurations
 
 
             // Relationships
-            
+
         }
     }
 }

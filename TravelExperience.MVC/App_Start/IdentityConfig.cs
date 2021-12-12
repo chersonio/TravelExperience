@@ -7,7 +7,7 @@ using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using TravelExperience.DataAccess.Core.Entities;
-using TravelExperience.DataAccess.Persistence.Repositories;
+using TravelExperience.DataAccess.Persistence;
 
 namespace TravelExperience.MVC
 {

@@ -2,7 +2,7 @@
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<TravelExperience.DataAccess.Persistence.Repositories.AppDBContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<TravelExperience.DataAccess.Persistence.AppDBContext>
     {
         public Configuration()
         {
@@ -11,7 +11,7 @@
             MigrationsDirectory = @"Persistence\Migrations";
         }
 
-        protected override void Seed(Repositories.AppDBContext context)
+        protected override void Seed(AppDBContext context)
         {
             //  This method will be called after migrating to the latest version.
 

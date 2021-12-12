@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Data.Entity;
 using System.Linq;
 using TravelExperience.DataAccess.Core.Entities;
@@ -15,26 +16,39 @@ namespace TravelExperience.DataAccess.Persistence.Repositories.SearchFilters
             _context = new AppDBContext();
         }
 
-        public void GetBookingsByFilters(
-            DateTime? dateStarting,
-            DateTime? dateEnding,
-            DateTime? creationDate,
+        // Chersonio: I ve made them Optionals, that means that you may skip some, or you can declare them by name: 
+        public IQueryable<Booking> FilterBookings(
+            DateTime? dateStarting = null,
+            DateTime? dateEnding = null,
+            DateTime? creationDate = null,
             decimal minPrice = 0,
-            decimal maxPrice = 0) // kanonika prepei na mpei object giati mporei na kanei pollaplo filtering. isws na zitaei kai eisagwgi Queryable (IQueryable query, object searchTerms)
+            decimal maxPrice = 0,
+            string city = "")
         {
             var bookingsToFilter = _context.Bookings
-                .Include(b => b.Accommodation)
-                .Include(b => b.Experience)
-                .Include(b => b.Price)
-                .Include(b => b.BookingStartDate)
-                .Include(b => b.BookingEndDate);
+                .Include(b => b.Accommodation);
+
+            return GetBookingsByFilters(bookingsToFilter, dateStarting, dateEnding, creationDate, minPrice, maxPrice, city);
+        }
+        private IQueryable<Booking> GetBookingsByFilters(
+            IQueryable<Booking> bookingsToFilter,
+            DateTime? dateStarting = null,
+            DateTime? dateEnding = null,
+            DateTime? creationDate = null,
+            decimal minPrice = 0,
+            decimal maxPrice = 0,
+            string city = "") // kanonika prepei na mpei object giati mporei na kanei pollaplo filtering. isws na zitaei kai eisagwgi Queryable (IQueryable query, object searchTerms)
+        {
 
             FilterByCreationDate(ref bookingsToFilter, creationDate);
             FilterByDates(ref bookingsToFilter, dateStarting, dateEnding);
             FilterByPrice(ref bookingsToFilter, minPrice, maxPrice);
+            FilterByCity(ref bookingsToFilter, city);
+
+            return bookingsToFilter;
         }
 
-        public void FilterByPrice(ref IQueryable<Booking> query, decimal min = 0, decimal max = 0) // instead of booking a more clever way to search.
+        private void FilterByPrice(ref IQueryable<Booking> query, decimal min = 0, decimal max = 0) // instead of booking a more clever way to search.
         {
             if (min != 0)
             {
@@ -45,7 +59,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories.SearchFilters
                 query = query.Where(b => b.Price <= max);
             }
         }
-        public void FilterByDates(ref IQueryable<Booking> query, DateTime? dateStarting, DateTime? dateEnding)
+        private void FilterByDates(ref IQueryable<Booking> query, DateTime? dateStarting, DateTime? dateEnding)
         {
             if (dateStarting != null && dateStarting >= DateTime.Now)
             {
@@ -61,13 +75,18 @@ namespace TravelExperience.DataAccess.Persistence.Repositories.SearchFilters
         }
 
         // figure out a better way to express if that is needed to have 2 values min.max
-        public void FilterByCreationDate(ref IQueryable<Booking> query, DateTime? creationDate)
+        private void FilterByCreationDate(ref IQueryable<Booking> query, DateTime? creationDate)
         {
             if (creationDate != null && creationDate >= DateTime.Now)
             {
                 // add a validation check that the input date is correct. maybe tryparse
                 query = query.Where(b => b.CreationDate > creationDate);
             }
+        }
+
+        private void FilterByCity(ref IQueryable<Booking> query, string city)
+        {
+            query = query.Where(c => c.Accommodation.Location.City == city);
         }
     }
 }

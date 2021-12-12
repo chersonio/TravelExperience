@@ -7,13 +7,13 @@ namespace TravelExperience.DataAccess.Persistence.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddExistsToAccommodationUtilities : IMigrationMetadata
+    public sealed partial class ChangedCoordsToFloat : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddExistsToAccommodationUtilities));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangedCoordsToFloat));
         
         string IMigrationMetadata.Id
         {
-            get { return "202112061828305_AddExistsToAccommodationUtilities"; }
+            get { return "202112121727375_ChangedCoordsToFloat"; }
         }
         
         string IMigrationMetadata.Source

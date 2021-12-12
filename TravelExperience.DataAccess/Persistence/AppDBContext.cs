@@ -6,7 +6,7 @@ using TravelExperience.DataAccess.Persistence.Configurations;
 
 
 
-namespace TravelExperience.DataAccess.Persistence.Repositories
+namespace TravelExperience.DataAccess.Persistence
 {
     public class AppDBContext : IdentityDbContext<ApplicationUser>
     {
@@ -19,9 +19,12 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
         public DbSet<Experience> Experiences { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Utility> Utilities { get; set; }
-        public DbSet<AccommodationUtilities> AccommodationUtilities { get; set; }
         public DbSet<Location> Locations { get; set; }
-        public DbSet<AccommodationType> AccommodationTypes { get; set; }
+
+        //public DbSet<AccommodationUtilities> AccommodationUtilities { get; set; }        
+        //public DbSet<AccommodationType> AccommodationTypes { get; set; }
+
+
 
         public static AppDBContext Create()
         {
@@ -29,12 +32,13 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
         }
 
         // Edw mpainoun ta Configurations gia to FluentApi
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
-        //    modelBuilder.Configurations.Add(new AccommodationConfiguration());
-        //    modelBuilder.Configurations.Add(new BookingConfiguration());
-        //    base.OnModelCreating(modelBuilder);
-        //}
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
+            modelBuilder.Configurations.Add(new AccommodationConfiguration());
+            modelBuilder.Configurations.Add(new BookingConfiguration());
+            modelBuilder.Configurations.Add(new UtilitiesConfiguration());
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
