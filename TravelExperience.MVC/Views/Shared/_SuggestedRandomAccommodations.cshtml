@@ -14,7 +14,7 @@
                         <h2>
                             @accomLink.Location.City.ToString()
                         </h2>
-                    </div> 
+                    </div>
                     <div>
                         <h2>
                             @Model.Bookings.FirstOrDefault(x => x.AccommodationID == accomLink.AccommodationID).BookingStartDate.ToString("dd-MMM-yy")
@@ -61,8 +61,8 @@
         opacity: 0.0;
     }
 
-        .black-box-mask:hover {
-            opacity: 1.0;
-        }
+    .black-box-mask:hover {
+        opacity: 1.0;
+    }
 </style>
 

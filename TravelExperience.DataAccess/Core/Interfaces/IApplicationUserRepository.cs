@@ -10,6 +10,7 @@ namespace TravelExperience.DataAccess.Core.Interfaces
         IEnumerable<ApplicationUser> GetAll();
         IQueryable<ApplicationUser> Get();
         ApplicationUser GetById(int? id);
+        ApplicationUser GetById(string id);
         void Create(ApplicationUser user);
         void Update(ApplicationUser user);
         void Delete(int? id);

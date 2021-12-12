@@ -68,7 +68,6 @@ namespace TravelExperience.DataAccess.Core.Entities
             return new ApplicationDbContext();
         }
 
-
-
+        public System.Data.Entity.DbSet<TravelExperience.DataAccess.Core.Entities.Location> Locations { get; set; }
     }
 }

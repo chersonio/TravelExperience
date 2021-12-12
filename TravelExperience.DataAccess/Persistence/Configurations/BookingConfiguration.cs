@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Text;
@@ -8,13 +9,13 @@ using TravelExperience.DataAccess.Core.Entities;
 
 namespace TravelExperience.DataAccess.Persistence.Configurations
 {
-    class BookingConfiguration : EntityTypeConfiguration<Booking>
+    public class BookingConfiguration : EntityTypeConfiguration<Booking>
     {
         public BookingConfiguration()
         {
-            //properties
-            Property(b => b.BookingID)
-                .IsRequired();
+            // Properties
+            Property(a => a.BookingID).
+                HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             Property(b => b.BookingStartDate)
                 .IsRequired();
@@ -24,7 +25,6 @@ namespace TravelExperience.DataAccess.Persistence.Configurations
                 .IsRequired();
 
             // Relationships
-
             HasRequired(a => a.Accommodation);
 
             HasRequired(u => u.User)

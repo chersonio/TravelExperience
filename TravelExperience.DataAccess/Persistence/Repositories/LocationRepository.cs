@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DataAccess.Core.Interfaces;
+using System.Data.Entity;
 
 namespace TravelExperience.DataAccess.Persistence.Repositories
 {
@@ -41,7 +42,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public IEnumerable<Location> GetAll()
         {
-            return _context.Locations.ToList();
+            return _context.Locations.Include(x => x.Accommodations).ToList();
         }
 
         public Image GetById(int? id)

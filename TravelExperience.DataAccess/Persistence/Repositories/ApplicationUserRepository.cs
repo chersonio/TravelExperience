@@ -56,6 +56,11 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public ApplicationUser GetById(int? id)
         {
+            throw new KeyNotFoundException();
+        }
+
+        public ApplicationUser GetById(string id)
+        {
             if (id == null)
                 throw new ArgumentException(nameof(id));
 
