@@ -38,13 +38,12 @@ namespace TravelExperience.MVC.Controllers
             // Get Utilities for checkboxes
             viewModel.Utilities = new List<Utility>();
             viewModel.UtilitiesForCheckboxes = new List<AccommodationFormViewModel.UtilityForCheckbox>();
-            viewModel.AccommodationTypesList = new List<SelectListItem>(); // not chersonio5
 
             foreach (UtilitiesEnum utilEnum in Enum.GetValues(typeof(UtilitiesEnum)))
             {
                 viewModel.UtilitiesForCheckboxes.Add(new AccommodationFormViewModel.UtilityForCheckbox { UtilityName = utilEnum.ToString(), UtilitiesEnum = utilEnum, IsChecked = false });
             }
-            
+
             viewModel.Locations = _unitOfWork.Locations.GetAll().ToList();
             return View(viewModel);
         }
@@ -76,7 +75,7 @@ namespace TravelExperience.MVC.Controllers
                 Shared = viewModel.Accommodation.Shared,
                 Floor = viewModel.Accommodation.Floor,
                 //Thumbnail = viewModel.Accommodation.Thumbnail, // mporei na antikatastathei me to var path parakatw. Prepei na mpei pinakas me photo
-                AccommodationType = viewModel.AccommodationType, // this needs changing
+                AccommodationType = viewModel.Accommodation.AccommodationType, // this needs changing
                 HostID = userId,
                 Host = host
             };
@@ -94,7 +93,7 @@ namespace TravelExperience.MVC.Controllers
 
             accommodation.Utilities = utilities;
 
-             var booking = new Booking
+            var booking = new Booking
             {
                 Accommodation = accommodation,
                 BookingStartDate = viewModel.Booking.BookingStartDate,
@@ -114,6 +113,13 @@ namespace TravelExperience.MVC.Controllers
 
             accommodation.Thumbnail = viewModel.Thumbnail.FileName;
 
+            if (booking.Accommodation == null || booking.BookingStartDate == null || booking.BookingEndDate == null ||
+                accommodation.Description == null || accommodation.Title == null || accommodation.MaxCapacity == 0 ||
+                accommodation.Location == null || accommodation.Thumbnail == null)
+            {
+                // me kapoio tropo na gemizei ta errors fields tou view
+                return View(viewModel);
+            }
             _unitOfWork.Bookings.Create(booking);
             _unitOfWork.Locations.Create(location);
             _unitOfWork.Accommodations.Create(accommodation);
@@ -138,7 +144,6 @@ namespace TravelExperience.MVC.Controllers
             string picFilename = "";
             if (viewModel.Thumbnail == null)
             {
-                throw new Exception(); // ?
                 return "Error - Required to upload a valid image file"; // go again to ViewModel
             }
 
@@ -212,7 +217,7 @@ namespace TravelExperience.MVC.Controllers
             // Empty string means all went well.
             return "";
         }
-        
+
         [HttpGet]
         public ActionResult Location()
         {
@@ -220,7 +225,7 @@ namespace TravelExperience.MVC.Controllers
             viewModel.Utilities = _unitOfWork.Utilities.GetAll().ToList();
             return View(viewModel);
         }
-        
+
         public ActionResult Delete()
         {
             //use AccommodationRepository.Delete method
