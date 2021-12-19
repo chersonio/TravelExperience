@@ -1,4 +1,4 @@
-﻿@model TravelExperience.MVC.ViewModels.AccommodationFormViewModel
+@model TravelExperience.MVC.ViewModels.AccommodationFormViewModel
 @{
     ViewBag.Title = "New";
 }
@@ -9,99 +9,111 @@
 
 @using (Html.BeginForm("New", "Accommodation", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <div class="form-group">
-        @Html.LabelFor(model => model.Accommodation.Title)
-        @Html.TextBoxFor(model => model.Accommodation.Title, new { @class = "form-control" })
+    <div class="col-md-12">
 
-        @Html.ValidationMessageFor(model => model.Accommodation.Title, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Accommodation.Description)
-        @Html.TextBoxFor(model => model.Accommodation.Description, new { @class = "form-control" })
-
-        @Html.ValidationMessageFor(model => model.Accommodation.Description, "", new { @class = "text-danger" })
-    </div>
-
-    <h3>Utilities that your place has</h3>
-    @*----FOR CHECKBOXES----*@
-    <div class="form-group">
-        @for (int i = 0; i < Model.UtilitiesForCheckboxes.Count(); i++)
-        {
-
-            @Html.HiddenFor(m => m.UtilitiesForCheckboxes[i].UtilityName)
-            @Html.HiddenFor(m => m.UtilitiesForCheckboxes[i].UtilitiesEnum)
-            @Html.CheckBoxFor(m => m.UtilitiesForCheckboxes[i].IsChecked)
-            @Html.DisplayFor(m => m.UtilitiesForCheckboxes[i].UtilitiesEnum)
-
-            <br />
-        }
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Accommodation.Shared)
-        @Html.CheckBoxFor(model => model.Accommodation.Shared, new { @class = "form-control" })
-
-        @Html.ValidationMessageFor(model => model.Accommodation.Shared, "", new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Accommodation.Floor)
-        @Html.TextBoxFor(model => model.Accommodation.Floor, new { @class = "form-control" })
-
-        @Html.ValidationMessageFor(model => model.Accommodation.Floor, "", new { @class = "text-danger" })
-    </div>
-
-    // TODO: take many images, open directory.
-    <div class="form-group">
-        @Html.LabelFor(model => model.Accommodation.Thumbnail)
-        @Html.TextBoxFor(model => model.Accommodation.Thumbnail, new { @class = "form-control" })
-
-        @Html.ValidationMessageFor(model => model.Accommodation.Thumbnail, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group">
-        @Html.TextBox("Image", "", new { type = "file" }) <br />
-    </div>
-
-
-    // AccommodationType DropDown
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.AccommodationType)
-
-            @Html.EnumDropDownListFor(model => model.AccommodationTypesList, Model.AccommodationType.ToString(),new { @class = "form-control" })
-
-        </div>*@
-
-<div class="col-md-12">
-    <h3>Location</h3>
-    <div class="col-md-6">
         <div class="form-group">
-            @Html.LabelFor(model => model.Accommodation.Location.Address)
-            @Html.TextBoxFor(model => model.Accommodation.Location.Address, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Accommodation.Location.Address, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.Accommodation.Title)
+            @Html.TextBoxFor(model => model.Accommodation.Title, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(model => model.Accommodation.Title, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Accommodation.Description)
+            @Html.TextBoxFor(model => model.Accommodation.Description, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(model => model.Accommodation.Description, "", new { @class = "text-danger" })
+        </div>
+
+        <h3>Give dates of availability</h3>
+        <div class="form-group">
+            @Html.Label("Begin date of your hosting")<br />
+            @Html.TextBoxFor(m => m.Booking.BookingStartDate, "", new { type = "date" }) <br />
+
+            @Html.Label("Ending date of your hosting")<br />
+            @Html.TextBoxFor(m => m.Booking.BookingEndDate, "", new { type = "date" }) <br />
+        </div>
+        <h3>Utilities that your place has</h3>
+
+        @*----FOR CHECKBOXES----*@
+        <div class="form-group">
+            @for (int i = 0; i < Model.UtilitiesForCheckboxes.Count(); i++)
+            {
+                @Html.HiddenFor(m => m.UtilitiesForCheckboxes[i].UtilityName)
+                @Html.HiddenFor(m => m.UtilitiesForCheckboxes[i].UtilitiesEnum)
+                @Html.CheckBoxFor(m => m.UtilitiesForCheckboxes[i].IsChecked)
+                @Html.DisplayFor(m => m.UtilitiesForCheckboxes[i].UtilitiesEnum)
+                <br />
+            }
+        </div>
+
+        <div class="form-group">
+            @Html.CheckBoxFor(model => model.Accommodation.Shared)
+            @Html.Label("Shared Experience")
+
+            @Html.ValidationMessageFor(model => model.Accommodation.Shared, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Accommodation.Location.AddressNo)
-            @Html.TextBoxFor(model => model.Accommodation.Location.AddressNo, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Accommodation.Location.AddressNo, "", new { @class = "text-danger" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Accommodation.Location.City)
-            @Html.TextBoxFor(model => model.Accommodation.Location.City, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Accommodation.Location.City, "", new { @class = "text-danger" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Accommodation.Location.Country)
-            @Html.TextBoxFor(model => model.Accommodation.Location.Country, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Accommodation.Location.Country, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="col-md-6">
-        <h3>Find your location with presicion</h3>
-        @Html.Partial("_Map")
-    </div>
-</div>
+            @Html.LabelFor(model => model.Accommodation.Floor)
+            @Html.TextBoxFor(model => model.Accommodation.Floor, new { @class = "form-control", type = "number" })
 
+            @Html.ValidationMessageFor(model => model.Accommodation.Floor, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Thumbnail) <strong> | Need to add restriction to only images</strong>
+            @Html.TextBoxFor(m => m.Thumbnail, htmlAttributes: new { @class = "form-control", type = "file", multiple = true, accept = "image/*" })
+
+            @Html.ValidationMessageFor(model => model.Thumbnail, "", new { @class = "text-danger" })
+
+        </div>
+        <br />
+
+        @*// AccommodationType DropDown *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Accommodation.AccommodationType) <strong> | Trying to get and set Accommodation Type</strong> <br />
+
+            @Html.DropDownListFor(model => model.Accommodation.AccommodationType, new SelectList(Enum.GetValues(typeof(TravelExperience.DataAccess.Core.Entities.AccommodationType)), "AccommodationType"))
+
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <h3>Location</h3>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Accommodation.Location.Address)
+                @Html.TextBoxFor(model => model.Accommodation.Location.Address, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.Accommodation.Location.Address, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Accommodation.Location.AddressNo)
+                @Html.TextBoxFor(model => model.Accommodation.Location.AddressNo, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.Accommodation.Location.AddressNo, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Accommodation.Location.City)
+                @Html.TextBoxFor(model => model.Accommodation.Location.City, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.Accommodation.Location.City, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Accommodation.Location.Country)
+                @Html.TextBoxFor(model => model.Accommodation.Location.Country, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.Accommodation.Location.Country, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <h3>Find your location with presicion</h3>
+            @Html.Partial("_Map", Model)
+        </div>
+    </div>
     <button type="submit" class="btn btn-primary btn-lg">Save</button>
 }
 
