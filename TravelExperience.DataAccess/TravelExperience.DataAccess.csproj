@@ -200,7 +200,7 @@
     <Compile Include="Persistence\Repositories\ImagesRepository.cs" />
 
   
-    <!--/ PANAGOU
+    // PANAGOU
     <Compile Include="Persistence\Migrations\202112121716209_Initial.cs" />
     <Compile Include="Persistence\Migrations\202112121716209_Initial.designer.cs">
       <DependentUpon>202112121716209_Initial.cs</DependentUpon>
