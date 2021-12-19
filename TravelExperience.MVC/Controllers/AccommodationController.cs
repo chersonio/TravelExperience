@@ -35,20 +35,21 @@ namespace TravelExperience.MVC.Controllers
             viewModel.Accommodation = new Accommodation();
             viewModel.Location = new Location();
 
+            // Get Utilities for checkboxes
             viewModel.Utilities = new List<Utility>();
             viewModel.UtilitiesForCheckboxes = new List<AccommodationFormViewModel.UtilityForCheckbox>();
-            viewModel.AccommodationTypesList = new List<SelectListItem>();
+            viewModel.AccommodationTypesList = new List<SelectListItem>(); // not chersonio5
 
             foreach (UtilitiesEnum utilEnum in Enum.GetValues(typeof(UtilitiesEnum)))
             {
                 viewModel.UtilitiesForCheckboxes.Add(new AccommodationFormViewModel.UtilityForCheckbox { UtilityName = utilEnum.ToString(), UtilitiesEnum = utilEnum, IsChecked = false });
             }
-
+            
+            viewModel.Locations = _unitOfWork.Locations.GetAll().ToList();
             return View(viewModel);
         }
 
         // POST: create new accommodation
-
         [HttpPost]
         public ActionResult New(AccommodationFormViewModel viewModel)
         {
@@ -74,7 +75,7 @@ namespace TravelExperience.MVC.Controllers
                 MaxCapacity = viewModel.Accommodation.MaxCapacity,
                 Shared = viewModel.Accommodation.Shared,
                 Floor = viewModel.Accommodation.Floor,
-                Thumbnail = viewModel.Accommodation.Thumbnail, // mporei na antikatastathei me to var path parakatw. Prepei na mpei pinakas me photo
+                //Thumbnail = viewModel.Accommodation.Thumbnail, // mporei na antikatastathei me to var path parakatw. Prepei na mpei pinakas me photo
                 AccommodationType = viewModel.AccommodationType, // this needs changing
                 HostID = userId,
                 Host = host
@@ -93,60 +94,125 @@ namespace TravelExperience.MVC.Controllers
 
             accommodation.Utilities = utilities;
 
-            var booking = new Booking
+             var booking = new Booking
             {
                 Accommodation = accommodation,
-                BookingStartDate = DateTime.Now,
-                BookingEndDate = DateTime.Now,
-                CreationDate = DateTime.Now,
+                BookingStartDate = viewModel.Booking.BookingStartDate,
+                BookingEndDate = viewModel.Booking.BookingStartDate,
                 Price = 35,
                 UserId = userId,
             };
 
-            // Store Files for Accommodation
-            // Need to change to ONLY Image files.
-            string path = "";
-            if (viewModel.Image != null)
+            // If you get an error message uploading image, do not let user continue saving.
+            string imageUploadErrorMessage = "";
+            do
             {
-                // need to check how to save in specific folders depending on accommodation.
-                string pic = Path.GetFileName(viewModel.Image.FileName);
-                path = Path.Combine(
-                                       Server.MapPath("~/images/profile"), pic);
 
-                // ---DO NOT DELETE ---
+                imageUploadErrorMessage = ValidateImageExtentionType(viewModel);
 
-                // save the image path path to the database or you can send image 
-                // directly to database
-                // in-case if you want to store byte[] ie. for DB
-                //using (MemoryStream ms = new MemoryStream())
-                //{
-                //    image.InputStream.CopyTo(ms);
-                //    byte[] array = ms.GetBuffer();
-                //}
-            }
-            //else { throw exception; }
+            } while (!string.IsNullOrEmpty(imageUploadErrorMessage));
+
+            accommodation.Thumbnail = viewModel.Thumbnail.FileName;
 
             _unitOfWork.Bookings.Create(booking);
             _unitOfWork.Locations.Create(location);
             _unitOfWork.Accommodations.Create(accommodation);
             _unitOfWork.Complete();
 
-            //try
-            //{
-            //}
-            //catch
-            //{
-            //    // anti exception na rixnei oti kati pige straba.
-            //    throw new Exception();
-            //}
 
-            // file is uploaded here
-            //if (!string.IsNullOrWhiteSpace(path))
-            //    viewModel.Image.SaveAs(path);
+            // Store Image if successful, else return error message
+            // Need to revert process
+            var storeImageMessage = StoreImage(viewModel);
 
-            return RedirectToAction("Index", "Home"); // this needs to redirect to the area of the hosts accommodations (Dashboard)
+            // this needs to redirect to the area of the hosts accommodations (Dashboard)
+            return RedirectToAction("Location", "Accommodation");
         }
 
+        /// <summary>
+        /// Stores image to the following <br/> 
+        /// images/accommodation/accommodationID/filename.extention
+        /// </summary>
+        private string StoreImage(AccommodationFormViewModel viewModel)
+        {
+            string path = "";
+            string picFilename = "";
+            if (viewModel.Thumbnail == null)
+            {
+                throw new Exception(); // ?
+                return "Error - Required to upload a valid image file"; // go again to ViewModel
+            }
+
+            // *** maybe try to revert any changes made
+            // maybe try to send an error to viewModel so it can be visible to user.
+            // Either by prompting or by textvalidation under the "Choose pic"
+
+            // Images Validation: No changes were made? then return to the initial Accommodation view.
+
+            picFilename = Path.GetFileName(viewModel.Thumbnail.FileName);
+
+            // den exei akomi timi to accommodation. prepei na to parw afou swthei. C:\TravelExperience\Data
+            path = Path.Combine(Server.MapPath("C:\\TravelExperience\\Data\\Images\\Accommodations\\"), viewModel.Accommodation.AccommodationID.ToString());
+            // Save to fileName to viewModel and it will fetch it after exiting method.
+            viewModel.Accommodation.Thumbnail = picFilename;
+
+            Directory.CreateDirectory(path);
+
+            var completeFilePath = Path.Combine(path, picFilename);
+
+            // if file exists return error
+            if (System.IO.File.Exists(completeFilePath))
+            {
+                // *** maybe try to revert any changes made
+                // maybe try to send an error to viewModel so it can be visible to user.
+                // Either by prompting or by textvalidation under the "Choose pic"
+                return "Error - Image seems to already exist. Try renaming the current image or deleting the previous image"; // go again to ViewModel
+            }
+            // File is stored to the directory here
+
+            viewModel.Thumbnail.SaveAs(path);
+
+            // Empty string means all went well.
+            return "";
+        }
+        /// <summary>
+        /// Checks .thumbnail from input viewModel, <br/>
+        /// Returns an error message if something went wrong, else null (For now)
+        /// </summary>
+        private string ValidateImageExtentionType(AccommodationFormViewModel viewModel)
+        {
+            // Need to change to ONLY Image filetypes and extentions.
+            List<string> imageContentTypes = new List<string>
+            {
+                "image/jpg",
+                "image/jpeg",
+                "image/pjpeg",
+                "image/gif",
+                "image/x-png",
+                "image/png"
+            };
+            List<string> imageExtentions = new List<string>
+            {
+                ".jpg",
+                ".png",
+                ".gif",
+                ".jpeg"
+            };
+
+            // Check the filetypes to be only image else it will return to the initial Accommodation view
+            if (!imageContentTypes.Any(x => string.Equals(viewModel.Thumbnail.ContentType, x, StringComparison.OrdinalIgnoreCase)) &&
+                !imageExtentions.Any(y => string.Equals(Path.GetExtension(viewModel.Thumbnail.FileName), y, StringComparison.OrdinalIgnoreCase)))
+            {
+                // *** maybe try to revert any changes made
+                // maybe try to send an error to viewModel so it can be visible to user.
+                // Either by prompting or by textvalidation under the "Choose pic"
+
+                return "Error - Please upload a valid image file type with the correct extention"; // go again to ViewModel
+            }
+
+            // Empty string means all went well.
+            return "";
+        }
+        
         [HttpGet]
         public ActionResult Location()
         {
@@ -154,6 +220,7 @@ namespace TravelExperience.MVC.Controllers
             viewModel.Utilities = _unitOfWork.Utilities.GetAll().ToList();
             return View(viewModel);
         }
+        
         public ActionResult Delete()
         {
             //use AccommodationRepository.Delete method
