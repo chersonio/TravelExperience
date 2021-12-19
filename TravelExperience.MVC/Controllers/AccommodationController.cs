@@ -129,22 +129,22 @@ namespace TravelExperience.MVC.Controllers
             _unitOfWork.Bookings.Create(booking);
             _unitOfWork.Locations.Create(location);
             _unitOfWork.Accommodations.Create(accommodation);
+            _unitOfWork.Complete();
 
-            try
-            {
-                _unitOfWork.Complete();
-            }
-            catch
-            {
-                // anti exception na rixnei oti kati pige straba.
-                throw new Exception();
-            }
+            //try
+            //{
+            //}
+            //catch
+            //{
+            //    // anti exception na rixnei oti kati pige straba.
+            //    throw new Exception();
+            //}
 
             // file is uploaded here
-            if (!string.IsNullOrWhiteSpace(path))
-                viewModel.Image.SaveAs(path);
+            //if (!string.IsNullOrWhiteSpace(path))
+            //    viewModel.Image.SaveAs(path);
 
-            return RedirectToAction("Location", "Accommodation"); // this needs to redirect to the area of the hosts accommodations (Dashboard)
+            return RedirectToAction("Index", "Home"); // this needs to redirect to the area of the hosts accommodations (Dashboard)
         }
 
         [HttpGet]

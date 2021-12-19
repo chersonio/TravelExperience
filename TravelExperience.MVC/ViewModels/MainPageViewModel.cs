@@ -11,6 +11,7 @@ namespace TravelExperience.MVC.ViewModels
 
         public IEnumerable<Accommodation> RandomAccommodations { get; set; }
         public IEnumerable<Booking> RandomBookings { get; set; }
+        public List<Location> Locations { get; set; }
 
     }
 }

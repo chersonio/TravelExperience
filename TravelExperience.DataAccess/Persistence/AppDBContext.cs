@@ -37,7 +37,7 @@ namespace TravelExperience.DataAccess.Persistence
             modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
             modelBuilder.Configurations.Add(new AccommodationConfiguration());
             modelBuilder.Configurations.Add(new BookingConfiguration());
-            modelBuilder.Configurations.Add(new UtilitiesConfiguration());
+            //modelBuilder.Configurations.Add(new UtilitiesConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }
