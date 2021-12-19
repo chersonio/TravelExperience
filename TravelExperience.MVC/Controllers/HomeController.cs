@@ -63,7 +63,5 @@ namespace TravelExperience.MVC.Controllers
 
             return randomAccommodations;
         }
-
-        
     }
 }
