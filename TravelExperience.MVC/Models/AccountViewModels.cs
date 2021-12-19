@@ -112,6 +112,7 @@ namespace TravelExperience.MVC.Models
 
         [Required]
         public int PostalCode { get; set; }
+
     }
 
     public class ResetPasswordViewModel

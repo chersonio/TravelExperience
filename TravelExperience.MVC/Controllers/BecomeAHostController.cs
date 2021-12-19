@@ -64,14 +64,16 @@ namespace TravelExperience.MVC.Controllers
         }
 
 
-        [HttpPost, ActionName("AddHost")]
+        [HttpPost, ActionName("Dashboard")]
         public async Task<ActionResult> AddUserRole(IdentityUser model)
         {
             var userId = User.Identity.GetUserId();
 
             await UserManager.AddToRoleAsync(userId, RoleName.Host);
 
-            return RedirectToAction("Index", "Home");
+            //return RedirectToAction("Index", "Home");
+
+            return View();
         }
 
     }

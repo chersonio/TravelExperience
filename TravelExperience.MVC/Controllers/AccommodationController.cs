@@ -74,7 +74,7 @@ namespace TravelExperience.MVC.Controllers
                 MaxCapacity = viewModel.Accommodation.MaxCapacity,
                 Shared = viewModel.Accommodation.Shared,
                 Floor = viewModel.Accommodation.Floor,
-                Thumbnail = viewModel.Accommodation.Thumbnail,
+                Thumbnail = viewModel.Accommodation.Thumbnail, // mporei na antikatastathei me to var path parakatw. Prepei na mpei pinakas me photo
                 AccommodationType = viewModel.AccommodationType, // this needs changing
                 HostID = userId,
                 Host = host
@@ -108,13 +108,12 @@ namespace TravelExperience.MVC.Controllers
             string path = "";
             if (viewModel.Image != null)
             {
-
                 // need to check how to save in specific folders depending on accommodation.
-                string pic = System.IO.Path.GetFileName(viewModel.Image.FileName);
-                path = System.IO.Path.Combine(
+                string pic = Path.GetFileName(viewModel.Image.FileName);
+                path = Path.Combine(
                                        Server.MapPath("~/images/profile"), pic);
 
-                // DO NOT DELETE
+                // ---DO NOT DELETE ---
 
                 // save the image path path to the database or you can send image 
                 // directly to database
@@ -125,27 +124,27 @@ namespace TravelExperience.MVC.Controllers
                 //    byte[] array = ms.GetBuffer();
                 //}
             }
+            //else { throw exception; }
 
             _unitOfWork.Bookings.Create(booking);
             _unitOfWork.Locations.Create(location);
             _unitOfWork.Accommodations.Create(accommodation);
+            _unitOfWork.Complete();
 
-            try
-            {
-                _unitOfWork.Complete();
-            }
-            catch
-            {
-
-                // anti exception na rixnei oti kati pige straba.
-                throw new Exception();
-            }
+            //try
+            //{
+            //}
+            //catch
+            //{
+            //    // anti exception na rixnei oti kati pige straba.
+            //    throw new Exception();
+            //}
 
             // file is uploaded here
-            if (path != null)
-                viewModel.Image.SaveAs(path);
+            //if (!string.IsNullOrWhiteSpace(path))
+            //    viewModel.Image.SaveAs(path);
 
-            return RedirectToAction("Location", "Accommodation"); // this needs to redirect to the area of the hosts accommodations
+            return RedirectToAction("Index", "Home"); // this needs to redirect to the area of the hosts accommodations (Dashboard)
         }
 
         [HttpGet]

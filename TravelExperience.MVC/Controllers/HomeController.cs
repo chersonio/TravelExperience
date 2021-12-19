@@ -18,14 +18,19 @@ namespace TravelExperience.MVC.Controllers
         }
         public ActionResult Index()
         {
-            //List<Accommodation> randomAccommodations = GetRandomAccommodation(3); // declare number of buttons
+            List<Accommodation> randomAccommodations = GetRandomAccommodation(3); // declare number of buttons
+
+            
+            var locations = _unitOfWork.Locations.GetAll().ToList();
+
 
             var viewModel = new MainPageViewModel()
             {
                 Accommodations = _unitOfWork.Accommodations.GetAll(),
                 Experiences = _unitOfWork.Experiences.GetAll(),
                 Bookings = _unitOfWork.Bookings.GetAll(),
-                //RandomAccommodations = randomAccommodations,
+                RandomAccommodations = randomAccommodations,
+                Locations = locations
             };
             return View(viewModel);
         }
@@ -59,18 +64,6 @@ namespace TravelExperience.MVC.Controllers
             return randomAccommodations;
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        
     }
 }
