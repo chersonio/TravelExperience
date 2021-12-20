@@ -7,7 +7,6 @@ using System.Web.Mvc;
 using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DataAccess.Core.Interfaces;
 using TravelExperience.MVC.ViewModels;
-using static TravelExperience.DataAccess.Core.Entities.Utility;
 using TravelExperience.DataAccess.Persistence.Repositories.SearchFilters;
 using System.Web;
 using System.IO;
@@ -106,7 +105,6 @@ namespace TravelExperience.MVC.Controllers
             string imageUploadErrorMessage = "";
             do
             {
-
                 imageUploadErrorMessage = ValidateImageExtentionType(viewModel);
 
             } while (!string.IsNullOrEmpty(imageUploadErrorMessage));
@@ -124,7 +122,6 @@ namespace TravelExperience.MVC.Controllers
             _unitOfWork.Locations.Create(location);
             _unitOfWork.Accommodations.Create(accommodation);
             _unitOfWork.Complete();
-
 
             // Store Image if successful, else return error message
             // Need to revert process

@@ -77,6 +77,14 @@
             @Html.DropDownListFor(model => model.Accommodation.AccommodationType, new SelectList(Enum.GetValues(typeof(TravelExperience.DataAccess.Core.Entities.AccommodationType)), "AccommodationType"))
 
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Booking.Price) /Day
+            @Html.TextBoxFor(model => model.Booking.Price, new { @class = "form-control" , type = "number" })
+
+            @Html.ValidationMessageFor(model => model.Booking.Price, "", new { @class = "text-danger" })
+
+        </div>
     </div>
 
     <div class="col-md-12">
