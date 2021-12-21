@@ -68,6 +68,10 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
             _context.Entry(accommodation).State = EntityState.Modified;
         }
 
+        public int? GetMax()
+        {
+            return _context.Accommodations.Max(x => x.AccommodationID);
+        }
 
         public void Dispose()
         {

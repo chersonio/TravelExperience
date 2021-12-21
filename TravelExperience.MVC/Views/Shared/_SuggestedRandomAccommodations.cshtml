@@ -2,9 +2,9 @@
 
 
 <div class="row thumb-container">
-    @for (int i = 0; i < 3; i++)
+    @for (int i = 0; i < Model.RandomAccommodations.Count(); i++)
     {
-        var accomLink = Model.RandomAccommodations.ToArray()[i]; // need random
+        var accomLink = Model.RandomAccommodations.ToArray()[i];
 
         <div class="col-md-4 accom-thumb-link" style="background-image: url(@accomLink.Thumbnail)">
 
@@ -17,7 +17,8 @@
                     </div>
                     <div>
                         <h2>
-                            @Model.Bookings.FirstOrDefault(x => x.AccommodationID == accomLink.AccommodationID).BookingStartDate.ToString("dd-MMM-yy")
+                            @{ var booking = Model.Bookings.FirstOrDefault(x => x.AccommodationID == accomLink.AccommodationID); }
+                            @booking.BookingStartDate.ToString("MMM dd")-@booking.BookingEndDate.ToString("dd, yy")
                         </h2>
                     </div>
                 </div>

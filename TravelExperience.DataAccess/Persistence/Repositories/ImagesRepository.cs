@@ -45,6 +45,11 @@ namespace TravelExperience.DataAccess.Persistence
             throw new System.NotImplementedException();
         }
 
+        public int? GetMax()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void Update(Image image)
         {
             throw new System.NotImplementedException();

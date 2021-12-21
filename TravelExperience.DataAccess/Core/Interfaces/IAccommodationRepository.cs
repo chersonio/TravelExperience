@@ -5,13 +5,8 @@ using TravelExperience.DataAccess.Core.Entities;
 
 namespace TravelExperience.DataAccess.Core.Interfaces
 {
-    public interface IAccommodationRepository : IDisposable
+    public interface IAccommodationRepository : IDisposable, ICrudable<Accommodation>
     {
-        IEnumerable<Accommodation> GetAll();
-        IQueryable<Accommodation> Get();
-        Accommodation GetById(int? id);
-        void Create(Accommodation accommodation);
-        void Update(Accommodation accommodation);
-        void Delete(int? id);
+        int? GetMax();
     }
 }

@@ -5,13 +5,9 @@ using TravelExperience.DataAccess.Core.Entities;
 
 namespace TravelExperience.DataAccess.Core.Interfaces
 {
-    public interface IImagesRepository : IDisposable
+    public interface IImagesRepository : IDisposable, ICrudable<Image>
     {
-        IEnumerable<Image> GetAll();
-        IQueryable<Image> Get();
-        Image GetById(int? id);
-        void Create(Image image);
-        void Update(Image image);
-        void Delete(int? id);
+        int? GetMax();
+
     }
 }
