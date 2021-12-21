@@ -17,6 +17,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
         {
             _context = context;
         }
+
         public void Create(Location location)
         {
             if (location == null)
@@ -29,12 +30,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
         {
             throw new NotImplementedException();
         }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
+      
         public IQueryable<Location> Get()
         {
             throw new NotImplementedException();
@@ -45,14 +41,26 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
             return _context.Locations.Include(x => x.Accommodations).ToList();
         }
 
-        public Image GetById(int? id)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Update(Location location)
         {
             throw new NotImplementedException();
         }
+
+        public int? GetMax()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Location GetById(int? id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+      
     }
 }

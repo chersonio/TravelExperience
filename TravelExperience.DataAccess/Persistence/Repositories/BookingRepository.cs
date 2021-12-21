@@ -23,6 +23,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
             if (booking == null)
                 throw new ArgumentException(nameof(booking));
 
+            booking.CreationDate = DateTime.Now;
             _context.Bookings.Add(booking);
         }
 
@@ -70,10 +71,14 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
             _context.Entry(booking).State = EntityState.Modified;
         }
 
-
         public void Dispose()
         {
             _context.Dispose();
+        }
+
+        public int? GetMax()
+        {
+            throw new NotImplementedException();
         }
     }
 }

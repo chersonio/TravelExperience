@@ -21,10 +21,6 @@ namespace TravelExperience.DataAccess.Persistence
         public DbSet<Utility> Utilities { get; set; }
         public DbSet<Location> Locations { get; set; }
 
-        //public DbSet<AccommodationUtilities> AccommodationUtilities { get; set; }        
-        //public DbSet<AccommodationType> AccommodationTypes { get; set; }
-
-
 
         public static AppDBContext Create()
         {

@@ -7,13 +7,9 @@ using TravelExperience.DataAccess.Core.Entities;
 
 namespace TravelExperience.DataAccess.Core.Interfaces
 {
-    public interface ILocationRepository:IDisposable
+    public interface ILocationRepository : IDisposable, ICrudable<Location>
     {
-        IEnumerable<Location> GetAll();
-        IQueryable<Location> Get();
-        Image GetById(int? id);
-        void Create(Location location);
-        void Update(Location location);
-        void Delete(int? id);
+        int? GetMax();
+
     }
 }

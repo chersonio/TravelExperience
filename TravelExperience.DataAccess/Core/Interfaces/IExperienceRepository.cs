@@ -10,8 +10,8 @@ namespace TravelExperience.DataAccess.Core.Interfaces
         IEnumerable<Experience> GetAll();
         IQueryable<Experience> Get();
         Experience GetById(int? id);
-        void Create(Experience experience);
-        void Update(Experience experience);
+        void Create(Experience entity);
+        void Update(Experience entity);
         void Delete(int? id);
     }
 }

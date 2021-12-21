@@ -76,5 +76,10 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public int? GetMax()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

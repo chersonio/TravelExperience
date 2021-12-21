@@ -7,13 +7,8 @@ namespace TravelExperience.DataAccess.Core.Interfaces
         IBookingRepository Bookings { get; }
         IAccommodationRepository Accommodations { get; }
         IExperienceRepository Experiences { get; }
-
         IUtilityRepository Utilities { get; }
-
         IApplicationUserRepository Users { get; }
-
-        //IAccommodationTypeRepository AccommodationTypes { get; set; }
-
         ILocationRepository Locations { get; set; }
         void Complete();
     }

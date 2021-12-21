@@ -25,16 +25,6 @@ namespace TravelExperience.DataAccess.Core.Entities
 
         public ApplicationUser Host { get; set; } //optional
 
-        //Utilities
-        //[Required]
-        //public ICollection<AccommodationUtilities> AccommodationUtilities { get; set; }
-        //public Accommodation()
-        //{
-        //    AccommodationUtilities = new Collection<AccommodationUtilities>();
-        //}
-        //public int UtilityID { get; set; }
-        //public Utility Utility { get; set; }
-
         public ICollection<Utility> Utilities { get; set; }
 
         //public int AccommodationTypeID { get; set; }
