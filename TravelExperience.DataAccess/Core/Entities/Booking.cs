@@ -29,10 +29,6 @@ namespace TravelExperience.DataAccess.Core.Entities
 
         public Accommodation Accommodation { get; set; }
 
-        public int? ExperienceID { get; set; }
-
-        public Experience Experience { get; set; }
-
         [Required]
         public DateTime BookingStartDate { get; set; }
 

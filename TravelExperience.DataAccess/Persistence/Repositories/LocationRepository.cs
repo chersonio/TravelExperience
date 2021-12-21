@@ -42,7 +42,8 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public IEnumerable<Location> GetAll()
         {
-            return _context.Locations.Include(x => x.Accommodations).ToList();
+            //return _context.Locations.Include(x => x.Accommodations).ToList();
+            return _context.Locations.ToList();
         }
 
         public Image GetById(int? id)

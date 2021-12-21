@@ -1,5 +1,4 @@
-﻿@*@model IEnumerable<TravelExperience.DataAccess.Core.Entities.Accommodation>*@
-
+﻿@model TravelExperience.MVC.ViewModels.MapViewModel
 @{
     ViewBag.Title = "Map";
 }
@@ -23,29 +22,27 @@
                     zoom: 10
                 });
 
-                $.get("@Url.Action("GetLocation", "Map")", function (data, status) {
+
+                $.get("@Url.Action("GetLocation", "Map")", function (data2, status) {
+                    var data = JSON.parse(data2)
                     var marker = [];
                     var contentString = [];
                     var infowindow = [];
-                    var lat = parseFloat(data[i].Xcoord);
-                    var lon = parseFloat(data[i].Ycoord);
                     for (var i = 0; i < data.length; i++) {
-                            marker[i] = new google.maps.Marker({
-                                position: { lat: lat, lng: lon },
-                                map: map
+                        marker[i] = new google.maps.Marker({
+                            position: new google.maps.LatLng(data[i].Xcoord, data[i].Ycoord),
+                               /* { lat: parseFloat(data[i].Xcoord), lng: parseFloat(data[i].Ycoord) },*/
+                            map: map
                         });
 
-                            contentString[i] = '<div id="content">' +
+                        contentString[i] = '<div id="content">' +
                             '<div id="siteNotice">' +
                             '</div>' +
-                            '<h1 id="firstHeading" class="firstHeading>' + data[i].Address + '</h1>' +
-                            '<div id="bodyContent">' +
-                                '<p><b>' + data[i].AccommodationId + '</b>,  a small description  of the accommodation</p>' +
-                            '</div>';
+                            '<h1 id="firstHeading" class="firstHeading>' + data[i].Address + '</h1>';
 
-                            infowindow[i] = new google.maps.InfoWindow({
+                        infowindow[i] = new google.maps.InfoWindow({
                             content: contentString[i]
-                            });
+                        });
 
                         var mdl = marker[i];
 
@@ -56,8 +53,7 @@
                         })(marker[i], i));
 
                         google.maps.event.addListener(marker[i], 'mouseout', (function (mdl, i) {
-                            return function () {
-                                infowindow[i].close();
+                            return function () {infowindow[i].close();
                             }
                         })(marker[i], i));
 
@@ -65,7 +61,7 @@
 
                 })
 
-
+            
             }
         </script>
 
@@ -77,11 +73,11 @@
                         zoom: 12
                     });
                     var marker1 = new google.maps.Marker({
-                        position: { lat: 37.98096185419733, lng: 23.732283397775806 },
+                        position: { lat: 37.98096185419733, lng: 23.7322833 },
                         map: map
                     });
                     var marker2 = new google.maps.Marker({
-                        position: { lat: 37.98367965983411, lng: 23.730461897775804 },
+                        position: { lat: 37.983679, lng: 23.730461897775804 },
                         map: map
                     });
                     var contentStringForMarker1 = '<div id="content">' +
@@ -108,48 +104,4 @@
 
 
 
-
-
-@*<head>
-                    <title>
-                        Map
-                    </title>
-                    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLxLZZ4ElJQCQT_Ppnc_KoQC30aESetyE&callback=initMap"></script>
-                </head>
-
-                <div>
-                    <div id="modal-map" style="height:76%;width:77%; position:absolute; overflow: hidden;"></div>
-                </div>
-    @section scripts{
-        <script>
-
-            //Types of maps
-            //ROADMAP
-            //SATELLITE
-            //HYBRID
-            //TERRAIN
-            var point = { lat: 37.98096185419733, lng: 23.732283397775806 };
-            var map = new google.maps.Map(document, getElementById('modal-map'), {
-                zoom: 13,
-                center: point,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                zoomControl: true,
-                //position of the zoom control
-                zoomControlOptions: {
-                    position: google.maps.ControlPosition.LEFT_BOTTOM
-                },
-                //scaleControl:true
-                streetViewControl: true,
-                //position of the street view control
-                streetViewControlOptions: {
-                    position: google.maps.ControlPosition.LEFT_BOTTOM
-                },
-                mapTypeControlOptions: {
-                    position: google.maps.ControlPosition.RIGHT_CENTER
-                },
-            });
-        </script>
-
-        }*@
 

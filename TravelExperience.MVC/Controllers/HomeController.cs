@@ -18,7 +18,7 @@ namespace TravelExperience.MVC.Controllers
         }
         public ActionResult Index()
         {
-            List<Accommodation> randomAccommodations = GetRandomAccommodation(3); // declare number of buttons
+            List<Accommodation> randomAccommodations = GetRandomAccommodation(1); // declare number of buttons
 
             
             var locations = _unitOfWork.Locations.GetAll().ToList();
@@ -27,7 +27,6 @@ namespace TravelExperience.MVC.Controllers
             var viewModel = new MainPageViewModel()
             {
                 Accommodations = _unitOfWork.Accommodations.GetAll(),
-                Experiences = _unitOfWork.Experiences.GetAll(),
                 Bookings = _unitOfWork.Bookings.GetAll(),
                 RandomAccommodations = randomAccommodations,
                 Locations = locations

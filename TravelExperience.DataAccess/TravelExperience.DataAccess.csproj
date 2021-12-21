@@ -49,9 +49,6 @@
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNetCore.Cryptography.Internal, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.Cryptography.Internal.6.0.0\lib\net461\Microsoft.AspNetCore.Cryptography.Internal.dll</HintPath>
     </Reference>
@@ -66,9 +63,6 @@
     </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Identity.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Identity.Core.6.0.0\lib\net461\Microsoft.Extensions.Identity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Logging.6.0.0\lib\net461\Microsoft.Extensions.Logging.dll</HintPath>
@@ -162,7 +156,6 @@
     <Compile Include="Core\Entities\Accommodation.cs" />
     <Compile Include="Core\Entities\AccommodationType.cs" />
     <Compile Include="Core\Entities\Booking.cs" />
-    <Compile Include="Core\Entities\Experience.cs" />
     <Compile Include="Core\Entities\IdentityModel.cs" />
     <Compile Include="Core\Entities\Image.cs" />
     <Compile Include="Core\Entities\Location.cs" />
@@ -170,7 +163,6 @@
     <Compile Include="Core\Interfaces\IAccommodationRepository.cs" />
     <Compile Include="Core\Interfaces\IAccommodationTypeRepository.cs" />
     <Compile Include="Core\Interfaces\IAccommodationUtilitiesRepository.cs" />
-    <Compile Include="Core\Interfaces\IExperienceRepository.cs" />
     <Compile Include="Core\Interfaces\IBookingRepository.cs" />
     <Compile Include="Core\Interfaces\IImagesRepository.cs" />
     <Compile Include="Core\Interfaces\ILocationRepository.cs" />
@@ -180,9 +172,13 @@
     <Compile Include="Persistence\Configurations\AccommodationConfiguration.cs" />
     <Compile Include="Persistence\Configurations\ApplicationUserConfiguration.cs" />
     <Compile Include="Persistence\Configurations\BookingConfiguration.cs" />
-    <Compile Include="Persistence\Migrations\202112131648199_Initial.cs" />
-    <Compile Include="Persistence\Migrations\202112131648199_Initial.designer.cs">
-      <DependentUpon>202112131648199_Initial.cs</DependentUpon>
+    <Compile Include="Persistence\Migrations\202112151930497_Initial.cs" />
+    <Compile Include="Persistence\Migrations\202112151930497_Initial.designer.cs">
+      <DependentUpon>202112151930497_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\Migrations\202112211944178_DeleteExperiences.cs" />
+    <Compile Include="Persistence\Migrations\202112211944178_DeleteExperiences.designer.cs">
+      <DependentUpon>202112211944178_DeleteExperiences.cs</DependentUpon>
     </Compile>
     <!--// CHERSO
   
@@ -203,7 +199,6 @@
     </Compile>-->
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Persistence\Repositories\ImagesRepository.cs" />
-    <Compile Include="Persistence\Repositories\ExperienceRepository.cs" />
     <Compile Include="Persistence\Repositories\AccommodationRepository.cs" />
     <Compile Include="Core\Interfaces\IApplicationUserRepository.cs" />
     <Compile Include="Persistence\Repositories\LocationRepository.cs" />
@@ -225,8 +220,11 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Persistence\Migrations\202112131648199_Initial.resx">
-      <DependentUpon>202112131648199_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Persistence\Migrations\202112151930497_Initial.resx">
+      <DependentUpon>202112151930497_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\202112211944178_DeleteExperiences.resx">
+      <DependentUpon>202112211944178_DeleteExperiences.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -234,10 +232,10 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets'))" />
   </Target>
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <Import Project="..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

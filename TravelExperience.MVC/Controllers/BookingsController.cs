@@ -49,7 +49,6 @@ namespace TravelExperience.MVC.Controllers
         public ActionResult Create()
         {
             ViewBag.AccommodationID = new SelectList(_unitOfWork.Accommodations.GetAll(), "AccommodationID", "Title");
-            ViewBag.ExperienceID = new SelectList(_unitOfWork.Experiences.GetAll(), "ExperienceID", "Title");
             ViewBag.UserId = new SelectList(_unitOfWork.Users.GetAll(), "Id", "FirstName");
             return View();
         }
@@ -70,7 +69,6 @@ namespace TravelExperience.MVC.Controllers
             }
 
             ViewBag.AccommodationID = new SelectList(_unitOfWork.Accommodations.GetAll(), "AccommodationID", "Title", booking.AccommodationID);
-            ViewBag.ExperienceID = new SelectList(_unitOfWork.Experiences.GetAll(), "ExperienceID", "Title", booking.ExperienceID);
             ViewBag.UserId = new SelectList(_unitOfWork.Users.GetAll(), "Id", "FirstName", booking.UserId);
 
             return View(booking);
@@ -89,7 +87,6 @@ namespace TravelExperience.MVC.Controllers
                 return HttpNotFound();
             }
             ViewBag.AccommodationID = new SelectList(_unitOfWork.Accommodations.GetAll(), "AccommodationID", "Title", booking.AccommodationID);
-            ViewBag.ExperienceID = new SelectList(_unitOfWork.Experiences.GetAll(), "ExperienceID", "Title", booking.ExperienceID);
             ViewBag.UserId = new SelectList(_unitOfWork.Users.GetAll(), "Id", "FirstName", booking.UserId);
             return View(booking);
         }
@@ -108,7 +105,6 @@ namespace TravelExperience.MVC.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.AccommodationID = new SelectList(_unitOfWork.Accommodations.GetAll(), "AccommodationID", "Title", booking.AccommodationID);
-            ViewBag.ExperienceID = new SelectList(_unitOfWork.Experiences.GetAll(), "ExperienceID", "Title", booking.ExperienceID);
             ViewBag.UserId = new SelectList(_unitOfWork.Users.GetAll(), "Id", "FirstName", booking.UserId);
             return View(booking);
         }

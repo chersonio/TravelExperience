@@ -13,7 +13,7 @@ namespace TravelExperience.DataAccess.Persistence.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202112131648199_Initial"; }
+            get { return "202112151930497_Initial"; }
         }
         
         string IMigrationMetadata.Source
