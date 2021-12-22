@@ -20,9 +20,7 @@ namespace TravelExperience.MVC.Controllers
         {
             List<Accommodation> randomAccommodations = GetRandomAccommodation(3); // declare number of buttons
 
-            
             var locations = _unitOfWork.Locations.GetAll().ToList();
-
 
             var viewModel = new MainPageViewModel()
             {
