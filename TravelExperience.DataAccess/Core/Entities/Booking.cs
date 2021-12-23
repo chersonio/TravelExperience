@@ -29,12 +29,10 @@ namespace TravelExperience.DataAccess.Core.Entities
 
         public Accommodation Accommodation { get; set; }
 
-        [Required]
-        [DataType(DataType.Date)]
+        [Required, DataType(DataType.Date)]
         public DateTime BookingStartDate { get; set; }
 
-        [Required]
-        [DataType(DataType.Date)]
+        [Required, DataType(DataType.Date)]
         public DateTime BookingEndDate { get; set; }
 
         // To Booking StartDate - EndDate tha prepe na nai ksexwristos pinakas.  Afora: 

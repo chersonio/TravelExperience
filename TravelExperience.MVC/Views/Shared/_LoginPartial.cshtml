@@ -8,7 +8,6 @@
     {
         @Html.AntiForgeryToken()
 
-
         <ul class="navright">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -16,11 +15,11 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>@Html.ActionLink("Become A Host", "Index", "BecomeAHost")</li>
-                   
-                    @if((User.IsInRole("Host") && User.IsInRole("Traveler")) || User.IsInRole("Administrator"))
-                     {
-                         <li>@Html.ActionLink("Dashboard", "DashboardHost", "BecomeAHost", routeValues: null, htmlAttributes: new { title = "Dashboard" })</li>
-                     }
+
+                    @if ((User.IsInRole("Host") && User.IsInRole("Traveler")) || User.IsInRole("Administrator"))
+                    {
+                        <li>@Html.ActionLink("Dashboard", "DashboardHost", "BecomeAHost", routeValues: null, htmlAttributes: new { title = "Dashboard" })</li>
+                    }
                 </ul>
             </li>
             <li>@Html.ActionLink("My Bookings", "Index", "Bookings")</li>
