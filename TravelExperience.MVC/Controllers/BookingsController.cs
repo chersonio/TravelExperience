@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DataAccess.Core.Interfaces;
+using TravelExperience.MVC.ViewModels;
 
 namespace TravelExperience.MVC.Controllers
 {
@@ -26,8 +27,10 @@ namespace TravelExperience.MVC.Controllers
         // GET: Bookings
         public ActionResult Index()
         {
-            var bookings = _unitOfWork.Bookings.GetAll();
-            return View(bookings.ToList());
+            var model = new MainPageViewModel();
+            model.Bookings = _unitOfWork.Bookings.GetAll();
+            model.Accommodations = _unitOfWork.Accommodations.GetAll();
+            return View(model);
         }
 
         // GET: Bookings/Details/5
@@ -59,7 +62,7 @@ namespace TravelExperience.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BookingID,Price,UserId,AccommodationID,ExperienceID,BookingStartDate,BookingEndDate,CreationDate")] Booking booking)
+        public ActionResult Create([Bind(Include = "BookingID,Price,UserId,AccommodationID,BookingStartDate,BookingEndDate,CreationDate")] Booking booking)
         {
             if (ModelState.IsValid)
             {
