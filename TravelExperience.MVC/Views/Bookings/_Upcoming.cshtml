@@ -26,5 +26,18 @@
             }
         }
     }
-
+            <td>
 </div>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.BookingID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.BookingID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.BookingID })
+            </td>
+        </tr>
+            }
+        }
+
+    }
+
+    </table>

@@ -1,0 +1,73 @@
+﻿@model TravelExperience.MVC.ViewModels.SearchResultsFormViewModel
+
+@{
+    ViewBag.Title = "Accommodations";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Search", "Search")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => Model.Accommodation.Location.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => Model.Accommodation.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => Model.Accommodation.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => Model.Accommodation.AccommodationType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => Model.Accommodation.MaxCapacity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => Model.Accommodation.Shared)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => Model.Accommodation.Floor)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.Accommodations)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccommodationType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxCapacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shared)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Floor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Thumbnail)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<style>
+    .results {
+        display: none;
+    }
+</style>

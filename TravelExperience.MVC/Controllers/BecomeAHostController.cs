@@ -17,7 +17,7 @@ namespace TravelExperience.MVC.Controllers
     [Authorize]
     public class BecomeAHostController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
+        //private readonly IUnitOfWork _unitOfWork;
         private readonly ApplicationDbContext _context;
 
         private ApplicationSignInManager _signInManager;
