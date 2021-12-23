@@ -10,35 +10,37 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Julius Sans One' rel='stylesheet'>
+    <link rel="stylesheet" href="~/Content/Site.css">
 
 </head>
+
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-fixed-top navbar-light" style=" background-image: url(http://solaris-html.themerex.net/images/slider_3.jpg)">
-
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <div class="navbar-collapse collapse">
-                    @Html.ActionLink("TRAVEL EXPERIENCE", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-            </div>
-            <div class="navbar-collapse collapse d-flex justify-content-end">
+    <header>
+        <div class="containernav">
+            <h1 class="logo">
+                  @Html.ActionLink("TRAVEL EXPERIENCE", "Index", "Home")
+            </h1>
+            <nav>
                 @Html.Partial("_LoginPartial")
-            </div>
+            </nav>
         </div>
-    </nav>
+    </header>
 
+    @RenderSection("FullWidth", required: false).
+    .
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer id="footer">
+            <p>&copy; @DateTime.Now.Year - TravelExperience</p>
+        </footer>
+    </div>
 
-        @RenderSection("FullWidth", required: false)
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer id="footer">
-                <p>&copy; @DateTime.Now.Year - TravelExperience</p>
-            </footer>
-        </div>
-
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

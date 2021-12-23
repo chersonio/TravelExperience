@@ -1,57 +1,35 @@
-﻿@model IEnumerable<TravelExperience.DataAccess.Core.Entities.Booking>
-@*@model IEnumerable<TravelExperience.DataAccess.Core.Entities.Location>*@
+﻿@model TravelExperience.MVC.ViewModels.MainPageViewModel
+@using Microsoft.AspNet.Identity
+@*@model IEnumerable<TravelExperience.DataAccess.Core.Entities.Booking>*@
 
-<h2>Hello Past Trips!</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Accommodation.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BookingStartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BookingEndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </th>
-        <th></th>
-    </tr>
+<h2 style="color:darkred;">Where you've been</h2>
 
-    @foreach (var item in Model)
+
+
+<div class="container" style="padding: 3px; overflow:hidden;">
+    @foreach (var item in Model.Bookings)
     {
-        if (HttpContext.Current.User.Identity.IsAuthenticated && HttpContext.Current.User.Identity.Name.Equals(User.Identity)) {
-
+        var userID = User.Identity.GetUserId();
+        if (HttpContext.Current.User.Identity.IsAuthenticated && userID == item.UserId)
+        {
             if (item.BookingStartDate <= DateTime.Now)
             {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Accommodation.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookingStartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookingEndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.BookingID }) 
-
-            </td>
-        </tr>
+                var startDate = item.BookingStartDate.ToString("d MMM yyyy");
+                var endDate = item.BookingEndDate.ToString("d MMM yyyy");
+                <div class="col-md-5">
+                    <div style="float:right;margin-left: 15px; display: inline-block; margin: 2px 40px 0 0; white-space:pre-line; ">
+                       <strong>@Html.DisplayFor(modelItem => item.Accommodation.Title) - @Html.DisplayFor(modelItem => item.Accommodation.Location.City) </strong>
+                       @Html.DisplayFor(modelItem => startDate) - @Html.DisplayFor(modelItem => endDate)
+                       @Html.ActionLink("Details", "Details", new { id = item.BookingID })
+                    </div>
+                        <img src="@Url.Content(item.Accommodation.Thumbnail)" style="margin-right: 10px; float: left; border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 150px;" />
+                        
+                </div>
             }
         }
     }
+</div>
 
-</table>
+
+

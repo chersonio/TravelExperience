@@ -17,7 +17,7 @@ namespace TravelExperience.MVC.Controllers
     [Authorize]
     public class BecomeAHostController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
+        //private readonly IUnitOfWork _unitOfWork;
         private readonly ApplicationDbContext _context;
 
         private ApplicationSignInManager _signInManager;
@@ -73,9 +73,12 @@ namespace TravelExperience.MVC.Controllers
 
             await UserManager.AddToRoleAsync(userId, RoleName.Host);
 
-            //return RedirectToAction("Index", "Home");
-
             return View();
+        }
+
+        public ActionResult DashboardHost()
+        {
+            return View("Dashboard");
         }
 
     }
