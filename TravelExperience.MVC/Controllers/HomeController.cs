@@ -27,7 +27,6 @@ namespace TravelExperience.MVC.Controllers
             var viewModel = new MainPageViewModel()
             {
                 Accommodations = _unitOfWork.Accommodations.GetAll(),
-                Experiences = _unitOfWork.Experiences.GetAll(),
                 Bookings = _unitOfWork.Bookings.GetAll(),
                 RandomAccommodations = randomAccommodations,
                 Locations = locations

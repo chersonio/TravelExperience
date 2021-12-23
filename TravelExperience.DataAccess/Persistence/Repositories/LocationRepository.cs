@@ -60,7 +60,5 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
         {
             throw new NotImplementedException();
         }
-
-      
     }
 }

@@ -171,7 +171,6 @@
     <Compile Include="Core\Interfaces\IAccommodationTypeRepository.cs" />
     <Compile Include="Core\Interfaces\IAccommodationUtilitiesRepository.cs" />
     <Compile Include="Core\Interfaces\ICrudable.cs" />
-    <Compile Include="Core\Interfaces\IExperienceRepository.cs" />
     <Compile Include="Core\Interfaces\IBookingRepository.cs" />
     <Compile Include="Core\Interfaces\IImagesRepository.cs" />
     <Compile Include="Core\Interfaces\ILocationRepository.cs" />
@@ -182,7 +181,7 @@
     <Compile Include="Persistence\Configurations\ApplicationUserConfiguration.cs" />
     <Compile Include="Persistence\Configurations\BookingConfiguration.cs" />
     <Compile Include="Persistence\Migrations\202112131648199_Initial.cs" />
-    <Compile Include="Persistence\Migrations\202112131648199_Initial.designer.cs">
+    <Compile Include="Persistence\Migrations\202112131648199_Initial.Designer.cs">
       <DependentUpon>202112131648199_Initial.cs</DependentUpon>
     </Compile>
     <!--// CHERSO
@@ -207,7 +206,6 @@
     </Compile>-->
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Persistence\Repositories\ImagesRepository.cs" />
-    <Compile Include="Persistence\Repositories\ExperienceRepository.cs" />
     <Compile Include="Persistence\Repositories\AccommodationRepository.cs" />
     <Compile Include="Core\Interfaces\IApplicationUserRepository.cs" />
     <Compile Include="Persistence\Repositories\LocationRepository.cs" />
@@ -229,12 +227,6 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <!--<EmbeddedResource Include="Persistence\Migrations\202112111012424_Initial.resx">
-      <DependentUpon>202112111012424_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\202112121727375_ChangedCoordsToFloat.resx">
-      <DependentUpon>202112121727375_ChangedCoordsToFloat.cs</DependentUpon>
-      </EmbeddedResource>-->
     <EmbeddedResource Include="Persistence\Migrations\202112131648199_Initial.resx">
       <DependentUpon>202112131648199_Initial.cs</DependentUpon>
     </EmbeddedResource>
