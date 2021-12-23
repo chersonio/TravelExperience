@@ -73,9 +73,12 @@ namespace TravelExperience.MVC.Controllers
 
             await UserManager.AddToRoleAsync(userId, RoleName.Host);
 
-            //return RedirectToAction("Index", "Home");
-
             return View();
+        }
+
+        public ActionResult DashboardHost()
+        {
+            return View("Dashboard");
         }
 
     }
