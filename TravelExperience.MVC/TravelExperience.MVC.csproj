@@ -375,7 +375,6 @@
     <Compile Include="Controllers\BecomeAHostController.cs" />
     <Compile Include="Controllers\BookingsController.cs" />
     <Compile Include="ViewModels\DashBoardFormViewModel.cs" />
-    <Compile Include="Controllers\ExperiencesController.cs" />
     <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Models\RoleName.cs" />
@@ -391,7 +390,6 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\ExperienceFormViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />
     <Compile Include="Controllers\SearchResultsController.cs" />
@@ -475,14 +473,17 @@
     <Content Include="Views\Shared\_SuggestedRandomAccommodations.cshtml" />
     <Content Include="Views\Shared\_Map.cshtml" />
     <Content Include="Views\BecomeAHost\Dashboard.cshtml" />
+    
+    <Content Include="Views\Map\Map.cshtml" />
+
     <Content Include="Views\SearchResults\Accommodations.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Accommodations\" />
     <Folder Include="Views\Default\" />
     <Folder Include="Views\Location\" />
-    <Folder Include="Views\Map\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -16,7 +16,6 @@ namespace TravelExperience.DataAccess.Persistence
         }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Accommodation> Accommodations { get; set; }
-        public DbSet<Experience> Experiences { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Utility> Utilities { get; set; }
         public DbSet<Location> Locations { get; set; }
