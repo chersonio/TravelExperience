@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <title>Vacation Rentals, Homes</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -14,60 +13,75 @@
     <link rel="stylesheet" href="~/Content/Site.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 </head>
 
 <body class="background_img">
+    @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+    {
+        <div class="row" style="font-size: 15px; font-family:'Julius Sans One', sans-serif;">
+            I travel not to go anywhere, but to go.<br />
+            I travel for travel’s sake.<br />
+            The great affair is to move.<br />
+        </div>
+
+        <div class="row" style="font-size: 12px; font-family: 'Julius Sans One', sans-serif;">
+            -Robert Louis Stevenson
+        </div>
 
 
-    <div class="row" style="font-size: 15px; font-family:'Julius Sans One', sans-serif;">
-        I travel not to go anywhere, but to go.<br />
-        I travel for travel’s sake.<br />
-        The great affair is to move.<br />
-    </div>
+        <form method="get" class="container mt-3 rounded" style="align-self:center; max-width: 500px; padding: 30px 30px 60px 30px; background-color: rgba(113, 99, 71, 0.5); font-family: Helvetica;  font-weight: 600; color:azure;">
+            <h1 style="font-size: 2em; font-weight: bold; margin-bottom: 15px; font-family: 'Julius Sans One', sans-serif;">FIND A PERFECT VACATION</h1>
+            <div class="form-group" style=" font-size: small;">
+                <label>WHERE</label><br>
+                <input class="form-control" name="LocationString" type="text" placeholder="Anywhere" list="LocationsMainPageList" id="LocationsForMainPage" style="font-size:small;" />
+                <datalist id="LocationsMainPageList">
+                    @Html.DropDownListFor(model => model.Location, new SelectList(Model.Locations.Select(x => x.City).Distinct()))
+                </datalist>
+            </div>
+            <div class="input-group-prepend" style="font-size: small;">
+                <label>CHECK IN</label> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+                <label>CHECK OUT</label><br>
+            </div>
+            <div class="input-group">
+                <input class="form-control" type="date" placeholder="dd-mm-yyyy" name="BookingStartDate" style="font-size:small;" />
+                <input class="form-control" type="date" placeholder="dd-mm-yyyy" name="BookingEndDate" style="font-size:small;" />
+            </div>
+            <br>
+            <div class="form-group" style=" font-size: small;">
+                <label>GUESTS</label><br>
+                <select class="custom-select" style="height:30px;" name="Guests">
+                    <option selected value="1">1 guest</option>
+                    <option value="2">2 guests</option>
+                    <option value="3">3 guests</option>
+                    <option value="4">4 guests</option>
+                    <option value="5">5 guests</option>
+                    <option value="6">6 guests</option>
+                    <option value="7">7 guests</option>
+                    <option value="8">8 guests</option>
+                    <option value="9">9 guests</option>
+                    <option value="10">10 guests</option>
+                </select><br>
+            </div>
+            <div class="form-group">
 
-    <div class="row" style="font-size: 12px; font-family: 'Julius Sans One', sans-serif;">
-        -Robert Louis Stevenson
-    </div>
+                @*This is the button*@
 
-    <form class="container mt-3 rounded" style=" align-self:center; max-width: 500px; padding: 30px 30px 60px 30px; background-color: rgba(113, 99, 71, 0.5); font-family: Helvetica;  font-weight: 600; color:azure;">
-        <h1 style="font-size: 2em; font-weight: bold; margin-bottom: 15px; font-family: 'Julius Sans One', sans-serif;">FIND A PERFECT VACATION</h1>
-        <div class="form-group" style=" font-size: small;">
-            <label>WHERE</label><br>
-            <input class="form-control" type="text" placeholder="Anywhere" list="LocationsMainPageList" id="LocationsForMainPage" style="font-size:small;" />
-            <datalist id="LocationsMainPageList">
-                @Html.DropDownListFor(model => model.Locations, new SelectList(Model.Locations.Select(x => x.City).Distinct()))
-            </datalist>
-        </div>
-        <div class="input-group-prepend" style=" font-size: small;">
-            <label>CHECK IN</label> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
-            <label>CHECK OUT</label><br>
-        </div>
-        <div class="input-group">
-            <input class="form-control" type="date" placeholder="dd-mm-yyyy" name="checkin" style="font-size:small;" />
-            <input class="form-control" type="date" placeholder="dd-mm-yyyy" name="checkout" style="font-size:small;" />
-        </div>
-        <br>
-        <div class="form-group" style=" font-size: small;">
-            <label>GUESTS</label><br>
-            <select class="custom-select" style="height:30px;" ;>
-                <option selected>1 guest</option>
-                <option>2 guests</option>
-                <option>3 guests</option>
-                <option>4 guests</option>
-                <option>5 guests</option>
-                <option>6 guests</option>
-                <option>7 guests</option>
-                <option>8 guests</option>
-                <option>9 guests</option>
-                <option>10 guests</option>
-            </select><br>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-lg" style="float:left;">Search</button>
-        </div>
-    </form> <br />
+                @*@Html.ActionLink("Search", "Search",
+                        new
+                        {
+                            //Model.LocationString = LocationString
+                            //Guests = Model.Guests,
+                            //BookingStartDate = Model.BookingStartDate,
+                            //BookingEndDate = Model.BookingEndDate
+                        },
+                        new { @class = "btn btn-primary btn-lg", @style = "float:left;" }
+                    )*@
 
+                @*Instead of this*@
+                <button type="submit" class="btn btn-primary btn-lg" style="float:left;">Search</button>
+            </div>
+        </form> <br />
+    }
 
     <div style="margin: 370px 400px 20px 20px; font-size: 14px; font-family: Helvetica; color: darkslategrey;">
         <h3>What guests are saying about homes round the world.</h3>
@@ -78,13 +92,13 @@
         <div class="row">
             <div class="col-md-4">
 
-                <img class="rounded" src="https://a0.muscache.com/im/pictures/01de0512-9191-474b-b5c1-7d0766f733ca.jpg?aki_policy=large" width="100%" height="100%">
+                <img class="rounded" src="https://a0.muscache.com/im/pictures/01de0512-9191-474b-b5c1-7d0766f733ca.jpg?aki_policy=large" style="width: 100%; height: 100%">
             </div>
             <div class="col-md-4">
-                <img class="rounded" src="https://a0.muscache.com/im/pictures/5440673/a183e798_original.jpg?aki_policy=large" width="100%" height="100%">
+                <img class="rounded" src="https://a0.muscache.com/im/pictures/5440673/a183e798_original.jpg?aki_policy=large" style="width: 100%; height: 100%">
             </div>
             <div class="col-md-4">
-                <img class="rounded" src="https://a0.muscache.com/im/pictures/49982382/37c921e0_original.jpg?aki_policy=large" width="100%" height="100%">
+                <img class="rounded" src="https://a0.muscache.com/im/pictures/49982382/37c921e0_original.jpg?aki_policy=large" style="width: 100%; height: 100%">
 
             </div>
         </div>
@@ -183,13 +197,13 @@
         <h1 class="sc_title sc_title_style_3 sc_align_right">SABANA WESTPUNT</h1>
         <h5 class="sc_undertitle sc_undertitle_style_2">CURACAO</h5>
         <a href="#" class="button" style="font-size:medium;">Browse Accommodations</a>
-    </div>  <hr />
+    </div> <hr />
 
     <div class="image_bg3" style="max-width:stretch;">
         <h1 class="sc_title sc_title_style_3 sc_align_right">SEOUL</h1>
         <h5 class="sc_undertitle sc_undertitle_style_2">SOUTH KOREA</h5>
         <a href="#" class="button" style="font-size:medium;">Browse Accommodations</a>
-    </div>  <hr />
+    </div> <hr />
 
 
     @*<------ Chersonio: Random suggested accommodation links ----->*@
@@ -277,8 +291,6 @@
             }
         });
     </script>
-
-
 
 </body>
 

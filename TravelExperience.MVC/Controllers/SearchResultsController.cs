@@ -27,16 +27,23 @@ namespace TravelExperience.MVC.Controllers
             {
                 viewModel.Accommodations = searchResultsFormViewModel.Accommodations.ToList();
             }
-
+            
             return View(viewModel);
         }
 
-        public ActionResult Search()
+        /// <summary>
+        /// This method can be called from Home Search Button. It gets search criteria and it loads the results 
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Search(SearchResultsFormViewModel viewModel)
         {
-            var viewModel = new SearchResultsFormViewModel();
+            var bookingStartDate = viewModel.BookingStartDate;
+            var bookingEndDate = viewModel.BookingEndDate;
+            var city = viewModel.LocationString;
+            var numberOfGuests = viewModel.Guests;
+
             BookingsSearchFilter bookingsSearchFilter = new BookingsSearchFilter();
-            bookingsSearchFilter.FilterBookings();
-            //viewModel.Accommodations = 
+            var test = bookingsSearchFilter.FilterBookings(dateStarting: bookingStartDate, dateEnding: bookingEndDate, city: city, numberOfGuests: numberOfGuests).ToList();
 
             return View("Accommodations", viewModel);
         }

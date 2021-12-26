@@ -60,5 +60,17 @@ namespace TravelExperience.MVC.Controllers
 
             return randomAccommodations;
         }
+
+        // DTO
+        public ActionResult Search(MainPageViewModel viewModel)
+        {
+            var searchResultsViewModel = new SearchResultsFormViewModel();
+            searchResultsViewModel.BookingStartDate = viewModel.BookingStartDate;
+            searchResultsViewModel.BookingEndDate = viewModel.BookingEndDate;
+            searchResultsViewModel.Guests = viewModel.Guests;
+            searchResultsViewModel.LocationString = viewModel.LocationString; // maybe this needs changing.. but for now it may work
+
+            return RedirectToAction("Search", "SearchResults", searchResultsViewModel);
+        }
     }
 }

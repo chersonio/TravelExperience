@@ -23,7 +23,8 @@ namespace TravelExperience.DataAccess.Persistence.Repositories.SearchFilters
             DateTime? creationDate = null,
             decimal minPrice = 0,
             decimal maxPrice = 0,
-            string city = "")
+            string city = "",
+            int numberOfGuests = 0)
         {
             var bookingsToFilter = _context.Bookings
                 .Include(b => b.Accommodation);
@@ -37,15 +38,25 @@ namespace TravelExperience.DataAccess.Persistence.Repositories.SearchFilters
             DateTime? creationDate = null,
             decimal minPrice = 0,
             decimal maxPrice = 0,
-            string city = "") // kanonika prepei na mpei object giati mporei na kanei pollaplo filtering. isws na zitaei kai eisagwgi Queryable (IQueryable query, object searchTerms)
+            string city = "",
+            int numberOfGuests = 0) // kanonika prepei na mpei object giati mporei na kanei pollaplo filtering. isws na zitaei kai eisagwgi Queryable (IQueryable query, object searchTerms)
         {
 
             FilterByCreationDate(ref bookingsToFilter, creationDate);
             FilterByDates(ref bookingsToFilter, dateStarting, dateEnding);
             FilterByPrice(ref bookingsToFilter, minPrice, maxPrice);
             FilterByCity(ref bookingsToFilter, city);
+            FilterByNumberOfGuests(ref bookingsToFilter, numberOfGuests);
 
             return bookingsToFilter;
+        }
+
+        private void FilterByNumberOfGuests(ref IQueryable<Booking> query, int numberOfGuests)
+        {
+            if (numberOfGuests > 0)
+            {
+                query = query.Where(g => g.Accommodation.MaxCapacity >= numberOfGuests);
+            }
         }
 
         private void FilterByPrice(ref IQueryable<Booking> query, decimal min = 0, decimal max = 0) // instead of booking a more clever way to search.
