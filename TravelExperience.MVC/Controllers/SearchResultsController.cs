@@ -25,9 +25,10 @@ namespace TravelExperience.MVC.Controllers
 
             if (searchResultsFormViewModel != null)
             {
-                viewModel.Accommodations = searchResultsFormViewModel.Accommodations.ToList();
+                //viewModel.Accommodations = searchResultsFormViewModel.Accommodations.ToList();
+                viewModel.Accommodations = _unitOfWork.Accommodations.GetAll().ToList();
             }
-            
+
             return View(viewModel);
         }
 
