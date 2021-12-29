@@ -8,11 +8,9 @@
 
 <div class="container" style="display: flex; grid-template-columns: 1fr 1fr; grid-gap: 5px;">
 
-    <div >
+    @*<div>
         @Html.Partial("_Map", Model)
-    </div>
-
-
+    </div>*@
 
     <div style=" flex-grow:1; display: grid;">
         <hr />
@@ -21,22 +19,20 @@
             <div style="display: flex;">
                 <img src="@Url.Content(item.Thumbnail)" style=" border-radius: 15px; width: 250px; height:160px; " />
                 <div style="flex-grow: 1; margin: 15px 5px 0 5px; white-space: pre-line; float: right; max-width: 200px;">
-                    <strong style=" font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">@Html.DisplayFor(modelItem => item.Title)</strong>
+                    <strong style=" font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </strong>
                     @Html.DisplayFor(modelItem => item.Description)
                     @Html.DisplayFor(modelItem => item.MaxCapacity) Guests
                     @Html.DisplayFor(modelItem => item.Location.City) , @Html.DisplayFor(modelItem => item.Location.Country)
-                    @Html.ActionLink("View", "AccommodationView", new { id = item.AccommodationID})
+                    @Html.ActionLink("View", "AccommodationView", new { id = item.AccommodationID })
                 </div>
-                
+
             </div>
             <hr />
         }
     </div>
 </div>
-
-
-
-
 
 <p>
     @Html.ActionLink("Search", "Search")
@@ -89,33 +85,33 @@
             <td>
                 @*<img src="@Url.Content(item.Thumbnail)" alt="Image" width="50" height="50" />*@
                 @*<div class="col-md-7" style="height: 100px; width: 100px;  display: flex; ">
-            <img src="@Url.Content(item.Thumbnail)" />
-        </div>*@
+                        <img src="@Url.Content(item.Thumbnail)" />
+                    </div>*@
 
                 @*<div class="col-md-4" style="width: 175px; height: 175px; object-fit: cover; background-image: url(@item.Thumbnail)">
-                </div>*@
+                    </div>*@
                 <img src="@AppDomain.CurrentDomain.GetData("DataDirectory").ToString()" class="music-thumb" />
 
                 @*<div style="background-image: url('@item.Thumbnail'); background-repeat: no-repeat; height: 50px; width: 50px;">
-        </div>*@
+                    </div>*@
             </td>
         </tr>
 
     }
-
-    </table>*@
+</table>
 
 <style>
     .results {
         display: none;
     }
-    .music-thumb{
+
+  /*  .music-thumb {
         width: 75px;
         height: 75px;
         object-fit: cover;
-    }
+    }*/
 </style>
-    @*<style>
+@*<style>
         .results {
             display: none;
         }

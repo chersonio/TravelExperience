@@ -47,7 +47,6 @@ namespace TravelExperience.MVC.Controllers
             AccommodationSearchFilter bookingsSearchFilter = new AccommodationSearchFilter();
             var searchResults = bookingsSearchFilter.FilterBookings(dateStarting: bookingStartDate, dateEnding: bookingEndDate, city: city, numberOfGuests: numberOfGuests).ToList();
 
-
             viewModel.Accommodations = searchResults;
             //viewModel.ThumbnailOfAccommodations = new Dictionary<Accommodation, FileStream>();
 

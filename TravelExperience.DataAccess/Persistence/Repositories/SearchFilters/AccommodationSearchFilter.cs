@@ -26,8 +26,6 @@ namespace TravelExperience.DataAccess.Persistence.Repositories.SearchFilters
             string city = "",
             int numberOfGuests = 0)
         {
-            // b => b.Price >= min && b.Price <= max &&  _context.Locations.GetAll().Where(x=> x.City.Contains(city)) && b.DateStart.AddDays(-3) >= dateSt
-            // An einai kena (null) auto doulevei?
 
             // Hard search
             var bookingsToFilter = _context.Accommodations
@@ -40,10 +38,8 @@ namespace TravelExperience.DataAccess.Persistence.Repositories.SearchFilters
                 (dateEnding != DateTime.MinValue ? !a.Bookings.Any(b => b.BookingEndDate < dateEnding) : true) &&
                 a.MaxCapacity >= numberOfGuests);
 
+            var books = bookingsToFilter.ToList();
             return bookingsToFilter;
-            //return GetBookingsByFilters(bookingsToFilter, dateStarting, dateEnding, minPrice, maxPrice, city);
-
-            //return new List<Booking>().AsQueryable();
         }
 
         // hard filters / soft filters
