@@ -44,12 +44,19 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public IEnumerable<Accommodation> GetAll()
         {
-            return _context.Accommodations.Include(x => x.Location).Include(u => u.Utilities).ToList();
+            return _context.Accommodations
+                .Include(x=> x.Bookings)
+                .Include(x => x.Location)
+                .Include(u => u.Utilities)
+                .ToList();
         }
 
-        public IEnumerable<Accommodation> GetAllForTravelerID(int? hostID)
+        public IEnumerable<Accommodation> GetAllForHostID(string hostID)
         {
-            return _context.Accommodations.ToList();
+            if (string.IsNullOrWhiteSpace(hostID) || _context.Users.Find(hostID) == null)
+                throw new Exception("Host not found");
+
+            return GetAll().Where(x => x.HostID == hostID);
         }
 
         public Accommodation GetById(int? id)

@@ -49,7 +49,6 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
             return _context.Utilities.ToList();
         }
 
-
         public Utility GetById(int? id)
         {
             if (id == null)
@@ -79,7 +78,8 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public int? GetMax()
         {
-            throw new NotImplementedException();
+            return _context.Utilities.Max(x => x.UtilityID);
+
         }
     }
 }

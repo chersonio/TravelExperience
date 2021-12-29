@@ -8,5 +8,7 @@ namespace TravelExperience.DataAccess.Core.Interfaces
     public interface IAccommodationRepository : IDisposable, ICrudable<Accommodation>
     {
         int? GetMax();
+
+        IEnumerable<Accommodation> GetAllForHostID(string hostId);
     }
 }

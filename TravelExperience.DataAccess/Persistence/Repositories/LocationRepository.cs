@@ -48,7 +48,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public int? GetMax()
         {
-            throw new NotImplementedException();
+            return _context.Locations.Max(x => x.LocationID);
         }
 
         public Location GetById(int? id)

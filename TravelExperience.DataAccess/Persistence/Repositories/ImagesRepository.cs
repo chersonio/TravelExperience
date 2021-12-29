@@ -47,7 +47,7 @@ namespace TravelExperience.DataAccess.Persistence
 
         public int? GetMax()
         {
-            throw new System.NotImplementedException();
+            return _context.Images.Max(x => x.ID);
         }
 
         public void Update(Image image)

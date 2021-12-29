@@ -12,9 +12,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => Model.Accommodation.Location.Address)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => Model.Accommodation.Title)
         </th>
         <th>
@@ -32,14 +29,13 @@
         <th>
             @Html.DisplayNameFor(model => Model.Accommodation.Floor)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => Model.Accommodation.Images)
+        </th>
     </tr>
     @foreach (var item in Model.Accommodations)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location.Address)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
@@ -59,9 +55,20 @@
                 @Html.DisplayFor(modelItem => item.Floor)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Thumbnail)
+                @*<img src="@Url.Content(item.Thumbnail)" alt="Image" width="50" height="50" />*@
+                @*<div class="col-md-7" style="height: 100px; width: 100px;  display: flex; ">
+            <img src="@Url.Content(item.Thumbnail)" />
+        </div>*@
+
+                @*<div class="col-md-4" style="width: 175px; height: 175px; object-fit: cover; background-image: url(@item.Thumbnail)">
+                </div>*@
+                <img src="@AppDomain.CurrentDomain.GetData("DataDirectory").ToString()" class="music-thumb" />
+
+                @*<div style="background-image: url('@item.Thumbnail'); background-repeat: no-repeat; height: 50px; width: 50px;">
+        </div>*@
             </td>
         </tr>
+
     }
 
 </table>
@@ -69,5 +76,10 @@
 <style>
     .results {
         display: none;
+    }
+    .music-thumb{
+        width: 75px;
+        height: 75px;
+        object-fit: cover;
     }
 </style>

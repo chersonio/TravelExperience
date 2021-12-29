@@ -22,5 +22,8 @@ namespace TravelExperience.MVC.ViewModels
         public int Guests { get; set; }
         public Accommodation Accommodation { get; set; } 
         public List<Accommodation> Accommodations { get; set; }
+
+
+        //public IDictionary<Accommodation, FileStream> ThumbnailOfAccommodations { get; set; }
     }
 }

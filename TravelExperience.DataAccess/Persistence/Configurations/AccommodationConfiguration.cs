@@ -34,7 +34,6 @@ namespace TravelExperience.DataAccess.Persistence.Configurations
                 .WithRequired(u => u.Accommodation)
                 .HasForeignKey(u => u.AccommodationID)
                 .WillCascadeOnDelete(false);
-
         }
     }
 }

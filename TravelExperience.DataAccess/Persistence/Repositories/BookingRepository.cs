@@ -17,7 +17,6 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
             _context = context;
         }
 
-
         public void Create(Booking booking)
         {
             if (booking == null)
@@ -70,6 +69,24 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
             _context.Entry(booking).State = EntityState.Modified;
         }
 
+        public decimal GetPriceForBooking(int bookingId)
+        {
+            var booking = GetById(bookingId);
+            TimeSpan timeSpanDays = booking.BookingEndDate - booking.BookingStartDate;
+            var accommodationPricePerNight = booking.Accommodation.PricePerNight;
+            decimal days = timeSpanDays.Days;
+         
+            var totalPrice = (days > 0 ? days : 1) * accommodationPricePerNight;
+
+            DateTime xmas = new DateTime(2009, 12, 25);
+            double daysUntilChristmas = xmas.Subtract(DateTime.Today).TotalDays;
+            days = booking.BookingEndDate.Subtract(booking.BookingStartDate).Days;
+
+            totalPrice = (days > 0 ? days : 1) * accommodationPricePerNight;
+
+            return totalPrice;
+        }
+
         public void Dispose()
         {
             _context.Dispose();
@@ -77,7 +94,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public int? GetMax()
         {
-            throw new NotImplementedException();
+            return _context.Bookings.Max(x => x.BookingID);
         }
     }
 }
