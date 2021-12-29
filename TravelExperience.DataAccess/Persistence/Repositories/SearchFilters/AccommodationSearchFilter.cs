@@ -32,7 +32,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories.SearchFilters
                 .Include(b => b.Bookings)
                 .Where(a =>
                 a.PricePerNight >= minPrice &&
-                a.PricePerNight <= maxPrice &&
+                a.PricePerNight <= (maxPrice > 0 ? maxPrice : a.PricePerNight) &&
                 (!string.IsNullOrEmpty(city) ? a.Location.City.Contains(city) : true) &&
                 (dateStarting != DateTime.MinValue ? !a.Bookings.Any(b => b.BookingStartDate > dateStarting) : true) &&
                 (dateEnding != DateTime.MinValue ? !a.Bookings.Any(b => b.BookingEndDate < dateEnding) : true) &&
@@ -41,17 +41,5 @@ namespace TravelExperience.DataAccess.Persistence.Repositories.SearchFilters
             var books = bookingsToFilter.ToList();
             return bookingsToFilter;
         }
-
-        // hard filters / soft filters
-        // hard:
-        // max - min price
-        // city
-        // NoOfGuests
-        // soft:
-        // date start-end
-        // city maybe (wrong dictation)
-        //***if (η || ι || οι || ει) ρετουρν i
-
-      
     }
 }
