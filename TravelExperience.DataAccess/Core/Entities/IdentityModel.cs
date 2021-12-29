@@ -65,7 +65,6 @@ namespace TravelExperience.DataAccess.Core.Entities
         }
 
         public DbSet<Accommodation> Accommodations { get; set; }
-        public DbSet<Experience> Experiences { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public static ApplicationDbContext Create()
         {

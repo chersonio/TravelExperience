@@ -37,12 +37,6 @@ namespace TravelExperience.DataAccess.Persistence
             _context.SaveChanges();
         }
 
-        //-- Insert into TravelExperience.[dbo].[AspNetRoles] (Id,   [Name])
-        //-- VALUES
-        //--('baebe278-930a-404e-8745-f80ee8fa18ce',	'Administrator'),
-        //--('5d977c33-3a65-468e-8ae7-19db2ba63631',	'Host'),
-        //--('98548089-2d72-42cb-bfe6-9709a09db96a',	'Traveler');
-
         /// <summary>
         /// The first time that we run the application, the table UserRoles will be empty, so it initializes the roles
         /// </summary>

@@ -2,9 +2,6 @@
 using System.Data.Entity;
 using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DataAccess.Persistence.Configurations;
-//using TravelExperience.DataAccess.Persistence.Configurations;
-
-
 
 namespace TravelExperience.DataAccess.Persistence
 {
@@ -20,7 +17,6 @@ namespace TravelExperience.DataAccess.Persistence
         public DbSet<Utility> Utilities { get; set; }
         public DbSet<Location> Locations { get; set; }
 
-
         public static AppDBContext Create()
         {
             return new AppDBContext();
@@ -32,7 +28,6 @@ namespace TravelExperience.DataAccess.Persistence
             modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
             modelBuilder.Configurations.Add(new AccommodationConfiguration());
             modelBuilder.Configurations.Add(new BookingConfiguration());
-            //modelBuilder.Configurations.Add(new UtilitiesConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -35,8 +35,5 @@ namespace TravelExperience.DataAccess.Core.Entities
 
         public ICollection<Accommodation> Accommodations { get; set; }
 
-        //[ForeignKey("Accommodation")]
-        //public int AccommodationID { get; set; }
-        //public Accommodation Accommodation { get; set; }
     }
 }
