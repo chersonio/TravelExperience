@@ -162,14 +162,12 @@
     <Compile Include="Core\Entities\Accommodation.cs" />
     <Compile Include="Core\Entities\AccommodationType.cs" />
     <Compile Include="Core\Entities\Booking.cs" />
-    <Compile Include="Core\Entities\Experience.cs" />
     <Compile Include="Core\Entities\IdentityModel.cs" />
     <Compile Include="Core\Entities\Image.cs" />
     <Compile Include="Core\Entities\Location.cs" />
     <Compile Include="Core\Entities\Utility.cs" />
     <Compile Include="Core\Interfaces\IAccommodationRepository.cs" />
     <Compile Include="Core\Interfaces\IAccommodationTypeRepository.cs" />
-    <Compile Include="Core\Interfaces\IAccommodationUtilitiesRepository.cs" />
     <Compile Include="Core\Interfaces\ICrudable.cs" />
     <Compile Include="Core\Interfaces\IBookingRepository.cs" />
     <Compile Include="Core\Interfaces\IImagesRepository.cs" />

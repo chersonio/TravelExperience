@@ -12,12 +12,10 @@ namespace TravelExperience.MVC.ViewModels
         public Booking Booking { get; set; }
         public Accommodation Accommodation { get; set; }
 
-
         public List<Accommodation> Accommodations { get; set; }
         public List<Booking> Bookings { get; set; }
 
         [Display(Name = "Total Price")]
         public IDictionary<Booking, decimal> PriceOfBooking { get; set; } 
-    
     }
 }

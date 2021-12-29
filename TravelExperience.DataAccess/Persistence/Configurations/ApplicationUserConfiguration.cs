@@ -39,10 +39,6 @@ namespace TravelExperience.DataAccess.Persistence.Configurations
                 .IsRequired();
             Property(u => u.PostalCode)
                 .IsRequired();
-
-
-            // Relationships
-
         }
     }
 }

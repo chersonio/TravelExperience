@@ -30,6 +30,5 @@ namespace TravelExperience.MVC.ViewModels
         public List<UtilityForCheckbox> UtilitiesForCheckboxes { get; set; } // needed for checkbox
         public List<Utility> Utilities { get; set; }
         public List<Location> Locations { get; set; }
-
     }
 }
