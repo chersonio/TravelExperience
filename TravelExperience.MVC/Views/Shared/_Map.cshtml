@@ -101,54 +101,5 @@
 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLxLZZ4ElJQCQT_Ppnc_KoQC30aESetyE&callback=initMap"
                 async defer></script>
-
     </div>
 </div>
-
-
-
-
-
-@*<head>
-                    <title>
-                        Map
-                    </title>
-                    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLxLZZ4ElJQCQT_Ppnc_KoQC30aESetyE&callback=initMap"></script>
-                </head>
-
-                <div>
-                    <div id="modal-map" style="height:76%;width:77%; position:absolute; overflow: hidden;"></div>
-                </div>
-    @section scripts{
-        <script>
-
-            //Types of maps
-            //ROADMAP
-            //SATELLITE
-            //HYBRID
-            //TERRAIN
-            var point = { lat: 37.98096185419733, lng: 23.732283397775806 };
-            var map = new google.maps.Map(document, getElementById('modal-map'), {
-                zoom: 13,
-                center: point,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                zoomControl: true,
-                //position of the zoom control
-                zoomControlOptions: {
-                    position: google.maps.ControlPosition.LEFT_BOTTOM
-                },
-                //scaleControl:true
-                streetViewControl: true,
-                //position of the street view control
-                streetViewControlOptions: {
-                    position: google.maps.ControlPosition.LEFT_BOTTOM
-                },
-                mapTypeControlOptions: {
-                    position: google.maps.ControlPosition.RIGHT_CENTER
-                },
-            });
-        </script>
-
-        }*@
-

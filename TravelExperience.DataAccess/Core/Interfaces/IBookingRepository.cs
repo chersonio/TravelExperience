@@ -8,5 +8,6 @@ namespace TravelExperience.DataAccess.Core.Interfaces
     public interface IBookingRepository : IDisposable, ICrudable<Booking>
     {
         int? GetMax();
+        decimal GetPriceForBooking(int bookingId);
     }
 }

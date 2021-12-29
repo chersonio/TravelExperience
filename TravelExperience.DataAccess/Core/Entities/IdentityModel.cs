@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -18,6 +19,9 @@ namespace TravelExperience.DataAccess.Core.Entities
 
         [StringLength(50), Required(ErrorMessage = "Last name is required.")]
         public string LastName { get; set; }
+
+        [NotMapped, Display(Name = "Full Name")]
+        public string FullName => $"{LastName} {FirstName.Substring(0, 3)}.";
 
         [Required]
         public DateTime DateOfBirth { get; set; }

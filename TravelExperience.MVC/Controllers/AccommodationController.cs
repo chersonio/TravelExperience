@@ -10,6 +10,10 @@ using TravelExperience.MVC.ViewModels;
 using TravelExperience.DataAccess.Persistence.Repositories.SearchFilters;
 using System.Web;
 using System.IO;
+using GoogleMaps.LocationServices;
+using RestSharp;
+using System.Web.Script.Serialization;
+using Google.Type;
 
 namespace TravelExperience.MVC.Controllers
 {
@@ -69,6 +73,7 @@ namespace TravelExperience.MVC.Controllers
 
             var accommodation = new Accommodation()
             {
+                PricePerNight = viewModel.Accommodation.PricePerNight,
                 Title = viewModel.Accommodation.Title,
                 Description = viewModel.Accommodation.Description,
                 Location = location,
@@ -93,14 +98,14 @@ namespace TravelExperience.MVC.Controllers
 
             accommodation.Utilities = utilities;
 
-            var booking = new Booking
-            {
-                Accommodation = accommodation,
-                BookingStartDate = viewModel.Booking.BookingStartDate.Date,
-                BookingEndDate = viewModel.Booking.BookingStartDate.Date,
-                Price = viewModel.Booking.Price,
-                UserId = userId,
-            };
+            //var booking = new Booking
+            //{
+            //    Accommodation = accommodation,
+            //    BookingStartDate = viewModel.Booking.BookingStartDate.Date,
+            //    BookingEndDate = viewModel.Booking.BookingStartDate.Date,
+            //    Price = 0, // this will declare the total price of the booking per nights. (receipt)
+            //    UserId = userId,
+            //};
 
             // If you get an error message uploading image, do not let user continue saving.
             string imageUploadErrorMessage = "";
@@ -111,16 +116,16 @@ namespace TravelExperience.MVC.Controllers
 
             accommodation.Thumbnail = viewModel.Thumbnail.FileName;
 
-            if (booking.Accommodation == null || booking.BookingStartDate == null || booking.BookingEndDate == null ||
-                accommodation.Description == null || accommodation.Title == null || accommodation.MaxCapacity == 0 ||
-                accommodation.Location == null || accommodation.Thumbnail == null)
+            if (accommodation.Description == null || accommodation.Title == null || accommodation.MaxCapacity == 0 ||
+                accommodation.Location == null || accommodation.Thumbnail == null
+                /* || booking.Accommodation == null || booking.BookingStartDate == null || booking.BookingEndDate == null */)
             {
                 // me kapoio tropo na gemizei ta errors fields tou view
                 return View(viewModel);
             }
             try
             {
-                _unitOfWork.Bookings.Create(booking);
+                //_unitOfWork.Bookings.Create(booking);
                 _unitOfWork.Locations.Create(location);
                 _unitOfWork.Accommodations.Create(accommodation);
                 _unitOfWork.Complete();
@@ -130,7 +135,7 @@ namespace TravelExperience.MVC.Controllers
                 // here we can set with text danger, the messages, what was invalid.
                 return View(viewModel);
             }
-     
+
             // Store Image if successful, else return error message
             // Need to revert process
             var storeImageMessage = StoreImage(viewModel);
@@ -146,7 +151,7 @@ namespace TravelExperience.MVC.Controllers
         private string StoreImage(AccommodationFormViewModel viewModel)
         {
             string path = "";
-            string picFilename = "";
+            string picFileName = "";
             if (viewModel.Thumbnail == null)
             {
                 return "Error - Required to upload a valid image file"; // go again to ViewModel
@@ -158,17 +163,17 @@ namespace TravelExperience.MVC.Controllers
 
             // Images Validation: No changes were made? then return to the initial Accommodation view.
 
-            picFilename = Path.GetFileName(viewModel.Thumbnail.FileName);
+            picFileName = Path.GetFileName(viewModel.Thumbnail.FileName);
 
             // den exei akomi timi to accommodation. prepei na to parw afou swthei. C:\TravelExperience\Data
             path = "C:\\TravelExperience\\Data\\Images\\Accommodations\\" + _unitOfWork.Accommodations.GetMax().ToString();
             //path = Path.Combine(Server.MapPath("C:\\TravelExperience\\Data\\Images\\Accommodations\\"), viewModel.Accommodation.AccommodationID.ToString());
             // Save to fileName to viewModel and it will fetch it after exiting method.
-            viewModel.Accommodation.Thumbnail = picFilename;
+            viewModel.Accommodation.Thumbnail = picFileName;
 
             Directory.CreateDirectory(path);
 
-            var completeFilePath = Path.Combine(path, picFilename);
+            var completeFilePath = Path.Combine(path, picFileName);
 
             // if file exists return error
             if (System.IO.File.Exists(completeFilePath))
@@ -194,7 +199,7 @@ namespace TravelExperience.MVC.Controllers
             if (viewModel.Thumbnail == null)
             {
                 return "Error - Please upload a valid image file type with the correct extention";
-            }    
+            }
             // Need to change to ONLY Image filetypes and extentions.
             List<string> imageContentTypes = new List<string>
             {

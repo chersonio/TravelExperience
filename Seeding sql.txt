@@ -1,0 +1,53 @@
+
+--/// USERS WITH ROLES
+
+--Insert into [TravelExperience].[dbo].[AspNetUsers] (Id,	FirstName,	LastName,	DateOfBirth,	VAT,	IdentificationNo,	Address,	AddressNo,	City,	Country,	PostalCode,	Email,	EmailConfirmed,	PasswordHash,	SecurityStamp,	PhoneNumber,	PhoneNumberConfirmed,	TwoFactorEnabled,	LockoutEndDateUtc,	LockoutEnabled,	AccessFailedCount,	UserName)
+--Values
+--('341e2200-1f55-494e-84d3-a2f2a648887f',	'Stavroula',	'Parisi',		'1990-11-05 00:00:00.000',	2312414114,	'AC58634',	'Makedonomaxon',	12,	'florina',		'Greece',	53100,	'traveler@gmail.com',	0,	'ACAZsYCtbjmtBFBSjPVc/uMqj7heFwkuHHSKNqixgDS4+VSNMccu86iAFA50OgW3BA==',	'f12446c9-3f8d-4d61-bebe-6a116c29b493',	NULL,	0,	0,	NULL,	1,	0,	 'Stavroula'),
+--('6e66d480-9706-4bfb-a451-71392081c418',	'Stavros',	'Chersoniotakis',	'2011-02-02 00:00:00.000',	12312312,	'134123q',	'Zaratoustra',		22,	'Kounoupidiana',	'Greece',	11231,	'ADmin@ad.min',			0,	'ACn6/owfNhpgqpYoUVdGU9N/tqevqcURvm2qO3CKzGtPbR9Tj6An2LBRA5RW3jeimg==',	'ed760f10-fe09-46aa-b9b3-c8525f40c451',	NULL,	0,	0,	NULL,	1,	0,	 'ADmin@ad.min'),
+--('895a9239-2799-4c53-8b74-c411ebcaab1f',	'Stavroula',	'Parisi',		'1990-11-05 00:00:00.000',	56541685,	'AC586345',	'Makedonomaxon',	12,	'florina',		'Greece',	53100,	'admin@gmail.com',		0,	'AHvW/tkiMrdFNsyCkVTivBXHt1MxC0+Kc0qnTGOetwCHWy8V2yUcnSH1e2Hf1HSgEA==',	'd405415e-5f07-41a6-80bf-1f96b2cd68f9',	NULL,	0,	0,	NULL,	1,	0,	 'admin@gmail.com');
+
+						
+-- Insert into TravelExperience.[dbo].[AspNetRoles] ( Id,	[Name])
+-- VALUES
+--('baebe278-930a-404e-8745-f80ee8fa18ce',	'Administrator'),
+--('5d977c33-3a65-468e-8ae7-19db2ba63631',	'Host'),
+--('98548089-2d72-42cb-bfe6-9709a09db96a',	'Traveler');
+
+
+-- Insert into TravelExperience.[dbo].[AspNetUserRoles] ( UserId,	RoleId)
+-- VALUES 
+--('341e2200-1f55-494e-84d3-a2f2a648887f',	'5d977c33-3a65-468e-8ae7-19db2ba63631'),
+--('341e2200-1f55-494e-84d3-a2f2a648887f',	'98548089-2d72-42cb-bfe6-9709a09db96a'),
+--('6e66d480-9706-4bfb-a451-71392081c418',	'98548089-2d72-42cb-bfe6-9709a09db96a'),
+--('895a9239-2799-4c53-8b74-c411ebcaab1f',	'baebe278-930a-404e-8745-f80ee8fa18ce');
+
+
+
+--insert into [TravelExperience].[dbo].[Locations] (Address,	AddressNo,	City,	Country,	PostalCode,	Xcoord,	Ycoord,	AccommodationID)
+--VALUES
+--	('Zaratoustra',	 12,	'Kalamata',	'Greece',	1231231,	120000,   	300000,		1),
+--	('Zigkouala',	 1,	'Karditsa',	'Greece',	1230123,	10100110,	12030103,	2),
+--	('Saronikou',	 22,	'Siteia',	'Greece',	1230123,	10100114,	12030106,	3);
+
+
+
+--insert into [TravelExperience].[dbo].[Accommodations] ( Title,	[Description],  LocationID,	MaxCapacity,	Shared,	[Floor],	Thumbnail, AccommodationType)
+--VALUES 
+--	('Red Room',			'This a lovely room for 2 people',			 1,	2,	0,	1,	'tahiti.jpg' , 0),
+--	( 'Aston Villa',		'Luxury Appartments',					 2,	4,	1,	0,	'hungary.jpg', 2),
+--	( 'Bellevue Resort and Spa',	'Luxury Appartments at beautiful Sitia of Crete',	 3,	10,	1,	0,	'ireland.jpg', 3);
+
+
+-- insert into [TravelExperience].[dbo].[Utilities] (AccommodationID, UtilityEnum, IsSelected) 
+-- Values
+-- (1, 0, 1),
+-- (2, 2, 1),
+-- (3, 3, 1);
+
+
+-- insert into Bookings (Price, UserId, AccommodationID, BookingStartDate, BookingEndDate, CreationDate)
+-- Values
+--(20.00,	'895a9239-2799-4c53-8b74-c411ebcaab1f',	1,	'2021-12-22 00:00:00.000',	'2022-01-22 00:00:00.000',	'2021-12-01 00:00:00.000'),
+--(35.00,	'341e2200-1f55-494e-84d3-a2f2a648887f',	2,	'2021-12-25 00:00:00.000',	'2022-02-15 00:00:00.000',	'2021-12-01 00:00:00.000'),
+--(40.00,	'341e2200-1f55-494e-84d3-a2f2a648887f',	3,	'2022-02-05 00:00:00.000',	'2022-02-15 00:00:00.000',	'2021-12-02 00:00:00.000'

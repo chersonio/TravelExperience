@@ -17,15 +17,15 @@ namespace TravelExperience.MVC.Controllers
     [Authorize]
     public class BecomeAHostController : Controller
     {
-        //private readonly IUnitOfWork _unitOfWork;
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
+        //private readonly ApplicationDbContext _context;
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         public BecomeAHostController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
-            //_unitOfWork = unitOfWork;
+            //_context = new ApplicationDbContext();
+            _unitOfWork = unitOfWork;
         }
 
         public BecomeAHostController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -78,7 +78,20 @@ namespace TravelExperience.MVC.Controllers
 
         public ActionResult DashboardHost()
         {
-            return View("Dashboard");
+            var viewModel = new DashBoardFormViewModel();
+
+            viewModel.Bookings = new List<Booking>();
+
+            var userID = User.Identity.GetUserId();
+            var accommodationsOfHost = _unitOfWork.Accommodations.GetAllForHostID(userID).ToList();
+
+            viewModel.Accommodations = accommodationsOfHost;
+            foreach (var book in viewModel.Accommodations.SelectMany(x => x.Bookings))
+            {
+                book.Price = _unitOfWork.Bookings.GetPriceForBooking(book.BookingID);
+                viewModel.Bookings.Add(book);
+            }
+            return View("Dashboard", viewModel);
         }
     }
 }

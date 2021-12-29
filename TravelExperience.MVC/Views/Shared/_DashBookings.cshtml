@@ -1,0 +1,44 @@
+﻿@model  TravelExperience.MVC.ViewModels.DashBoardFormViewModel
+
+<h5 class="card-header">Latest bookings</h5>
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        @Html.LabelFor(m => m.Accommodation.Host.FullName)
+                    </th>
+                    <th scope="col">
+                        @Html.LabelFor(m => m.Accommodation.Title)
+                    </th>
+                    <th scope="col">
+                        @Html.LabelFor(m => m.PriceOfBooking)
+                    </th>
+                    <th scope="col">
+                        @Html.LabelFor(m => m.Booking.BookingStartDate)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Bookings)
+                {
+                    <tr>
+                        <th scope="row">
+                            @Html.DisplayFor(m => item.User.FullName)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(m => item.Accommodation.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.BookingStartDate)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

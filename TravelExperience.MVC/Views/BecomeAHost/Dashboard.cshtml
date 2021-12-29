@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
-@model IEnumerable<TravelExperience.DataAccess.Persistence.UnitOfWork>
+@model TravelExperience.MVC.ViewModels.DashBoardFormViewModel
+
 @{
     ViewBag.Title = "Dashboard";
 }
@@ -106,68 +107,10 @@
                 <div class="row">
                     <div class="col-12 col-xl-8 mb-4 mb-lg-0">
                         <div class="card">
-                            <h5 class="card-header">Latest bookings</h5>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">BookingID</th>
-                                                <th scope="col">Accommodation</th>
-                                                <th scope="col">Guest</th>
-                                                <th scope="col">Total Price</th>
-                                                <th scope="col">Date</th>
-                                                <th scope="col"></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">17371705</th>
-                                                <td>Volt Premium Bootstrap 5 Dashboard</td>
-                                                <td>johndoe@gmail.com</td>
-                                                <td>€61.11</td>
-                                                <td>Aug 31 2020</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">17370540</th>
-                                                <td>Pixel Pro Premium Bootstrap UI Kit</td>
-                                                <td>jacob.monroe@company.com</td>
-                                                <td>$153.11</td>
-                                                <td>Aug 28 2020</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">17371705</th>
-                                                <td>Volt Premium Bootstrap 5 Dashboard</td>
-                                                <td>johndoe@gmail.com</td>
-                                                <td>€61.11</td>
-                                                <td>Aug 31 2020</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">17370540</th>
-                                                <td>Pixel Pro Premium Bootstrap UI Kit</td>
-                                                <td>jacob.monroe@company.com</td>
-                                                <td>$153.11</td>
-                                                <td>Aug 28 2020</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">17371705</th>
-                                                <td>Volt Premium Bootstrap 5 Dashboard</td>
-                                                <td>johndoe@gmail.com</td>
-                                                <td>€61.11</td>
-                                                <td>Aug 31 2020</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">17370540</th>
-                                                <td>Pixel Pro Premium Bootstrap UI Kit</td>
-                                                <td>jacob.monroe@company.com</td>
-                                                <td>$153.11</td>
-                                                <td>Aug 28 2020</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
 
-                            </div>
+                            @Html.Partial("_DashGuests", Model)
+                            @Html.Partial("_DashBookings", Model)
+
                         </div>
                     </div>
                     <div class="col-12 col-xl-4">

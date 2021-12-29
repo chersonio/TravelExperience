@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using TravelExperience.MVC.ViewModels;
 using TravelExperience.DataAccess.Core.Interfaces;
 using TravelExperience.DataAccess.Persistence.Repositories.SearchFilters;
+using System.IO;
 
 namespace TravelExperience.MVC.Controllers
 {
@@ -23,11 +24,11 @@ namespace TravelExperience.MVC.Controllers
         {
             var viewModel = new SearchResultsFormViewModel() { Accommodations = new List<Accommodation>() };
 
-            if (searchResultsFormViewModel != null)
+            if (searchResultsFormViewModel.Accommodations != null)
             {
                 viewModel.Accommodations = searchResultsFormViewModel.Accommodations.ToList();
             }
-            
+
             return View(viewModel);
         }
 
@@ -42,8 +43,26 @@ namespace TravelExperience.MVC.Controllers
             var city = viewModel.LocationString;
             var numberOfGuests = viewModel.Guests;
 
-            BookingsSearchFilter bookingsSearchFilter = new BookingsSearchFilter();
-            var test = bookingsSearchFilter.FilterBookings(dateStarting: bookingStartDate, dateEnding: bookingEndDate, city: city, numberOfGuests: numberOfGuests).ToList();
+            AccommodationSearchFilter bookingsSearchFilter = new AccommodationSearchFilter();
+            var searchResults = bookingsSearchFilter.FilterBookings(dateStarting: bookingStartDate, dateEnding: bookingEndDate, city: city, numberOfGuests: numberOfGuests).ToList();
+
+
+            viewModel.Accommodations = searchResults;
+            //viewModel.ThumbnailOfAccommodations = new Dictionary<Accommodation, FileStream>();
+
+            foreach (var accom in viewModel.Accommodations)
+            {
+                var path = @"C:\TravelExperience\Data\Images\Accommodations\" + accom.AccommodationID.ToString();
+                var picFileName = $"{accom.Thumbnail}";
+
+                var completeFilePath = Path.Combine(path, picFileName);
+
+                //var sss = System.IO.File.OpenRead(completeFilePath);
+
+                accom.Thumbnail = completeFilePath;
+
+                //viewModel.ThumbnailOfAccommodations.Add(accom, sss);
+            }
 
             return View("Accommodations", viewModel);
         }

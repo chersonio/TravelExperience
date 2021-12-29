@@ -21,6 +21,8 @@ namespace TravelExperience.DataAccess.Core.Entities
         //[Required, StringLength(250)]
         public string Description { get; set; }
 
+        public decimal PricePerNight { get; set; }
+
         public string HostID { get; set; }
 
         public ApplicationUser Host { get; set; } //optional

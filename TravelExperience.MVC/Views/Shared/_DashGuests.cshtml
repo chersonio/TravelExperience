@@ -1,0 +1,46 @@
+﻿@model  TravelExperience.MVC.ViewModels.DashBoardFormViewModel
+
+<h5 class="card-header">Guests you host</h5>
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        @Html.LabelFor(m => m.Booking.User.LastName)
+                    </th>
+                    <th scope="col">
+                        @Html.LabelFor(m => m.Booking.User.FirstName)
+                    </th>
+                    <th scope="col">
+                        @Html.Label("Total Bookings")
+                    </th>
+                    <th scope="col">
+                        @Html.Label("Total Earnings per Guest")
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Bookings)
+                {
+                    <tr>
+                        <th scope="row">
+                            @Html.DisplayFor(m => item.User.LastName)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(m => item.User.FirstName)
+                        </td>
+                        <td>
+                            @{ var totalBookings = Model.Bookings.Count(); }
+                            @Html.DisplayFor(m => totalBookings) @*need to reffer to the user*@
+                        </td>
+                        <td>
+                            @{ var totalPrice = Model.Bookings.Sum(x => x.Price); }
+                            @Html.DisplayFor(m => item.Price) @*need to refer to the price of bookings of that user*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
