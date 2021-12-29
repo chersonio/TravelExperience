@@ -180,9 +180,9 @@
     <Compile Include="Persistence\Configurations\AccommodationConfiguration.cs" />
     <Compile Include="Persistence\Configurations\ApplicationUserConfiguration.cs" />
     <Compile Include="Persistence\Configurations\BookingConfiguration.cs" />
-    <Compile Include="Persistence\Migrations\202112131648199_Initial.cs" />
-    <Compile Include="Persistence\Migrations\202112131648199_Initial.Designer.cs">
-      <DependentUpon>202112131648199_Initial.cs</DependentUpon>
+    <Compile Include="Persistence\Migrations\202112261143506_Initial.cs" />
+    <Compile Include="Persistence\Migrations\202112261143506_Initial.designer.cs">
+      <DependentUpon>202112261143506_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Migrations\202112261744223_AddedPricePerNightAtAccommmodation.cs" />
     <Compile Include="Persistence\Migrations\202112261744223_AddedPricePerNightAtAccommmodation.designer.cs">
@@ -231,8 +231,8 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Persistence\Migrations\202112131648199_Initial.resx">
-      <DependentUpon>202112131648199_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Persistence\Migrations\202112261143506_Initial.resx">
+      <DependentUpon>202112261143506_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\202112261744223_AddedPricePerNightAtAccommmodation.resx">
       <DependentUpon>202112261744223_AddedPricePerNightAtAccommmodation.cs</DependentUpon>
