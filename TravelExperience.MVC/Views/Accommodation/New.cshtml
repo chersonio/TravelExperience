@@ -3,104 +3,24 @@
     ViewBag.Title = "New";
 }
 
-<h2>Add an accommodation</h2>
 
 @using (Html.BeginForm("New", "Accommodation", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <div class="col-md-12">
+<div class="container" style="display: flex; grid-template-columns: 1fr 1fr; grid-gap: 10px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; ">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Accommodation.Title)
-            @Html.TextBoxFor(model => model.Accommodation.Title, new { @class = "form-control" })
+    <div>
+        @Html.Partial("_Map", Model)
 
-            @Html.ValidationMessageFor(model => model.Accommodation.Title, "", new { @class = "text-danger" })
-
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Accommodation.Description)
-            @Html.TextBoxFor(model => model.Accommodation.Description, new { @class = "form-control" })
-
-            @Html.ValidationMessageFor(model => model.Accommodation.Description, "", new { @class = "text-danger" })
-        </div>
-
-        <h3>Give dates of availability</h3>
-        <div class="form-group">
-            @Html.Label("Begin date of your hosting")<br />
-            @Html.TextBoxFor(m => m.Booking.BookingStartDate, "", new { type = "date" }) <br />
-
-            @Html.Label("Ending date of your hosting")<br />
-            @Html.TextBoxFor(m => m.Booking.BookingEndDate, "", new { type = "date" }) <br />
-        </div>
-        <h3>Utilities that your place has</h3>
-
-        @*----FOR CHECKBOXES----*@
-        <div class="form-group">
-            @for (int i = 0; i < Model.UtilitiesForCheckboxes.Count(); i++)
-            {
-                @Html.HiddenFor(m => m.UtilitiesForCheckboxes[i].UtilityName)
-                @Html.HiddenFor(m => m.UtilitiesForCheckboxes[i].UtilitiesEnum)
-                @Html.CheckBoxFor(m => m.UtilitiesForCheckboxes[i].IsChecked)
-                @Html.DisplayFor(m => m.UtilitiesForCheckboxes[i].UtilitiesEnum)
-                <br />
-            }
-        </div>
-
-        <div class="form-group">
-            @Html.CheckBoxFor(model => model.Accommodation.Shared)
-            @Html.Label("Shared Experience")
-
-            @Html.ValidationMessageFor(model => model.Accommodation.Shared, "", new { @class = "text-danger" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Accommodation.Floor)
-            @Html.TextBoxFor(model => model.Accommodation.Floor, new { @class = "form-control", type = "number" })
-
-            @Html.ValidationMessageFor(model => model.Accommodation.Floor, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Thumbnail) <strong> | Need to add restriction to only images</strong>
-            @Html.TextBoxFor(m => m.Thumbnail, htmlAttributes: new { @class = "form-control", type = "file", multiple = true, accept = "image/*" })
-
-            @Html.ValidationMessageFor(model => model.Thumbnail, "", new { @class = "text-danger" })
-        </div>
-        <br />
-
-        @*// AccommodationType DropDown *@
-        <div class="form-group">
-            @Html.LabelFor(model => model.Accommodation.AccommodationType) <strong> | Trying to get and set Accommodation Type</strong> <br />
-
-            @Html.DropDownListFor(model => model.Accommodation.AccommodationType, new SelectList(Enum.GetValues(typeof(TravelExperience.DataAccess.Core.Entities.AccommodationType)), "AccommodationType"))
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Accommodation.MaxCapacity)
-            @Html.TextBoxFor(model => model.Accommodation.MaxCapacity, new { @class = "form-control", type = "number" })
-
-            @Html.ValidationMessageFor(model => model.Accommodation.MaxCapacity, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Booking.Price) / Day
-            @Html.TextBoxFor(model => model.Booking.Price, new { @class = "form-control", type = "number" })
-
-            @Html.ValidationMessageFor(model => model.Booking.Price, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="col-md-12">
-        <h3>Location</h3>
-
-        <div class="col-md-6">
+         <h3>Where's your place located?</h3>
+        <div >
             <div class="form-group">
-                @Html.LabelFor(model => model.Accommodation.Location.Address)
+                <strong>Street Address</strong>
                 @Html.TextBoxFor(model => model.Accommodation.Location.Address, new { @class = "form-control" })
 
                 @Html.ValidationMessageFor(model => model.Accommodation.Location.Address, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.Accommodation.Location.AddressNo)
+                <strong>Street Address Number</strong>
                 @Html.TextBoxFor(model => model.Accommodation.Location.AddressNo, new { @class = "form-control" })
 
                 @Html.ValidationMessageFor(model => model.Accommodation.Location.AddressNo, "", new { @class = "text-danger" })
@@ -118,10 +38,103 @@
                 @Html.ValidationMessageFor(model => model.Accommodation.Location.Country, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="col-md-6">
-            <h3>Find your location with presicion</h3>
-            @Html.Partial("_Map", Model)
+    </div>
+    <br />
+
+   
+    <div>
+        <h2 style="color:#510e0e; text-decoration:underline;">Add a new accommodation</h2>
+        <div class="form-group">
+            <strong>Let's give your place a name</strong>
+            @Html.TextBoxFor(model => model.Accommodation.Title, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(model => model.Accommodation.Title, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group">
+            <strong>Now, let's describe your place</strong>
+            @Html.TextBoxFor(model => model.Accommodation.Description, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(model => model.Accommodation.Description, "", new { @class = "text-danger" })
+        </div>
+
+        @*// AccommodationType DropDown *@
+        <div class="form-group">
+            <strong>What kind of place will you host?</strong> <br />
+            @Html.DropDownListFor(model => model.Accommodation.AccommodationType, new SelectList(Enum.GetValues(typeof(TravelExperience.DataAccess.Core.Entities.AccommodationType)), "AccommodationType"))
+        </div>
+
+        <div class="form-group">
+            @Html.CheckBoxFor(model => model.Accommodation.Shared)
+            @Html.Label("Shared Accommodation")
+
+            @Html.ValidationMessageFor(model => model.Accommodation.Shared, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <strong>How many guests would you like to welcome?</strong>
+            @Html.TextBoxFor(model => model.Accommodation.MaxCapacity, new { @class = "form-control", type = "number" })
+
+            @Html.ValidationMessageFor(model => model.Accommodation.MaxCapacity, "", new { @class = "text-danger" })
+        </div>
+
+        <h3>Give dates of availability</h3>
+        <div class="form-group">
+            @Html.Label("Begin date of your hosting")<br />
+            @Html.TextBoxFor(m => m.Booking.BookingStartDate, "", new { type = "date" }) <br />
+
+            @Html.Label("Ending date of your hosting")<br />
+            @Html.TextBoxFor(m => m.Booking.BookingEndDate, "", new { type = "date" }) <br />
+        </div>
+        <h3>Let guests know what your place has to offer</h3>
+
+        @*----FOR CHECKBOXES----*@
+      <div class="container" style="display: flex; grid-template-columns: 1fr 1fr; grid-gap: 10px;">
+        <div class="form-group">
+            @for (int i = 0; i <=8; i++)
+            {
+                @Html.HiddenFor(m => m.UtilitiesForCheckboxes[i].UtilityName)
+                @Html.HiddenFor(m => m.UtilitiesForCheckboxes[i].UtilitiesEnum)
+                @Html.CheckBoxFor(m => m.UtilitiesForCheckboxes[i].IsChecked)
+                @Html.DisplayFor(m => m.UtilitiesForCheckboxes[i].UtilitiesEnum)
+                <br />
+            }
+        </div>
+        <div class="form-group" style=" flex-grow:1;">
+            @for (int i = 9; i <=17; i++)
+            {
+                @Html.HiddenFor(m => m.UtilitiesForCheckboxes[i].UtilityName)
+                @Html.HiddenFor(m => m.UtilitiesForCheckboxes[i].UtilitiesEnum)
+                @Html.CheckBoxFor(m => m.UtilitiesForCheckboxes[i].IsChecked)
+                @Html.DisplayFor(m => m.UtilitiesForCheckboxes[i].UtilitiesEnum)
+                <br />
+            }
+        </div>
+      </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Accommodation.Floor)
+            @Html.TextBoxFor(model => model.Accommodation.Floor, new { @class = "form-control", type = "number" })
+
+            @Html.ValidationMessageFor(model => model.Accommodation.Floor, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <strong>Next, let's add some photos of your place</strong>
+            @Html.TextBoxFor(m => m.Thumbnail, htmlAttributes: new { @class = "form-control", type = "file", multiple = true, accept = "image/*" })
+
+            @Html.ValidationMessageFor(model => model.Thumbnail, "", new { @class = "text-danger" })
+        </div>
+        
+
+        <div class="form-group">
+            <strong>Now for the fun part-set your price per day (€)</strong>
+            @Html.TextBoxFor(model => model.Booking.Price, new { @class = "form-control", type = "number" })
+
+            @Html.ValidationMessageFor(model => model.Booking.Price, "", new { @class = "text-danger" })
         </div>
     </div>
+ </div>
     <button type="submit" class="btn btn-primary btn-lg">Save</button>
-}
+ }

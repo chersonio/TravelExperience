@@ -473,11 +473,8 @@
     <Content Include="Views\Shared\_SuggestedRandomAccommodations.cshtml" />
     <Content Include="Views\Shared\_Map.cshtml" />
     <Content Include="Views\BecomeAHost\Dashboard.cshtml" />
-    
     <Content Include="Views\Map\Map.cshtml" />
-
     <Content Include="Views\SearchResults\Accommodations.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

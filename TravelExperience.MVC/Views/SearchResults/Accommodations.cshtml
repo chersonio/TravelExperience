@@ -4,70 +4,77 @@
     ViewBag.Title = "Accommodations";
 }
 
-<h2>Index</h2>
+<h3>Search Results</h3>
 
-<p>
-    @Html.ActionLink("Search", "Search")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => Model.Accommodation.Location.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => Model.Accommodation.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => Model.Accommodation.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => Model.Accommodation.AccommodationType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => Model.Accommodation.MaxCapacity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => Model.Accommodation.Shared)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => Model.Accommodation.Floor)
-        </th>
-        <th></th>
-    </tr>
-    @foreach (var item in Model.Accommodations)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AccommodationType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxCapacity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Shared)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Floor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Thumbnail)
-            </td>
-        </tr>
-    }
+<div class="container" style="display: flex; grid-template-columns: 1fr 1fr; grid-gap: 5px;">
 
-</table>
+    <div >
+        @Html.Partial("_Map", Model)
+    </div>
 
-<style>
-    .results {
-        display: none;
-    }
-</style>
+
+
+    <div style=" flex-grow:1; display: grid;">
+        <hr />
+        @foreach (var item in Model.Accommodations)
+        {
+            <div style="display: flex;">
+                <img src="@Url.Content(item.Thumbnail)" style=" border-radius: 15px; width: 250px; height:160px; " />
+                <div style="flex-grow: 1; margin: 15px 5px 0 5px; white-space: pre-line; float: right; max-width: 200px;">
+                    <strong style=" font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">@Html.DisplayFor(modelItem => item.Title)</strong>
+                    @Html.DisplayFor(modelItem => item.Description)
+                    @Html.DisplayFor(modelItem => item.MaxCapacity) Guests
+                    @Html.DisplayFor(modelItem => item.Location.City) , @Html.DisplayFor(modelItem => item.Location.Country)
+                    @Html.ActionLink("View", "AccommodationView", new { id = item.AccommodationID})
+                </div>
+                
+            </div>
+            <hr />
+        }
+    </div>
+</div>
+
+
+
+
+
+    @*<p>
+        @Html.ActionLink("Search", "Search")
+    </p>
+        @foreach (var item in Model.Accommodations)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccommodationType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxCapacity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Shared)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Floor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Thumbnail)
+                </td>
+            </tr>
+        }
+
+    </table>*@
+
+    @*<style>
+        .results {
+            display: none;
+        }
+    </style>*@
