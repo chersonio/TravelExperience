@@ -48,7 +48,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
         {
             return _context
                 .Bookings
-                .Include(x => x.Accommodation)
+                //.Include(x => x.Accommodation)
                 .Include(x => x.User)
                 .ToList();
         }
