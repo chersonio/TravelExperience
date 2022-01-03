@@ -11,7 +11,6 @@ namespace TravelExperience.MVC.ViewModels
         public int BookingID { get; set; }
         public IEnumerable<ApplicationUser> Users { get; set; }
         public IEnumerable<Accommodation> Accommodations { get; set; }
-        public IEnumerable<Experience> Experiences { get; set; }
         public DateTime BookingStartDate { get; set; }
         public DateTime BookingEndDate { get; set; }
         public DateTime CreationDate { get; set; } // Imerominia dimiourgias

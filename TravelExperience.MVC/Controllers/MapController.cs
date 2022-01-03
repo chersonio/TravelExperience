@@ -22,7 +22,7 @@ namespace TravelExperience.MVC.Controllers
         // GET: Location
         public ActionResult Map()
         {
-            var loccations = _unitOfWork.Locations.GetAll();
+            var locations = _unitOfWork.Locations.GetAll();
             return View();
         }
 

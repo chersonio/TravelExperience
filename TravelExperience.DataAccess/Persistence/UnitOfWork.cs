@@ -28,8 +28,8 @@ namespace TravelExperience.DataAccess.Persistence
             Users = new ApplicationUserRepository(_context);
             Locations = new LocationRepository(_context);
 
-            if (_context.Roles.Select(x => x).Count() <= 0)
-                InitializeDB();
+            //if (_context.Roles.Select(x => x).Count() <= 0)
+            //    InitializeDB();
         }
 
         public void Complete()

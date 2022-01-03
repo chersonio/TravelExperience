@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNet.Identity
+@model TravelExperience.MVC.ViewModels.DashBoardFormViewModel
+
+<h5 class="card-header">Latest bookings</h5>
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        @Html.LabelFor(m => m.Accommodation.AccommodationID)
+                    </th>
+                    <th scope="col">
+                        @Html.LabelFor(m => m.Accommodation.Title)
+                    </th>
+                    <th scope="col">
+                        @Html.LabelFor(m => m.Accommodation.Description)
+                    </th>
+                    <th scope="col">
+                        @Html.LabelFor(m => m.Accommodation.Location)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Accommodations)
+                {
+                    <tr>
+                        <th scope="row">
+                            @Html.DisplayFor(m => item.AccommodationID)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(m => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Location.FullAddress)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
