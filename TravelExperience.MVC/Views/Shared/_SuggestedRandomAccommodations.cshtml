@@ -18,14 +18,13 @@
                     <div>
                         <h2>
                             @{ var booking = Model.Bookings.FirstOrDefault(x => x.AccommodationID == accomLink.AccommodationID); }
-                            @booking.BookingStartDate.ToString("MMM dd")-@booking.BookingEndDate.ToString("dd, yy")
+                            @*@booking.BookingStartDate.ToString("MMM dd")-@booking.BookingEndDate.ToString("dd, yy")*@
                         </h2>
                     </div>
                 </div>
             </a>
         </div>
     }
-
 </div>
 
 <style>

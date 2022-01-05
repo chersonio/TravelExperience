@@ -8,9 +8,9 @@
 
 <div class="container" style="display: flex; grid-template-columns: 1fr 1fr; grid-gap: 5px;">
 
-    @*<div>
-        @Html.Partial("_Map", Model)
-    </div>*@
+    <div>
+            @Html.Partial("_Map", Model)
+        </div>
 
     <div style=" flex-grow:1; display: grid;">
         <hr />
@@ -25,15 +25,12 @@
                     @Html.DisplayFor(modelItem => item.Description)
                     @Html.DisplayFor(modelItem => item.MaxCapacity) Guests
                     @Html.DisplayFor(modelItem => item.Location.City) , @Html.DisplayFor(modelItem => item.Location.Country)
-                    @Html.ActionLink("View", "AccommodationView", new { id = item.AccommodationID })
+                    @Html.ActionLink("View", "Details", new { id = item.AccommodationID })
                 </div>
-
             </div>
             <hr />
         }
     </div>
 </div>
 
-<p>
-    @Html.ActionLink("Search", "Search")
-</p>
+

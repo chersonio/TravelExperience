@@ -489,6 +489,8 @@
     <Content Include="Views\SearchResults\Accommodations.cshtml" />
     <Content Include="Views\Shared\_DashBookings.cshtml" />
     <Content Include="Views\Shared\_DashGuests.cshtml" />
+    <Content Include="Views\Shared\_DashAccommodations.cshtml" />
+    <Content Include="Views\SearchResults\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -231,14 +231,19 @@ nav {
 }
 
 .sidebar {
-    position: fixed;
-    top: 0;
+    position: absolute;
+    top: 100px;
     bottom: 0;
     left: 0;
-    z-index: 100;
-    padding: 90px 0 0;
+    z-index: 1;
+    padding: 3px 0 0;
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
     font-size: larger;
+    width: 30%;
+}
+
+.tabcontent {
+    padding: 20px 12px;
 }
 
 
@@ -246,21 +251,17 @@ nav {
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
 }
 
-.sidebar .nav-link {
+.sidebar .tablinks {
     color: #333;
 }
 
-    .sidebar .nav-link.active {
+ .sidebar .nav-link.active {
         color: #0d6efd;
-    }
-
-.sidebar {
-    top: 11.5rem;
-    padding: 0;
 }
 
+
 .containerAc {
-    background-color: lightgray;
+    background-color: lightgrey;
     border-radius: 5px;
     padding: 5px;
     margin: 3px;
@@ -282,3 +283,4 @@ nav {
     text-decoration: underline;
     font-weight: 500;
 }
+
