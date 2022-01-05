@@ -18,13 +18,11 @@ namespace TravelExperience.MVC.Controllers
     public class BecomeAHostController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        //private readonly ApplicationDbContext _context;
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         public BecomeAHostController(IUnitOfWork unitOfWork)
         {
-            //_context = new ApplicationDbContext();
             _unitOfWork = unitOfWork;
         }
 
@@ -65,7 +63,6 @@ namespace TravelExperience.MVC.Controllers
             return View();
         }
 
-
         [HttpPost, ActionName("Dashboard")]
         public async Task<ActionResult> AddUserRole(IdentityUser model)
         {
@@ -85,16 +82,71 @@ namespace TravelExperience.MVC.Controllers
 
             viewModel.Bookings = new List<Booking>();
 
-            var userID = User.Identity.GetUserId();
-            var accommodationsOfHost = _unitOfWork.Accommodations.GetAllForHostID(userID).ToList();
+            var hostID = User.Identity.GetUserId();
+            var accommodationsOfHost = _unitOfWork.Accommodations.GetAllForHostID(hostID).ToList();
 
             viewModel.Accommodations = accommodationsOfHost;
             foreach (var book in viewModel.Accommodations.SelectMany(x => x.Bookings))
             {
+                GetUserForBookingFromUserID(book);
+
                 book.Price = _unitOfWork.Bookings.GetPriceForBooking(book.BookingID);
                 viewModel.Bookings.Add(book);
             }
             return View("Dashboard", viewModel);
+        }
+
+        /// <summary>
+        /// Gets user when there is no user loaded in the given booking
+        /// </summary>
+        /// <param name="book"></param>
+        private void GetUserForBookingFromUserID(Booking book)
+        {
+            // if there is no user loaded, get from userID
+            if (book.User == null && book.UserId != null)
+            {
+                book.User = _unitOfWork.Users.GetById(book.UserId);
+            }
+        }
+
+        public ActionResult Bookings()
+        {
+            var viewModel = new DashBoardFormViewModel();
+
+            viewModel.Bookings = new List<Booking>();
+
+            var hostID = User.Identity.GetUserId();
+            var accommodationsOfHost = _unitOfWork.Accommodations.GetAllForHostID(hostID).ToList();
+
+            viewModel.Accommodations = accommodationsOfHost;
+            foreach (var book in viewModel.Accommodations.SelectMany(x => x.Bookings))
+            {
+                GetUserForBookingFromUserID(book);
+
+                book.Price = _unitOfWork.Bookings.GetPriceForBooking(book.BookingID);
+                viewModel.Bookings.Add(book);
+            }
+            return View("Bookings", viewModel);
+        }
+
+        public ActionResult Guests()
+        {
+            var viewModel = new DashBoardFormViewModel();
+
+            viewModel.Bookings = new List<Booking>();
+
+            var hostID = User.Identity.GetUserId();
+            var accommodationsOfHost = _unitOfWork.Accommodations.GetAllForHostID(hostID).ToList();
+
+            viewModel.Accommodations = accommodationsOfHost;
+            foreach (var book in viewModel.Accommodations.SelectMany(x => x.Bookings))
+            {
+                GetUserForBookingFromUserID(book);
+
+                book.Price = _unitOfWork.Bookings.GetPriceForBooking(book.BookingID);
+                viewModel.Bookings.Add(book);
+            }
+            return View("Users", viewModel);
         }
     }
 }
