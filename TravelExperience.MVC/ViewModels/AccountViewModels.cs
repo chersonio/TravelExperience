@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System;
 
-namespace TravelExperience.MVC.Models
+namespace TravelExperience.MVC.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {

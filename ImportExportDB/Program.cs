@@ -11,8 +11,11 @@ namespace ImportExportDB
     {
         static void Main(string[] args)
         {
-            //Import import = new Import();
-            Export export = new Export();
+            //Import import = new Import(); // TODO
+
+            Exporter exporter = new Exporter();
+            exporter.Export();
+
             Console.ReadKey();
         }
     }

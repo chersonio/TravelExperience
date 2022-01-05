@@ -12,7 +12,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ImportExportDB
 {
-    public class Export
+    /// <summary>
+    /// From default filepath and database, it saves all the tables of the database to the default .txt
+    /// </summary>
+    public class Exporter
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -33,21 +36,25 @@ namespace ImportExportDB
         //Dictionary<string, bool> EntityInsertValue;
 
         const string FILEPATH = @"C:\TravelExperience\ImportExport\";
-        const string FILETOSTORE = "test.txt";
-        const string SERVERNAME = "TravelExperienceTEST";
+        const string FILETOSTORE = "ExportedDBTables.txt";
+        const string DATABASE = "TravelExperienceTEST";
+       
+        public Exporter()
+        {
+            _unitOfWork = new UnitOfWork(new AppDBContext());
+        }
 
         /// <summary>
-        /// Exports database to a single txt file. Automatically saves it to a test.txt
+        /// Exports database to a single txt file. Automatically saves it to a .txt
         /// </summary>
-        public Export()
+        public void Export()
         {
             Console.WriteLine("Started DB Exportation...");
-            _unitOfWork = new UnitOfWork(new AppDBContext());
 
             SetTables();
             StreamWriter streamWriter = new StreamWriter(FILEPATH + FILETOSTORE);
 
-            streamWriter.WriteLine($"USE {SERVERNAME}");
+            streamWriter.WriteLine($"USE {DATABASE}");
             streamWriter.WriteLine();
 
             string table = "";
@@ -92,7 +99,6 @@ namespace ImportExportDB
 
             Console.WriteLine("Finished procedure. DB Exporting Successful.");
         }
-
         private void SetTables()
         {
             Console.WriteLine("Started setting tables...");

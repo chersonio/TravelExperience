@@ -8,8 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DataAccess.Persistence.Repositories;
-using TravelExperience.MVC.Models;
 using System;
+using TravelExperience.MVC.ViewModels;
 
 namespace TravelExperience.MVC.Controllers
 {
