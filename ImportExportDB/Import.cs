@@ -10,6 +10,10 @@ using TravelExperience.DataAccess.Persistence;
 
 namespace TravelExperience.ImportExportDB
 {
+    /// <summary>
+    /// TODO
+    /// </summary>
+    /// 
     public class Import
     {
         private readonly AppDBContext _context;

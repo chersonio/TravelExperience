@@ -12,11 +12,16 @@ namespace TravelExperience.MVC.ViewModels
 {
     public class AccommodationFormViewModel
     {
+        [Required]
         public Booking Booking { get; set; }
+
+        [Required]
         public Accommodation Accommodation { get; set; }
         public ApplicationUser User { get; set; }
 
+        [Required]
         public Location Location { get; set; }
+        [Required]
         public HttpPostedFileBase Thumbnail { get; set; }
 
         // Utilities 
@@ -26,9 +31,11 @@ namespace TravelExperience.MVC.ViewModels
             public UtilitiesEnum UtilitiesEnum { get; set; }
             public bool IsChecked { get; set; }
         }
-
+        [Required]
         public List<UtilityForCheckbox> UtilitiesForCheckboxes { get; set; } // needed for checkbox
+        [Required]
         public List<Utility> Utilities { get; set; }
         public List<Location> Locations { get; set; }
+        public List<string> ErrorMessage { get; internal set; }
     }
 }

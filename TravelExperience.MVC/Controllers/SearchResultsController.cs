@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using TravelExperience.DataAccess.Core.Entities;
 using System.Web.Mvc;
 using TravelExperience.MVC.ViewModels;
 using TravelExperience.DataAccess.Core.Interfaces;
 using TravelExperience.DataAccess.Persistence.Repositories.SearchFilters;
 using System.IO;
+using System.Drawing;
+using System.Web;
+using static TravelExperience.MVC.ViewModels.SearchResultsFormViewModel;
+using static TravelExperience.MVC.Controllers.HelperClass;
 
 namespace TravelExperience.MVC.Controllers
 {
@@ -48,23 +51,28 @@ namespace TravelExperience.MVC.Controllers
             var searchResults = bookingsSearchFilter.FilterBookings(dateStarting: bookingStartDate, dateEnding: bookingEndDate, city: city, numberOfGuests: numberOfGuests).ToList();
 
             viewModel.Accommodations = searchResults;
-            //viewModel.ThumbnailOfAccommodations = new Dictionary<Accommodation, FileStream>();
-
+            var thumbnailOfAccommodations = new Dictionary<Accommodation, List<ImageInfo>>();
             foreach (var accom in viewModel.Accommodations)
             {
                 var path = @"C:\TravelExperience\Data\Images\Accommodations\" + accom.AccommodationID.ToString();
-                var picFileName = $"{accom.Thumbnail}";
 
-                var completeFilePath = Path.Combine(path, picFileName);
+                //var picFileName = $"{accom.Thumbnail}";
 
-                //var sss = System.IO.File.OpenRead(completeFilePath);
+                //var completeFilePath = Path.Combine(path, picFileName);
 
-                accom.Thumbnail = completeFilePath;
+                //accom.Thumbnail = completeFilePath;
 
-                //viewModel.ThumbnailOfAccommodations.Add(accom, sss);
+                List<ImageInfo> images = GetImagesForAccommodationFromStorage(path);
+
+                thumbnailOfAccommodations.Add(accom, images);
             }
+
+            viewModel.ThumbnailOfAccommodations = thumbnailOfAccommodations;
 
             return View("Accommodations", viewModel);
         }
+
+       
+
     }
 }

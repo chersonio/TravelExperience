@@ -54,6 +54,9 @@
     <Reference Include="Autofac.Integration.WebApi, Version=6.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.WebApi2.6.0.0\lib\net472\Autofac.Integration.WebApi.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper, Version=4.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.0\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -379,8 +382,11 @@
     <Compile Include="App_Start\ContainerConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\MappingProfile.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\API\AccommodationsController.cs" />
+    <Compile Include="Controllers\HelperClass.cs" />
     <Compile Include="ViewModels\SearchResultsFormViewModel.cs" />
     <Compile Include="Controllers\AccommodationController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -389,7 +395,7 @@
     <Compile Include="ViewModels\DashBoardFormViewModel.cs" />
     <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
-    <Compile Include="Models\RoleName.cs" />
+    <Compile Include="ViewModels\RoleName.cs" />
     <Compile Include="ViewModels\AccommodationFormViewModel.cs" />
     <Compile Include="ViewModels\BookingAccommodationFormViewModel.cs" />
     <Compile Include="ViewModels\BookingFormViewModel.cs" />
@@ -398,8 +404,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
@@ -418,6 +424,7 @@
     <Content Include="Images\andalousia1.jpg" />
     <Content Include="Images\Captureback.PNG" />
     <Content Include="Images\hungary.jpg" />
+    <Content Include="Images\image-not-found.png" />
     <Content Include="Images\ireland.jpg" />
     <Content Include="Images\Korea.jpg" />
     <Content Include="Images\Le-Palais-Bulles.jpg" />
@@ -492,6 +499,7 @@
     <Content Include="Views\BecomeAHost\Bookings.cshtml" />
     <Content Include="Views\BecomeAHost\Guests.cshtml" />
     <Content Include="Views\Shared\_DashAccommodations.cshtml" />
+    <Content Include="Views\Shared\_AccommodationThumbnail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -516,6 +524,10 @@
     <ProjectReference Include="..\TravelExperience.DataAccess\TravelExperience.DataAccess.csproj">
       <Project>{15074f20-6e48-4d44-8ce0-7ec4c44b0992}</Project>
       <Name>TravelExperience.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TravelExperience.DTO\TravelExperience.DTO.csproj">
+      <Project>{FD68B6C2-5F8E-4610-B4C9-40755AA70CE0}</Project>
+      <Name>TravelExperience.DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

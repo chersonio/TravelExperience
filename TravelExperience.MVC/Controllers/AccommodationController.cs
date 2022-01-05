@@ -1,19 +1,13 @@
 ﻿using Microsoft.AspNet.Identity;
 using System;
-using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DataAccess.Core.Interfaces;
 using TravelExperience.MVC.ViewModels;
-using TravelExperience.DataAccess.Persistence.Repositories.SearchFilters;
-using System.Web;
 using System.IO;
-using GoogleMaps.LocationServices;
-using RestSharp;
-using System.Web.Script.Serialization;
-using Google.Type;
+
 
 namespace TravelExperience.MVC.Controllers
 {
@@ -38,7 +32,7 @@ namespace TravelExperience.MVC.Controllers
             viewModel.Accommodation = new Accommodation();
             viewModel.Location = new Location();
 
-            // Get Utilities for checkboxes
+            //Get Utilities for checkboxes
             viewModel.Utilities = new List<Utility>();
             viewModel.UtilitiesForCheckboxes = new List<AccommodationFormViewModel.UtilityForCheckbox>();
 
@@ -48,6 +42,7 @@ namespace TravelExperience.MVC.Controllers
             }
 
             viewModel.Locations = _unitOfWork.Locations.GetAll().ToList();
+            viewModel.ErrorMessage = new List<string>();
             return View(viewModel);
         }
 
@@ -55,13 +50,22 @@ namespace TravelExperience.MVC.Controllers
         [HttpPost]
         public ActionResult New(AccommodationFormViewModel viewModel)
         {
-            // den kanei akoma validations kai na epistrefei ta antistoixa lathakia sto xristi.
-
             var userId = User.Identity.GetUserId();
 
             var host = _unitOfWork.Users.GetById(userId);
 
-            // for some reason the location table gets AccommodationID=0
+            // to string tha mporouse na einai list kai an einai adeia tote pernaei diaforetika epistrefei View(viewModel)
+            // me ti lista apo string kokkinismeni sti korufi tou page
+
+            List<string> errorMessage = new List<string>();
+            ValidateNewAccommodationsInput(viewModel, errorMessage);
+
+            if (errorMessage.Any())
+            {
+                viewModel.ErrorMessage = errorMessage;
+                return View(viewModel);
+            }
+
             var location = new Location()
             {
                 Address = viewModel.Accommodation.Location.Address,
@@ -98,15 +102,6 @@ namespace TravelExperience.MVC.Controllers
 
             accommodation.Utilities = utilities;
 
-            //var booking = new Booking
-            //{
-            //    Accommodation = accommodation,
-            //    BookingStartDate = viewModel.Booking.BookingStartDate.Date,
-            //    BookingEndDate = viewModel.Booking.BookingStartDate.Date,
-            //    Price = 0, // this will declare the total price of the booking per nights. (receipt)
-            //    UserId = userId,
-            //};
-
             // If you get an error message uploading image, do not let user continue saving.
             string imageUploadErrorMessage = "";
             do
@@ -117,15 +112,13 @@ namespace TravelExperience.MVC.Controllers
             accommodation.Thumbnail = viewModel.Thumbnail.FileName;
 
             if (accommodation.Description == null || accommodation.Title == null || accommodation.MaxCapacity == 0 ||
-                accommodation.Location == null || accommodation.Thumbnail == null
-                /* || booking.Accommodation == null || booking.BookingStartDate == null || booking.BookingEndDate == null */)
+                accommodation.Location == null || accommodation.Thumbnail == null)
             {
                 // me kapoio tropo na gemizei ta errors fields tou view
                 return View(viewModel);
             }
             try
             {
-                //_unitOfWork.Bookings.Create(booking);
                 _unitOfWork.Locations.Create(location);
                 _unitOfWork.Accommodations.Create(accommodation);
                 _unitOfWork.Complete();
@@ -137,11 +130,30 @@ namespace TravelExperience.MVC.Controllers
             }
 
             // Store Image if successful, else return error message
-            // Need to revert process
             var storeImageMessage = StoreImage(viewModel);
 
             // TODO: this needs to redirect to the area of the hosts accommodations (Dashboard)
             return RedirectToAction("Index", "Home");
+        }
+
+        /// <summary>
+        /// Validates the information given. If something is wrong it returns a string with what is needed
+        /// </summary>
+        private static void ValidateNewAccommodationsInput(AccommodationFormViewModel viewModel, List<string> errorMessage)
+        {
+            if (viewModel.Accommodation.Location == null || viewModel.Accommodation.Location.City == null || viewModel.Accommodation.Location.Address == null)
+                errorMessage.Add("City and Address are required");
+            if (viewModel.Accommodation.MaxCapacity <= 0)
+                errorMessage.Add("Number of guests 1 or more");
+            if (viewModel.Booking.BookingStartDate == System.DateTime.MinValue || 
+                viewModel.Booking.BookingEndDate == System.DateTime.MinValue || 
+                viewModel.Booking.BookingStartDate < System.DateTime.Now ||
+                viewModel.Booking.BookingEndDate <= System.DateTime.Now)
+                errorMessage.Add("Valid start or end dates are required");
+            if (viewModel.Accommodation.Title == null || viewModel.Accommodation.Description == null)
+                errorMessage.Add("Title and Description are required");
+            if (viewModel.Accommodation.PricePerNight <= 0)
+                errorMessage.Add("Price per night Required");
         }
 
         /// <summary>
@@ -157,17 +169,11 @@ namespace TravelExperience.MVC.Controllers
                 return "Error - Required to upload a valid image file"; // go again to ViewModel
             }
 
-            // *** maybe try to revert any changes made
-            // maybe try to send an error to viewModel so it can be visible to user.
-            // Either by prompting or by textvalidation under the "Choose pic"
-
             // Images Validation: No changes were made? then return to the initial Accommodation view.
-
             picFileName = Path.GetFileName(viewModel.Thumbnail.FileName);
 
-            // den exei akomi timi to accommodation. prepei na to parw afou swthei. C:\TravelExperience\Data
             path = "C:\\TravelExperience\\Data\\Images\\Accommodations\\" + _unitOfWork.Accommodations.GetMax().ToString();
-            //path = Path.Combine(Server.MapPath("C:\\TravelExperience\\Data\\Images\\Accommodations\\"), viewModel.Accommodation.AccommodationID.ToString());
+
             // Save to fileName to viewModel and it will fetch it after exiting method.
             viewModel.Accommodation.Thumbnail = picFileName;
 
@@ -178,14 +184,11 @@ namespace TravelExperience.MVC.Controllers
             // if file exists return error
             if (System.IO.File.Exists(completeFilePath))
             {
-                // *** maybe try to revert any changes made
-                // maybe try to send an error to viewModel so it can be visible to user.
-                // Either by prompting or by textvalidation under the "Choose pic"
+                // prompt or by textvalidation under the "Choose pic"
                 return "Error - Image seems to already exist. Try renaming the current image or deleting the previous image"; // go again to ViewModel
             }
             // File is stored to the directory here
             viewModel.Thumbnail.SaveAs(completeFilePath);
-            //viewModel.Thumbnail.SaveAs(path);
 
             // Empty string means all went well.
             return "";
@@ -222,10 +225,6 @@ namespace TravelExperience.MVC.Controllers
             if (!imageContentTypes.Any(x => string.Equals(viewModel.Thumbnail.ContentType, x, StringComparison.OrdinalIgnoreCase)) &&
                 !imageExtentions.Any(y => string.Equals(Path.GetExtension(viewModel.Thumbnail.FileName), y, StringComparison.OrdinalIgnoreCase)))
             {
-                // *** maybe try to revert any changes made
-                // maybe try to send an error to viewModel so it can be visible to user.
-                // Either by prompting or by textvalidation under the "Choose pic"
-
                 return "Error - Please upload a valid image file type with the correct extention"; // go again to ViewModel
             }
 
@@ -233,25 +232,13 @@ namespace TravelExperience.MVC.Controllers
             return "";
         }
 
-        [HttpGet]
-        public ActionResult Location()
-        {
-            var viewModel = new AccommodationFormViewModel();
-            viewModel.Utilities = _unitOfWork.Utilities.GetAll().ToList();
-            return View(viewModel);
-        }
-
-        public ActionResult Delete()
-        {
-            //use AccommodationRepository.Delete method
-            return View();
-        }
-
-        public ActionResult Edit()
-        {
-            //use AccommodationRepository.Update method
-            return View();
-        }
+        //[HttpGet]
+        //public ActionResult Location()
+        //{
+        //    var viewModel = new AccommodationFormViewModel();
+        //    viewModel.Utilities = _unitOfWork.Utilities.GetAll().ToList();
+        //    return View(viewModel);
+        //}
 
     }
 }

@@ -3,13 +3,13 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DataAccess.Core.Interfaces;
-using TravelExperience.MVC.Models;
 using TravelExperience.MVC.ViewModels;
 
 namespace TravelExperience.MVC.Controllers
@@ -70,7 +70,12 @@ namespace TravelExperience.MVC.Controllers
 
             await UserManager.AddToRoleAsync(userId, RoleName.Host);
 
-            return View();
+            var viewModel = new DashBoardFormViewModel();
+
+            viewModel.Accommodations = _unitOfWork.Accommodations.GetAll().ToList();
+            viewModel.Bookings = _unitOfWork.Bookings.GetAll().ToList();
+
+            return View(viewModel);
         }
 
         public ActionResult DashboardHost()
@@ -143,6 +148,7 @@ namespace TravelExperience.MVC.Controllers
                 book.Price = _unitOfWork.Bookings.GetPriceForBooking(book.BookingID);
                 viewModel.Bookings.Add(book);
             }
+
             return View("Users", viewModel);
         }
     }
