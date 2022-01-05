@@ -8,6 +8,12 @@ using TravelExperience.DataAccess.Core.Interfaces;
 using TravelExperience.MVC.ViewModels;
 using System.IO;
 
+using GoogleMaps.LocationServices;
+using RestSharp;
+using System.Web.Script.Serialization;
+using Google.Type;
+using System.Net;
+
 
 namespace TravelExperience.MVC.Controllers
 {
@@ -240,5 +246,6 @@ namespace TravelExperience.MVC.Controllers
         //    return View(viewModel);
         //}
 
+    
     }
 }

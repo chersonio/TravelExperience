@@ -13,23 +13,24 @@
     <link rel="stylesheet" href="~/Content/Site.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
 </head>
 
 <body class="background_img">
+
+    <div class="row" style="font-size: 15px; font-family:'Julius Sans One', sans-serif;">
+        I travel not to go anywhere, but to go.<br />
+        I travel for travel’s sake.<br />
+        The great affair is to move.<br />
+    </div>
+
+    <div class="row" style="font-size: 12px; font-family: 'Julius Sans One', sans-serif;">
+        -Robert Louis Stevenson
+    </div>
+
     @using (Html.BeginForm("Search", "Home", FormMethod.Get))
     {
-        <div class="row" style="font-size: 15px; font-family:'Julius Sans One', sans-serif;">
-            I travel not to go anywhere, but to go.<br />
-            I travel for travel’s sake.<br />
-            The great affair is to move.<br />
-        </div>
-
-        <div class="row" style="font-size: 12px; font-family: 'Julius Sans One', sans-serif;">
-            -Robert Louis Stevenson
-        </div>
-
-
-        <form method="get" class="container mt-3 rounded" style="align-self:center; max-width: 500px; padding: 30px 30px 60px 30px; background-color: rgba(113, 99, 71, 0.5); font-family: Helvetica;  font-weight: 600; color:azure;">
+        <div class="container mt-3 rounded" style="align-self:center; max-width: 500px; padding: 30px 30px 60px 30px; background-color: rgba(113, 99, 71, 0.5); font-family: Helvetica;  font-weight: 600; color:azure;">
             <h1 style="font-size: 2em; font-weight: bold; margin-bottom: 15px; font-family: 'Julius Sans One', sans-serif;">FIND A PERFECT VACATION</h1>
             <div class="form-group" style=" font-size: small;">
                 <label>WHERE</label><br>
@@ -39,7 +40,7 @@
                 </datalist>
             </div>
             <div class="input-group-prepend" style="font-size: small;">
-                <label>CHECK IN</label> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+                <label>CHECK IN</label>
                 <label>CHECK OUT</label><br>
             </div>
             <div class="input-group">
@@ -49,25 +50,30 @@
             <br>
             <div class="form-group" style=" font-size: small;">
                 <label>GUESTS</label><br>
-                <select class="custom-select" style="height:30px;" name="Guests">
-                    <option selected value="1">1 guest</option>
-                    <option value="2">2 guests</option>
-                    <option value="3">3 guests</option>
-                    <option value="4">4 guests</option>
-                    <option value="5">5 guests</option>
-                    <option value="6">6 guests</option>
-                    <option value="7">7 guests</option>
-                    <option value="8">8 guests</option>
-                    <option value="9">9 guests</option>
-                    <option value="10">10 guests</option>
-                </select><br>
+                @Html.TextBoxFor(model => model.Guests, new { @class = "form-control", type = "number", style = "font-size:13px; " })<br>
             </div>
+
             <div class="form-group">
+
+
+                @*This is the button*@
+                @*@Html.ActionLink("Search", "Search",
+                        new
+                        {
+                            //Model.LocationString = LocationString
+                            //Guests = Model.Guests,
+                            //BookingStartDate = Model.BookingStartDate,
+                            //BookingEndDate = Model.BookingEndDate
+                        },
+                        new { @class = "btn btn-primary btn-lg", @style = "float:left;" }
+                    )*@
+                @*Instead of this*@
 
                 <button type="submit" class="btn btn-primary btn-lg" style="float:left;">Search</button>
             </div>
-        </form> <br />
+        </div> <br />
     }
+
 
     <div style="margin: 370px 400px 20px 20px; font-size: 14px; font-family: Helvetica; color: darkslategrey;">
         <h3>What guests are saying about homes round the world.</h3>
@@ -171,113 +177,112 @@
         </div>
     </div> <br />
 
+       <div class="image_bg1" style="max-width:stretch;">
+            <h1>REYKJAVIK</h1>
+            <h5 class="sc_undertitle sc_undertitle_style_2">ICELAND</h5>
+            <button onclick="location.href='@Url.Action("Search","Home")'" style="font-size:medium; color:darkred;">Browse Accommodations</button>
+        </div> <hr />
 
-    <div class="image_bg1" style="max-width:stretch;">
-        <h1 class="sc_title sc_title_style_3 sc_align_right">REYKJAVIK</h1>
-        <h5 class="sc_undertitle sc_undertitle_style_2">ICELAND</h5>
-        <a href="#" class="button" style="font-size:medium;">Browse Accommodations</a>
-    </div> <hr />
+        <div class="image_bg2" style="max-width:stretch;">
+            <h1>SABANA WESTPUNT</h1>
+            <h5 class="sc_undertitle sc_undertitle_style_2">CURACAO</h5>
+            <button onclick="location.href='@Url.Action("Search","Home")'" style="font-size:medium; color:darkred;">Browse Accommodations</button>
+        </div> <hr />
 
-    <div class="image_bg2" style="max-width:stretch;">
-        <h1 class="sc_title sc_title_style_3 sc_align_right">SABANA WESTPUNT</h1>
-        <h5 class="sc_undertitle sc_undertitle_style_2">CURACAO</h5>
-        <a href="#" class="button" style="font-size:medium;">Browse Accommodations</a>
-    </div> <hr />
+        <div class="image_bg3" style="max-width:stretch;">
+            <h1>SEOUL</h1>
+            <h5 class="sc_undertitle sc_undertitle_style_2">SOUTH KOREA</h5>
+            <button onclick="location.href='@Url.Action("Search","Home")'" style="font-size:medium; color:darkred;">Browse Accommodations</button>
+        </div> <hr />
+    
 
-    <div class="image_bg3" style="max-width:stretch;">
-        <h1 class="sc_title sc_title_style_3 sc_align_right">SEOUL</h1>
-        <h5 class="sc_undertitle sc_undertitle_style_2">SOUTH KOREA</h5>
-        <a href="#" class="button" style="font-size:medium;">Browse Accommodations</a>
-    </div> <hr />
+        @*<------ Chersonio: Random suggested accommodation links ----->*@
 
+        @{ if (Model.RandomAccommodations.Any())
+            {
+                <div style="margin: 370px 400px 20px 20px; font-size: 14px; font-family: Helvetica; color: darkslategrey;">
+                    <h1>Hot new places to visit</h1>
+                </div>
 
-    @*<------ Chersonio: Random suggested accommodation links ----->*@
+                <div class="container" style="padding: 5px;">
 
-    @{ if (Model.RandomAccommodations.Any())
-        {
-            <div style="margin: 370px 400px 20px 20px; font-size: 14px; font-family: Helvetica; color: darkslategrey;">
-                <h1>Hot new places to visit</h1>
-            </div>
-
-            <div class="container" style="padding: 5px;">
-
-                @Html.Partial("_SuggestedRandomAccommodations", Model)
-            </div>
-            <br />
+                    @Html.Partial("_SuggestedRandomAccommodations", Model)
+                </div>
+                <br />
+            }
         }
-    }
 
 
-    <footer>
-        <div class="container" style="margin-top: 70px;">
-            <div class="row">
-                <div class="col-md-3">
-                    <section>
-                        <h6 style="margin-left: 40px;">Airbnb</h6>
-                        <ul style="list-style: none;">
-                            <li><a href="#">Help</a></li>
-                            <li><a href="#">Policies</a></li>
-                            <li><a href="#">Terms</a></li>
-                            <li><a href="#">Privacy</a></li>
-                        </ul>
-                    </section>
-                </div>
+        <footer>
+            <div class="container" style="margin-top: 70px;">
+                <div class="row">
+                    <div class="col-md-3">
+                        <section>
+                            <h6 style="margin-left: 40px;">Airbnb</h6>
+                            <ul style="list-style: none;">
+                                <li><a href="#">Help</a></li>
+                                <li><a href="#">Policies</a></li>
+                                <li><a href="#">Terms</a></li>
+                                <li><a href="#">Privacy</a></li>
+                            </ul>
+                        </section>
+                    </div>
 
-                <div class="col-md-3">
-                    <section>
-                        <h6 style="margin-left: 40px;">Discover</h6>
-                        <ul style="list-style: none;">
-                            <li><a href="#">Trust & Safety</a></li>
-                            <li><a href="#">Site Map</a></li>
-                        </ul>
-                    </section>
-                </div>
-                <div class="col-md-3">
-                    <section>
-                        <h6 style="margin-left: 40px;">Hosting</h6>
-                        <ul style="list-style: none;">
-                            <li><a href="#">Why Host</a></li>
-                            <li><a href="#">Responsible Hosting</a></li>
+                    <div class="col-md-3">
+                        <section>
+                            <h6 style="margin-left: 40px;">Discover</h6>
+                            <ul style="list-style: none;">
+                                <li><a href="#">Trust & Safety</a></li>
+                                <li><a href="#">Site Map</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="col-md-3">
+                        <section>
+                            <h6 style="margin-left: 40px;">Hosting</h6>
+                            <ul style="list-style: none;">
+                                <li><a href="#">Why Host</a></li>
+                                <li><a href="#">Responsible Hosting</a></li>
 
-                        </ul>
-                    </section>
-                </div>
-                <div class="col-md-3">
-                    <section>
-                        <h5 style="margin-left: 40px;">
-                            <a href="#" style="color: #636e72;"><i class="fa fa-facebook" style="padding-right: 15px;"></i></a>
-                            <a href="#" style="color: #636e72;"><i class="fa fa-twitter" style="padding-right: 15px;"></i></a>
-                            <a href="#" style="color: #636e72;"><i class="fa fa-instagram" style="padding-right: 15px;"></i></a>
-                        </h5>
-                    </section>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="col-md-3">
+                        <section>
+                            <h5 style="margin-left: 40px;">
+                                <a href="#" style="color: #636e72;"><i class="fa fa-facebook" style="padding-right: 15px;"></i></a>
+                                <a href="#" style="color: #636e72;"><i class="fa fa-twitter" style="padding-right: 15px;"></i></a>
+                                <a href="#" style="color: #636e72;"><i class="fa fa-instagram" style="padding-right: 15px;"></i></a>
+                            </h5>
+                        </section>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script>
 
-        var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-        $('#startDate').datepicker({
-            uiLibrary: 'bootstrap4',
-            iconsLibrary: 'fontawesome',
-            minDate: today,
-            maxDate: function () {
-                return $('#endDate').val();
-            }
-        });
-        $('#endDate').datepicker({
-            uiLibrary: 'bootstrap4',
-            iconsLibrary: 'fontawesome',
-            minDate: function () {
-                return $('#startDate').val();
-            }
-        });
-    </script>
+            var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+            $('#startDate').datepicker({
+                uiLibrary: 'bootstrap4',
+                iconsLibrary: 'fontawesome',
+                minDate: today,
+                maxDate: function () {
+                    return $('#endDate').val();
+                }
+            });
+            $('#endDate').datepicker({
+                uiLibrary: 'bootstrap4',
+                iconsLibrary: 'fontawesome',
+                minDate: function () {
+                    return $('#startDate').val();
+                }
+            });
+        </script>
 
-</body>
+    </body>
 
 </html>
 

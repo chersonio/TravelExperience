@@ -11,6 +11,8 @@ using System.Drawing;
 using System.Web;
 using static TravelExperience.MVC.ViewModels.SearchResultsFormViewModel;
 using static TravelExperience.MVC.Controllers.HelperClass;
+using System.Net;
+
 
 namespace TravelExperience.MVC.Controllers
 {
@@ -72,7 +74,18 @@ namespace TravelExperience.MVC.Controllers
             return View("Accommodations", viewModel);
         }
 
-       
-
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Accommodation accommodation = _unitOfWork.Accommodations.GetById(id);
+            if (accommodation == null)
+            {
+                return HttpNotFound();
+            }
+            return View(accommodation);
+        }
     }
 }

@@ -137,12 +137,12 @@
             </div>
 
 
-            <div class="form-group">
-                <strong>***Now for the fun part-set your price per day (€)</strong>
-                @Html.TextBoxFor(model => model.Accommodation.PricePerNight, new { @class = "form-control", type = "number" })
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.Accommodation.PricePerNight) / Day
+            @Html.TextBoxFor(model => model.Accommodation.PricePerNight, new { @class = "form-control", type = "number" })
                 @Html.ValidationMessageFor(model => model.Accommodation.PricePerNight, "", new { @class = "text-danger" })
-            </div>
+
         </div>
     </div>
     <button type="submit" class="btn btn-primary btn-lg">Save</button>
