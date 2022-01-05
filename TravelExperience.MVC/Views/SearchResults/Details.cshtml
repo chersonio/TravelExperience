@@ -1,0 +1,103 @@
+﻿@model TravelExperience.DataAccess.Core.Entities.Accommodation
+@using Microsoft.AspNet.Identity
+@using TravelExperience.DataAccess.Persistence
+@using TravelExperience.DataAccess.Core
+<div>
+    <div class="container">
+        <h3>@Html.DisplayFor(model => model.Title)</h3>
+        <hr />
+        <div>
+            <img src="@Html.DisplayFor(model => model.Thumbnail)" style=" border-radius: 15px; width: 500px; height:320px;" />
+        </div>
+        <hr />
+        @{
+            var context = new AppDBContext();
+            var unitOfWork = new UnitOfWork(context);
+            var userID = Model.HostID;
+            var hostName = unitOfWork.Users.GetById(userID).FirstName;
+            <h4>Rental unit hosted by @hostName </h4>
+        }
+        @Html.DisplayFor(model => model.MaxCapacity) Guests ·
+
+        @if (Model.Shared.Equals(true))
+        {
+            <row>Shared</row> @Html.DisplayFor(model => model.AccommodationType);
+        }
+        else if (Model.Shared.Equals(false))
+        {
+            <row>Entire</row> @Html.DisplayFor(model => model.AccommodationType);
+        }
+        <hr />
+
+        <div class="col-md-6">
+            @Html.DisplayFor(model => model.Description)
+        </div>
+
+        <div class="col-md-6">
+            <div class="card" style="border:dotted;">
+                <h3 class="card-header" style="border:groove;">€ @Html.DisplayFor(model => model.PricePerNight) /night</h3>
+                <div class="card-body">
+                    <h4 class="card-title">Booking for nights</h4>
+                    <button type="submit" class="btn btn-primary btn-lg">Book</button>
+                    <p class="card-text">Feb 1 - Apr 1</p>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <p>
+            @Html.ActionLink("Book Now", "Edit", new { id = Model.AccommodationID })
+        </p>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+    @*<dl class="dl-horizontal">
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PricePerNight)
+            </dd>
+            <dd>
+                @Html.DisplayFor(model => model.LocationID)
+            </dd>
+            <dd>
+                @Html.DisplayFor(model => model.MaxCapacity)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Shared)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Shared)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Floor)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Floor)
+
+        </dl>*@
+</div>
+

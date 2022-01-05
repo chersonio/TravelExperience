@@ -8,6 +8,7 @@ using TravelExperience.MVC.ViewModels;
 using TravelExperience.DataAccess.Core.Interfaces;
 using TravelExperience.DataAccess.Persistence.Repositories.SearchFilters;
 using System.IO;
+using System.Net;
 
 namespace TravelExperience.MVC.Controllers
 {
@@ -66,5 +67,20 @@ namespace TravelExperience.MVC.Controllers
 
             return View("Accommodations", viewModel);
         }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Accommodation accommodation = _unitOfWork.Accommodations.GetById(id);
+            if (accommodation == null)
+            {
+                return HttpNotFound();
+            }
+            return View(accommodation);
+        }
+
     }
 }

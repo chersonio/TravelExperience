@@ -131,10 +131,6 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Accommodation.PricePerNight) / Day
             @Html.TextBoxFor(model => model.Accommodation.PricePerNight, new { @class = "form-control", type = "number" })
-            <strong>***Now for the fun part-set your price per day (€)</strong>
-            @Html.TextBoxFor(model => model.Booking.Price, new { @class = "form-control", type = "number" })
-
-            @Html.ValidationMessageFor(model => model.Accommodation.PricePerNight, "", new { @class = "text-danger" })
         </div>
     </div>
  </div>
