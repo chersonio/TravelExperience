@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TravelExperience.DataAccess.Core.Entities;
-using static TravelExperience.MVC.Controllers.HelperClass;
+using TravelExperience.MVC.Controllers.HelperClasses;
 
 namespace TravelExperience.MVC.ViewModels
 {

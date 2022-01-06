@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using TravelExperience.DataAccess.Core.Entities;
 using System.Web.Mvc;
 using TravelExperience.MVC.ViewModels;
 using TravelExperience.DataAccess.Core.Interfaces;
 using TravelExperience.DataAccess.Persistence.Repositories.SearchFilters;
-using System.IO;
-using System.Drawing;
-using System.Web;
-using static TravelExperience.MVC.ViewModels.SearchResultsFormViewModel;
-using static TravelExperience.MVC.Controllers.HelperClass;
 using System.Net;
-
+using TravelExperience.MVC.Controllers.HelperClasses;
+using System.Collections.Generic;
 
 namespace TravelExperience.MVC.Controllers
 {
@@ -29,7 +24,7 @@ namespace TravelExperience.MVC.Controllers
         {
             var viewModel = new SearchResultsFormViewModel() { Accommodations = new List<Accommodation>() };
 
-            if (searchResultsFormViewModel.Accommodations != null)
+            if (searchResultsFormViewModel.Accommodations == null)
             {
                 //viewModel.Accommodations = searchResultsFormViewModel.Accommodations.ToList();
                 viewModel.Accommodations = _unitOfWork.Accommodations.GetAll().ToList();
@@ -63,8 +58,8 @@ namespace TravelExperience.MVC.Controllers
                 //var completeFilePath = Path.Combine(path, picFileName);
 
                 //accom.Thumbnail = completeFilePath;
-
-                List<ImageInfo> images = GetImagesForAccommodationFromStorage(path);
+                var imageHandler = new ImageHandler();
+                var images = imageHandler.GetImagesForAccommodationFromStorage(path);
 
                 thumbnailOfAccommodations.Add(accom, images);
             }

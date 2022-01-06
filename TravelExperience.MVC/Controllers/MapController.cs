@@ -18,7 +18,6 @@ namespace TravelExperience.MVC.Controllers
             _unitOfWork = unitOfWork;
         }
 
-
         // GET: Location
         public ActionResult Map()
         {

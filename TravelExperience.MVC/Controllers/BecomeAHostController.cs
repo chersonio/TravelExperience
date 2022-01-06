@@ -59,7 +59,6 @@ namespace TravelExperience.MVC.Controllers
         //GET: BecomeAHost
         public ActionResult Index()
         {
-            //var viewModel = new DashBoardFormViewModel();
             return View();
         }
 
@@ -69,16 +68,10 @@ namespace TravelExperience.MVC.Controllers
             var userId = User.Identity.GetUserId();
 
             await UserManager.AddToRoleAsync(userId, RoleName.Host);
+
             var viewModel = new DashBoardFormViewModel();
             viewModel.Accommodations = _unitOfWork.Accommodations.GetAll().ToList();
             viewModel.Bookings = _unitOfWork.Bookings.GetAll().ToList();
-
-
-            var viewModel = new DashBoardFormViewModel();
-
-            viewModel.Accommodations = _unitOfWork.Accommodations.GetAll().ToList();
-            viewModel.Bookings = _unitOfWork.Bookings.GetAll().ToList();
-
 
             return View(viewModel);
         }

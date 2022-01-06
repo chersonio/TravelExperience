@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Collections;
 using System.Linq;
-using System.Web;
-using TravelExperience.DataAccess.Core.Entities;
+using System.Data.Entity;
+using System.Collections.Generic;
 
-namespace TravelExperience.MVC.Controllers
+namespace TravelExperience.MVC.Controllers.HelperClasses
 {
-    public class HelperClass
+    public class ImageHandler
     {
-        public class ImageInfo
-        {
-            public string ImageBase64 { get; set; }
-            public string ImageType { get; set; }
-        }
+        public ImageInfo ImageInfo { get; set; }
 
-        public static List<ImageInfo> GetImagesForAccommodationFromStorage(string path)
+        public List<ImageInfo> GetImagesForAccommodationFromStorage(string path)
         {
             DirectoryInfo absoluteFile = new DirectoryInfo(path);
 
@@ -24,18 +20,13 @@ namespace TravelExperience.MVC.Controllers
             foreach (FileInfo img in absoluteFile.GetFiles()) // get needed extentions from GetFiles.
             {
                 FileStream fs = new FileStream(img.FullName, FileMode.Open);
-                
                 long size = fs.Length;
-
                 byte[] array = new byte[size];
-
                 fs.Read(array, 0, array.Length);
-
                 fs.Close();
                 
                 images.Add(new ImageInfo { ImageBase64 = Convert.ToBase64String(array), ImageType = img.Extension.TrimStart('.') });
             }
-
             return images;
         }
     }

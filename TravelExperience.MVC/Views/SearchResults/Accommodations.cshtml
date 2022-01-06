@@ -20,7 +20,8 @@
         {
             <div style="display: flex;">
                 @*Loads the given thumbnailAccommodation ImageInfo. Then it loads as a partial view the aquired image.*@
-                @Html.Partial("_AccommodationThumbnail", @Model.ThumbnailOfAccommodations[accom].FirstOrDefault());
+                @{ var firstThumb = @Model.ThumbnailOfAccommodations[accom].FirstOrDefault(); }
+                @Html.Partial("_AccommodationThumbnail", @firstThumb)
 
                 <div style="flex-grow: 1; margin: 15px 5px 0 5px; white-space: pre-line; float: right; max-width: 200px;">
                     <strong style=" font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
