@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -94,6 +95,75 @@ namespace TravelExperience.MVC.Controllers
                 viewModel.Bookings.Add(book);
             }
             return View("Dashboard", viewModel);
+        }
+
+        public ActionResult HostAccommodations()
+        {
+            var viewModel = new DashBoardFormViewModel();
+
+            var userID = User.Identity.GetUserId();
+            var accommodationsOfHost = _unitOfWork.Accommodations.GetAllForHostID(userID).ToList();
+
+            viewModel.Accommodations = accommodationsOfHost;
+            return View("HostAccommodations", viewModel);
+        }
+
+        //GET: Accommodations/Details
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            
+            var viewModel = new AccommodationFormViewModel();
+            viewModel.Accommodation = _unitOfWork.Accommodations.GetAll().FirstOrDefault(a => a.AccommodationID == id);
+            viewModel.Utilities = new List<Utility>();
+            var utilities = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == id).ToList();
+            
+            viewModel.Utilities = utilities;
+
+            if (viewModel.Accommodation == null)
+            {
+                return HttpNotFound();
+            }
+            return View(viewModel);
+        }
+
+        //GET: Accommodations/Edit
+        public ActionResult Edit(int? id)
+        {
+            var userId = User.Identity.GetUserId();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var viewModel = new AccommodationFormViewModel();
+            Accommodation accommodation = _unitOfWork.Accommodations.GetById(id);
+
+            viewModel.Utilities = new List<Utility>();
+            viewModel.UtilitiesForCheckboxes = new List<AccommodationFormViewModel.UtilityForCheckbox>();
+
+            var utilities = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == id).ToList();
+
+            viewModel.Utilities = utilities;
+
+            foreach (UtilitiesEnum utilEnum in Enum.GetValues(typeof(UtilitiesEnum)))
+            {
+                foreach(var u in utilities)
+                {
+                    if(u.UtilityEnum == utilEnum)
+                    {
+                        viewModel.UtilitiesForCheckboxes.Add(new AccommodationFormViewModel.UtilityForCheckbox { UtilityName = utilEnum.ToString(), UtilitiesEnum = utilEnum, IsChecked = true });
+                    }
+                }
+            }
+            if (accommodation == null)
+            {
+                return HttpNotFound();
+            }
+            viewModel.Accommodation = accommodation;
+            return View(viewModel);
         }
 
         /// <summary>

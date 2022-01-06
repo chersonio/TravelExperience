@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DataAccess.Core.Interfaces;
+using System.Web;
 
 namespace TravelExperience.DataAccess.Persistence.Repositories
 {
@@ -29,7 +30,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
             if (id == null)
                 throw new ArgumentException(nameof(id));
 
-            Accommodation accommodation = _context.Accommodations.Find(id); // or .GetById()
+            Accommodation accommodation = GetById(id); 
 
             if (accommodation == null)
                 throw new Exception("Accommodation not found");
@@ -64,7 +65,8 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
             if (id == null)
                 throw new ArgumentException(nameof(id));
 
-            return _context.Accommodations.Find(id);
+            return _context.Accommodations
+                .Find(id);
         }
 
         public void Update(Accommodation accommodation)
