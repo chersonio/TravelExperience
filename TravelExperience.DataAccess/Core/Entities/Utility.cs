@@ -25,7 +25,7 @@ namespace TravelExperience.DataAccess.Core.Entities
         SelfCheckIn,
         SmokeAlarm,
         Washer,
-        Wifi
+        Wifi,
     }
 
     // https://findnerd.com/list/view/How-to-bind-checkbox-with-enum-values-in-MVC/25707/

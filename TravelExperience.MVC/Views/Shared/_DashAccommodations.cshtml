@@ -38,6 +38,7 @@
                     <td>
                         @Html.DisplayFor(m => item.Location.FullAddress)
                     </td>
+                    <td><a onclick="location.href='@Url.Action("action","controller")'" class="btn btn-lg btn-info">Details</a></td>
                     <td><a onclick="location.href='@Url.Action("action","controller")'" class="btn btn-lg btn-warning">Edit</a></td>
                     <td><a onclick="location.href='@Url.Action("action","controller")'" class="btn btn-lg btn-danger">Delete</a></td>
                 </tr>
