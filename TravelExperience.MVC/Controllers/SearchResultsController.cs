@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using TravelExperience.DataAccess.Core.Entities;
 using System.Web.Mvc;
 using TravelExperience.MVC.ViewModels;
 using TravelExperience.DataAccess.Core.Interfaces;
 using TravelExperience.DataAccess.Persistence.Repositories.SearchFilters;
-using System.IO;
+using System.Net;
+using TravelExperience.MVC.Controllers.HelperClasses;
+using System.Collections.Generic;
 
 namespace TravelExperience.MVC.Controllers
 {
@@ -24,7 +24,7 @@ namespace TravelExperience.MVC.Controllers
         {
             var viewModel = new SearchResultsFormViewModel() { Accommodations = new List<Accommodation>() };
 
-            if (searchResultsFormViewModel.Accommodations != null)
+            if (searchResultsFormViewModel.Accommodations == null)
             {
                 //viewModel.Accommodations = searchResultsFormViewModel.Accommodations.ToList();
                 viewModel.Accommodations = _unitOfWork.Accommodations.GetAll().ToList();
@@ -48,23 +48,39 @@ namespace TravelExperience.MVC.Controllers
             var searchResults = bookingsSearchFilter.FilterBookings(dateStarting: bookingStartDate, dateEnding: bookingEndDate, city: city, numberOfGuests: numberOfGuests).ToList();
 
             viewModel.Accommodations = searchResults;
-            //viewModel.ThumbnailOfAccommodations = new Dictionary<Accommodation, FileStream>();
-
+            var thumbnailOfAccommodations = new Dictionary<Accommodation, List<ImageInfo>>();
             foreach (var accom in viewModel.Accommodations)
             {
                 var path = @"C:\TravelExperience\Data\Images\Accommodations\" + accom.AccommodationID.ToString();
-                var picFileName = $"{accom.Thumbnail}";
 
-                var completeFilePath = Path.Combine(path, picFileName);
+                //var picFileName = $"{accom.Thumbnail}";
 
-                //var sss = System.IO.File.OpenRead(completeFilePath);
+                //var completeFilePath = Path.Combine(path, picFileName);
 
-                accom.Thumbnail = completeFilePath;
+                //accom.Thumbnail = completeFilePath;
+                var imageHandler = new ImageHandler();
+                var images = imageHandler.GetImagesForAccommodationFromStorage(path);
 
-                //viewModel.ThumbnailOfAccommodations.Add(accom, sss);
+                thumbnailOfAccommodations.Add(accom, images);
             }
 
+            viewModel.ThumbnailOfAccommodations = thumbnailOfAccommodations;
+
             return View("Accommodations", viewModel);
+        }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Accommodation accommodation = _unitOfWork.Accommodations.GetById(id);
+            if (accommodation == null)
+            {
+                return HttpNotFound();
+            }
+            return View(accommodation);
         }
     }
 }

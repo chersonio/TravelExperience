@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TravelExperience.DataAccess.Core.Entities;
+using TravelExperience.MVC.Controllers.HelperClasses;
 
 namespace TravelExperience.MVC.ViewModels
 {
@@ -20,5 +21,6 @@ namespace TravelExperience.MVC.ViewModels
         public Location Location { get; set; }
         public int Guests { get; set; }
 
+        public Dictionary<Accommodation, List<ImageInfo>> ThumbnailOfAccommodations { get; set; }
     }
 }

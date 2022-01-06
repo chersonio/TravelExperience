@@ -19,25 +19,28 @@
                     <th scope="col">
                             @Html.LabelFor(m => m.Accommodation.Location)
                      </th>
+
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model.Accommodations)
                 {
-                    <tr>
-                        <th scope="row">
-                            @Html.DisplayFor(m => item.AccommodationID)
-                        </th>
-                        <td>
-                            @Html.DisplayFor(m => item.Title)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.Description)
-                        </td>
-                        <td>
-                                @Html.DisplayFor(m => item.Location.FullAddress)
-                         </td>
-                    </tr>
+                <tr>
+                    <th scope="row">
+                        @Html.DisplayFor(m => item.AccommodationID)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(m => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Location.FullAddress)
+                    </td>
+                    <td><a onclick="location.href='@Url.Action("action","controller")'" class="btn btn-lg btn-warning">Edit</a></td>
+                    <td><a onclick="location.href='@Url.Action("action","controller")'" class="btn btn-lg btn-danger">Delete</a></td>
+                </tr>
                 }
             </tbody>
         </table>

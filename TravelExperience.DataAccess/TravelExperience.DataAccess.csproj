@@ -116,6 +116,7 @@
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.6.0.0\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -178,9 +179,11 @@
     <Compile Include="Persistence\Configurations\AccommodationConfiguration.cs" />
     <Compile Include="Persistence\Configurations\ApplicationUserConfiguration.cs" />
     <Compile Include="Persistence\Configurations\BookingConfiguration.cs" />
-    <Compile Include="Persistence\Migrations\202112292116378_Init.cs" />
-    <Compile Include="Persistence\Migrations\202112292116378_Init.designer.cs">
-      <DependentUpon>202112292116378_Init.cs</DependentUpon>
+
+    <Compile Include="Persistence\Migrations\202201021643546_Initial.cs" />
+    <Compile Include="Persistence\Migrations\202201021643546_Initial.designer.cs">
+      <DependentUpon>202201021643546_Initial.cs</DependentUpon>
+
     </Compile>
     <!--// CHERSO
     <Compile Include="Persistence\Configurations\UtilitiesConfiguration.cs" />
@@ -214,9 +217,7 @@
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Core\Dtos\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
@@ -225,8 +226,10 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Persistence\Migrations\202112292116378_Init.resx">
-      <DependentUpon>202112292116378_Init.cs</DependentUpon>
+
+    <EmbeddedResource Include="Persistence\Migrations\202201021643546_Initial.resx">
+      <DependentUpon>202201021643546_Initial.cs</DependentUpon>
+
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

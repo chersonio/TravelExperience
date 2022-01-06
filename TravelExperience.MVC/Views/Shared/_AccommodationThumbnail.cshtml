@@ -1,0 +1,13 @@
+﻿@model TravelExperience.MVC.Controllers.HelperClasses.ImageInfo
+
+<div>
+    @{ var firstImageAsThumbnail = Model; }
+    @if (firstImageAsThumbnail != null)
+    {
+        <img src="data:image/@firstImageAsThumbnail.ImageType;base64, @firstImageAsThumbnail.ImageBase64" alt="Image" style=" border-radius: 15px; width: 250px; height:160px; " />
+    }
+    else
+    {
+        <img src="data:image/png;base64, image-not-found.png" alt="Image" style=" border-radius: 15px; width: 250px; height:160px; " />
+    }
+</div>

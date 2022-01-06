@@ -18,11 +18,10 @@ namespace TravelExperience.MVC.Controllers
             _unitOfWork = unitOfWork;
         }
 
-
         // GET: Location
         public ActionResult Map()
         {
-            var loccations = _unitOfWork.Locations.GetAll();
+            var locations = _unitOfWork.Locations.GetAll();
             return View();
         }
 
