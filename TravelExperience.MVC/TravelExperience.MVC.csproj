@@ -381,12 +381,12 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="ViewModels\DashBoardFormViewModel.cs" />
     <Compile Include="ViewModels\SearchResultsFormViewModel.cs" />
     <Compile Include="Controllers\AccommodationController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BecomeAHostController.cs" />
     <Compile Include="Controllers\BookingsController.cs" />
-    <Compile Include="ViewModels\DashBoardFormViewModel.cs" />
     <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Models\RoleName.cs" />
@@ -489,6 +489,10 @@
     <Content Include="Views\SearchResults\Accommodations.cshtml" />
     <Content Include="Views\Shared\_DashBookings.cshtml" />
     <Content Include="Views\Shared\_DashGuests.cshtml" />
+    <Content Include="Views\Shared\_DashAccommodations.cshtml" />
+    <Content Include="Views\BecomeAHost\HostAccommodations.cshtml" />
+    <Content Include="Views\BecomeAHost\Details.cshtml" />
+    <Content Include="Views\BecomeAHost\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
