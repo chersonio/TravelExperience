@@ -13,6 +13,8 @@ namespace TravelExperience.MVC.ViewModels
         public IEnumerable<Accommodation> Accommodations { get; set; }
         public DateTime BookingStartDate { get; set; }
         public DateTime BookingEndDate { get; set; }
+
+        public long TotalNights => (BookingEndDate - BookingStartDate).Ticks;
         public DateTime CreationDate { get; set; } // Imerominia dimiourgias
     }
 }

@@ -71,16 +71,15 @@ namespace TravelExperience.MVC.Controllers
 
         public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Accommodation accommodation = _unitOfWork.Accommodations.GetById(id);
-            if (accommodation == null)
-            {
-                return HttpNotFound();
-            }
-            return View(accommodation);
+
+            var viewModel = new AccommodationFormViewModel();
+            viewModel.Accommodation = _unitOfWork.Accommodations.GetAll().FirstOrDefault(a => a.AccommodationID == id);
+            viewModel.Utilities = new List<Utility>();
+            var utilities = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == id).ToList();
+            viewModel.Utilities = utilities;
+
+            return View(viewModel);
+
         }
     }
 }
