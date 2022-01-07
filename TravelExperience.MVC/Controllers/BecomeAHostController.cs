@@ -147,17 +147,31 @@ namespace TravelExperience.MVC.Controllers
             var utilities = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == id).ToList();
 
             viewModel.Utilities = utilities;
+            
 
             foreach (UtilitiesEnum utilEnum in Enum.GetValues(typeof(UtilitiesEnum)))
             {
                 foreach(var u in utilities)
                 {
-                    if(u.UtilityEnum == utilEnum)
+                    if (u.UtilityEnum == utilEnum)
                     {
                         viewModel.UtilitiesForCheckboxes.Add(new AccommodationFormViewModel.UtilityForCheckbox { UtilityName = utilEnum.ToString(), UtilitiesEnum = utilEnum, IsChecked = true });
                     }
                 }
             }
+
+            foreach (UtilitiesEnum utilEnum in Enum.GetValues(typeof(UtilitiesEnum)))
+            {
+                
+                viewModel.UtilitiesForCheckboxes.Add(new AccommodationFormViewModel.UtilityForCheckbox { UtilityName = utilEnum.ToString(), UtilitiesEnum = utilEnum, IsChecked = false });
+            }
+
+            //var location = _unitOfWork.Locations.GetAll().Where(l => l.AccommodationID == id).ToList();
+            var locationID = _unitOfWork.Accommodations.GetById(id).LocationID;
+            viewModel.Location = _unitOfWork.Locations.GetById(locationID);
+            
+            //viewModel.Accommodation.Location = location;
+
             if (accommodation == null)
             {
                 return HttpNotFound();
@@ -203,30 +217,26 @@ namespace TravelExperience.MVC.Controllers
             location.Country = viewModel.Location.Country;
             location.PostalCode = viewModel.Location.PostalCode;
 
+            //var utilitiesInDB = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == viewModel.Accommodation.AccommodationID).ToList();
 
+            //var utilities = new List<Utility>();
+            //foreach (var option in viewModel.UtilitiesForCheckboxes)
+            //{
+            //    if (option.IsChecked)
+            //    {
+            //        utilities.Add(new Utility { Accommodation = accommodation, UtilityEnum = option.UtilitiesEnum, IsSelected = true }); // to isSelected de xreiazetai sti vasi kathws logika tha mpainoun mono osa exoun tsekaristei.
+            //    }
+            //}
 
+            //var utilNotInDb = utilities.Except(utilitiesInDB).ToList();
 
-            var utilitiesInDB = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == viewModel.Accommodation.AccommodationID).ToList();
+            //accommodation.Utilities = utilNotInDb;
+            //var utilNotSelected = utilitiesInDB.Except(utilities).ToList();
+            //foreach(var a in utilNotSelected)
+            //{
+            //    accommodation.Utilities.Remove(a);
+            //}
             
-
-            var utilities = new List<Utility>();
-            foreach (var option in viewModel.UtilitiesForCheckboxes)
-            {
-                if (option.IsChecked)
-                {
-                    utilities.Add(new Utility { Accommodation = accommodation, UtilityEnum = option.UtilitiesEnum, IsSelected = true }); // to isSelected de xreiazetai sti vasi kathws logika tha mpainoun mono osa exoun tsekaristei.
-                }
-            }
-
-            var utilNotInDb = utilities.Except(utilitiesInDB).ToList();
-
-            accommodation.Utilities = utilNotInDb;
-            var utilNotSelected = utilitiesInDB.Except(utilities).ToList();
-            foreach (var a in utilNotSelected)
-            {
-                accommodation.Utilities.Remove(a);
-            }
-
 
             _unitOfWork.Complete();
 
