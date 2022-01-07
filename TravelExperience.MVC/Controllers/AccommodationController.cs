@@ -93,6 +93,9 @@ namespace TravelExperience.MVC.Controllers
                 AccommodationType = viewModel.Accommodation.AccommodationType, // this needs changing
                 HostID = userId,
                 Host = host
+                //creationdate
+                //available from
+                //available to
             };
 
             location.Accommodations = new List<Accommodation>() { accommodation };
