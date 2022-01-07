@@ -18,10 +18,10 @@
 
 
 <body>
-    <header>
+    <header class="navbar-fixed-top">
         <div class="containernav">
             <h1 class="logo">
-                @Html.ActionLink("TRAVEL EXPERIENCE", "Index", "Home")
+                <a href="@Url.Action("Index", "Home")"><i class="fa fa-superpowers" aria-hidden="true"></i>TRAVEL EXPERIENCE</a>
             </h1>
             <nav>
                 @Html.Partial("_LoginPartial")
