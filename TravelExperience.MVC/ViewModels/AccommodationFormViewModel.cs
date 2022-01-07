@@ -7,6 +7,7 @@ using TravelExperience.DataAccess.Core.Entities;
 using System.Data.Entity;
 using System.Linq;
 using System;
+using TravelExperience.MVC.Controllers.HelperClasses;
 
 namespace TravelExperience.MVC.ViewModels
 {
@@ -27,6 +28,7 @@ namespace TravelExperience.MVC.ViewModels
 
         [Required]
         public HttpPostedFileBase Thumbnail { get; set; }
+        
 
         // Utilities 
         public class UtilityForCheckbox // needed for checkbox

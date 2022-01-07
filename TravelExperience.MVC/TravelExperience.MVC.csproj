@@ -501,6 +501,9 @@
     <Content Include="Views\BecomeAHost\Guests.cshtml" />
     <Content Include="Views\Shared\_DashAccommodations.cshtml" />
     <Content Include="Views\Shared\_AccommodationThumbnail.cshtml" />
+    <Content Include="Views\BecomeAHost\Details.cshtml" />
+    <Content Include="Views\BecomeAHost\Edit.cshtml" />
+    <Content Include="Views\BecomeAHost\HostAccommodations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

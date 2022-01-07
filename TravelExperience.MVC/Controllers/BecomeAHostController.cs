@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -95,6 +96,158 @@ namespace TravelExperience.MVC.Controllers
             }
             return View("Dashboard", viewModel);
         }
+
+        public ActionResult HostAccommodations()
+        {
+            var viewModel = new DashBoardFormViewModel();
+
+            var userID = User.Identity.GetUserId();
+            var accommodationsOfHost = _unitOfWork.Accommodations.GetAllForHostID(userID).ToList();
+
+            viewModel.Accommodations = accommodationsOfHost;
+            return View("HostAccommodations", viewModel);
+        }
+
+        //GET: Accommodations/Details
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            
+            var viewModel = new AccommodationFormViewModel();
+            viewModel.Accommodation = _unitOfWork.Accommodations.GetAll().FirstOrDefault(a => a.AccommodationID == id);
+            viewModel.Utilities = new List<Utility>();
+            var utilities = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == id).ToList();
+            
+            viewModel.Utilities = utilities;
+
+            if (viewModel.Accommodation == null)
+            {
+                return HttpNotFound();
+            }
+            return View(viewModel);
+        }
+
+        //GET: Accommodations/Edit
+        public ActionResult Edit(int? id)
+        {
+            var userId = User.Identity.GetUserId();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var viewModel = new AccommodationFormViewModel();
+            Accommodation accommodation = _unitOfWork.Accommodations.GetById(id);
+
+            viewModel.Utilities = new List<Utility>();
+            viewModel.UtilitiesForCheckboxes = new List<AccommodationFormViewModel.UtilityForCheckbox>();
+
+            var utilities = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == id).ToList();
+
+            viewModel.Utilities = utilities;
+            
+
+            foreach (UtilitiesEnum utilEnum in Enum.GetValues(typeof(UtilitiesEnum)))
+            {
+                foreach(var u in utilities)
+                {
+                    if (u.UtilityEnum == utilEnum)
+                    {
+                        viewModel.UtilitiesForCheckboxes.Add(new AccommodationFormViewModel.UtilityForCheckbox { UtilityName = utilEnum.ToString(), UtilitiesEnum = utilEnum, IsChecked = true });
+                    }
+                }
+            }
+
+            foreach (UtilitiesEnum utilEnum in Enum.GetValues(typeof(UtilitiesEnum)))
+            {
+                
+                viewModel.UtilitiesForCheckboxes.Add(new AccommodationFormViewModel.UtilityForCheckbox { UtilityName = utilEnum.ToString(), UtilitiesEnum = utilEnum, IsChecked = false });
+            }
+
+            //var location = _unitOfWork.Locations.GetAll().Where(l => l.AccommodationID == id).ToList();
+            var locationID = _unitOfWork.Accommodations.GetById(id).LocationID;
+            viewModel.Location = _unitOfWork.Locations.GetById(locationID);
+            
+            //viewModel.Accommodation.Location = location;
+
+            if (accommodation == null)
+            {
+                return HttpNotFound();
+            }
+            viewModel.Accommodation = accommodation;
+            return View(viewModel);
+        }
+
+        //POST: Accommodations/Edit
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(AccommodationFormViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                //something
+            }
+
+            var accommodation = _unitOfWork.Accommodations.GetById(viewModel.Accommodation.AccommodationID);
+
+            if (accommodation == null)
+            {
+                return HttpNotFound();
+            }
+
+            accommodation.Title = viewModel.Accommodation.Title;
+            accommodation.Description = viewModel.Accommodation.Description;
+            accommodation.AccommodationType = viewModel.Accommodation.AccommodationType;
+            accommodation.Shared = viewModel.Accommodation.Shared;
+            accommodation.MaxCapacity = viewModel.Accommodation.MaxCapacity;
+            accommodation.Floor = viewModel.Accommodation.Floor;
+            accommodation.PricePerNight = viewModel.Accommodation.PricePerNight;
+            //accommodation.Utilities = viewModel.Accommodation.Utilities;
+            //accommodation.Thumbnail = viewModel.Accommodation.Thumbnail;
+
+            
+            var locationID = _unitOfWork.Accommodations.GetById(accommodation.AccommodationID).LocationID;
+            var location = _unitOfWork.Locations.GetById(locationID);
+
+            location.Address = viewModel.Location.Address;
+            location.AddressNo = viewModel.Location.AddressNo;
+            location.City = viewModel.Location.City;
+            location.Country = viewModel.Location.Country;
+            location.PostalCode = viewModel.Location.PostalCode;
+
+            //var utilitiesInDB = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == viewModel.Accommodation.AccommodationID).ToList();
+
+            //var utilities = new List<Utility>();
+            //foreach (var option in viewModel.UtilitiesForCheckboxes)
+            //{
+            //    if (option.IsChecked)
+            //    {
+            //        utilities.Add(new Utility { Accommodation = accommodation, UtilityEnum = option.UtilitiesEnum, IsSelected = true }); // to isSelected de xreiazetai sti vasi kathws logika tha mpainoun mono osa exoun tsekaristei.
+            //    }
+            //}
+
+            //var utilNotInDb = utilities.Except(utilitiesInDB).ToList();
+
+            //accommodation.Utilities = utilNotInDb;
+            //var utilNotSelected = utilitiesInDB.Except(utilities).ToList();
+            //foreach(var a in utilNotSelected)
+            //{
+            //    accommodation.Utilities.Remove(a);
+            //}
+            
+
+            _unitOfWork.Complete();
+
+            return RedirectToAction("HostAccommodations", "BecomeAHost");
+        }
+
+
+
+
+
+
 
         /// <summary>
         /// Gets user when there is no user loaded in the given booking

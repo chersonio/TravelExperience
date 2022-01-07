@@ -16,10 +16,10 @@
         }
     }
 
-    <div class="container" style="display: flex; grid-template-columns: 1fr 1fr; grid-gap: 10px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; ">
+
+    <div class="container" style="display: flex; grid-template-columns: 1fr 1fr; grid-gap: 10px; ">
 
         <div>
-            @*@Html.Partial("_Map", Model)*@
             @Html.Partial("_Map", new TravelExperience.MVC.ViewModels.MapViewModel() { ShowLocations = false });
 
             <h3>Where's your place located?</h3>
@@ -53,7 +53,7 @@
         <br />
 
 
-        <div>
+        <div style="flex-grow:1;">
             <h2 style="color:#510e0e; text-decoration:underline;">Add a new accommodation</h2>
             <div class="form-group">
                 <strong>Let's give your place a name</strong>
@@ -65,7 +65,7 @@
 
             <div class="form-group">
                 <strong>Now, let's describe your place</strong>
-                @Html.TextBoxFor(model => model.Accommodation.Description, new { @class = "form-control", type = "textarea", style = "width: 100px; height: 100px;" })
+                @Html.TextAreaFor(model => model.Accommodation.Description, new { @class = "form-control", style = "width: 300px; height: 100px;" })
 
                 @Html.ValidationMessageFor(model => model.Accommodation.Description, "", new { @class = "text-danger" })
             </div>
@@ -147,7 +147,10 @@
 
             </div>
         </div>
+
+
+    </div>
     </div>
     <button type="submit" class="btn btn-primary btn-lg">Save</button>
+    }
 
-}
