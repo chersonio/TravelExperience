@@ -11,6 +11,7 @@ using System.Collections.Generic;
 
 namespace TravelExperience.MVC.Controllers
 {
+    [AllowAnonymous]
     public class SearchResultsController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
