@@ -1,0 +1,82 @@
+﻿@model TravelExperience.MVC.ViewModels.AccommodationFormViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+@using (Html.BeginForm("New", "Accommodation", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        <h4></h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Accommodation.Title)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Accommodation.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Accommodation.Description)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Accommodation.Description)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Accommodation.AccommodationType)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Accommodation.AccommodationType)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Accommodation.Shared)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Accommodation.Shared)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Accommodation.Floor)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Accommodation.Floor)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Accommodation.MaxCapacity)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Accommodation.MaxCapacity)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Accommodation.PricePerNight)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Accommodation.PricePerNight)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Accommodation.Utilities)
+            </dt>
+            <dd>
+                @for (int i = 0; i < Model.Utilities.Count(); i++)
+                {
+                <p>@Model.Utilities[i].UtilityEnum.ToString()</p>
+                }
+            </dd>
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Accommodation.Location)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Accommodation.Location.FullAddress)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Accommodation.AccommodationID }) |
+        @Html.ActionLink("Back to List", "HostAccommodations")
+    </p>
+}
