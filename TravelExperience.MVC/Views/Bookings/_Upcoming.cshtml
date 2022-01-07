@@ -21,11 +21,16 @@
                         @Html.DisplayFor(modelItem => startDate) - @Html.DisplayFor(modelItem => endDate)
                         @Html.ActionLink("Edit", "Edit", new { id = item.BookingID }) |  @Html.ActionLink("Details", "Details", new { id = item.BookingID }) | @Html.ActionLink("Cancel", "Delete", new { id = item.BookingID })
                     </div>
-                    <img src="@Url.Content(item.Accommodation.Thumbnail)" style="margin-right: 15px; float: left; border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 150px;" />
+                    @*<img src="@Url.Content(item.Accommodation.Thumbnail)" style="margin-right: 15px; float: left; border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 150px;" />*@
+
+                    @*Loads the given thumbnailAccommodation ImageInfo. Then it loads as a partial view the aquired image.*@
+                    
+                    @{ var firstThumb = @Model.ThumbnailOfAccommodations[item.Accommodation].FirstOrDefault(); }
+                    @Html.Partial("_AccommodationThumbnail", @firstThumb)
                 </div>
             }
         }
     }
-            
+
 </div>
-            
+

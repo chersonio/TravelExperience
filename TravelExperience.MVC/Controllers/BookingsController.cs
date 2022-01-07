@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DataAccess.Core.Interfaces;
+using TravelExperience.MVC.Controllers.HelperClasses;
 using TravelExperience.MVC.ViewModels;
 
 namespace TravelExperience.MVC.Controllers
@@ -27,10 +28,20 @@ namespace TravelExperience.MVC.Controllers
         // GET: Bookings
         public ActionResult Index()
         {
-            var model = new MainPageViewModel();
-            model.Bookings = _unitOfWork.Bookings.GetAll();
-            model.Accommodations = _unitOfWork.Accommodations.GetAll();
-            return View(model);
+            var viewModel = new MainPageViewModel();
+            viewModel.Bookings = _unitOfWork.Bookings.GetAll();
+            viewModel.Accommodations = _unitOfWork.Accommodations.GetAll();
+
+            ImageHandler imageHandler = new ImageHandler();
+            var thumbnailOfAccommodations = new Dictionary<Accommodation, List<ImageInfo>>();
+            foreach (var accom in viewModel.Accommodations)
+            {
+                var newThumb = imageHandler.GetDictionaryForImagesOfAccommodations(accom);
+                thumbnailOfAccommodations.Add(newThumb.Keys.FirstOrDefault(), newThumb.Values.FirstOrDefault());
+            }
+            viewModel.ThumbnailOfAccommodations = thumbnailOfAccommodations;
+
+            return View(viewModel);
         }
 
         // GET: Bookings/Details/5

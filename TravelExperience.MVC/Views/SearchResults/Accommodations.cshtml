@@ -10,8 +10,8 @@
 
 
     <div>
-            @Html.Partial("_Map", Model)
-        </div>
+        @Html.Partial("_Map", new TravelExperience.MVC.ViewModels.MapViewModel() { ShowLocations = true });
+    </div>
 
 
     <div style=" flex-grow:1; display: grid;">
@@ -27,17 +27,11 @@
                     <strong style=" font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
                         @Html.DisplayFor(modelItem => accom.Title)
                     </strong>
-
+                                     
                     @Html.DisplayFor(modelItem => accom.Description)
                     @Html.DisplayFor(modelItem => accom.MaxCapacity) Guests
                     @Html.DisplayFor(modelItem => accom.Location.City) , @Html.DisplayFor(modelItem => accom.Location.Country)
-                    @Html.ActionLink("View", "AccommodationView", new { id = accom.AccommodationID })
-                  
-                    CHECK THIS!!!
-                    @*@Html.DisplayFor(modelItem => item.Description)
-                    @Html.DisplayFor(modelItem => item.MaxCapacity) Guests
-                    @Html.DisplayFor(modelItem => item.Location.City) , @Html.DisplayFor(modelItem => item.Location.Country)
-                    @Html.ActionLink("View", "Details", new { id = item.AccommodationID })*@
+                    @Html.ActionLink("View", "Details", new { id = accom.AccommodationID })
 
                 </div>
             </div>
@@ -45,5 +39,3 @@
         }
     </div>
 </div>
-
-

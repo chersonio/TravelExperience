@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImportExportDB", "ImportExp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelExperience.DTO", "TravelExperience.DTO\TravelExperience.DTO.csproj", "{FD68B6C2-5F8E-4610-B4C9-40755AA70CE0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelExperience.API", "TravelExperience.API\TravelExperience.API.csproj", "{0B5C4EAB-234D-4ECB-93A9-925F506BA4E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{FD68B6C2-5F8E-4610-B4C9-40755AA70CE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD68B6C2-5F8E-4610-B4C9-40755AA70CE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD68B6C2-5F8E-4610-B4C9-40755AA70CE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B5C4EAB-234D-4ECB-93A9-925F506BA4E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B5C4EAB-234D-4ECB-93A9-925F506BA4E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B5C4EAB-234D-4ECB-93A9-925F506BA4E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B5C4EAB-234D-4ECB-93A9-925F506BA4E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,5 +9,6 @@ namespace TravelExperience.MVC.ViewModels
     public class MapViewModel
     {
         public IEnumerable<Location> Locations { get; set; }
+        public bool ShowLocations { get; set; }
     }
 }
