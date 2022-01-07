@@ -16,10 +16,11 @@
         }
     }
 
+
     <div class="container" style="display: flex; grid-template-columns: 1fr 1fr; grid-gap: 10px; ">
 
         <div>
-            @*@Html.Partial("_Map", Model)*@
+            @Html.Partial("_Map", new TravelExperience.MVC.ViewModels.MapViewModel() { ShowLocations = false });
 
             <h3>Where's your place located?</h3>
             <div>
@@ -152,3 +153,4 @@
     </div>
     <button type="submit" class="btn btn-primary btn-lg">Save</button>
     }
+

@@ -45,14 +45,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=6.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.6.3.0\lib\netstandard2.0\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=5.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.5.0.0\lib\net461\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="Autofac.Integration.Mvc, Version=6.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.Mvc5.6.0.0\lib\net472\Autofac.Integration.Mvc.dll</HintPath>
+    <Reference Include="Autofac.Integration.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.5.0.0\lib\net461\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="Autofac.Integration.WebApi, Version=6.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.WebApi2.6.0.0\lib\net472\Autofac.Integration.WebApi.dll</HintPath>
+    <Reference Include="Autofac.Integration.WebApi, Version=5.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.WebApi2.5.0.0\lib\net461\Autofac.Integration.WebApi.dll</HintPath>
     </Reference>
     <Reference Include="AutoMapper, Version=4.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.4.1.0\lib\net45\AutoMapper.dll</HintPath>
@@ -385,7 +385,6 @@
     <Compile Include="App_Start\MappingProfile.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\API\AccommodationsController.cs" />
     <Compile Include="Controllers\HelperClasses\ImageHandler.cs" />
     <Compile Include="Controllers\HelperClasses\ImageInfo.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -498,7 +497,6 @@
     <Content Include="Views\Shared\_DashBookings.cshtml" />
     <Content Include="Views\Shared\_DashGuests.cshtml" />
     <Content Include="Views\SearchResults\Details.cshtml" />
-
     <Content Include="Views\BecomeAHost\Bookings.cshtml" />
     <Content Include="Views\BecomeAHost\Guests.cshtml" />
     <Content Include="Views\Shared\_DashAccommodations.cshtml" />
@@ -506,7 +504,6 @@
     <Content Include="Views\BecomeAHost\Details.cshtml" />
     <Content Include="Views\BecomeAHost\Edit.cshtml" />
     <Content Include="Views\BecomeAHost\HostAccommodations.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

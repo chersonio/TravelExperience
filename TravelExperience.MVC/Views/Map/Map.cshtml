@@ -3,10 +3,9 @@
 
 <style>
 </style>
-<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLxLZZ4ElJQCQT_Ppnc_KoQC30aESetyE&callback=initMap"
         async defer></script>
-<br />
-@*key=AIzaSyCLxLZZ4ElJQCQT_Ppnc_KoQC30aESetyE*@
 
 <div id="map">
     <script>
@@ -16,8 +15,8 @@
                     center: { lat: 37.98096185419733, lng: 23.732283397775806 },
                     zoom: 10
                 });
-                $.get("@Url.Action("GetLocation", "Map")", function (data2, status) {
-                    var data = JSON.parse(data2)
+                   $.get("@Url.Action("GetLocation", "Map")", function (dataFromView, status) {
+                    var data = JSON.parse(dataFromView);
                     var marker = [];
                     var contentString = [];
                     var infowindow = [];
@@ -80,8 +79,6 @@
                 });
             }
         </script>*@
-
-
 
 </div>
 

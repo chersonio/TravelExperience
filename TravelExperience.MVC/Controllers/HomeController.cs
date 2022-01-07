@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DataAccess.Core.Interfaces;
+using TravelExperience.MVC.Controllers.HelperClasses;
 using TravelExperience.MVC.ViewModels;
 
 namespace TravelExperience.MVC.Controllers
@@ -18,7 +19,7 @@ namespace TravelExperience.MVC.Controllers
         }
         public ActionResult Index()
         {
-            List<Accommodation> randomAccommodations = GetRandomAccommodation(1); // declare number of buttons
+            List<Accommodation> randomAccommodations = GetRandomAccommodation(3); // declare number of buttons
 
             var locations = _unitOfWork.Locations.GetAll().ToList();
 
@@ -29,6 +30,15 @@ namespace TravelExperience.MVC.Controllers
                 RandomAccommodations = randomAccommodations,
                 Locations = locations
             };
+
+            ImageHandler imageHandler = new ImageHandler();
+            var thumbnailOfAccommodations = new Dictionary<Accommodation, List<ImageInfo>>();
+            foreach (var accom in viewModel.RandomAccommodations)
+            {
+                var newThumb = imageHandler.GetDictionaryForImagesOfAccommodations(accom);
+                thumbnailOfAccommodations.Add(newThumb.Keys.FirstOrDefault(), newThumb.Values.FirstOrDefault());
+            }
+            viewModel.ThumbnailOfAccommodations = thumbnailOfAccommodations;
             return View(viewModel);
         }
 
@@ -60,8 +70,7 @@ namespace TravelExperience.MVC.Controllers
 
             return randomAccommodations;
         }
-
-        // DTO
+      
         public ActionResult Search(MainPageViewModel viewModel)
         {
             var searchResultsViewModel = new SearchResultsFormViewModel();
@@ -69,6 +78,13 @@ namespace TravelExperience.MVC.Controllers
             searchResultsViewModel.BookingEndDate = viewModel.BookingEndDate;
             searchResultsViewModel.Guests = viewModel.Guests;
             searchResultsViewModel.LocationString = viewModel.LocationString; // maybe this needs changing.. but for now it may work
+
+            //ImageHandler imageHandler = new ImageHandler();
+
+            //foreach (var accom in searchResultsViewModel.Accommodations)
+            //{
+            //    searchResultsViewModel.ThumbnailOfAccommodations = imageHandler.GetDictionaryForImagesOfAccommodations(accom);
+            //}
 
             return RedirectToAction("Search", "SearchResults", searchResultsViewModel);
         }

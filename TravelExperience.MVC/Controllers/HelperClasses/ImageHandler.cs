@@ -4,6 +4,7 @@ using System.Collections;
 using System.Linq;
 using System.Data.Entity;
 using System.Collections.Generic;
+using TravelExperience.DataAccess.Core.Entities;
 
 namespace TravelExperience.MVC.Controllers.HelperClasses
 {
@@ -28,6 +29,19 @@ namespace TravelExperience.MVC.Controllers.HelperClasses
                 images.Add(new ImageInfo { ImageBase64 = Convert.ToBase64String(array), ImageType = img.Extension.TrimStart('.') });
             }
             return images;
+        }
+        public Dictionary<Accommodation, List<ImageInfo>> GetDictionaryForImagesOfAccommodations(Accommodation accom)
+        {
+
+            var path = @"C:\TravelExperience\Data\Images\Accommodations\" + accom.AccommodationID.ToString();
+
+            var imageHandler = new ImageHandler();
+            var images = imageHandler.GetImagesForAccommodationFromStorage(path);
+
+            var thumbnailOfAccommodations = new Dictionary<Accommodation, List<ImageInfo>>();
+            thumbnailOfAccommodations.Add(accom, images);
+
+            return thumbnailOfAccommodations;
         }
     }
 }

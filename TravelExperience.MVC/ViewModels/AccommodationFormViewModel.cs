@@ -22,6 +22,10 @@ namespace TravelExperience.MVC.ViewModels
 
         [Required]
         public Location Location { get; set; }
+
+        public decimal latitude { get; set; }
+        public decimal longitude { get; set; }
+
         [Required]
         public HttpPostedFileBase Thumbnail { get; set; }
         
@@ -39,6 +43,6 @@ namespace TravelExperience.MVC.ViewModels
         public List<Utility> Utilities { get; set; }
         public List<Location> Locations { get; set; }
         public List<string> ErrorMessage { get; internal set; }
-
+        public SearchResultsFormViewModel SearchResultsFVM { get; set; }
     }
 }
