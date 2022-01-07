@@ -53,7 +53,10 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public Location GetById(int? id)
         {
-            throw new NotImplementedException();
+            if (id == null)
+                throw new ArgumentException(nameof(id));
+
+            return _context.Locations.Find(id);
         }
 
         public void Dispose()
