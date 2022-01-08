@@ -16,6 +16,8 @@ namespace TravelExperience.DataAccess.Persistence
         public DbSet<Image> Images { get; set; }
         public DbSet<Utility> Utilities { get; set; }
         public DbSet<Location> Locations { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Wallet> Wallets { get; set; }
 
         public static AppDBContext Create()
         {

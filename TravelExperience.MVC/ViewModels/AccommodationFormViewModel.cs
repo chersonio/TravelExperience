@@ -25,6 +25,9 @@ namespace TravelExperience.MVC.ViewModels
         public float longitude { get; set; }
         [Required]
         public HttpPostedFileBase Thumbnail { get; set; }
+
+        public IDictionary<Accommodation, List<ImageInfo>> ThumbnailOfAccommodations { get; set; }
+
         // Utilities 
         public class UtilityForCheckbox // needed for checkbox
         {
@@ -39,5 +42,9 @@ namespace TravelExperience.MVC.ViewModels
         public List<Location> Locations { get; set; }
         public List<string> ErrorMessageTop { get; internal set; }
         public ErrorMSG ErrorMsgForFields { get; set; }
+
+        public List<SelectListItem> GuestOptions { get; set; } = new List<SelectListItem> { 
+            new SelectListItem { Disabled = false, Selected = true, Text = "1", Value = "1" }
+        };
     }
 }
