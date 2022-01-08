@@ -36,7 +36,7 @@ namespace TravelExperience.MVC.Controllers
             var thumbnailOfAccommodations = new Dictionary<Accommodation, List<ImageInfo>>();
             foreach (var accom in viewModel.RandomAccommodations)
             {
-                var newThumb = imageHandler.GetDictionaryForImagesOfAccommodations(accom);
+                var newThumb = imageHandler.GetDictionaryForImagesOfAccommodations(accom, new System.Drawing.Size { Width = 300, Height = 250 });
                 thumbnailOfAccommodations.Add(newThumb.Keys.FirstOrDefault(), newThumb.Values.FirstOrDefault());
             }
             viewModel.ThumbnailOfAccommodations = thumbnailOfAccommodations;
@@ -71,7 +71,7 @@ namespace TravelExperience.MVC.Controllers
 
             return randomAccommodations;
         }
-      
+
         public ActionResult Search(MainPageViewModel viewModel)
         {
             var searchResultsViewModel = new SearchResultsFormViewModel();

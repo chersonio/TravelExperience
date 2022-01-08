@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Collections.Generic;
 using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.MVC.ViewModels;
+using System.Drawing;
 
 namespace TravelExperience.MVC.Controllers.HelperClasses
 {
@@ -51,7 +52,7 @@ namespace TravelExperience.MVC.Controllers.HelperClasses
         }
         public ImageInfo ImageInfo { get; set; }
 
-        public List<ImageInfo> GetImagesForAccommodationFromStorage(string path)
+        public static List<ImageInfo> GetImagesForAccommodationFromStorage(string path, Size? imageSize = null)
         {
             DirectoryInfo absoluteFile = new DirectoryInfo(path);
 
@@ -64,18 +65,21 @@ namespace TravelExperience.MVC.Controllers.HelperClasses
                 byte[] array = new byte[size];
                 fs.Read(array, 0, array.Length);
                 fs.Close();
-                
-                images.Add(new ImageInfo { ImageBase64 = Convert.ToBase64String(array), ImageType = img.Extension.TrimStart('.') });
+
+                images.Add(new ImageInfo { 
+                    ImageBase64 = Convert.ToBase64String(array), 
+                    ImageType = img.Extension.TrimStart('.'), 
+                    ImageSize = imageSize ?? new Size { Height = 250, Width = 300 } 
+                });
             }
             return images;
         }
-        public Dictionary<Accommodation, List<ImageInfo>> GetDictionaryForImagesOfAccommodations(Accommodation accom)
-        {
 
+        public Dictionary<Accommodation, List<ImageInfo>> GetDictionaryForImagesOfAccommodations(Accommodation accom, Size? imageSize = null)
+        {
             var path = @"C:\TravelExperience\Data\Images\Accommodations\" + accom.AccommodationID.ToString();
 
-            var imageHandler = new ImageHandler();
-            var images = imageHandler.GetImagesForAccommodationFromStorage(path);
+            var images = ImageHandler.GetImagesForAccommodationFromStorage(path, imageSize);
 
             var thumbnailOfAccommodations = new Dictionary<Accommodation, List<ImageInfo>>();
             thumbnailOfAccommodations.Add(accom, images);

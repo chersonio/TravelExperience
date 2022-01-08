@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -36,7 +37,7 @@ namespace TravelExperience.MVC.Controllers
             var thumbnailOfAccommodations = new Dictionary<Accommodation, List<ImageInfo>>();
             foreach (var accom in viewModel.Accommodations)
             {
-                var newThumb = imageHandler.GetDictionaryForImagesOfAccommodations(accom);
+                var newThumb = imageHandler.GetDictionaryForImagesOfAccommodations(accom, new Size { Width = 300, Height = 250 });
                 thumbnailOfAccommodations.Add(newThumb.Keys.FirstOrDefault(), newThumb.Values.FirstOrDefault());
             }
             viewModel.ThumbnailOfAccommodations = thumbnailOfAccommodations;

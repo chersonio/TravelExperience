@@ -8,6 +8,7 @@ using TravelExperience.DataAccess.Core.Interfaces;
 using TravelExperience.MVC.ViewModels;
 using System.IO;
 using TravelExperience.MVC.Controllers.HelperClasses;
+using System.Drawing;
 
 namespace TravelExperience.MVC.Controllers
 {
@@ -16,6 +17,7 @@ namespace TravelExperience.MVC.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
 
+        const string ACCOMMODATIONS_IMAGE_PATH = "C:\\TravelExperience\\Data\\Images\\Accommodations\\";
         public AccommodationController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -160,7 +162,7 @@ namespace TravelExperience.MVC.Controllers
             // Images Validation: No changes were made? then return to the initial Accommodation view.
             picFileName = Path.GetFileName(viewModel.Thumbnail.FileName);
 
-            path = "C:\\TravelExperience\\Data\\Images\\Accommodations\\" + _unitOfWork.Accommodations.GetMax().ToString();
+            path = ACCOMMODATIONS_IMAGE_PATH + _unitOfWork.Accommodations.GetMax().ToString();
 
             // Save to fileName to viewModel and it will fetch it after exiting method.
             viewModel.Accommodation.Thumbnail = picFileName;
@@ -181,5 +183,45 @@ namespace TravelExperience.MVC.Controllers
             // Empty string means all went well.
             return "";
         }
+
+        /// <summary>
+        /// Load an image <br/>
+        /// Implement Button to go to payment page<br/>
+        /// Add a calculator of how many nights, how many people * price<br/>
+        /// Add a link to Hosts Name to check a profile maybe (or not!!)<br/>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Details(int? id)
+        {
+            var viewModel = new AccommodationFormViewModel();
+
+            viewModel.Accommodation = _unitOfWork.Accommodations.GetById(id);
+            viewModel.Utilities = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == id).ToList();
+
+            var path = ACCOMMODATIONS_IMAGE_PATH + viewModel.Accommodation.AccommodationID.ToString();
+
+            var images = ImageHandler.GetImagesForAccommodationFromStorage(path, new Size { Width = 500, Height = 320 });
+
+            viewModel.ThumbnailOfAccommodations = new Dictionary<Accommodation, List<ImageInfo>>() {
+                { viewModel.Accommodation, images}
+            };
+
+            viewModel.GuestOptions.Clear();
+
+            viewModel.GuestOptions
+                .AddRange(Enumerable.Range(1, viewModel.Accommodation.MaxCapacity)
+                .Select(x => new SelectListItem()
+                {
+                    Disabled = false,
+                    Selected = x == 1,
+                    Text = x.ToString(),
+                    Value = x.ToString()
+                }));
+
+            return View(viewModel);
+        }
+
     }
 }

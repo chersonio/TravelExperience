@@ -45,9 +45,11 @@ namespace TravelExperience.DataAccess.Core.Entities
         [Required]
         public int PostalCode { get; set; }
 
+        [Required]
+        public Guid WalletID { get; set; }
+
         [NotMapped]
         public ICollection<Booking> Bookings { get; set; }
-
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
