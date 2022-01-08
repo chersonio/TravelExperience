@@ -17,6 +17,7 @@ namespace TravelExperience.MVC.Controllers
         {
             _unitOfWork = unitOfWork;
         }
+
         public ActionResult Index()
         {
             List<Accommodation> randomAccommodations = GetRandomAccommodation(6); // declare number of buttons

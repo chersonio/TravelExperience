@@ -5,11 +5,50 @@ using System.Linq;
 using System.Data.Entity;
 using System.Collections.Generic;
 using TravelExperience.DataAccess.Core.Entities;
+using TravelExperience.MVC.ViewModels;
 
 namespace TravelExperience.MVC.Controllers.HelperClasses
 {
     public class ImageHandler
     {
+        /// <summary>
+        /// Checks .thumbnail from input viewModel, <br/>
+        /// Returns an error message if something went wrong, else null (For now)
+        /// </summary>
+        public string ValidateImageExtentionType(AccommodationFormViewModel viewModel)
+        {
+            if (viewModel.Thumbnail == null)
+            {
+                return "Error - Please upload a valid image file type with the correct extention";
+            }
+            // Need to change to ONLY Image filetypes and extentions.
+            List<string> imageContentTypes = new List<string>
+            {
+                "image/jpg",
+                "image/jpeg",
+                "image/pjpeg",
+                "image/gif",
+                "image/x-png",
+                "image/png"
+            };
+            List<string> imageExtentions = new List<string>
+            {
+                ".jpg",
+                ".png",
+                ".gif",
+                ".jpeg"
+            };
+
+            // Check the filetypes to be only image else it will return to the initial Accommodation view
+            if (!imageContentTypes.Any(x => string.Equals(viewModel.Thumbnail.ContentType, x, StringComparison.OrdinalIgnoreCase)) &&
+                !imageExtentions.Any(y => string.Equals(Path.GetExtension(viewModel.Thumbnail.FileName), y, StringComparison.OrdinalIgnoreCase)))
+            {
+                return "Error - Please upload a valid image file type with the correct extention"; // go again to ViewModel
+            }
+
+            // Empty string means all went well.
+            return "";
+        }
         public ImageInfo ImageInfo { get; set; }
 
         public List<ImageInfo> GetImagesForAccommodationFromStorage(string path)
