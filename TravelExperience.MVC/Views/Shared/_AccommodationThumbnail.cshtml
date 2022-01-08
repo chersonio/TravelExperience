@@ -2,12 +2,13 @@
 
 <div>
     @{ var firstImageAsThumbnail = Model; }
-    @if (firstImageAsThumbnail != null)
+    @if (Model != null)
     {
-        <img src="data:image/@firstImageAsThumbnail.ImageType;base64, @firstImageAsThumbnail.ImageBase64" alt="Image" style=" border-radius: 15px; width: 250px; height:160px; " />
+        <img src="data:image/@firstImageAsThumbnail.ImageType;base64, @firstImageAsThumbnail.ImageBase64" alt="Image" style="border-radius:15px; width: 300px; height: 200px;" />
     }
+    @*style=" border-radius: 15px; width: 250px; height:160px; "*@
     else
     {
-        <img src="data:image/png;base64, image-not-found.png" alt="Image" style=" border-radius: 15px; width: 250px; height:160px; " />
+        <img src="data:image/png;base64, image-not-found.png" alt="Image" style="border-radius:15px; width: 300px; height: 200px;" />
     }
 </div>

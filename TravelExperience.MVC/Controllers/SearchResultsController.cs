@@ -11,6 +11,7 @@ using System.Collections.Generic;
 
 namespace TravelExperience.MVC.Controllers
 {
+    [AllowAnonymous]
     public class SearchResultsController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -26,7 +27,6 @@ namespace TravelExperience.MVC.Controllers
 
             if (searchResultsFormViewModel.Accommodations == null)
             {
-                //viewModel.Accommodations = searchResultsFormViewModel.Accommodations.ToList();
                 viewModel.Accommodations = _unitOfWork.Accommodations.GetAll().ToList();
             }
 
@@ -53,11 +53,6 @@ namespace TravelExperience.MVC.Controllers
             {
                 var path = @"C:\TravelExperience\Data\Images\Accommodations\" + accom.AccommodationID.ToString();
 
-                //var picFileName = $"{accom.Thumbnail}";
-
-                //var completeFilePath = Path.Combine(path, picFileName);
-
-                //accom.Thumbnail = completeFilePath;
                 var imageHandler = new ImageHandler();
                 var images = imageHandler.GetImagesForAccommodationFromStorage(path);
 

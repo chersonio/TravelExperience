@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using TravelExperience.MVC.Controllers.HelperClasses;
 
 namespace TravelExperience.MVC
 {

@@ -7,13 +7,7 @@ using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DataAccess.Core.Interfaces;
 using TravelExperience.MVC.ViewModels;
 using System.IO;
-
-using GoogleMaps.LocationServices;
-using RestSharp;
-using System.Web.Script.Serialization;
-using Google.Type;
-using System.Net;
-
+using TravelExperience.MVC.Controllers.HelperClasses;
 
 namespace TravelExperience.MVC.Controllers
 {
@@ -29,6 +23,7 @@ namespace TravelExperience.MVC.Controllers
 
         // GET: create new accommodation
         [HttpGet]
+        [HandleError]
         public ActionResult New()
         {
             var allLocationsOfAccommodations = _unitOfWork.Accommodations.GetAll().Select(x => x.Location);
@@ -48,7 +43,8 @@ namespace TravelExperience.MVC.Controllers
             }
 
             viewModel.Locations = _unitOfWork.Locations.GetAll().ToList();
-            viewModel.ErrorMessage = new List<string>();
+            viewModel.ErrorMessageTop = new List<string>();
+            viewModel.ErrorMsgForFields = new ErrorHandler.ErrorMSG();
             return View(viewModel);
         }
 
@@ -60,15 +56,15 @@ namespace TravelExperience.MVC.Controllers
 
             var host = _unitOfWork.Users.GetById(userId);
 
-            // to string tha mporouse na einai list kai an einai adeia tote pernaei diaforetika epistrefei View(viewModel)
-            // me ti lista apo string kokkinismeni sti korufi tou page
+            var errorHandler = new ErrorHandler();
+            viewModel.ErrorMessageTop = new List<string>();
+            viewModel.ErrorMsgForFields = new ErrorHandler.ErrorMSG();
 
-            List<string> errorMessage = new List<string>();
-            ValidateNewAccommodationsInput(viewModel, errorMessage);
+            errorHandler.ValidateNewAccommodationsInput(viewModel);
 
-            if (errorMessage.Any())
+            if (viewModel.ErrorMessageTop.Any())
             {
-                viewModel.ErrorMessage = errorMessage;
+                viewModel.ErrorMessageTop = viewModel.ErrorMessageTop;
                 return View(viewModel);
             }
 
@@ -79,6 +75,8 @@ namespace TravelExperience.MVC.Controllers
                 City = viewModel.Accommodation.Location.City,
                 Country = viewModel.Accommodation.Location.Country,
                 PostalCode = viewModel.Accommodation.Location.PostalCode,
+                Xcoord = viewModel.longitude,
+                Ycoord = viewModel.latitude
             };
 
             var accommodation = new Accommodation()
@@ -115,7 +113,8 @@ namespace TravelExperience.MVC.Controllers
             string imageUploadErrorMessage = "";
             do
             {
-                imageUploadErrorMessage = ValidateImageExtentionType(viewModel);
+                var imageHandler = new ImageHandler();
+                imageUploadErrorMessage = imageHandler.ValidateImageExtentionType(viewModel);
             } while (!string.IsNullOrEmpty(imageUploadErrorMessage));
 
             accommodation.Thumbnail = viewModel.Thumbnail.FileName;
@@ -143,26 +142,6 @@ namespace TravelExperience.MVC.Controllers
 
             // TODO: this needs to redirect to the area of the hosts accommodations (Dashboard)
             return RedirectToAction("Index", "Home");
-        }
-
-        /// <summary>
-        /// Validates the information given. If something is wrong it returns a string with what is needed
-        /// </summary>
-        private static void ValidateNewAccommodationsInput(AccommodationFormViewModel viewModel, List<string> errorMessage)
-        {
-            if (viewModel.Accommodation.Location == null || viewModel.Accommodation.Location.City == null || viewModel.Accommodation.Location.Address == null)
-                errorMessage.Add("City and Address are required");
-            if (viewModel.Accommodation.MaxCapacity <= 0)
-                errorMessage.Add("Number of guests 1 or more");
-            if (viewModel.Booking.BookingStartDate == System.DateTime.MinValue || 
-                viewModel.Booking.BookingEndDate == System.DateTime.MinValue || 
-                viewModel.Booking.BookingStartDate < System.DateTime.Now ||
-                viewModel.Booking.BookingEndDate <= System.DateTime.Now)
-                errorMessage.Add("Valid start or end dates are required");
-            if (viewModel.Accommodation.Title == null || viewModel.Accommodation.Description == null)
-                errorMessage.Add("Title and Description are required");
-            if (viewModel.Accommodation.PricePerNight <= 0)
-                errorMessage.Add("Price per night Required");
         }
 
         /// <summary>
@@ -202,53 +181,5 @@ namespace TravelExperience.MVC.Controllers
             // Empty string means all went well.
             return "";
         }
-        /// <summary>
-        /// Checks .thumbnail from input viewModel, <br/>
-        /// Returns an error message if something went wrong, else null (For now)
-        /// </summary>
-        private string ValidateImageExtentionType(AccommodationFormViewModel viewModel)
-        {
-            if (viewModel.Thumbnail == null)
-            {
-                return "Error - Please upload a valid image file type with the correct extention";
-            }
-            // Need to change to ONLY Image filetypes and extentions.
-            List<string> imageContentTypes = new List<string>
-            {
-                "image/jpg",
-                "image/jpeg",
-                "image/pjpeg",
-                "image/gif",
-                "image/x-png",
-                "image/png"
-            };
-            List<string> imageExtentions = new List<string>
-            {
-                ".jpg",
-                ".png",
-                ".gif",
-                ".jpeg"
-            };
-
-            // Check the filetypes to be only image else it will return to the initial Accommodation view
-            if (!imageContentTypes.Any(x => string.Equals(viewModel.Thumbnail.ContentType, x, StringComparison.OrdinalIgnoreCase)) &&
-                !imageExtentions.Any(y => string.Equals(Path.GetExtension(viewModel.Thumbnail.FileName), y, StringComparison.OrdinalIgnoreCase)))
-            {
-                return "Error - Please upload a valid image file type with the correct extention"; // go again to ViewModel
-            }
-
-            // Empty string means all went well.
-            return "";
-        }
-
-        //[HttpGet]
-        //public ActionResult Location()
-        //{
-        //    var viewModel = new AccommodationFormViewModel();
-        //    viewModel.Utilities = _unitOfWork.Utilities.GetAll().ToList();
-        //    return View(viewModel);
-        //}
-
-    
     }
 }

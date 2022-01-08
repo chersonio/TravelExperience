@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Linq;
 using System;
 using TravelExperience.MVC.Controllers.HelperClasses;
+using static TravelExperience.MVC.Controllers.HelperClasses.ErrorHandler;
 
 namespace TravelExperience.MVC.ViewModels
 {
@@ -15,17 +16,15 @@ namespace TravelExperience.MVC.ViewModels
     {
         [Required]
         public Booking Booking { get; set; }
-
         [Required]
         public Accommodation Accommodation { get; set; }
         public ApplicationUser User { get; set; }
-
         [Required]
         public Location Location { get; set; }
+        public float latitude { get; set; }
+        public float longitude { get; set; }
         [Required]
         public HttpPostedFileBase Thumbnail { get; set; }
-        
-
         // Utilities 
         public class UtilityForCheckbox // needed for checkbox
         {
@@ -38,7 +37,7 @@ namespace TravelExperience.MVC.ViewModels
         [Required]
         public List<Utility> Utilities { get; set; }
         public List<Location> Locations { get; set; }
-        public List<string> ErrorMessage { get; internal set; }
-
+        public List<string> ErrorMessageTop { get; internal set; }
+        public ErrorMSG ErrorMsgForFields { get; set; }
     }
 }

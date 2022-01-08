@@ -6,24 +6,28 @@
     {
         var accomLink = Model.RandomAccommodations.ToArray()[i];
 
-        <div class="col-md-4 accom-thumb-link" style="background-image: url(@accomLink.Thumbnail)">
+        @*Loads the given thumbnailAccommodation ImageInfo. Then it loads as a partial view the aquired image.*@
+        var firstThumb = @Model.ThumbnailOfAccommodations[accomLink].FirstOrDefault();
+     
 
-            <a href="">
-                <div class=" black-box-mask">
-                    <div style="height:88%">
-                        <h2>
-                            @accomLink.Location.City.ToString()
-                        </h2>
-                    </div>
-                    <div>
-                        <h2>
-                            @{ var booking = Model.Bookings.FirstOrDefault(x => x.AccommodationID == accomLink.AccommodationID); }
-                            @*@booking.BookingStartDate.ToString("MMM dd")-@booking.BookingEndDate.ToString("dd, yy")*@
-                        </h2>
-                    </div>
+    <div class="col-md-4 accom-thumb-link" style="background-image: url(@accomLink.Thumbnail)">
+        @Html.Partial("_AccommodationThumbnail", @firstThumb);
+        <a href="">
+            <div class=" black-box-mask">
+                <div style="height:88%">
+                    <h2>
+                        @accomLink.Location.City.ToString()
+                    </h2>
                 </div>
-            </a>
-        </div>
+                <div>
+                    <h2>
+                        @{ var booking = Model.Bookings.FirstOrDefault(x => x.AccommodationID == accomLink.AccommodationID); }
+                        @*@booking.BookingStartDate.ToString("MMM dd")-@booking.BookingEndDate.ToString("dd, yy")*@
+                    </h2>
+                </div>
+            </div>
+        </a>
+    </div>
     }
 </div>
 
@@ -62,7 +66,7 @@
     }
 
     .black-box-mask:hover {
-        opacity: 1.0;
+        opacity: 0.6;
     }
 </style>
 
