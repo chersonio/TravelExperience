@@ -28,12 +28,12 @@ namespace TravelExperience.DataAccess.Persistence.Configurations
             HasRequired<Location>(l => l.Location)
                 .WithMany(a => a.Accommodations)
                 .HasForeignKey<int>(a => a.LocationID)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             HasMany<Utility>(u => u.Utilities)
                 .WithRequired(u => u.Accommodation)
                 .HasForeignKey(u => u.AccommodationID)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
         }
     }
 }
