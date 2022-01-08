@@ -385,6 +385,7 @@
     <Compile Include="App_Start\MappingProfile.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\HelperClasses\ErrorHandler.cs" />
     <Compile Include="Controllers\HelperClasses\ImageHandler.cs" />
     <Compile Include="Controllers\HelperClasses\ImageInfo.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -454,7 +455,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -507,9 +507,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Accommodations\" />
-    <Folder Include="Views\Default\" />
-    <Folder Include="Views\Location\" />
+    <Folder Include="Views\CustomError\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
