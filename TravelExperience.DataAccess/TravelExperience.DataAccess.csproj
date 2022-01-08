@@ -195,6 +195,10 @@
     <Compile Include="Persistence\Migrations\202201021643546_Initial.designer.cs">
       <DependentUpon>202201021643546_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Persistence\Migrations\202201081141300_Initial1.cs" />
+    <Compile Include="Persistence\Migrations\202201081141300_Initial1.designer.cs">
+      <DependentUpon>202201081141300_Initial1.cs</DependentUpon>
+    </Compile>
     <!--// CHERSO
     <Compile Include="Persistence\Configurations\UtilitiesConfiguration.cs" />
     <Compile Include="Persistence\Migrations\202112111012424_Initial.cs" />
@@ -238,6 +242,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Persistence\Migrations\202201021643546_Initial.resx">
       <DependentUpon>202201021643546_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\202201081141300_Initial1.resx">
+      <DependentUpon>202201081141300_Initial1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

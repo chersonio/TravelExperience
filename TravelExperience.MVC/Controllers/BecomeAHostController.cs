@@ -184,14 +184,14 @@ namespace TravelExperience.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(AccommodationFormViewModel viewModel)
         {
-            if (!ModelState.IsValid)
-            {
-                //var vModel = new AccommodationFormViewModel()
-                //{
-                //    Accommodation = viewModel.Accommodation
-                //};
-                return View("Edit", viewModel);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    //var vModel = new AccommodationFormViewModel()
+            //    //{
+            //    //    Accommodation = viewModel.Accommodation
+            //    //};
+            //    return View("Edit", viewModel);
+            //}
 
             var accommodation = _unitOfWork.Accommodations.GetById(viewModel.Accommodation.AccommodationID);
 
