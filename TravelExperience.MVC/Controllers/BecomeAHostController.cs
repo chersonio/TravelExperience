@@ -115,19 +115,19 @@ namespace TravelExperience.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
+
             var viewModel = new AccommodationFormViewModel();
             viewModel.Accommodation = _unitOfWork.Accommodations.GetAll().FirstOrDefault(a => a.AccommodationID == id);
             viewModel.Utilities = new List<Utility>();
             var utilities = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == id).ToList();
-            
+
             viewModel.Utilities = utilities;
 
             if (viewModel.Accommodation == null)
             {
                 return HttpNotFound();
             }
-            return View("Details",viewModel);
+            return View("Details", viewModel);
         }
 
         //GET: Accommodations/Edit
@@ -147,29 +147,23 @@ namespace TravelExperience.MVC.Controllers
             var utilities = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == id).ToList();
 
             viewModel.Utilities = utilities;
-            
 
             foreach (UtilitiesEnum utilEnum in Enum.GetValues(typeof(UtilitiesEnum)))
             {
-                foreach(var u in utilities)
+                if (utilities.Select(u => u.UtilityEnum).Contains(utilEnum))
                 {
-                    if (u.UtilityEnum == utilEnum)
-                    {
-                        viewModel.UtilitiesForCheckboxes.Add(new AccommodationFormViewModel.UtilityForCheckbox { UtilityName = utilEnum.ToString(), UtilitiesEnum = utilEnum, IsChecked = true });
-                    }
+                    viewModel.UtilitiesForCheckboxes.Add(new AccommodationFormViewModel.UtilityForCheckbox { UtilityName = utilEnum.ToString(), UtilitiesEnum = utilEnum, IsChecked = true });
                 }
-            }
-
-            foreach (UtilitiesEnum utilEnum in Enum.GetValues(typeof(UtilitiesEnum)))
-            {
-                
-                viewModel.UtilitiesForCheckboxes.Add(new AccommodationFormViewModel.UtilityForCheckbox { UtilityName = utilEnum.ToString(), UtilitiesEnum = utilEnum, IsChecked = false });
+                else
+                {
+                    viewModel.UtilitiesForCheckboxes.Add(new AccommodationFormViewModel.UtilityForCheckbox { UtilityName = utilEnum.ToString(), UtilitiesEnum = utilEnum, IsChecked = false });
+                }
             }
 
             //editing locations
             var locationID = _unitOfWork.Accommodations.GetById(id).LocationID;
             viewModel.Location = _unitOfWork.Locations.GetById(locationID);
-            
+
 
             if (accommodation == null)
             {
@@ -184,14 +178,14 @@ namespace TravelExperience.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(AccommodationFormViewModel viewModel)
         {
-            if (!ModelState.IsValid)
-            {
-                //var vModel = new AccommodationFormViewModel()
-                //{
-                //    Accommodation = viewModel.Accommodation
-                //};
-                return View("Edit", viewModel);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    //var vModel = new AccommodationFormViewModel()
+            //    //{
+            //    //    Accommodation = viewModel.Accommodation
+            //    //};
+            //    return View("Edit", viewModel);
+            //}
 
             var accommodation = _unitOfWork.Accommodations.GetById(viewModel.Accommodation.AccommodationID);
 
@@ -209,7 +203,7 @@ namespace TravelExperience.MVC.Controllers
             accommodation.PricePerNight = viewModel.Accommodation.PricePerNight;
             //accommodation.Thumbnail = viewModel.Accommodation.Thumbnail;
 
-            
+
             var locationID = _unitOfWork.Accommodations.GetById(accommodation.AccommodationID).LocationID;
             var location = _unitOfWork.Locations.GetById(locationID);
 
@@ -233,7 +227,7 @@ namespace TravelExperience.MVC.Controllers
             {
                 _unitOfWork.Utilities.Delete(item.UtilityID);
             }
-            
+
             accommodation.Utilities = utilities;
 
 
