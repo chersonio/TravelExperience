@@ -105,7 +105,7 @@ namespace TravelExperience.MVC.Controllers
             var accommodationsOfHost = _unitOfWork.Accommodations.GetAllForHostID(userID).ToList();
 
             viewModel.Accommodations = accommodationsOfHost;
-            return View("HostAccommodations", viewModel);
+            return View("_DashAccommodations", viewModel);
         }
 
         //GET: Accommodations/Details
@@ -127,7 +127,7 @@ namespace TravelExperience.MVC.Controllers
             {
                 return HttpNotFound();
             }
-            return View(viewModel);
+            return View("Details",viewModel);
         }
 
         //GET: Accommodations/Edit
@@ -166,11 +166,10 @@ namespace TravelExperience.MVC.Controllers
                 viewModel.UtilitiesForCheckboxes.Add(new AccommodationFormViewModel.UtilityForCheckbox { UtilityName = utilEnum.ToString(), UtilitiesEnum = utilEnum, IsChecked = false });
             }
 
-            //var location = _unitOfWork.Locations.GetAll().Where(l => l.AccommodationID == id).ToList();
+            //editing locations
             var locationID = _unitOfWork.Accommodations.GetById(id).LocationID;
             viewModel.Location = _unitOfWork.Locations.GetById(locationID);
             
-            //viewModel.Accommodation.Location = location;
 
             if (accommodation == null)
             {
@@ -185,9 +184,13 @@ namespace TravelExperience.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(AccommodationFormViewModel viewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                //something
+                //var vModel = new AccommodationFormViewModel()
+                //{
+                //    Accommodation = viewModel.Accommodation
+                //};
+                return View("Edit", viewModel);
             }
 
             var accommodation = _unitOfWork.Accommodations.GetById(viewModel.Accommodation.AccommodationID);
@@ -204,7 +207,6 @@ namespace TravelExperience.MVC.Controllers
             accommodation.MaxCapacity = viewModel.Accommodation.MaxCapacity;
             accommodation.Floor = viewModel.Accommodation.Floor;
             accommodation.PricePerNight = viewModel.Accommodation.PricePerNight;
-            //accommodation.Utilities = viewModel.Accommodation.Utilities;
             //accommodation.Thumbnail = viewModel.Accommodation.Thumbnail;
 
             
@@ -217,36 +219,68 @@ namespace TravelExperience.MVC.Controllers
             location.Country = viewModel.Location.Country;
             location.PostalCode = viewModel.Location.PostalCode;
 
-            //var utilitiesInDB = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == viewModel.Accommodation.AccommodationID).ToList();
+            var utilitiesInDB = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == viewModel.Accommodation.AccommodationID).ToList();
+            var utilities = new List<Utility>();
+            foreach (var option in viewModel.UtilitiesForCheckboxes)
+            {
+                if (option.IsChecked)
+                {
+                    utilities.Add(new Utility { Accommodation = accommodation, UtilityEnum = option.UtilitiesEnum, IsSelected = true }); // to isSelected de xreiazetai sti vasi kathws logika tha mpainoun mono osa exoun tsekaristei.
+                }
+            }
 
-            //var utilities = new List<Utility>();
-            //foreach (var option in viewModel.UtilitiesForCheckboxes)
-            //{
-            //    if (option.IsChecked)
-            //    {
-            //        utilities.Add(new Utility { Accommodation = accommodation, UtilityEnum = option.UtilitiesEnum, IsSelected = true }); // to isSelected de xreiazetai sti vasi kathws logika tha mpainoun mono osa exoun tsekaristei.
-            //    }
-            //}
-
-            //var utilNotInDb = utilities.Except(utilitiesInDB).ToList();
-
-            //accommodation.Utilities = utilNotInDb;
-            //var utilNotSelected = utilitiesInDB.Except(utilities).ToList();
-            //foreach(var a in utilNotSelected)
-            //{
-            //    accommodation.Utilities.Remove(a);
-            //}
+            foreach (var item in utilitiesInDB)
+            {
+                _unitOfWork.Utilities.Delete(item.UtilityID);
+            }
             
+            accommodation.Utilities = utilities;
+
+
 
             _unitOfWork.Complete();
 
             return RedirectToAction("HostAccommodations", "BecomeAHost");
         }
 
+        //GET: Accommodations/Delete
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
+            var accommodation = _unitOfWork.Accommodations.GetById(id);
+            if (accommodation == null)
+            {
+                return HttpNotFound();
+            }
+            return View(accommodation);
+        }
 
+        //POST: Accommodations/Delete
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            var accommodation = _unitOfWork.Accommodations.GetById(id);
+            var accommodationID = _unitOfWork.Accommodations.GetById(id).AccommodationID;
+            //var locationID = _unitOfWork.Accommodations.GetById(accommodationID).LocationID;
 
+            var utilities = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == accommodation.AccommodationID).ToList();
 
+            foreach (var item in utilities)
+            {
+                _unitOfWork.Utilities.Delete(item.UtilityID);
+            }
+
+            //_unitOfWork.Locations.Delete(locationID);
+            _unitOfWork.Accommodations.Delete(accommodationID);
+            _unitOfWork.Complete();
+
+            return RedirectToAction("HostAccommodations", "BecomeAHost");
+        }
 
 
         /// <summary>

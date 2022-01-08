@@ -38,9 +38,9 @@
                     <td>
                         @Html.DisplayFor(m => item.Location.FullAddress)
                     </td>
-                    <td><a onclick="location.href='@Url.Action("action","controller")'" class="btn btn-lg btn-info">Details</a></td>
-                    <td><a onclick="location.href='@Url.Action("action","controller")'" class="btn btn-lg btn-warning">Edit</a></td>
-                    <td><a onclick="location.href='@Url.Action("action","controller")'" class="btn btn-lg btn-danger">Delete</a></td>
+                    <td><a onclick="location.href='@Url.Action("details","BecomeAHost", new { id = item.AccommodationID })'" class="btn btn-lg btn-info">Details</a></td>
+                    <td><a onclick="location.href='@Url.Action("edit","BecomeAHost", new { id = item.AccommodationID })'" class="btn btn-lg btn-warning">Edit</a></td>
+                    <td><a onclick="location.href='@Url.Action("delete","BecomeAHost", new { id = item.AccommodationID })'" class="btn btn-lg btn-danger">Delete</a></td>
                 </tr>
                 }
             </tbody>
