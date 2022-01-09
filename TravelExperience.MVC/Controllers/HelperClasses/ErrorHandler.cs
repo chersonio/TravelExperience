@@ -11,7 +11,7 @@ namespace TravelExperience.MVC.Controllers.HelperClasses
         /// <summary>
         /// Object to store error messages for Accommodations
         /// </summary>
-        public class ErrorMSG
+        public class AccommodationErrorMSG
         {
             public string City { get; set; }
             public string Address { get; set; }

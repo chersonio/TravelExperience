@@ -1,0 +1,97 @@
+﻿@model TravelExperience.MVC.ViewModels.PaymentViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@using (Html.BeginForm("ValidateNewPayment", "Payment", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container" style="display: flex; grid-template-columns: 1fr 1fr; grid-gap: 10px; ">
+
+        <h2 class="col-md-4">Finish Booking</h2>
+        <div class="col-md-8">
+            <div class="form-horizontal">
+                <hr />
+                <h4 class="form-group">Booking details</h4>
+                <hr />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AccommodationTitle, "Title", htmlAttributes: new { @class = "control-label" })
+                    @Html.DisplayFor(model => model.AccommodationTitle)
+                    @Html.HiddenFor(model => model.AccommodationID)
+                </div>
+                <div class="form-group">
+                    <strong>@Html.DisplayNameFor(model => model.BookingStartDate)</strong>
+                    @Html.DisplayFor(model => model.BookingStartDate)
+                    @Html.Hidden("BookingStartDate", Model.BookingStartDate)
+                </div>
+                <div class="form-group">
+                    <strong>@Html.DisplayNameFor(model => model.BookingEndDate)</strong>
+                    @Html.DisplayFor(model => model.BookingEndDate)
+                    @Html.Hidden("BookingEndDate", Model.BookingEndDate)
+                </div>
+                <div class="form-group">
+                    <strong> @Html.DisplayName("Number of nights")</strong>
+                    @{ var totalDays = (DateTime.Parse(Model.BookingEndDate) - DateTime.Parse(Model.BookingStartDate)).Days; }
+                    @Html.DisplayFor(model => totalDays)
+                </div>
+                <div class="form-group">
+                    <strong> @Html.DisplayNameFor(model => model.Guests)</strong>
+                    @Html.DisplayFor(model => model.Guests)
+                    @Html.HiddenFor(model => model.Guests)
+                </div>
+                <div class="form-group">
+                    <strong>@Html.DisplayNameFor(model => model.TotalPaymentAmount)</strong>
+                    @Html.DisplayFor(model => model.TotalPaymentAmount)
+                    @Html.HiddenFor(model => model.TotalPaymentAmount)
+                </div>
+                <hr />
+                <h4 class="form-group">Billing details</h4>
+                <hr />
+                <div class="form-group">
+                    <strong>@Html.DisplayName("Pick a way of payment")</strong>
+                    @Html.DropDownList("Payment way", new List<SelectListItem> {
+                        new SelectListItem { Disabled = false, Selected = true, Text = "Wallet", Value = "Wallet" },
+                        new SelectListItem { Disabled = true, Selected = false, Text = "E-Banking", Value = "E-Banking" } },
+                        new { @class = "control-label" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Traveler.FirstName, "Owner's first name", htmlAttributes: new { @class = "control-label" })
+                    @Html.DisplayFor(model => model.Traveler.FirstName)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Traveler.LastName, "Owner's last name", htmlAttributes: new { @class = "control-label" })
+                    @Html.DisplayFor(model => model.Traveler.LastName)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.WalletAmount, "Wallet amount left", htmlAttributes: new { @class = "control-label" })
+                    @Html.DisplayFor(model => model.WalletAmount) <strong>€</strong>
+                </div>
+
+                <hr />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Traveler.PhoneNumber, "Contact phone number", htmlAttributes: new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.Traveler.PhoneNumber, htmlAttributes: new { @class = "control-label" })
+                    @Html.Hidden("PhoneNumber", Model.Traveler.PhoneNumber)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Traveler.Email, "E-mail address", htmlAttributes: new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.Traveler.Email, htmlAttributes: new { @class = "control-label" })
+                    @Html.Hidden("Email", Model.Traveler.Email)
+                </div>
+                <span>
+                    <strong>Note</strong>: You will receive an e-mail with all the details of your booking including an attached invoice. <br />
+                    Also you will get contact information of the host so you can be in touch for extra information needed. <br />
+                    The host will receive your contact information as well.  <br />
+                </span>
+                <br />
+            </div>
+            <input type="hidden" name="Confirmed" value="true" />
+            <button type="reset" class="btn btn-primary btn-lg" onclick="history.back()">Cancel</button>
+            <button type="submit" class="btn btn-primary btn-lg">Confirm Booking</button>
+        </div>
+
+    </div>
+}

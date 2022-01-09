@@ -187,23 +187,17 @@
     <Compile Include="Core\Interfaces\IBookingRepository.cs" />
     <Compile Include="Core\Interfaces\IImagesRepository.cs" />
     <Compile Include="Core\Interfaces\ILocationRepository.cs" />
+    <Compile Include="Core\Interfaces\ITransactionRepository.cs" />
     <Compile Include="Core\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Core\Interfaces\IUtilityRepository.cs" />
     <Compile Include="Persistence\AppDBContext.cs" />
+    <Compile Include="Persistence\Configurations\TransactionConfiguration.cs" />
     <Compile Include="Persistence\Configurations\AccommodationConfiguration.cs" />
     <Compile Include="Persistence\Configurations\ApplicationUserConfiguration.cs" />
     <Compile Include="Persistence\Configurations\BookingConfiguration.cs" />
-    <Compile Include="Persistence\Migrations\202201021643546_Initial.cs" />
-    <Compile Include="Persistence\Migrations\202201021643546_Initial.designer.cs">
-      <DependentUpon>202201021643546_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Migrations\202201081141300_Initial1.cs" />
-    <Compile Include="Persistence\Migrations\202201081141300_Initial1.designer.cs">
-      <DependentUpon>202201081141300_Initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Migrations\202201081431215_AddedWallet.cs" />
-    <Compile Include="Persistence\Migrations\202201081431215_AddedWallet.designer.cs">
-      <DependentUpon>202201081431215_AddedWallet.cs</DependentUpon>
+    <Compile Include="Persistence\Migrations\202201091210430_Initial.cs" />
+    <Compile Include="Persistence\Migrations\202201091210430_Initial.designer.cs">
+      <DependentUpon>202201091210430_Initial.cs</DependentUpon>
     </Compile>
     <!--// CHERSO
     <Compile Include="Persistence\Configurations\UtilitiesConfiguration.cs" />
@@ -233,28 +227,22 @@
     <Compile Include="Persistence\Repositories\SearchFilters\AccommodationSearchFilter.cs" />
     <Compile Include="Persistence\Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Persistence\Repositories\BookingRepository.cs" />
+    <Compile Include="Persistence\Repositories\TransactionRepository.cs" />
     <Compile Include="Persistence\Repositories\UtilityRepository.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Persistence\Migrations\202201091210430_Initial.resx">
+      <DependentUpon>202201091210430_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Persistence\Migrations\202201021643546_Initial.resx">
-      <DependentUpon>202201021643546_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\202201081141300_Initial1.resx">
-      <DependentUpon>202201081141300_Initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\202201081431215_AddedWallet.resx">
-      <DependentUpon>202201081431215_AddedWallet.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

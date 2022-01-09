@@ -41,7 +41,7 @@ namespace TravelExperience.MVC.ViewModels
         public List<Utility> Utilities { get; set; }
         public List<Location> Locations { get; set; }
         public List<string> ErrorMessageTop { get; internal set; }
-        public ErrorMSG ErrorMsgForFields { get; set; }
+        public AccommodationErrorMSG ErrorMsgForFields { get; set; }
 
         public List<SelectListItem> GuestOptions { get; set; } = new List<SelectListItem> { 
             new SelectListItem { Disabled = false, Selected = true, Text = "1", Value = "1" }

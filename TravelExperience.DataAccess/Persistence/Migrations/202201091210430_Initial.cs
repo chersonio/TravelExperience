@@ -25,7 +25,7 @@
                     })
                 .PrimaryKey(t => t.AccommodationID)
                 .ForeignKey("dbo.AspNetUsers", t => t.HostID)
-                .ForeignKey("dbo.Locations", t => t.LocationID)
+                .ForeignKey("dbo.Locations", t => t.LocationID, cascadeDelete: true)
                 .Index(t => t.HostID)
                 .Index(t => t.LocationID);
             
@@ -40,6 +40,8 @@
                         BookingStartDate = c.DateTime(nullable: false),
                         BookingEndDate = c.DateTime(nullable: false),
                         CreationDate = c.DateTime(nullable: false),
+                        PhoneNumber = c.String(),
+                        Email = c.String(),
                     })
                 .PrimaryKey(t => t.BookingID)
                 .ForeignKey("dbo.Accommodations", t => t.AccommodationID, cascadeDelete: true)
@@ -62,6 +64,7 @@
                         City = c.String(nullable: false),
                         Country = c.String(nullable: false),
                         PostalCode = c.Int(nullable: false),
+                        WalletID = c.Guid(nullable: false),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -141,7 +144,7 @@
                         IsSelected = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.UtilityID)
-                .ForeignKey("dbo.Accommodations", t => t.AccommodationID)
+                .ForeignKey("dbo.Accommodations", t => t.AccommodationID, cascadeDelete: true)
                 .Index(t => t.AccommodationID);
             
             CreateTable(
@@ -165,6 +168,28 @@
                     })
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
+            
+            CreateTable(
+                "dbo.Transactions",
+                c => new
+                    {
+                        TransactionID = c.Guid(nullable: false, identity: true),
+                        TimeStamp = c.DateTime(nullable: false),
+                        SendingWalletID = c.Guid(nullable: false),
+                        ReceivingWalletID = c.Guid(nullable: false),
+                        BookingID = c.Int(nullable: false),
+                        Amount = c.Decimal(nullable: false, precision: 18, scale: 2),
+                    })
+                .PrimaryKey(t => t.TransactionID);
+            
+            CreateTable(
+                "dbo.Wallets",
+                c => new
+                    {
+                        WalletID = c.Guid(nullable: false),
+                        Amount = c.Decimal(nullable: false, precision: 18, scale: 2),
+                    })
+                .PrimaryKey(t => t.WalletID);
             
         }
         
@@ -192,6 +217,8 @@
             DropIndex("dbo.Bookings", new[] { "UserId" });
             DropIndex("dbo.Accommodations", new[] { "LocationID" });
             DropIndex("dbo.Accommodations", new[] { "HostID" });
+            DropTable("dbo.Wallets");
+            DropTable("dbo.Transactions");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Images");
             DropTable("dbo.Utilities");
