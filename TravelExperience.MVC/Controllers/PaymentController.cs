@@ -84,10 +84,8 @@ namespace TravelExperience.MVC.Controllers
                 // genika gia ta 404 kai genikevmena errors
 
                 // tha prepei na checkarei an o xristis paei na kleisei diko tou booking kai na min ton afinei
+                // booking xristi pou mporei na xei klhsei idia imerominia kapou.
 
-                // na dimiourgei neo wallet gia neo xristi
-
-                // Yparxei ena bug otan kanei neo register deixnei lathos query sto dashboard kai den deixnei 
 
                 booking.AccommodationID = bookingConfirmationDto.AccommodationID;
                 booking.BookingStartDate = bookingConfirmationDto.BookingStartDate;

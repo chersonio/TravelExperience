@@ -21,6 +21,11 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
             if (user == null)
                 throw new ArgumentException(nameof(user));
 
+            var wallet = new Wallet() { Amount = 1000 };
+            _context.Wallets.Add(wallet);
+            _context.SaveChanges();
+
+            user.WalletID = wallet.WalletID;
             _context.Users.Add(user);
         }
 
