@@ -9,5 +9,6 @@ namespace TravelExperience.DataAccess.Core.Interfaces
     {
         int? GetMax();
         decimal GetPriceForBooking(int bookingId);
+        IEnumerable<DateTime> GetInvalidBookingDates(int accommodationID, string travelerID);
     }
 }

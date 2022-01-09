@@ -221,6 +221,25 @@ namespace TravelExperience.MVC.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        ///  Gets the unavailable dates and returns it for the calendar to disable them.
+        /// </summary>
+        /// <param name="accommodationID"></param>
+        /// <returns></returns>
+        public JsonResult GetInvalidBookingDates(int accommodationID)
+        {
+            var travelerID = User.Identity.GetUserId();
+            var bookingUnavailableDates = _unitOfWork.Bookings.GetInvalidBookingDates(accommodationID, travelerID);
+
+            var accommodation = _unitOfWork.Accommodations.GetById(accommodationID);
+
+            return Json(new {
+                BookingUnavailableDates = bookingUnavailableDates.Select(x=>x.ToString("yyyy-MM-dd")),
+                AccommodationAvailableFrom = accommodation.AvailableFromDate.ToString("yyyy-MM-dd"),
+                AccommodationAvailableTo = accommodation.AvailableToDate.ToString("yyyy-MM-dd")}, 
+                JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public ActionResult Details(BookingConfirmationDto bookingConfirmationDto)
         {

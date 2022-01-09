@@ -69,6 +69,5 @@ namespace TravelExperience.MVC.Controllers
 
             return View("Accommodations", viewModel);
         }
-       
     }
 }

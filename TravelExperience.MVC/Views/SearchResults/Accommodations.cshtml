@@ -11,7 +11,9 @@
         @Html.Partial("_Map", new TravelExperience.MVC.ViewModels.MapViewModel() { ShowLocations = true })
     </div>
 
+
     <div style="flex-grow:1;">
+
         @foreach (var accom in Model.Accommodations)
         {
             <div style="display: flex;">

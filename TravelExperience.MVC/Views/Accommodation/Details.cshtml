@@ -108,5 +108,46 @@
 </div>
 
 <script>
-    $('.datepicker').datepicker({ beforeShowDay: $.datepicker.noWeekends });
+    function formatDate() {
+        var x = new Date();
+        var y = x.getFullYear().toString();
+        var m = (x.getMonth() + 1).toString();
+        var d = x.getDate().toString();
+        (d.length == 1) && (d = '0' + d);
+        (m.length == 1) && (m = '0' + m);
+        var yyyymmdd = y + '-' + m + '-' + d;
+        return yyyymmdd;
+    };
+
+    var availabilityDates = {
+        BookingUnavailableDates: [],
+        AccommodationAvailableFrom: null,
+        AccommodationAvailableTo: null
+    };
+    fetch('@Url.Action("GetInvalidBookingDates", "Accommodation", new { accommodationID = 2 })', { credentials: 'include' })
+        .then(res => res.json())
+        .then(data => { availabilityDates = data; });
+
+    $('.datepicker').datepicker({
+        dateFormat: 'dd/mm/yy',
+        beforeShowDay: function (date) {
+            //var string = $.datepicker({ dateFormat: 'dd-mm-yy' }, date);
+            ////var string = $.datepicker.formatDate('yy-mm-dd', date);
+            //debugger;
+            //return [availabilityDates.BookingUnavailableDates.indexOf(formatDate(date)) == -1]
+            return [true];
+        }
+    });
+
+//    .datepicker({
+//    format: 'mm/dd/yyyy',
+//    datesDisabled: datearray,
+//    daysOfWeekDisabled: [0],   //Disable sunday
+//    autoclose:true,
+//    todayHighlight: true,
+//});
 </script>
+@*var accommodationAvailabilityDate = new Tuple<DateTime, DateTime>
+    (DateTime.Now, DateTime.Now);*@
+
+@*// if this.Booking.Start > accommodationAvailabilityDate.Item1 && this.Booking.End < accommodationAvailabilityDate.Item2 && !inUnavailableDates*@

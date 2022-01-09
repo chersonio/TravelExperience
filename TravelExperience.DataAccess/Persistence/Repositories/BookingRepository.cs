@@ -75,7 +75,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
             TimeSpan timeSpanDays = booking.BookingEndDate - booking.BookingStartDate;
             var accommodationPricePerNight = booking.Accommodation.PricePerNight;
             decimal days = timeSpanDays.Days;
-         
+
             var totalPrice = (days > 0 ? days : 1) * accommodationPricePerNight;
 
             DateTime xmas = new DateTime(2009, 12, 25);
@@ -95,6 +95,44 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
         public int? GetMax()
         {
             return _context.Bookings.Max(x => x.BookingID);
+        }
+
+        public IEnumerable<DateTime> GetInvalidBookingDates(int accommodationID, string travelerID)
+        {
+            // userID - > BOOK a DATE (userID, date)
+            // Accommodations /From To/              
+            // Bookings userID
+            // Bookings AllUSERS
+            List<Booking> bookings = _context.Bookings
+                .Where(b => (b.AccommodationID == accommodationID || b.User.Id == travelerID) && b.BookingEndDate >= DateTime.Today).ToList();
+
+            List<Tuple<DateTime, DateTime>> bookedDates = bookings
+                .Select(x => new Tuple<DateTime, DateTime>(x.BookingStartDate, x.BookingEndDate)).ToList();
+
+            List<DateTime> unavailableDates = new List<DateTime>();
+
+            //foreach (Tuple<DateTime, DateTime> dates in bookedDates)
+            //{
+            //    // Map dates of Bookings
+            //    DateTime iterator = dates.Item1;
+            //    while (iterator < dates.Item2)
+            //    {
+            //        unavailableDates.Add(iterator);
+            //        iterator.AddDays(1);
+            //    }
+            //}
+            for (var i =0; i < bookedDates.Count(); i++)
+            {
+                // Map dates of Bookings
+                DateTime iterator = bookedDates[i].Item1;
+                while (iterator <= bookedDates[i].Item2)
+                {
+                    unavailableDates.Add(iterator);
+                    iterator = iterator.AddDays(1);
+                }
+            }
+
+            return unavailableDates.Distinct().OrderBy(x => x);
         }
     }
 }

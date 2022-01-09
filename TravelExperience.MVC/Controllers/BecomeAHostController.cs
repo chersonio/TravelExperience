@@ -72,8 +72,14 @@ namespace TravelExperience.MVC.Controllers
             await UserManager.AddToRoleAsync(userId, RoleName.Host);
 
             var viewModel = new DashBoardFormViewModel();
-            viewModel.Accommodations = _unitOfWork.Accommodations.GetAll().ToList();
-            viewModel.Bookings = _unitOfWork.Bookings.GetAll().ToList();
+            viewModel.Accommodations = _unitOfWork.Accommodations.GetAll().Where(x => x.HostID == userId).ToList();
+            viewModel.Bookings = _unitOfWork.Bookings.GetAll()
+                .Where(a => a.AccommodationID.HasValue && 
+                viewModel.Accommodations.Select(i => i.AccommodationID)
+                .ToList()
+                .Contains(a.AccommodationID.Value))
+                .ToList();
+
 
             return View(viewModel);
         }

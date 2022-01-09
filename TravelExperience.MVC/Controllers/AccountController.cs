@@ -168,8 +168,7 @@ namespace TravelExperience.MVC.Controllers
                     AddressNo = model.AddressNo,
                     City = model.City,
                     Country = model.Country,
-                    PostalCode = model.PostalCode,
-                    WalletID = Guid.NewGuid()
+                    PostalCode = model.PostalCode
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
