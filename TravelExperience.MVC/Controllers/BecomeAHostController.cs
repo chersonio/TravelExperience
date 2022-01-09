@@ -119,10 +119,7 @@ namespace TravelExperience.MVC.Controllers
 
             var viewModel = new AccommodationFormViewModel();
             viewModel.Accommodation = _unitOfWork.Accommodations.GetAll().FirstOrDefault(a => a.AccommodationID == id);
-            viewModel.Utilities = new List<Utility>();
-            var utilities = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == id).ToList();
-
-            viewModel.Utilities = utilities;
+            viewModel.Utilities = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == id).ToList();
 
             if (viewModel.Accommodation == null)
             {
@@ -145,23 +142,24 @@ namespace TravelExperience.MVC.Controllers
             viewModel.Utilities = new List<Utility>();
             viewModel.UtilitiesForCheckboxes = new List<AccommodationFormViewModel.UtilityForCheckbox>();
 
-            var utilities = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == id).ToList();
+            var utilities = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == id);
 
-            viewModel.Utilities = utilities;
+            viewModel.Utilities = utilities.ToList();
 
+            // Add all utilities in the view and depending on if the utilityEnum exists in that accommodation turn flag to true
             foreach (UtilitiesEnum utilEnum in Enum.GetValues(typeof(UtilitiesEnum)))
             {
-                if (utilities.Select(u => u.UtilityEnum).Contains(utilEnum))
-                {
-                    viewModel.UtilitiesForCheckboxes.Add(new AccommodationFormViewModel.UtilityForCheckbox { UtilityName = utilEnum.ToString(), UtilitiesEnum = utilEnum, IsChecked = true });
-                }
-                else
-                {
-                    viewModel.UtilitiesForCheckboxes.Add(new AccommodationFormViewModel.UtilityForCheckbox { UtilityName = utilEnum.ToString(), UtilitiesEnum = utilEnum, IsChecked = false });
-                }
+                viewModel.UtilitiesForCheckboxes.Add(
+                    new AccommodationFormViewModel.UtilityForCheckbox { 
+                        UtilityName = utilEnum.ToString(), 
+                        UtilitiesEnum = utilEnum, 
+                        // check if the collection of utilities of that accommodation contains the current utilEnum
+                        // return that value in IsChecked for the checkbox status
+                        IsChecked = utilities.Select(u => u.UtilityEnum).Contains(utilEnum) 
+                    });
             }
 
-            //editing locations
+            // editing locations
             var locationID = _unitOfWork.Accommodations.GetById(id).LocationID;
             viewModel.Location = _unitOfWork.Locations.GetById(locationID);
 

@@ -8,13 +8,16 @@ using TravelExperience.DataAccess.Persistence.Repositories.SearchFilters;
 using System.Net;
 using TravelExperience.MVC.Controllers.HelperClasses;
 using System.Collections.Generic;
-using PagedList;
+using System.Drawing;
+
 
 namespace TravelExperience.MVC.Controllers
 {
     [AllowAnonymous]
     public class SearchResultsController : Controller
     {
+        const string ACCOMMODATIONS_IMAGE_PATH = @"C:\TravelExperience\Data\Images\Accommodations\";
+
         private readonly IUnitOfWork _unitOfWork;
 
         public SearchResultsController(IUnitOfWork unitOfWork)
@@ -55,10 +58,9 @@ namespace TravelExperience.MVC.Controllers
             var thumbnailOfAccommodations = new Dictionary<Accommodation, List<ImageInfo>>();
             foreach (var accom in viewModel.Accommodations)
             {
-                var path = @"C:\TravelExperience\Data\Images\Accommodations\" + accom.AccommodationID.ToString();
+                var path = ACCOMMODATIONS_IMAGE_PATH + accom.AccommodationID.ToString();
 
-                var imageHandler = new ImageHandler();
-                var images = imageHandler.GetImagesForAccommodationFromStorage(path);
+                var images = ImageHandler.GetImagesForAccommodationFromStorage(path, new Size { Width = 300, Height = 250 });
 
                 thumbnailOfAccommodations.Add(accom, images);
             }
@@ -67,18 +69,6 @@ namespace TravelExperience.MVC.Controllers
 
             return View("Accommodations", viewModel);
         }
-
-        public ActionResult Details(int? id)
-        {
-
-            var viewModel = new AccommodationFormViewModel();
-            viewModel.Accommodation = _unitOfWork.Accommodations.GetAll().FirstOrDefault(a => a.AccommodationID == id);
-            viewModel.Utilities = new List<Utility>();
-            var utilities = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == id).ToList();
-            viewModel.Utilities = utilities;
-
-            return View(viewModel);
-
-        }
+       
     }
 }

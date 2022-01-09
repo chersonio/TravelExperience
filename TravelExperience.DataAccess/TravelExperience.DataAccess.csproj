@@ -178,7 +178,9 @@
     <Compile Include="Core\Entities\IdentityModel.cs" />
     <Compile Include="Core\Entities\Image.cs" />
     <Compile Include="Core\Entities\Location.cs" />
+    <Compile Include="Core\Entities\Transaction.cs" />
     <Compile Include="Core\Entities\Utility.cs" />
+    <Compile Include="Core\Entities\Wallet.cs" />
     <Compile Include="Core\Interfaces\IAccommodationRepository.cs" />
     <Compile Include="Core\Interfaces\IAccommodationTypeRepository.cs" />
     <Compile Include="Core\Interfaces\ICrudable.cs" />
@@ -198,6 +200,10 @@
     <Compile Include="Persistence\Migrations\202201081805329_DatesAtAccommodation.cs" />
     <Compile Include="Persistence\Migrations\202201081805329_DatesAtAccommodation.designer.cs">
       <DependentUpon>202201081805329_DatesAtAccommodation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\Migrations\202201081431215_AddedWallet.cs" />
+    <Compile Include="Persistence\Migrations\202201081431215_AddedWallet.designer.cs">
+      <DependentUpon>202201081431215_AddedWallet.cs</DependentUpon>
     </Compile>
     <!--// CHERSO
     <Compile Include="Persistence\Configurations\UtilitiesConfiguration.cs" />
@@ -244,6 +250,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\202201081805329_DatesAtAccommodation.resx">
       <DependentUpon>202201081805329_DatesAtAccommodation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\202201081431215_AddedWallet.resx">
+      <DependentUpon>202201081431215_AddedWallet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
