@@ -193,17 +193,9 @@
     <Compile Include="Persistence\Configurations\AccommodationConfiguration.cs" />
     <Compile Include="Persistence\Configurations\ApplicationUserConfiguration.cs" />
     <Compile Include="Persistence\Configurations\BookingConfiguration.cs" />
-    <Compile Include="Persistence\Migrations\202201081529112_Init.cs" />
-    <Compile Include="Persistence\Migrations\202201081529112_Init.designer.cs">
-      <DependentUpon>202201081529112_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Migrations\202201081805329_DatesAtAccommodation.cs" />
-    <Compile Include="Persistence\Migrations\202201081805329_DatesAtAccommodation.designer.cs">
-      <DependentUpon>202201081805329_DatesAtAccommodation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Migrations\202201081431215_AddedWallet.cs" />
-    <Compile Include="Persistence\Migrations\202201081431215_AddedWallet.designer.cs">
-      <DependentUpon>202201081431215_AddedWallet.cs</DependentUpon>
+    <Compile Include="Persistence\Migrations\202201091540174_Initial.cs" />
+    <Compile Include="Persistence\Migrations\202201091540174_Initial.designer.cs">
+      <DependentUpon>202201091540174_Initial.cs</DependentUpon>
     </Compile>
     <!--// CHERSO
     <Compile Include="Persistence\Configurations\UtilitiesConfiguration.cs" />
@@ -245,14 +237,8 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Persistence\Migrations\202201081529112_Init.resx">
-      <DependentUpon>202201081529112_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\202201081805329_DatesAtAccommodation.resx">
-      <DependentUpon>202201081805329_DatesAtAccommodation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\202201081431215_AddedWallet.resx">
-      <DependentUpon>202201081431215_AddedWallet.cs</DependentUpon>
+    <EmbeddedResource Include="Persistence\Migrations\202201091540174_Initial.resx">
+      <DependentUpon>202201091540174_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

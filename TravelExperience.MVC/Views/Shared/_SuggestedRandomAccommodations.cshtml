@@ -1,7 +1,7 @@
 ﻿@model TravelExperience.MVC.ViewModels.MainPageViewModel
 
 
-<div class="row thumb-container">
+<div class="grid-container thumb-container">
     @for (int i = 0; i < Model.RandomAccommodations.Count(); i++)
     {
         var accomLink = Model.RandomAccommodations.ToArray()[i];
@@ -10,24 +10,12 @@
         var firstThumb = @Model.ThumbnailOfAccommodations[accomLink].FirstOrDefault();
      
 
-    <div class="col-md-4 accom-thumb-link" style="background-image: url(@accomLink.Thumbnail)">
-        @Html.Partial("_AccommodationThumbnail", @firstThumb);
-        <a href="">
-            <div class=" black-box-mask">
-                <div style="height:88%">
-                    <h2>
-                        @accomLink.Location.City.ToString()
-                    </h2>
-                </div>
-                <div>
-                    <h2>
-                        @{ var booking = Model.Bookings.FirstOrDefault(x => x.AccommodationID == accomLink.AccommodationID); }
-                        @*@booking.BookingStartDate.ToString("MMM dd")-@booking.BookingEndDate.ToString("dd, yy")*@
-                    </h2>
-                </div>
-            </div>
-        </a>
-    </div>
+       <div class="col-md-4 accom-thumb-link">
+           <a href="" style="text-align:center;">
+               <h3 class="location">@accomLink.Location.City.ToString()</h3>
+               @Html.Partial("_AccommodationThumbnail", @firstThumb)
+           </a>
+       </div>
     }
 </div>
 
@@ -39,34 +27,29 @@
 
     .accom-thumb-link a {
         text-decoration: none;
-        height: 240px;
+        height: 180px;
     }
 
     .accom-thumb-link {
-        position: relative;
-        border-radius: 2%;
-        max-width: 31%;
-        height: 240px;
-        background-size: cover;
-        margin: 5px;
-    }
-
-    .black-box-mask {
         top: 0;
         left: 0;
         position: absolute;
-        width: 100%;
-        height: 100%;
         border-radius: 2%;
         text-align: center;
         font-size: 16px;
         color: #fff;
-        background-color: rgba(00,00,00,0.8);
-        opacity: 0.0;
+        position: relative;
+        max-width: 31%;
+        height: 240px;
+        margin: 20px 10px 20px 10px;
+        padding: 20px 10px 20px 10px;
+    }
+    .accom-thumb-link:hover{
+        opacity:0.8;
     }
 
-    .black-box-mask:hover {
-        opacity: 0.6;
+    .location{
+        color: #201919;
     }
 </style>
 

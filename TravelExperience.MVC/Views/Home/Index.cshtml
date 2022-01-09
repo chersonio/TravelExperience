@@ -69,7 +69,6 @@
     <div class="container" style="padding: 5px;">
         <div class="row">
             <div class="col-md-4">
-
                 <img class="rounded" src="https://a0.muscache.com/im/pictures/01de0512-9191-474b-b5c1-7d0766f733ca.jpg?aki_policy=large" style="width: 100%; height: 100%">
             </div>
             <div class="col-md-4">
@@ -103,7 +102,7 @@
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star unchecked"></span>
             </div>
         </div>
     </div>
@@ -166,19 +165,19 @@
 
     <div class="image_bg1" style="max-width:stretch;">
         <h1>REYKJAVIK</h1>
-        <h5 class="sc_undertitle sc_undertitle_style_2">ICELAND</h5>
+        <h5>ICELAND</h5>
         <button onclick="location.href='@Url.Action("Search","Home")'" style="font-size:medium; color:darkred;">Browse Accommodations</button>
     </div> <hr />
 
     <div class="image_bg2" style="max-width:stretch;">
         <h1>SABANA WESTPUNT</h1>
-        <h5 class="sc_undertitle sc_undertitle_style_2">CURACAO</h5>
+        <h5>CURACAO</h5>
         <button onclick="location.href='@Url.Action("Search","Home")'" style="font-size:medium; color:darkred;">Browse Accommodations</button>
     </div> <hr />
 
     <div class="image_bg3" style="max-width:stretch;">
         <h1>SEOUL</h1>
-        <h5 class="sc_undertitle sc_undertitle_style_2">SOUTH KOREA</h5>
+        <h5>SOUTH KOREA</h5>
         <button onclick="location.href='@Url.Action("Search","Home")'" style="font-size:medium; color:darkred;">Browse Accommodations</button>
     </div> <hr />
 
@@ -187,12 +186,11 @@
 
     @{ if (Model.RandomAccommodations.Any())
         {
-            <div style="margin: 50px 400px 20px 20px; font-size: 14px; font-family: Helvetica; color: darkslategrey;">
+            <div style="margin: 50px 400px 20px 20px; font-size: 14px; font-family: 'Julius Sans One', sans-serif; text-decoration:underline; color: black;">
                 <h1>Hot new places to visit</h1>
             </div>
 
-            <div class="container" style="padding: 5px;">
-
+            <div class="container" style="padding: 10px;">
                 @Html.Partial("_SuggestedRandomAccommodations", Model)
             </div>
             <br />
@@ -205,7 +203,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <section>
-                        <h6 style="margin-left: 40px;">Airbnb</h6>
+                        <h6 style="margin-left: 40px;">Travel Experience</h6>
                         <ul style="list-style: none;">
                             <li><a href="#">Help</a></li>
                             <li><a href="#">Policies</a></li>

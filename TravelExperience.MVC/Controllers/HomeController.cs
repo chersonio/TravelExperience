@@ -36,7 +36,7 @@ namespace TravelExperience.MVC.Controllers
             var thumbnailOfAccommodations = new Dictionary<Accommodation, List<ImageInfo>>();
             foreach (var accom in viewModel.RandomAccommodations)
             {
-                var newThumb = imageHandler.GetDictionaryForImagesOfAccommodations(accom, new System.Drawing.Size { Width = 300, Height = 250 });
+                var newThumb = imageHandler.GetDictionaryForImagesOfAccommodations(accom);
                 thumbnailOfAccommodations.Add(newThumb.Keys.FirstOrDefault(), newThumb.Values.FirstOrDefault());
             }
             viewModel.ThumbnailOfAccommodations = thumbnailOfAccommodations;

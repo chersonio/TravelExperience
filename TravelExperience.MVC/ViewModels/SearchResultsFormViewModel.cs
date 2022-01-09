@@ -15,7 +15,6 @@ namespace TravelExperience.MVC.ViewModels
         public Accommodation Accommodation { get; set; } 
         public List<Accommodation> Accommodations { get; set; }
         
-
         public IDictionary<Accommodation, List<ImageInfo>> ThumbnailOfAccommodations { get; set; }
     }
 }

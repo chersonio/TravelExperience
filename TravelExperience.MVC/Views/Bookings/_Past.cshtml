@@ -1,6 +1,5 @@
 ﻿@model TravelExperience.MVC.ViewModels.MainPageViewModel
 @using Microsoft.AspNet.Identity
-@*@model IEnumerable<TravelExperience.DataAccess.Core.Entities.Booking>*@
 
 <h2 style="color:darkred;">Where you've been</h2>
 
@@ -14,17 +13,16 @@
             {
                 var startDate = item.BookingStartDate.ToString("d MMM yyyy");
                 var endDate = item.BookingEndDate.ToString("d MMM yyyy");
-                <div class="col-md-5">
-                    <div style="float:right;margin-left: 15px; display: inline-block; margin: 2px 40px 0 0; white-space:pre-line; ">
+                <div class="col-md-6" style="display: flex; margin-bottom: 20px;">
+                     <div  style="float:left;">
+                    @{ var firstThumb = @Model.ThumbnailOfAccommodations[item.Accommodation].FirstOrDefault(); }
+                    @Html.Partial("_AccommodationThumbnail", @firstThumb)
+                    </div>
+                    <div style=" margin-left: 15px; display: inline-block; margin: 2px 20px 0 0; white-space:pre-line; flex-grow:1; text-align:center; ">
                         <strong>@Html.DisplayFor(modelItem => item.Accommodation.Title) - @Html.DisplayFor(modelItem => item.Accommodation.Location.City) </strong>
                         @Html.DisplayFor(modelItem => startDate) - @Html.DisplayFor(modelItem => endDate)
                         @Html.ActionLink("Details", "Details", new { id = item.BookingID })
                     </div>
-                    @*<img src="@Url.Content(item.Accommodation.Thumbnail)" style="margin-right: 10px; float: left; border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 150px;" />*@
-
-                    @*Loads the given thumbnailAccommodation ImageInfo. Then it loads as a partial view the aquired image.*@
-                    @{ var firstThumb = @Model.ThumbnailOfAccommodations[item.Accommodation].FirstOrDefault(); }
-                    @Html.Partial("_AccommodationThumbnail", @firstThumb)
                 </div>
             }
         }
