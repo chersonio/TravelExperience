@@ -222,12 +222,14 @@
     <Compile Include="Persistence\Repositories\ImagesRepository.cs" />
     <Compile Include="Persistence\Repositories\AccommodationRepository.cs" />
     <Compile Include="Core\Interfaces\IApplicationUserRepository.cs" />
+    <Compile Include="Core\Interfaces\IWalletRepository.cs" />
     <Compile Include="Persistence\Repositories\LocationRepository.cs" />
     <Compile Include="Persistence\Repositories\SearchFilters\AccommodationSearchFilter.cs" />
     <Compile Include="Persistence\Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Persistence\Repositories\BookingRepository.cs" />
     <Compile Include="Persistence\Repositories\TransactionRepository.cs" />
     <Compile Include="Persistence\Repositories\UtilityRepository.cs" />
+    <Compile Include="Persistence\Repositories\WalletRepository.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

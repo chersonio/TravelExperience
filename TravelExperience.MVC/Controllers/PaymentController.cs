@@ -27,10 +27,6 @@ namespace TravelExperience.MVC.Controllers
         // GET: Payment
         public ActionResult Index(BookingConfirmationDto bookingConfirmationDto)
         {
-            // booking details (formInput+ necessary accommodation info)
-            // confirmationPage -> HttpGet => new Booking to Bookings Controller 
-            // need to view this booking from BookingController
-
             var travelerID = User.Identity.GetUserId();
 
             var wallet = _unitOfWork.Users.GetWalletOfUserFromUserID(travelerID);
@@ -67,8 +63,11 @@ namespace TravelExperience.MVC.Controllers
                 // Checks if dates are valid
                 if (bookingConfirmationDto.BookingStartDate < DateTime.Now.Date ||
                     bookingConfirmationDto.BookingEndDate < bookingConfirmationDto.BookingStartDate)
+                {
+                    bookingConfirmationDto.Confirmed = false;
                     // einai ontws lathos. na doume to basiko
                     return Index(bookingConfirmationDto); // wrong na tsekarw an pxianei // den pxianei giati psaxnei tin epomeni forma.. prepei na ginei cancel "reset"
+                }
 
 
                 // TODO:
@@ -77,10 +76,6 @@ namespace TravelExperience.MVC.Controllers
                 // ta booking dates tou sygkekrimenou accommodation.
 
                 // ta booking dates mporoun na mpoun pleon sti function pou eftiaksa sto index
-
-                // prepei na ginei error page handling
-
-                // genika gia ta 404 kai genikevmena errors
 
                 // tha prepei na checkarei an o xristis paei na kleisei diko tou booking kai na min ton afinei
                 // booking xristi pou mporei na xei klhsei idia imerominia kapou.

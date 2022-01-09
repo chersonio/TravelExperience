@@ -10,6 +10,7 @@ namespace TravelExperience.DataAccess.Core.Interfaces
         IApplicationUserRepository Users { get; }
         ILocationRepository Locations { get; }
         ITransactionRepository Transactions { get; }
+        IWalletRepository Wallets { get; }
         void Complete();
     }
 }

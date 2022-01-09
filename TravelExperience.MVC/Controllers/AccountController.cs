@@ -154,6 +154,10 @@ namespace TravelExperience.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var wallet = new Wallet();
+                wallet.WalletID = Guid.NewGuid();
+                wallet.Amount = 1000;
+
                 var user = new ApplicationUser
                 {
                     UserName = model.Email,
@@ -168,9 +172,10 @@ namespace TravelExperience.MVC.Controllers
                     AddressNo = model.AddressNo,
                     City = model.City,
                     Country = model.Country,
-                    PostalCode = model.PostalCode
+                    PostalCode = model.PostalCode,
+                    WalletID = wallet.WalletID
                 };
-
+                
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -179,9 +184,7 @@ namespace TravelExperience.MVC.Controllers
                     //await roleManager.CreateAsync(new IdentityRole("Administrator"));
                     //await UserManager.AddToRoleAsync(user.Id, "Administrator");
 
-
                     await UserManager.AddToRoleAsync(user.Id, RoleName.Traveler);
-
 
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
@@ -190,6 +193,9 @@ namespace TravelExperience.MVC.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    _unitOfWork.Wallets.Create(wallet);
+                    _unitOfWork.Complete();
 
                     return RedirectToAction("Index", "Home");
                 }
