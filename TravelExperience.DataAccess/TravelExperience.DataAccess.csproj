@@ -195,9 +195,7 @@
     <Compile Include="Persistence\Configurations\AccommodationConfiguration.cs" />
     <Compile Include="Persistence\Configurations\ApplicationUserConfiguration.cs" />
     <Compile Include="Persistence\Configurations\BookingConfiguration.cs" />
-    <Compile Include="Persistence\Migrations\202201091210430_Initial.cs" />
-    <Compile Include="Persistence\Migrations\202201091210430_Initial.designer.cs">
-      <DependentUpon>202201091210430_Initial.cs</DependentUpon>
+
     </Compile>
     <!--// CHERSO
     <Compile Include="Persistence\Configurations\UtilitiesConfiguration.cs" />
