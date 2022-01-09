@@ -20,7 +20,7 @@
     <div class="container" style="display: flex; grid-template-columns: 1fr 1fr; grid-gap: 10px; ">
 
         <div>
-            @Html.Partial("_Map", new TravelExperience.MVC.ViewModels.MapViewModel() { ShowLocations = false });
+            @Html.Partial("_Map", new TravelExperience.MVC.ViewModels.MapViewModel() { ShowLocations = false })
             @{ var errorMsgForFields = Model.ErrorMsgForFields; }
 
             <h3>Where's your place located?</h3>
@@ -119,10 +119,10 @@
             <h3>Give dates of availability</h3>
             <div class="form-group">
                 @Html.Label("Begin date of your hosting")<br />
-                @Html.TextBoxFor(m => m.Accommodation.AvailableFromDate, "", new { type = "date" }) <br />
+                @Html.TextBoxFor(m => m.Booking.BookingStartDate, "", new { type = "date" }) <br />
 
                 @Html.Label("Ending date of your hosting")<br />
-                @Html.TextBoxFor(m => m.Accommodation.AvailableToDate, "", new { type = "date" }) <br />
+                @Html.TextBoxFor(m => m.Booking.BookingEndDate, "", new { type = "date" }) <br />
 
                 @if (errorMsgForFields.StartDate != null)
                 {

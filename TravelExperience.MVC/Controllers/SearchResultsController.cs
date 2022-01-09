@@ -60,7 +60,7 @@ namespace TravelExperience.MVC.Controllers
             {
                 var path = ACCOMMODATIONS_IMAGE_PATH + accom.AccommodationID.ToString();
 
-                var images = ImageHandler.GetImagesForAccommodationFromStorage(path, new Size { Width = 300, Height = 250 });
+                var images = ImageHandler.GetImagesForAccommodationFromStorage(path);
 
                 thumbnailOfAccommodations.Add(accom, images);
             }
