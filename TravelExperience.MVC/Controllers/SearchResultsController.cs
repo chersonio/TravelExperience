@@ -10,6 +10,7 @@ using TravelExperience.MVC.Controllers.HelperClasses;
 using System.Collections.Generic;
 using System.Drawing;
 
+
 namespace TravelExperience.MVC.Controllers
 {
     [AllowAnonymous]
@@ -49,6 +50,9 @@ namespace TravelExperience.MVC.Controllers
 
             AccommodationSearchFilter bookingsSearchFilter = new AccommodationSearchFilter();
             var searchResults = bookingsSearchFilter.FilterBookings(dateStarting: bookingStartDate, dateEnding: bookingEndDate, city: city, numberOfGuests: numberOfGuests).ToList();
+
+            //int pageIndex = 1;
+            //int pageSize = 5;
 
             viewModel.Accommodations = searchResults;
             var thumbnailOfAccommodations = new Dictionary<Accommodation, List<ImageInfo>>();

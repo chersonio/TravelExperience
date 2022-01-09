@@ -126,10 +126,10 @@
             <h3>Give dates of availability</h3>
             <div class="form-group">
                 @Html.Label("Begin date of your hosting")<br />
-                @Html.TextBoxFor(m => m.Booking.BookingStartDate, "", new { type = "date" }) <br />
+                @Html.TextBoxFor(m => m.Accommodation.AvailableFromDate, "", new { type = "date" }) <br />
 
                 @Html.Label("Ending date of your hosting")<br />
-                @Html.TextBoxFor(m => m.Booking.BookingEndDate, "", new { type = "date" }) <br />
+                @Html.TextBoxFor(m => m.Accommodation.AvailableToDate, "", new { type = "date" }) <br />
 
                 @if (errorMsgForFields.StartDate != null)
                 {

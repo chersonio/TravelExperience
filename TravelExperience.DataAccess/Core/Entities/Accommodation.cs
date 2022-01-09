@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -32,5 +33,17 @@ namespace TravelExperience.DataAccess.Core.Entities
         [NotMapped]
         public List<HttpPostedFileBase> SecondaryImages { get; set; }
         public IEnumerable<Image> Images { get; set; }
+
+        //dates
+        [Required, DataType(DataType.Date), Display(Name = "Available From (Date)")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+        public DateTime AvailableFromDate { get; set; }
+
+        [Required, DataType(DataType.Date), Display(Name = "Available To (Date)")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+        public DateTime AvailableToDate { get; set; }
+
+        [Required]
+        public DateTime CreationDate { get; set; }
     }
 }

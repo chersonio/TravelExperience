@@ -61,7 +61,7 @@
             <dd>
                 @for (int i = 0; i < Model.Utilities.Count(); i++)
                 {
-                <p>@Model.Utilities[i].UtilityEnum.ToString()</p>
+                    <p>@Model.Utilities[i].UtilityEnum.ToString()</p>
                 }
             </dd>
 
@@ -73,10 +73,26 @@
                 @Html.DisplayFor(model => model.Accommodation.Location.FullAddress)
             </dd>
 
+            <dt>
+                @Html.DisplayNameFor(model => model.Accommodation.AvailableFromDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Accommodation.AvailableFromDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Accommodation.AvailableToDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Accommodation.AvailableToDate)
+            </dd>
+
         </dl>
     </div>
     <p>
         @*@Html.ActionLink("Edit", "Edit", new { id = Model.Accommodation.AccommodationID }) |*@
-        @Html.ActionLink("Back to List", "HostAccommodations")
+        @Html.ActionLink("Back to Dashboard", "DashboardHost")
+        @*<a onclick="location.href = '@Html.Partial("_DashAccommodations")'" class="btn btn-lg btn-danger">Back to list</a>*@
     </p>
 }

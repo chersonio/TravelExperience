@@ -158,34 +158,34 @@
                     fetch("@Url.Action("Locations", "Map")").then(response => response.text()).then( dataFromView => {
                     var data = JSON.parse(dataFromView);
                     var marker = [];
-                    var contentString = [];
-                    var infowindow = [];
+                    //var contentString = [];
+                    //var infowindow = [];
 
                     for (var i = 0; i < data.length; i++) {
-                        var lat = parseFloat(data[i].Xcoord);
-                        var lon = parseFloat(data[i].Ycoord);
+                        var lon = parseFloat(data[i].Xcoord);
+                        var lat = parseFloat(data[i].Ycoord);
                         marker[i] = new google.maps.Marker({
                             position: { lat: lat, lng: lon },
                             map: map
                         });
-                        contentString[i] = '<div id="content">' +
-                            '<div id="siteNotice">' +
-                            '</div>' +
-                            '<h3 id="firstHeading" class="firstHeading>' + data[i].Address + '</h3>';
-                        infowindow[i] = new google.maps.InfoWindow({
-                            content: contentString[i]
-                        });
-                        var mdl = marker[i];
-                        google.maps.event.addListener(marker[i], 'mouseover', (function (mdl, i) {
-                            return function () {
-                                infowindow[i].open(map, marker[i]);
-                            }
-                        })(marker[i], i));
-                        google.maps.event.addListener(marker[i], 'mouseout', (function (mdl, i) {
-                            return function () {
-                                infowindow[i].close();
-                            }
-                        })(marker[i], i));
+                        //contentString[i] = '<div id="content">' +
+                        //    '<div id="siteNotice">' +
+                        //    '</div>' +
+                        //    '<h3 id="firstHeading" class="firstHeading>' + data[i].Address + '</h3>';
+                        //infowindow[i] = new google.maps.InfoWindow({
+                        //    content: contentString[i]
+                        //});
+                        //var mdl = marker[i];
+                        //google.maps.event.addListener(marker[i], 'mouseover', (function (mdl, i) {
+                        //    return function () {
+                        //        infowindow[i].open(map, marker[i]);
+                        //    }
+                        //})(marker[i], i));
+                        //google.maps.event.addListener(marker[i], 'mouseout', (function (mdl, i) {
+                        //    return function () {
+                        //        infowindow[i].close();
+                        //    }
+                        //})(marker[i], i));
                     }
                 });
                 }

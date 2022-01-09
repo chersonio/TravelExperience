@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
@@ -25,7 +25,7 @@
                     })
                 .PrimaryKey(t => t.AccommodationID)
                 .ForeignKey("dbo.AspNetUsers", t => t.HostID)
-                .ForeignKey("dbo.Locations", t => t.LocationID)
+                .ForeignKey("dbo.Locations", t => t.LocationID, cascadeDelete: true)
                 .Index(t => t.HostID)
                 .Index(t => t.LocationID);
             
@@ -141,7 +141,7 @@
                         IsSelected = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.UtilityID)
-                .ForeignKey("dbo.Accommodations", t => t.AccommodationID)
+                .ForeignKey("dbo.Accommodations", t => t.AccommodationID, cascadeDelete: true)
                 .Index(t => t.AccommodationID);
             
             CreateTable(

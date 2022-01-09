@@ -193,13 +193,13 @@
     <Compile Include="Persistence\Configurations\AccommodationConfiguration.cs" />
     <Compile Include="Persistence\Configurations\ApplicationUserConfiguration.cs" />
     <Compile Include="Persistence\Configurations\BookingConfiguration.cs" />
-    <Compile Include="Persistence\Migrations\202201021643546_Initial.cs" />
-    <Compile Include="Persistence\Migrations\202201021643546_Initial.designer.cs">
-      <DependentUpon>202201021643546_Initial.cs</DependentUpon>
+    <Compile Include="Persistence\Migrations\202201081529112_Init.cs" />
+    <Compile Include="Persistence\Migrations\202201081529112_Init.designer.cs">
+      <DependentUpon>202201081529112_Init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Persistence\Migrations\202201081141300_Initial1.cs" />
-    <Compile Include="Persistence\Migrations\202201081141300_Initial1.designer.cs">
-      <DependentUpon>202201081141300_Initial1.cs</DependentUpon>
+    <Compile Include="Persistence\Migrations\202201081805329_DatesAtAccommodation.cs" />
+    <Compile Include="Persistence\Migrations\202201081805329_DatesAtAccommodation.designer.cs">
+      <DependentUpon>202201081805329_DatesAtAccommodation.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Migrations\202201081431215_AddedWallet.cs" />
     <Compile Include="Persistence\Migrations\202201081431215_AddedWallet.designer.cs">
@@ -237,7 +237,6 @@
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
@@ -246,11 +245,11 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Persistence\Migrations\202201021643546_Initial.resx">
-      <DependentUpon>202201021643546_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Persistence\Migrations\202201081529112_Init.resx">
+      <DependentUpon>202201081529112_Init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\202201081141300_Initial1.resx">
-      <DependentUpon>202201081141300_Initial1.cs</DependentUpon>
+    <EmbeddedResource Include="Persistence\Migrations\202201081805329_DatesAtAccommodation.resx">
+      <DependentUpon>202201081805329_DatesAtAccommodation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\202201081431215_AddedWallet.resx">
       <DependentUpon>202201081431215_AddedWallet.cs</DependentUpon>
