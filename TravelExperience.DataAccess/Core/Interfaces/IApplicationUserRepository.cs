@@ -8,5 +8,6 @@ namespace TravelExperience.DataAccess.Core.Interfaces
     public interface IApplicationUserRepository : IDisposable, ICrudable<ApplicationUser>
     {
         ApplicationUser GetById(string id);
+        Wallet GetWalletOfUserFromUserID(string travelerID);
     }
 }

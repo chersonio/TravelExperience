@@ -187,23 +187,19 @@
     <Compile Include="Core\Interfaces\IBookingRepository.cs" />
     <Compile Include="Core\Interfaces\IImagesRepository.cs" />
     <Compile Include="Core\Interfaces\ILocationRepository.cs" />
+    <Compile Include="Core\Interfaces\ITransactionRepository.cs" />
     <Compile Include="Core\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Core\Interfaces\IUtilityRepository.cs" />
     <Compile Include="Persistence\AppDBContext.cs" />
+    <Compile Include="Persistence\Configurations\TransactionConfiguration.cs" />
     <Compile Include="Persistence\Configurations\AccommodationConfiguration.cs" />
     <Compile Include="Persistence\Configurations\ApplicationUserConfiguration.cs" />
     <Compile Include="Persistence\Configurations\BookingConfiguration.cs" />
-    <Compile Include="Persistence\Migrations\202201081529112_Init.cs" />
-    <Compile Include="Persistence\Migrations\202201081529112_Init.designer.cs">
-      <DependentUpon>202201081529112_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Migrations\202201081805329_DatesAtAccommodation.cs" />
-    <Compile Include="Persistence\Migrations\202201081805329_DatesAtAccommodation.designer.cs">
-      <DependentUpon>202201081805329_DatesAtAccommodation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Migrations\202201081431215_AddedWallet.cs" />
-    <Compile Include="Persistence\Migrations\202201081431215_AddedWallet.designer.cs">
-      <DependentUpon>202201081431215_AddedWallet.cs</DependentUpon>
+
+    <Compile Include="Persistence\Migrations\202201091210430_Initial.cs" />
+    <Compile Include="Persistence\Migrations\202201091210430_Initial.designer.cs">
+      <DependentUpon>202201091210430_Initial.cs</DependentUpon>
+
     </Compile>
     <!--// CHERSO
     <Compile Include="Persistence\Configurations\UtilitiesConfiguration.cs" />
@@ -215,12 +211,10 @@
     <Compile Include="Persistence\Migrations\202112121727375_ChangedCoordsToFloat.designer.cs">
       <DependentUpon>202112121727375_ChangedCoordsToFloat.cs</DependentUpon>
     </Compile>
-
     
     <Compile Include="Persistence\Repositories\ImagesRepository.cs" />
 
-  
-    // PANAGOU
+      // PANAGOU
     <Compile Include="Persistence\Migrations\202112121716209_Initial.cs" />
     <Compile Include="Persistence\Migrations\202112121716209_Initial.designer.cs">
       <DependentUpon>202112121716209_Initial.cs</DependentUpon>
@@ -233,9 +227,15 @@
     <Compile Include="Persistence\Repositories\SearchFilters\AccommodationSearchFilter.cs" />
     <Compile Include="Persistence\Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Persistence\Repositories\BookingRepository.cs" />
+    <Compile Include="Persistence\Repositories\TransactionRepository.cs" />
     <Compile Include="Persistence\Repositories\UtilityRepository.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Persistence\Migrations\202201091210430_Initial.resx">
+      <DependentUpon>202201091210430_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -243,17 +243,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Persistence\Migrations\202201081529112_Init.resx">
-      <DependentUpon>202201081529112_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\202201081805329_DatesAtAccommodation.resx">
-      <DependentUpon>202201081805329_DatesAtAccommodation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\202201081431215_AddedWallet.resx">
-      <DependentUpon>202201081431215_AddedWallet.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
