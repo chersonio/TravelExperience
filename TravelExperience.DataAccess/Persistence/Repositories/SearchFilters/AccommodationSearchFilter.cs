@@ -30,6 +30,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories.SearchFilters
             // Hard search
             var bookingsToFilter = _context.Accommodations
                 .Include(b => b.Bookings)
+                .Include(l => l.Location)
                 .Where(a =>
                 a.PricePerNight >= minPrice &&
                 a.PricePerNight <= (maxPrice > 0 ? maxPrice : a.PricePerNight) &&
