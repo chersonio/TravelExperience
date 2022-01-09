@@ -514,6 +514,7 @@
     <Content Include="Views\Payment\OopsSomethingWrongWithPayment.cshtml" />
     <Content Include="Views\Payment\Success.cshtml" />
     <Content Include="Views\Error\Error404.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
