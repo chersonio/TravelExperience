@@ -6,23 +6,16 @@ using System.Web.Mvc;
 
 namespace TravelExperience.MVC.Controllers
 {
+    [AllowAnonymous]
     public class ErrorController : Controller
     {
-        // GET: Error
-        public ViewResult Index()
+        public ActionResult Error404()
+        {
+            return View("Error404");
+        }
+        public ActionResult Error()
         {
             return View("Error");
         }
-
-        public ViewResult NotFound(string aspxerrorpath)
-        {
-            Response.Status = "404";
-
-            return View("Error404");
-        }
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
     }
 }

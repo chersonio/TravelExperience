@@ -27,7 +27,6 @@ namespace TravelExperience.MVC.Controllers
         // GET: Payment
         public ActionResult Index(BookingConfirmationDto bookingConfirmationDto)
         {
-            // amount in wallet
             // booking details (formInput+ necessary accommodation info)
             // confirmationPage -> HttpGet => new Booking to Bookings Controller 
             // need to view this booking from BookingController
