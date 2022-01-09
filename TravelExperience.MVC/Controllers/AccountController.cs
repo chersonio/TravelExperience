@@ -155,6 +155,7 @@ namespace TravelExperience.MVC.Controllers
                 {
                     UserName = model.Email,
                     Email = model.Email,
+                    PhoneNumber=model.PhoneNumber,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     DateOfBirth = model.DateOfBirth,

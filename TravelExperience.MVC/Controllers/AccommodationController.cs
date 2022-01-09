@@ -93,10 +93,10 @@ namespace TravelExperience.MVC.Controllers
                 Floor = viewModel.Accommodation.Floor,
                 AccommodationType = viewModel.Accommodation.AccommodationType, // this needs changing
                 HostID = userId,
-                Host = host
-                //creationdate
-                //available from
-                //available to
+                Host = host,
+                AvailableFromDate = viewModel.Accommodation.AvailableFromDate,
+                AvailableToDate = viewModel.Accommodation.AvailableToDate,
+                CreationDate = DateTime.Now
             };
 
             location.Accommodations = new List<Accommodation>() { accommodation };
