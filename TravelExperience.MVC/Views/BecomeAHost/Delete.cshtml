@@ -53,23 +53,38 @@
         @Html.DisplayFor(model => model.PricePerNight)
     </dd>
 
-
-
     <dt>
+        @Html.DisplayNameFor(model => model.AvailableFromDate)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.AvailableFromDate)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.AvailableToDate)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.AvailableToDate)
+    </dd>
+
+    @*<dt>
         @Html.DisplayNameFor(model => model.Location)
     </dt>
     <dd>
         @Html.DisplayFor(model => model.Location.FullAddress)
-    </dd>
+    </dd>*@
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "HostAccommodations")
-        </div>
-    }
 
 </dl>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        @Html.ActionLink("Back to Dashboard", "DashboardHost")
+    </div>
+}

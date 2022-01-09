@@ -28,11 +28,11 @@ namespace TravelExperience.MVC.Controllers.HelperClasses
         /// </summary>
         public void ValidateNewAccommodationsInput(AccommodationFormViewModel viewModel)
         {
-            if (viewModel.Booking.BookingStartDate == System.DateTime.MinValue ||
-                viewModel.Booking.BookingStartDate < System.DateTime.Today)
+            if (viewModel.Accommodation.AvailableFromDate == System.DateTime.MinValue ||
+                viewModel.Accommodation.AvailableFromDate < System.DateTime.Today)
                 viewModel.ErrorMsgForFields.StartDate = "Valid start date is required";
-            if (viewModel.Booking.BookingEndDate == System.DateTime.MinValue ||
-                viewModel.Booking.BookingEndDate <= System.DateTime.Today)
+            if (viewModel.Accommodation.AvailableToDate == System.DateTime.MinValue ||
+                viewModel.Accommodation.AvailableToDate <= System.DateTime.Today)
                 viewModel.ErrorMsgForFields.EndDate = "Valid end date is required";
             if (viewModel.Accommodation.Title == null)
                 viewModel.ErrorMsgForFields.Title = "Title is required";

@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DataAccess.Core.Interfaces;
+using TravelExperience.MVC.Controllers.HelperClasses;
 using TravelExperience.MVC.ViewModels;
 
 namespace TravelExperience.MVC.Controllers
@@ -178,21 +179,38 @@ namespace TravelExperience.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(AccommodationFormViewModel viewModel)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    //var vModel = new AccommodationFormViewModel()
-            //    //{
-            //    //    Accommodation = viewModel.Accommodation
-            //    //};
-            //    return View("Edit", viewModel);
-            //}
+           
 
             var accommodation = _unitOfWork.Accommodations.GetById(viewModel.Accommodation.AccommodationID);
+            var locationID = _unitOfWork.Accommodations.GetById(accommodation.AccommodationID).LocationID;
+            var location = _unitOfWork.Locations.GetById(locationID);
 
             if (accommodation == null)
             {
                 return HttpNotFound();
             }
+
+            var errorHandler = new ErrorHandler();
+            viewModel.ErrorMessageTop = new List<string>();
+            viewModel.ErrorMsgForFields = new ErrorHandler.ErrorMSG();
+
+            if (viewModel.Accommodation.AvailableFromDate == DateTime.MinValue)
+                viewModel.Accommodation.AvailableFromDate = accommodation.AvailableFromDate;
+             
+            if (viewModel.Accommodation.AvailableToDate == DateTime.MinValue)
+                viewModel.Accommodation.AvailableToDate = accommodation.AvailableToDate;
+
+            viewModel.Accommodation.Location = viewModel.Location;
+
+            errorHandler.ValidateNewAccommodationsInput(viewModel);
+
+            if (viewModel.ErrorMessageTop.Any())
+            {
+                viewModel.ErrorMessageTop = viewModel.ErrorMessageTop;
+                return View(viewModel);
+            }
+
+            
 
             accommodation.Title = viewModel.Accommodation.Title;
             accommodation.Description = viewModel.Accommodation.Description;
@@ -201,11 +219,11 @@ namespace TravelExperience.MVC.Controllers
             accommodation.MaxCapacity = viewModel.Accommodation.MaxCapacity;
             accommodation.Floor = viewModel.Accommodation.Floor;
             accommodation.PricePerNight = viewModel.Accommodation.PricePerNight;
-            //accommodation.Thumbnail = viewModel.Accommodation.Thumbnail;
+            accommodation.AvailableFromDate = viewModel.Accommodation.AvailableFromDate;
+            accommodation.AvailableToDate = viewModel.Accommodation.AvailableToDate;
 
 
-            var locationID = _unitOfWork.Accommodations.GetById(accommodation.AccommodationID).LocationID;
-            var location = _unitOfWork.Locations.GetById(locationID);
+            
 
             location.Address = viewModel.Location.Address;
             location.AddressNo = viewModel.Location.AddressNo;
@@ -234,7 +252,7 @@ namespace TravelExperience.MVC.Controllers
 
             _unitOfWork.Complete();
 
-            return RedirectToAction("HostAccommodations", "BecomeAHost");
+            return RedirectToAction("DashboardHost", "BecomeAHost");
         }
 
         //GET: Accommodations/Delete
@@ -273,7 +291,7 @@ namespace TravelExperience.MVC.Controllers
             _unitOfWork.Accommodations.Delete(accommodationID);
             _unitOfWork.Complete();
 
-            return RedirectToAction("HostAccommodations", "BecomeAHost");
+            return RedirectToAction("DashboardHost", "BecomeAHost");
         }
 
 

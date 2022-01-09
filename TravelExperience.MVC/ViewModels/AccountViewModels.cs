@@ -113,6 +113,9 @@ namespace TravelExperience.MVC.ViewModels
         [Required]
         public int PostalCode { get; set; }
 
+        [Required]
+        public string PhoneNumber { get; set; }
+
     }
 
     public class ResetPasswordViewModel
