@@ -17,8 +17,6 @@ namespace TravelExperience.MVC.Controllers
     [Authorize]
     public class BookingsController : Controller
     {
-        //private ApplicationDbContext db = new ApplicationDbContext();
-
         private readonly IUnitOfWork _unitOfWork;
 
         public BookingsController(IUnitOfWork unitOfWork)

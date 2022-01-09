@@ -212,12 +212,6 @@
     <Reference Include="Newtonsoft.Json.Bson, Version=1.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.Bson.1.0.1\lib\net45\Newtonsoft.Json.Bson.dll</HintPath>
     </Reference>
-    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
-    </Reference>
-    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="RestSharp, Version=106.15.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.106.15.0\lib\net452\RestSharp.dll</HintPath>
     </Reference>
@@ -398,6 +392,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MapController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\AccommodationController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -405,6 +400,7 @@
     <Compile Include="Controllers\BookingsController.cs" />
     <Compile Include="Controllers\SearchResultsController.cs" />
     <Compile Include="ViewModels\DashBoardFormViewModel.cs" />
+    <Compile Include="ViewModels\PaymentViewModel.cs" />
     <Compile Include="ViewModels\SearchResultsFormViewModel.cs" />
     <Compile Include="ViewModels\RoleName.cs" />
     <Compile Include="ViewModels\AccommodationFormViewModel.cs" />
@@ -419,6 +415,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\TransactionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -513,10 +510,12 @@
     <Content Include="Views\BecomeAHost\Edit.cshtml" />
     <Content Include="Views\BecomeAHost\HostAccommodations.cshtml" />
     <Content Include="Views\BecomeAHost\Delete.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Payment\OopsSomethingWrongWithPayment.cshtml" />
+    <Content Include="Views\Payment\Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CustomError\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

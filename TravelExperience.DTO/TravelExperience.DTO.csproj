@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dtos\AccommodationDto.cs" />
+    <Compile Include="Dtos\BookingConfirmationDto.cs" />
     <Compile Include="Dtos\BookingDto.cs" />
     <Compile Include="Dtos\LocationDto.cs" />
     <Compile Include="Dtos\UserDto.cs" />

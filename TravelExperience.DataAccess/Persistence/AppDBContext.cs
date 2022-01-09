@@ -30,9 +30,9 @@ namespace TravelExperience.DataAccess.Persistence
             modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
             modelBuilder.Configurations.Add(new AccommodationConfiguration());
             modelBuilder.Configurations.Add(new BookingConfiguration());
+            modelBuilder.Configurations.Add(new TransactionConfiguration());
             base.OnModelCreating(modelBuilder);
         }
 
-        //public System.Data.Entity.DbSet<TravelExperience.DataAccess.Core.Entities.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

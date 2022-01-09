@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="~/Content/Site.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 </head>
 
 <body class="background_img">
@@ -50,7 +49,7 @@
             <br>
             <div class="form-group" style=" font-size: small;">
                 <label>GUESTS</label><br>
-                @Html.TextBoxFor(model => model.Guests, new { @class = "form-control", type = "number", style = "font-size:13px; " })<br>
+                @Html.TextBox("Guests", 1, new { @class = "form-control", type = "number", min = 1, style = "font-size:13px;" })<br>
             </div>
 
             <div class="form-group">

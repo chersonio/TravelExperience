@@ -29,5 +29,8 @@ namespace TravelExperience.DataAccess.Core.Entities
 
         [Required]
         public DateTime CreationDate { get; set; } // Imerominia dimiourgias
+
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
     }
 }

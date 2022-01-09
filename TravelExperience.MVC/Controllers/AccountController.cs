@@ -10,6 +10,7 @@ using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DataAccess.Persistence.Repositories;
 using System;
 using TravelExperience.MVC.ViewModels;
+using TravelExperience.DataAccess.Core.Interfaces;
 
 namespace TravelExperience.MVC.Controllers
 {
@@ -18,9 +19,11 @@ namespace TravelExperience.MVC.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public AccountController()
+        public AccountController(IUnitOfWork unitOfWork)
         {
+            _unitOfWork = unitOfWork;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -165,8 +168,10 @@ namespace TravelExperience.MVC.Controllers
                     AddressNo = model.AddressNo,
                     City = model.City,
                     Country = model.Country,
-                    PostalCode = model.PostalCode
+                    PostalCode = model.PostalCode,
+                    WalletID = Guid.NewGuid()
                 };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

@@ -16,8 +16,9 @@ namespace TravelExperience.DataAccess.Persistence
         public IImagesRepository Images { get; private set; }
         public IUtilityRepository Utilities { get; private set; }
         public IApplicationUserRepository Users { get; private set; }
+        public ITransactionRepository Transactions { get; private set; }
+        public ILocationRepository Locations { get; private set; }
 
-        public ILocationRepository Locations { get; set; }
         public UnitOfWork(AppDBContext context)
         {
             _context = context;
@@ -27,6 +28,7 @@ namespace TravelExperience.DataAccess.Persistence
             Utilities = new UtilityRepository(_context);
             Users = new ApplicationUserRepository(_context);
             Locations = new LocationRepository(_context);
+            Transactions = new TransactionRepository(_context);
 
             //if (_context.Roles.Select(x => x).Count() <= 0)
             //    InitializeDB();

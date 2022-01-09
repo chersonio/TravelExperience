@@ -190,7 +190,7 @@ namespace TravelExperience.MVC.Controllers
 
             var errorHandler = new ErrorHandler();
             viewModel.ErrorMessageTop = new List<string>();
-            viewModel.ErrorMsgForFields = new ErrorHandler.ErrorMSG();
+            viewModel.ErrorMsgForFields = new ErrorHandler.AccommodationErrorMSG();
 
             if (viewModel.Accommodation.AvailableFromDate == DateTime.MinValue)
                 viewModel.Accommodation.AvailableFromDate = accommodation.AvailableFromDate;
