@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddedWallet : DbMigration
+    public partial class NewDB : DbMigration
     {
         public override void Up()
         {

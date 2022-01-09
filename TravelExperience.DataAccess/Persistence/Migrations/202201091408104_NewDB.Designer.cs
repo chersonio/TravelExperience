@@ -7,13 +7,13 @@ namespace TravelExperience.DataAccess.Persistence.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddedWallet : IMigrationMetadata
+    public sealed partial class NewDB : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedWallet));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(NewDB));
         
         string IMigrationMetadata.Id
         {
-            get { return "202201081431215_AddedWallet"; }
+            get { return "202201091408104_NewDB"; }
         }
         
         string IMigrationMetadata.Source
