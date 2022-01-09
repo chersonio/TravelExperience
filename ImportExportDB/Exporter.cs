@@ -9,6 +9,7 @@ using TravelExperience.DataAccess.Core.Interfaces;
 using TravelExperience.DataAccess.Persistence;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Configuration;
 
 namespace ImportExportDB
 {
@@ -22,23 +23,26 @@ namespace ImportExportDB
         // Tables 
         IEnumerable<Accommodation> accommodations { get; set; }
         IEnumerable<Booking> bookings { get; set; }
-        IEnumerable<Image> images { get; set; }
         IEnumerable<Location> locations { get; set; }
         IEnumerable<Utility> utilities { get; set; }
+        IEnumerable<Transaction> transactions { get; set; }
 
         // Users and roles
         IEnumerable<ApplicationUser> users { get; set; }
         AppDBContext context { get; set; }
         List<IdentityRole> roles { get; set; }
         List<IdentityUserRole> userRoles { get; set; }
+        IEnumerable<Wallet> wallets { get; set; }
 
         List<Dictionary<string, string>> sqlInsertQuery = new List<Dictionary<string, string>>();
-        //Dictionary<string, bool> EntityInsertValue;
 
+        private string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+        // Constants
         const string FILEPATH = @"C:\TravelExperience\ImportExport\";
         const string FILETOSTORE = "ExportedDBTables.txt";
         const string DATABASE = "TravelExperienceTEST";
-       
+
         public Exporter()
         {
             _unitOfWork = new UnitOfWork(new AppDBContext());
@@ -88,31 +92,51 @@ namespace ImportExportDB
             GetValues(utilities);
             WriteTableToFile(streamWriter, table, true);
 
-            //table = "Images";
-            //GetValues(images);
-            //WriteTableToFile(streamWriter, table, true);
+            table = "Transactions";
+            if (transactions != null && transactions.Any())
+            {
+                GetValues(transactions);
+                WriteTableToFile(streamWriter, table, true);
+            }
+            else
+                Console.WriteLine(table + " empty. Skip and continue.");
+
+            table = "Wallets";
+            if (wallets != null && wallets.Any())
+            {
+                GetValues(wallets);
+                WriteTableToFile(streamWriter, table, false);
+            }
+            else
+                Console.WriteLine(table + " empty. Skip and continue.");
+            
 
             //Close the file
             streamWriter.Close();
 
             Console.WriteLine("Closed file.");
-
-            Console.WriteLine("Finished procedure. DB Exporting Successful.");
+            Console.WriteLine();
+            Console.WriteLine("---Finished procedure. DB Exporting Successful!---");
         }
+        /// <summary>
+        /// Initializes entities from DBContext
+        /// </summary>
         private void SetTables()
         {
             Console.WriteLine("Started setting tables...");
 
             accommodations = _unitOfWork.Accommodations.GetAll();
             bookings = _unitOfWork.Bookings.GetAll();
-            images = accommodations.SelectMany(x => x.Images).Distinct();
             locations = _unitOfWork.Locations.GetAll();
             utilities = _unitOfWork.Utilities.GetAll();
 
-            users = _unitOfWork.Users.GetAll().Distinct();
+            users = _unitOfWork.Users.GetAll();
             context = new AppDBContext();
             roles = context.Roles.ToList();
             userRoles = users.Distinct().SelectMany(x => x.Roles).ToList();
+
+            transactions = _unitOfWork.Transactions.GetAll().ToList();
+            wallets = users.Select(x=> _unitOfWork.Users.GetWalletOfUserFromUserID(x.Id));
         }
 
         private void GetValues<T>(IEnumerable<T> entity)
@@ -136,7 +160,18 @@ namespace ImportExportDB
                 streamWriter.WriteLine($"SET IDENTITY_INSERT [{table}] ON;");
 
             streamWriter.WriteLine($"INSERT INTO [{table}] ");
-            streamWriter.WriteLine($"( {string.Join(", ", sqlInsertQuery.First().Keys.Select(x => "[" + x.ToString() + "]"))} )");
+            try
+            {
+                streamWriter.WriteLine($"( {string.Join(", ", sqlInsertQuery.First().Keys.Select(x => "[" + x.ToString() + "]"))} )");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                Console.Read();
+
+                Console.WriteLine("--- Procedure failed --- ");
+                return;
+            }
             streamWriter.WriteLine("VALUES");
 
             var counter = 0;
@@ -165,7 +200,6 @@ namespace ImportExportDB
             Console.WriteLine($"Finished writing to file table: {table}.");
         }
 
-        // Na diwksw ta NotMapped
         private static Dictionary<string, string> GetPropertyValues<T>(T obj)
         {
             Type objType = obj.GetType();
@@ -197,10 +231,7 @@ namespace ImportExportDB
                     if (prop.GetIndexParameters().Length == 0)
                     {
                         getName = prop.Name;
-                        getPropValue = (int)prop.GetValue(obj); // how to make it from the correct enum to its equivalent int?
-
-                        //Convert.ChangeType(prop, getPropValue);
-
+                        getPropValue = (int)prop.GetValue(obj);
                     }
                 }
                 else if (prop.PropertyType == typeof(bool))
@@ -208,7 +239,7 @@ namespace ImportExportDB
                     if (prop.GetIndexParameters().Length == 0)
                     {
                         getName = prop.Name;
-                        getPropValue = (bool)prop.GetValue(obj) ? "1" : "0"; // if it is true in sql is stored as 1.
+                        getPropValue = (bool)prop.GetValue(obj) ? "1" : "0"; // true in sql is stored as 1.
                     }
                 }
                 else if (prop.PropertyType == typeof(int) ||

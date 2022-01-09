@@ -7,8 +7,7 @@ using TravelExperience.DataAccess.Core.Entities;
 
 namespace TravelExperience.DataAccess.Core.Interfaces
 {
-    public interface ILocationRepository : IDisposable, ICrudable<Location>
+    public interface ITransactionRepository : IDisposable, ICrudable<Transaction>
     {
-        int? GetMax();
     }
 }

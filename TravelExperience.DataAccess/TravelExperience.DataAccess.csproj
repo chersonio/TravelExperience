@@ -187,15 +187,17 @@
     <Compile Include="Core\Interfaces\IBookingRepository.cs" />
     <Compile Include="Core\Interfaces\IImagesRepository.cs" />
     <Compile Include="Core\Interfaces\ILocationRepository.cs" />
+    <Compile Include="Core\Interfaces\ITransactionRepository.cs" />
     <Compile Include="Core\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Core\Interfaces\IUtilityRepository.cs" />
     <Compile Include="Persistence\AppDBContext.cs" />
+    <Compile Include="Persistence\Configurations\TransactionConfiguration.cs" />
     <Compile Include="Persistence\Configurations\AccommodationConfiguration.cs" />
     <Compile Include="Persistence\Configurations\ApplicationUserConfiguration.cs" />
     <Compile Include="Persistence\Configurations\BookingConfiguration.cs" />
-    <Compile Include="Persistence\Migrations\202201091408104_NewDB.cs" />
-    <Compile Include="Persistence\Migrations\202201091408104_NewDB.designer.cs">
-      <DependentUpon>202201091408104_NewDB.cs</DependentUpon>
+    <Compile Include="Persistence\Migrations\202201091210430_Initial.cs" />
+    <Compile Include="Persistence\Migrations\202201091210430_Initial.designer.cs">
+      <DependentUpon>202201091210430_Initial.cs</DependentUpon>
     </Compile>
     <!--// CHERSO
     <Compile Include="Persistence\Configurations\UtilitiesConfiguration.cs" />
@@ -207,12 +209,10 @@
     <Compile Include="Persistence\Migrations\202112121727375_ChangedCoordsToFloat.designer.cs">
       <DependentUpon>202112121727375_ChangedCoordsToFloat.cs</DependentUpon>
     </Compile>
-
     
     <Compile Include="Persistence\Repositories\ImagesRepository.cs" />
 
-  
-    // PANAGOU
+      // PANAGOU
     <Compile Include="Persistence\Migrations\202112121716209_Initial.cs" />
     <Compile Include="Persistence\Migrations\202112121716209_Initial.designer.cs">
       <DependentUpon>202112121716209_Initial.cs</DependentUpon>
@@ -225,9 +225,15 @@
     <Compile Include="Persistence\Repositories\SearchFilters\AccommodationSearchFilter.cs" />
     <Compile Include="Persistence\Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Persistence\Repositories\BookingRepository.cs" />
+    <Compile Include="Persistence\Repositories\TransactionRepository.cs" />
     <Compile Include="Persistence\Repositories\UtilityRepository.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Persistence\Migrations\202201091210430_Initial.resx">
+      <DependentUpon>202201091210430_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -235,11 +241,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Persistence\Migrations\202201091408104_NewDB.resx">
-      <DependentUpon>202201091408104_NewDB.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -9,6 +9,7 @@ using TravelExperience.MVC.ViewModels;
 using System.IO;
 using TravelExperience.MVC.Controllers.HelperClasses;
 using System.Drawing;
+using TravelExperience.DTO.Dtos;
 
 namespace TravelExperience.MVC.Controllers
 {
@@ -46,7 +47,7 @@ namespace TravelExperience.MVC.Controllers
 
             viewModel.Locations = _unitOfWork.Locations.GetAll().ToList();
             viewModel.ErrorMessageTop = new List<string>();
-            viewModel.ErrorMsgForFields = new ErrorHandler.ErrorMSG();
+            viewModel.ErrorMsgForFields = new ErrorHandler.AccommodationErrorMSG();
             return View(viewModel);
         }
 
@@ -60,7 +61,7 @@ namespace TravelExperience.MVC.Controllers
 
             var errorHandler = new ErrorHandler();
             viewModel.ErrorMessageTop = new List<string>();
-            viewModel.ErrorMsgForFields = new ErrorHandler.ErrorMSG();
+            viewModel.ErrorMsgForFields = new ErrorHandler.AccommodationErrorMSG();
 
             errorHandler.ValidateNewAccommodationsInput(viewModel);
 
@@ -187,9 +188,6 @@ namespace TravelExperience.MVC.Controllers
         /// <summary>
         /// Load an image <br/>
         /// Implement Button to go to payment page<br/>
-        /// Add a calculator of how many nights, how many people * price<br/>
-        /// Add a link to Hosts Name to check a profile maybe (or not!!)<br/>
-        /// 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -223,5 +221,18 @@ namespace TravelExperience.MVC.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
+        public ActionResult Details(BookingConfirmationDto bookingConfirmationDto)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+            //var controller = new PaymentController(_unitOfWork);
+            //return controller.Index(bookingConfirmationDto);
+
+            //return RedirectToAction("Index", "Payment", bookingConfirmationDto);
+            return View(bookingConfirmationDto);
+        }
     }
 }

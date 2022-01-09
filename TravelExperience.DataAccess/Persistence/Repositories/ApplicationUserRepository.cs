@@ -44,7 +44,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public IEnumerable<ApplicationUser> GetAll()
         {
-            return _context.Bookings.Select(x => x.User).ToList();
+            return _context.Users.ToList();
         }
 
         public IEnumerable<ApplicationUser> GetTravelersForAccommodationID(int? id)
@@ -78,6 +78,24 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
         public void Dispose()
         {
             _context.Dispose();
+        }
+
+        public Wallet GetWalletOfUserFromUserID(string travelerID)
+        {
+            if (travelerID == null)
+                throw new ArgumentException(nameof(travelerID));
+
+            var traveler = _context.Users.Find(travelerID);
+
+            if (traveler == null)
+                throw new ArgumentException(nameof(traveler));
+
+            var wallet = _context.Wallets.Find(traveler.WalletID);
+
+            if (wallet == null)
+                throw new ArgumentException(nameof(wallet));
+
+            return wallet;
         }
     }
 }
