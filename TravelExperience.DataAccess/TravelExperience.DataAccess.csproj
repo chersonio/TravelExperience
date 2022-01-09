@@ -195,9 +195,9 @@
     <Compile Include="Persistence\Configurations\AccommodationConfiguration.cs" />
     <Compile Include="Persistence\Configurations\ApplicationUserConfiguration.cs" />
     <Compile Include="Persistence\Configurations\BookingConfiguration.cs" />
-    <Compile Include="Persistence\Migrations\202201091210430_Initial.cs" />
-    <Compile Include="Persistence\Migrations\202201091210430_Initial.designer.cs">
-      <DependentUpon>202201091210430_Initial.cs</DependentUpon>
+    <Compile Include="Persistence\Migrations\202201091831063_NewDB.cs" />
+    <Compile Include="Persistence\Migrations\202201091831063_NewDB.designer.cs">
+      <DependentUpon>202201091831063_NewDB.cs</DependentUpon>
     </Compile>
     <!--// CHERSO
     <Compile Include="Persistence\Configurations\UtilitiesConfiguration.cs" />
@@ -231,16 +231,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Persistence\Migrations\202201091210430_Initial.resx">
-      <DependentUpon>202201091210430_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Persistence\Migrations\202201091831063_NewDB.resx">
+      <DependentUpon>202201091831063_NewDB.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class NewDB : DbMigration
     {
         public override void Up()
         {
@@ -22,6 +22,9 @@
                         Shared = c.Boolean(nullable: false),
                         Floor = c.Int(nullable: false),
                         Thumbnail = c.String(),
+                        AvailableFromDate = c.DateTime(nullable: false),
+                        AvailableToDate = c.DateTime(nullable: false),
+                        CreationDate = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.AccommodationID)
                 .ForeignKey("dbo.AspNetUsers", t => t.HostID)

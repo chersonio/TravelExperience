@@ -14,7 +14,7 @@
             {
                 var startDate = item.BookingStartDate.ToString("d MMM yyyy");
                 var endDate = item.BookingEndDate.ToString("d MMM yyyy");
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <div style="float:right;margin-left: 15px; display: inline-block; margin: 2px 40px 0 0; white-space:pre-line; ">
                         <strong>@Html.DisplayFor(modelItem => item.Accommodation.Title) - @Html.DisplayFor(modelItem => item.Accommodation.Location.City) </strong>
                         @Html.DisplayFor(modelItem => startDate) - @Html.DisplayFor(modelItem => endDate)
