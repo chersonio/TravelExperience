@@ -59,7 +59,6 @@ namespace TravelExperience.MVC.Controllers
             var collectionOfAccommodations = _unitOfWork.Accommodations.GetAll().ToList();
             var random = new Random();
 
-
             for (int i = 0; i < times && collectionOfAccommodations.Count() > 0; i++)
             {
                 int newRand = random.Next(collectionOfAccommodations.Count());

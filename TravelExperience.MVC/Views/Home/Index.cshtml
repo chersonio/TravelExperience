@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,19 +13,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body class="background_img">
-
     <div class="row" style="font-size: 15px; font-family:'Julius Sans One', sans-serif; margin-top:90px;">
         I travel not to go anywhere, but to go.<br />
         I travel for travel’s sake.<br />
         The great affair is to move.<br />
     </div>
-
     <div class="row" style="font-size: 12px; font-family: 'Julius Sans One', sans-serif;">
         -Robert Louis Stevenson
     </div>
-
     @using (Html.BeginForm("Search", "Home", FormMethod.Get))
     {
         <div class="container mt-3 rounded" style="align-self:center; max-width: 500px; padding: 30px 30px 60px 30px; background-color: rgba(113, 99, 71, 0.5); font-family: Helvetica;  font-weight: 600; color:azure;">
@@ -51,14 +46,18 @@
                 <label>GUESTS</label><br>
                 @Html.TextBox("Guests", 1, new { @class = "form-control", type = "number", min = 1, style = "font-size:13px;" })<br>
             </div>
-
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-lg" style="float:left;">Search</button>
             </div>
         </div> <br />
     }
     <br />
-    <div class="image_bg1" style="max-width:stretch;">
+
+    <div style="margin-top: 350px; font-size: 14px; font-family: 'Julius Sans One', sans-serif; text-decoration:underline; color: black;">
+        <h1>Travel the world</h1>
+    </div>
+
+    <div class="image_bg1" style="max-width:stretch; margin-top:20px;">
         @using (Html.BeginForm("Search", "Home", FormMethod.Get))
         {
             <h1>REYKJAVIK</h1>

@@ -21,7 +21,7 @@
                  <div style=" margin-left: 15px; display: inline-block; margin: 2px 20px 0 0; white-space:pre-line; flex-grow:1; text-align:center; ">
                    <strong>@Html.DisplayFor(modelItem => item.Accommodation.Title) - @Html.DisplayFor(modelItem => item.Accommodation.Location.City) </strong>
                    @Html.DisplayFor(modelItem => startDate) - @Html.DisplayFor(modelItem => endDate)
-                   @Html.ActionLink("Edit", "Edit", new { id = item.BookingID }) |  @Html.ActionLink("Details", "Details", new { id = item.BookingID }) | @Html.ActionLink("Cancel", "Delete", new { id = item.BookingID })
+                   @*@Html.ActionLink("Edit", "Edit", new { id = item.BookingID }) |*@  @Html.ActionLink("Details", "Details", new { id = item.BookingID }) @*| @Html.ActionLink("Cancel", "Delete", new { id = item.BookingID })*@
                   </div>
                </div>
            }

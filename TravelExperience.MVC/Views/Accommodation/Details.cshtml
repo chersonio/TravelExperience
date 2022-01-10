@@ -11,7 +11,7 @@
 
 <div>
     <div class="container">
-        <h3><strong>@Html.DisplayFor(model => model.Accommodation.Title)</strong></h3> 
+        <h3><strong>@Html.DisplayFor(model => model.Accommodation.Title)</strong></h3>
         <h5 style="text-decoration:underline;">@Html.DisplayFor(model => model.Accommodation.Location.City) , @Html.DisplayFor(model => model.Location.Country) </h5>
         <hr />
         <div>
@@ -37,8 +37,8 @@
         {
             <row>Entire</row> @Html.DisplayFor(model => model.Accommodation.AccommodationType);
         }
-        
-        
+
+
 
         <hr />
 
@@ -58,10 +58,8 @@
             <div class="card" style="box-shadow: 10px 10px 10px grey; border: groove; border-radius:5px; padding:5px;">
                 <h3 class="card-header" style="border-radius:10px; border:2px solid black;">€ @Html.DisplayFor(model => model.Accommodation.PricePerNight) / night</h3>
                 <div class="card-body">
-                    <h4 class="card-title">Booking for @Html.DisplayFor(model => model.Booking.BookingEndDate.Subtract(model.Booking.BookingStartDate).Ticks) nights</h4>
+                    <h4 class="card-title">Booking in @Html.DisplayFor(m => m.Accommodation.Location.City)</h4>
 
-                    Total Cost: @Model.Accommodation.PricePerNight
-                    <br />
                     Total Guests: @Model.Accommodation.MaxCapacity
                     <br />
                 </div>
@@ -131,9 +129,8 @@
 
     //na tsekarei oti ti dedomeni imerominia einai entos tou evrous Availabilitydates.AccommodationAvailableFrom kai availabilitydates.AccommodationAvailableTo
 
-
     function dateWithinAvailableBookingRange(date) {
-        if (availabilityDates.AccommodationAvailableFrom < date && availabilityDates.AccommodationAvailableTo > date)
+        if (availabilityDates.AccommodationAvailableFrom > date && availabilityDates.AccommodationAvailableTo < date)
             return true;
         else
             return false;
@@ -153,8 +150,8 @@
         beforeShowDay: function (date) {
             //var string = $.datepicker({ dateFormat: 'dd-mm-yy' }, date);
             ////var string = $.datepicker.formatDate('yy-mm-dd', date);
-            return [availabilityDates.BookingUnavailableDates.indexOf(formatDate(date)) == -1 && dateWithinAvailableBookingRange(date)]
-            //return [true];
+            //return [availabilityDates.BookingUnavailableDates.indexOf(formatDate(date)) == -1 && dateWithinAvailableBookingRange(date)]
+            return [true];
         }
     });
 

@@ -133,7 +133,7 @@ namespace TravelExperience.MVC.Controllers
                     // an error occured.
                     // go to another view.
                     // inform user
-                    return View("OopsSomethingWrongWithPayment", ex);
+                    return View("Error", ex);
                 }
                 var transactionViewModel = new TransactionViewModel()
                 {
