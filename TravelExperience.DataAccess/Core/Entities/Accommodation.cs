@@ -8,6 +8,9 @@ using System.Web;
 
 namespace TravelExperience.DataAccess.Core.Entities
 {
+    /// <summary>
+    /// Represents an accommodation entry in the DB
+    /// </summary>
     public class Accommodation
     {
         public int AccommodationID { get; set; }

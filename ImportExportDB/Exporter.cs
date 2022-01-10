@@ -18,23 +18,25 @@ namespace ImportExportDB
     /// </summary>
     public class Exporter
     {
+        #region Properties/Fields
+
         private readonly IUnitOfWork _unitOfWork;
 
         // Tables 
-        IEnumerable<Accommodation> accommodations { get; set; }
-        IEnumerable<Booking> bookings { get; set; }
-        IEnumerable<Location> locations { get; set; }
-        IEnumerable<Utility> utilities { get; set; }
-        IEnumerable<Transaction> transactions { get; set; }
+        private IEnumerable<Accommodation> accommodations { get; set; }
+        private IEnumerable<Booking> bookings { get; set; }
+        private IEnumerable<Location> locations { get; set; }
+        private IEnumerable<Utility> utilities { get; set; }
+        private IEnumerable<Transaction> transactions { get; set; }
 
         // Users and roles
-        IEnumerable<ApplicationUser> users { get; set; }
-        AppDBContext context { get; set; }
-        List<IdentityRole> roles { get; set; }
-        List<IdentityUserRole> userRoles { get; set; }
-        IEnumerable<Wallet> wallets { get; set; }
+        private IEnumerable<ApplicationUser> users { get; set; }
+        private AppDBContext context { get; set; }
+        private List<IdentityRole> roles { get; set; }
+        private List<IdentityUserRole> userRoles { get; set; }
+        private IEnumerable<Wallet> wallets { get; set; }
 
-        List<Dictionary<string, string>> sqlInsertQuery = new List<Dictionary<string, string>>();
+        private List<Dictionary<string, string>> sqlInsertQuery = new List<Dictionary<string, string>>();
 
         private string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
@@ -42,6 +44,8 @@ namespace ImportExportDB
         const string FILEPATH = @"C:\TravelExperience\ImportExport\";
         const string FILETOSTORE = "ExportedDBTables.txt";
         const string DATABASE = "TravelExperienceTEST";
+        
+        #endregion
 
         public Exporter()
         {
@@ -50,6 +54,11 @@ namespace ImportExportDB
 
         /// <summary>
         /// Exports database to a single txt file. Automatically saves it to a .txt
+        /// The file is for internal purposes and not a tool to generally backup the full database");
+        /// 1) You will see the use of database");
+        /// 2) The insert statements for each table"); 
+        /// 3) The values inserted coming from the latest exportation"); 
+        /// 4) Enables Identity Inserts for primary keys when needed");
         /// </summary>
         public void Export()
         {
@@ -62,6 +71,13 @@ namespace ImportExportDB
             streamWriter.WriteLine();
 
             string table = "";
+
+            streamWriter.WriteLine("-- This txt file is for internal purposes and not a tool to generally backup the full database");
+            streamWriter.WriteLine("-- 1) You will see the use of database");
+            streamWriter.WriteLine("-- 2) The insert statements for each table");
+            streamWriter.WriteLine("-- 3) The values inserted coming from the latest exportation");
+            streamWriter.WriteLine("-- 4) Enables Identity Inserts for primary keys when needed");
+            streamWriter.WriteLine();
 
             //Pass the filepath and filename to the StreamWriter Constructor
             table = "AspNetUsers";

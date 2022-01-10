@@ -2,7 +2,7 @@
 using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DTO.Dtos;
 
-namespace TravelExperience.MVC.App_Start
+namespace TravelExperience.API.App_Start
 {
     public class MappingProfile : Profile
     {
@@ -20,9 +20,8 @@ namespace TravelExperience.MVC.App_Start
             Mapper.CreateMap<Utility, UtilityDto>();
             Mapper.CreateMap<UtilityDto, Utility>();
 
-
-            Mapper.CreateMap<ApplicationUser, UserDto>();
-            Mapper.CreateMap<UserDto, ApplicationUser>();
+            //Mapper.CreateMap<ApplicationUser, UserDto>();
+            //Mapper.CreateMap<UserDto, ApplicationUser>();
         }
     }
 }

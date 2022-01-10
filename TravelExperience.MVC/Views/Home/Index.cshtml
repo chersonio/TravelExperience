@@ -106,7 +106,6 @@
         </div>
     </div>
 
-
     <div class="container" style="padding: 3px; font-size: 14px; font-family: Helvetica;">
         <div class="row">
             <div class="col-md-4">
@@ -163,21 +162,33 @@
     </div> <br />
 
     <div class="image_bg1" style="max-width:stretch;">
-        <h1>REYKJAVIK</h1>
-        <h5>ICELAND</h5>
-        <button onclick="location.href='@Url.Action("Search","Home")'" style="font-size:medium; color:darkred;">Browse Accommodations</button>
+        @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+        {
+            <h1>REYKJAVIK</h1>
+            <h5>ICELAND</h5>
+            <input type="hidden" value="REYKJAVIK" name="LocationString" />
+            <button type="submit" style="font-size:medium; color:darkred;">Browse Accommodations</button>
+        }
     </div> <hr />
 
     <div class="image_bg2" style="max-width:stretch;">
-        <h1>SABANA WESTPUNT</h1>
-        <h5>CURACAO</h5>
-        <button onclick="location.href='@Url.Action("Search","Home")'" style="font-size:medium; color:darkred;">Browse Accommodations</button>
+        @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+        {
+            <h1>SABANA WESTPUNT</h1>
+            <h5>CURACAO</h5>
+            <input type="hidden" value="SABANA WESTPUNT" name="LocationString" />
+            <button type="submit" style="font-size:medium; color:darkred;">Browse Accommodations</button>
+        }
     </div> <hr />
 
     <div class="image_bg3" style="max-width:stretch;">
-        <h1>SEOUL</h1>
-        <h5>SOUTH KOREA</h5>
-        <button onclick="location.href='@Url.Action("Search","Home")'" style="font-size:medium; color:darkred;">Browse Accommodations</button>
+        @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+        {
+            <h1>SEOUL</h1>
+            <h5>SOUTH KOREA</h5>
+            <input type="hidden" value="SEOUL" name="LocationString" />
+            <button type="submit" style="font-size:medium; color:darkred;">Browse Accommodations</button>
+        }
     </div> <hr />
 
 

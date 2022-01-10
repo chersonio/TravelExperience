@@ -15,7 +15,7 @@ namespace TravelExperience.MVC.ViewModels
         public List<Accommodation> Accommodations { get; set; }
         public List<Booking> Bookings { get; set; }
 
-        [Display(Name = "Total Price")]
+        [Display(Name = "Total Earnings per Guest")]
         public IDictionary<Booking, decimal> PriceOfBooking { get; set; } 
     }
 }

@@ -4,9 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TravelExperience.DataAccess.Core.Entities
 {
+    /// <summary>
+    /// Represents an accommodation entry in the DB
+    /// </summary>
     public class Booking
     {
-        // maybe we will need a table receipts
         [Key]
         public int BookingID { get; set; }
 
@@ -28,7 +30,7 @@ namespace TravelExperience.DataAccess.Core.Entities
         public DateTime BookingEndDate { get; set; }
 
         [Required]
-        public DateTime CreationDate { get; set; } // Imerominia dimiourgias
+        public DateTime CreationDate { get; set; }
 
         public string PhoneNumber { get; set; }
         public string Email { get; set; }

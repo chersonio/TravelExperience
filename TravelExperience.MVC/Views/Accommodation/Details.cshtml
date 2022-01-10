@@ -62,49 +62,55 @@
                     <br />
                 </div>
                 <br />
-                <form action="@Url.Action("Index", "Payment")" method="post" style="margin-bottom: 20px">
 
-                    @Html.AntiForgeryToken()
+                @if (!Model.IsViewedByOwner)
+                {
+                    <form action="@Url.Action("Index", "Payment")" method="post" style="margin-bottom: 20px">
 
-                    @Html.Hidden("AccommodationID", Model.Accommodation.AccommodationID)
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Accommodation.MaxCapacity, "Guests", htmlAttributes: new { @class = "control-label col-md-3" })
-                            <div class="col-md-8">
-                                @Html.DropDownList("Guests", Model.GuestOptions, htmlAttributes: new { @class = "form-control", value = "1" })
-                                @Html.ValidationMessageFor(model => model.Accommodation.MaxCapacity, "", new { @class = "text-danger" })
+                        @Html.AntiForgeryToken()
+
+                        @Html.Hidden("AccommodationID", Model.Accommodation.AccommodationID)
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Accommodation.MaxCapacity, "Guests", htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-8">
+                                    @Html.DropDownList("Guests", Model.GuestOptions, htmlAttributes: new { @class = "form-control", value = "1" })
+                                    @Html.ValidationMessageFor(model => model.Accommodation.MaxCapacity, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Booking.BookingStartDate, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.Booking.BookingStartDate, new { @class = "form-control datepicker", Value = DateTime.Now.ToString("dd/MM/yyyy").Replace(" ", "/"), Name = "BookingStartDate" })
+                                    @Html.HiddenFor(model => model.Booking.BookingStartDate)
+
+                                    @*@Html.TextBoxFor(model => model.StartDate, "", new { id = "date", @class = "datepicker", @style = "width:70%; height:30px;", @placeholder = "Enter Date", @Value = @Model.StartDate.ToShortDateString() })*@
+
+                                    @Html.ValidationMessageFor(model => model.Booking.BookingStartDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Booking.BookingEndDate, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.Booking.BookingEndDate, new { @class = "form-control datepicker", Value = DateTime.Now.AddDays(1).ToString("dd/MM/yyyy").Replace(" ", "/"), Name = "BookingEndDate" })
+                                    @Html.HiddenFor(model => model.Booking.BookingEndDate)
+
+                                    @Html.ValidationMessageFor(model => model.Booking.BookingEndDate, "", new { @class = "text-danger" })
+                                </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Booking.BookingStartDate, htmlAttributes: new { @class = "control-label col-md-3" })
-                            <div class="col-md-8">
-                                @Html.TextBoxFor(model => model.Booking.BookingStartDate, new { @class = "form-control datepicker", Value = DateTime.Now.ToString("dd/MM/yyyy").Replace(" ", "/"), Name = "BookingStartDate" })
-                                @Html.HiddenFor(model => model.Booking.BookingStartDate)
+                        <button type="submit" class="btn btn-primary btn-lg">Book Now</button>
+                    </form>
+                }
 
-                                @*@Html.TextBoxFor(model => model.StartDate, "", new { id = "date", @class = "datepicker", @style = "width:70%; height:30px;", @placeholder = "Enter Date", @Value = @Model.StartDate.ToShortDateString() })*@
 
-                                @Html.ValidationMessageFor(model => model.Booking.BookingStartDate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Booking.BookingEndDate, htmlAttributes: new { @class = "control-label col-md-3" })
-                            <div class="col-md-8">
-                                @Html.TextBoxFor(model => model.Booking.BookingEndDate, new { @class = "form-control datepicker", Value = DateTime.Now.AddDays(1).ToString("dd/MM/yyyy").Replace(" ", "/"), Name = "BookingEndDate" })
-                                @Html.HiddenFor(model => model.Booking.BookingEndDate)
-
-                                @Html.ValidationMessageFor(model => model.Booking.BookingEndDate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-lg">Book Now</button>
-                </form>
             </div>
         </div>
-
     </div>
-
+    <button onclick="history.back()" class="btn-danger">Back</button>
 </div>
 
 <script>
@@ -117,6 +123,16 @@
         (m.length == 1) && (m = '0' + m);
         var yyyymmdd = y + '-' + m + '-' + d;
         return yyyymmdd;
+    };
+
+    //na tsekarei oti ti dedomeni imerominia einai entos tou evrous Availabilitydates.AccommodationAvailableFrom kai availabilitydates.AccommodationAvailableTo
+
+
+    function dateWithinAvailableBookingRange(date) {
+        if (availabilityDates.AccommodationAvailableFrom < date && availabilityDates.AccommodationAvailableTo > date)
+            return true;
+        else
+            return false;
     };
 
     var availabilityDates = {
@@ -133,9 +149,8 @@
         beforeShowDay: function (date) {
             //var string = $.datepicker({ dateFormat: 'dd-mm-yy' }, date);
             ////var string = $.datepicker.formatDate('yy-mm-dd', date);
-            //debugger;
-            //return [availabilityDates.BookingUnavailableDates.indexOf(formatDate(date)) == -1]
-            return [true];
+            return [availabilityDates.BookingUnavailableDates.indexOf(formatDate(date)) == -1 && dateWithinAvailableBookingRange(date)]
+            //return [true];
         }
     });
 

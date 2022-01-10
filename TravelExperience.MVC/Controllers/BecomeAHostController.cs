@@ -131,7 +131,7 @@ namespace TravelExperience.MVC.Controllers
             {
                 return HttpNotFound();
             }
-            return View("Details", viewModel);
+            return View("Details", "Accommodation", viewModel);
         }
 
         //GET: Accommodations/Edit

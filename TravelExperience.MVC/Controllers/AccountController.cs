@@ -154,9 +154,9 @@ namespace TravelExperience.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var wallet = new Wallet();
-                wallet.WalletID = Guid.NewGuid();
-                wallet.Amount = 1000;
+                var wallet = new Wallet(); 
+                wallet.WalletID = Guid.NewGuid(); 
+                wallet.Amount = 1000; 
 
                 var user = new ApplicationUser
                 {
@@ -173,7 +173,7 @@ namespace TravelExperience.MVC.Controllers
                     City = model.City,
                     Country = model.Country,
                     PostalCode = model.PostalCode,
-                    WalletID = wallet.WalletID
+                    WalletID = wallet.WalletID 
                 };
                 
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -194,12 +194,12 @@ namespace TravelExperience.MVC.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    _unitOfWork.Wallets.Create(wallet);
-                    _unitOfWork.Complete();
+                    _unitOfWork.Wallets.Create(wallet); 
+                    _unitOfWork.Complete(); 
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home"); 
                 }
-                AddErrors(result);
+                AddErrors(result); 
             }
 
             // If we got this far, something failed, redisplay form

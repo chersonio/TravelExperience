@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace TravelExperience.DataAccess.Core.Entities
 {
-
+    /// <summary>
+    /// Enumeration of Accommodation type such as Room or Villa
+    /// </summary>
     public enum AccommodationType // AccommodationType.Room
     {
         [Display(Name = "Room")]

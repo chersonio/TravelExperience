@@ -27,8 +27,8 @@ namespace TravelExperience.MVC.Controllers
 
         public ActionResult Accommodations(SearchResultsFormViewModel searchResultsFormViewModel)
         {
+            
             var viewModel = new SearchResultsFormViewModel() { Accommodations = new List<Accommodation>() };
-
             if (searchResultsFormViewModel.Accommodations == null)
             {
                 viewModel.Accommodations = _unitOfWork.Accommodations.GetAll().ToList();
@@ -47,6 +47,7 @@ namespace TravelExperience.MVC.Controllers
             var bookingEndDate = viewModel.BookingEndDate;
             var city = viewModel.LocationString;
             var numberOfGuests = viewModel.Guests;
+            viewModel.Locations = _unitOfWork.Locations.GetAll().Distinct().ToList();
 
             AccommodationSearchFilter bookingsSearchFilter = new AccommodationSearchFilter();
             var searchResults = bookingsSearchFilter.FilterBookings(dateStarting: bookingStartDate, dateEnding: bookingEndDate, city: city, numberOfGuests: numberOfGuests).ToList();

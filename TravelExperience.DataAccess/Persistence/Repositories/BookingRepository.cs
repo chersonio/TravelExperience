@@ -78,8 +78,6 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
             var totalPrice = (days > 0 ? days : 1) * accommodationPricePerNight;
 
-            DateTime xmas = new DateTime(2009, 12, 25);
-            double daysUntilChristmas = xmas.Subtract(DateTime.Today).TotalDays;
             days = booking.BookingEndDate.Subtract(booking.BookingStartDate).Days;
 
             totalPrice = (days > 0 ? days : 1) * accommodationPricePerNight;
@@ -99,10 +97,6 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public IEnumerable<DateTime> GetInvalidBookingDates(int accommodationID, string travelerID)
         {
-            // userID - > BOOK a DATE (userID, date)
-            // Accommodations /From To/              
-            // Bookings userID
-            // Bookings AllUSERS
             List<Booking> bookings = _context.Bookings
                 .Where(b => (b.AccommodationID == accommodationID || b.User.Id == travelerID) && b.BookingEndDate >= DateTime.Today).ToList();
 
@@ -111,16 +105,6 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
             List<DateTime> unavailableDates = new List<DateTime>();
 
-            //foreach (Tuple<DateTime, DateTime> dates in bookedDates)
-            //{
-            //    // Map dates of Bookings
-            //    DateTime iterator = dates.Item1;
-            //    while (iterator < dates.Item2)
-            //    {
-            //        unavailableDates.Add(iterator);
-            //        iterator.AddDays(1);
-            //    }
-            //}
             for (var i =0; i < bookedDates.Count(); i++)
             {
                 // Map dates of Bookings
