@@ -79,6 +79,7 @@ namespace TravelExperience.MVC.Controllers
             searchResultsViewModel.BookingEndDate = viewModel.BookingEndDate;
             searchResultsViewModel.Guests = viewModel.Guests;
             searchResultsViewModel.LocationString = viewModel.LocationString; // maybe this needs changing.. but for now it may work
+            searchResultsViewModel.Location = viewModel.Location;
 
             //ImageHandler imageHandler = new ImageHandler();
 

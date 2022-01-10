@@ -11,7 +11,8 @@
 
 <div>
     <div class="container">
-        <h3><strong>@Html.DisplayFor(model => model.Accommodation.Title)</strong></h3>
+        <h3><strong>@Html.DisplayFor(model => model.Accommodation.Title)</strong></h3> 
+        <h5 style="text-decoration:underline;">@Html.DisplayFor(model => model.Accommodation.Location.City) , @Html.DisplayFor(model => model.Location.Country) </h5>
         <hr />
         <div>
             @*Loads the given thumbnailAccommodation ImageInfo. Then it loads as a partial view the aquired image.*@
@@ -36,6 +37,9 @@
         {
             <row>Entire</row> @Html.DisplayFor(model => model.Accommodation.AccommodationType);
         }
+        
+        
+
         <hr />
 
         <div class="col-md-6">
