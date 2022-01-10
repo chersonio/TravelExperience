@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TravelExperience.DataAccess.Core.Entities
 {
+    /// <summary>
+    /// Represents an location entry in the DB
+    /// </summary>
     public class Location
     {
         [Key]

@@ -6,6 +6,9 @@ using System.Web;
 
 namespace TravelExperience.DataAccess.Core.Entities
 {
+    /// <summary>
+    /// Represents an Image entry in the DB
+    /// </summary>
     public class Image
     {
         public int ID { get; set; }

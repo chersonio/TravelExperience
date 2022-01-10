@@ -57,33 +57,36 @@
             </div>
         </div> <br />
     }
-
     <br />
-    
-    @using (Html.BeginForm("Search", "Home", FormMethod.Get))
-    {
-        <div style="margin-top: 350px; font-size: 14px; font-family: 'Julius Sans One', sans-serif; text-decoration:underline; color: black;">
-                <h1>Travel the world</h1>
-            </div>
-
-        <div class="image_bg1" style="max-width:stretch; margin-top:20px;">
+    <div class="image_bg1" style="max-width:stretch;">
+        @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+        {
             <h1>REYKJAVIK</h1>
             <h5>ICELAND</h5>
-            <button onclick="location.href='@Url.Action("Search", "Home")'" style="font-size:medium; color:darkred;">Browse Accommodations</button>
-        </div> <hr />
+            <input type="hidden" value="REYKJAVIK" name="LocationString" />
+            <button type="submit" style="font-size:medium; color:darkred;">Browse Accommodations</button>
+        }
+    </div> <hr />
 
-        <div class="image_bg2" style="max-width:stretch;">
+    <div class="image_bg2" style="max-width:stretch;">
+        @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+        {
             <h1>SABANA WESTPUNT</h1>
             <h5>CURACAO</h5>
-            <button onclick="location.href='@Url.Action("Search", "Home")'" style="font-size:medium; color:darkred;">Browse Accommodations</button>
-        </div> <hr />
+            <input type="hidden" value="SABANA WESTPUNT" name="LocationString" />
+            <button type="submit" style="font-size:medium; color:darkred;">Browse Accommodations</button>
+        }
+    </div> <hr />
 
-        <div class="image_bg3" style="max-width:stretch;">
+    <div class="image_bg3" style="max-width:stretch;">
+        @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+        {
             <h1>SEOUL</h1>
             <h5>SOUTH KOREA</h5>
-            <button onclick="location.href='@Url.Action("Search", "Home")'" style="font-size:medium; color:darkred;">Browse Accommodations</button>
-        </div> <hr />
-    }
+            <input type="hidden" value="SEOUL" name="LocationString" />
+            <button type="submit" style="font-size:medium; color:darkred;">Browse Accommodations</button>
+        }
+    </div> <hr />
 
     @*<------ Chersonio: Random suggested accommodation links ----->*@
 
@@ -99,7 +102,6 @@
             <br />
         }
     }
-
 
     <footer>
         <div class="container" style="margin-top: 70px;">

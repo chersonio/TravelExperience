@@ -1,9 +1,5 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
 using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DataAccess.Core.Interfaces;
@@ -11,6 +7,7 @@ using TravelExperience.DTO.Dtos;
 
 namespace TravelExperience.API.Controllers
 {
+    [AllowAnonymous]
     public class LocationsController : ApiController
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -19,7 +16,14 @@ namespace TravelExperience.API.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        // GET: api/Bookings
+        // GET: api/Locations
+        /// <summary>
+        /// Returns a specific Locations
+        /// </summary>
+        /// <returns></returns>
+        [AllowAnonymous]
+        [Route("bookings")]
+        [HttpGet]
         public IHttpActionResult GetLocations()
         {
             var locations = _unitOfWork
@@ -32,8 +36,15 @@ namespace TravelExperience.API.Controllers
             return Ok(locationsDto);
         }
 
-        // GET: api/Accommodations/5
-        public IHttpActionResult GetLocation(int id)
+        // GET: api/Locations/5
+        /// <summary>
+        /// Returns a specific Location
+        /// </summary>
+        /// <returns></returns>
+        [AllowAnonymous]
+        [Route("bookings/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetLocations(int id)
         {
             var location = _unitOfWork
                 .Locations

@@ -71,15 +71,14 @@ namespace TravelExperience.MVC.Controllers
 
 
                 // TODO:
-                // prepei na ginei query gia inuvailable dates auto vgainei apo:
+                // prepei na ginei query gia unavailable dates auto vgainei apo:
                 // ta !available dates tou accommodation ( meria host )
                 // ta booking dates tou sygkekrimenou accommodation.
 
                 // ta booking dates mporoun na mpoun pleon sti function pou eftiaksa sto index
 
-                // tha prepei na checkarei an o xristis paei na kleisei diko tou booking kai na min ton afinei
-                // booking xristi pou mporei na xei klhsei idia imerominia kapou.
-
+                // deprecate to view details tou accommodation kai na xrisimopoieitai to details tou accommodation.
+                // otan kaneis edit ta details tou accommodation de sou exei gemmates tis imerominies na ftiaksw to tropo
 
                 booking.AccommodationID = bookingConfirmationDto.AccommodationID;
                 booking.BookingStartDate = bookingConfirmationDto.BookingStartDate;

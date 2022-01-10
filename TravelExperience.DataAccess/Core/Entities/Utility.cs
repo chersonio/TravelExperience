@@ -5,6 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TravelExperience.DataAccess.Core.Entities
 {
+    /// <summary>
+    /// Represents a utility enumeration of amenities such as wifi, pool etc 
+    /// </summary>
     [Flags]
     public enum UtilitiesEnum
     {

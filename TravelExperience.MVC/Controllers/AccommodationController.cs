@@ -196,6 +196,9 @@ namespace TravelExperience.MVC.Controllers
             var viewModel = new AccommodationFormViewModel();
 
             viewModel.Accommodation = _unitOfWork.Accommodations.GetById(id);
+            var userID = User.Identity.GetUserId();
+
+            viewModel.IsViewedByOwner = viewModel.Accommodation.HostID == userID;
             viewModel.Utilities = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == id).ToList();
             viewModel.Location = _unitOfWork.Locations.GetById(id);
 

@@ -46,5 +46,7 @@ namespace TravelExperience.MVC.ViewModels
         public List<SelectListItem> GuestOptions { get; set; } = new List<SelectListItem> { 
             new SelectListItem { Disabled = false, Selected = true, Text = "1", Value = "1" }
         };
+
+        public bool IsViewedByOwner { get; set; }
     }
 }

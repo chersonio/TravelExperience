@@ -4,6 +4,12 @@
     ViewBag.Title = "Edit";
 }
 
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
 <h2>Edit</h2>
 
 @using (Html.BeginForm("Edit", "BecomeAHost", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -85,22 +91,16 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Accommodation.AvailableFromDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-2">
-                <p>You have picked:  @Html.DisplayFor(model => model.Accommodation.AvailableFromDate)</p>
-            </div>
             <div class="col-md-5">
-                @Html.EditorFor(model => model.Accommodation.AvailableFromDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.Accommodation.AvailableFromDate, new { @class = "form-control datepicker", Value = Model.Accommodation.AvailableFromDate.ToString("dd/MM/yyyy").Replace(" ", "/") })
                 @Html.ValidationMessageFor(model => model.Accommodation.AvailableFromDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Accommodation.AvailableToDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-2">
-                <p>You have picked:  @Html.DisplayFor(model => model.Accommodation.AvailableToDate)</p>
-            </div>
             <div class="col-md-5">
-                @Html.EditorFor(model => model.Accommodation.AvailableToDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.Accommodation.AvailableToDate, new { @class = "form-control datepicker", Value = Model.Accommodation.AvailableToDate.ToString("dd/MM/yyyy").Replace(" ", "/") })
                 @Html.ValidationMessageFor(model => model.Accommodation.AvailableToDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -200,3 +200,10 @@
 <div>
     @Html.ActionLink("Back to Dashboard", "DashboardHost")
 </div>
+
+
+<script>
+    $('.datepicker').datepicker({
+        dateFormat: 'dd/mm/yy'
+    });
+</script>

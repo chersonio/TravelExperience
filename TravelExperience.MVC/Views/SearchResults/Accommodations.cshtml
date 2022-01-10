@@ -4,43 +4,49 @@
     ViewBag.Title = "Accommodations";
 }
 
-
-<div class="container" style="display:grid; grid-template-columns: 1fr 1fr; grid-gap: 1px; margin-top:38px;">
+<div class="container" style="display:grid; grid-template-columns: 1fr 1fr; grid-gap: 1px; margin-top:38px; padding:0;">
 
     <div style="position: fixed; padding: 0 5px 0 0;">
         @Html.Partial("_Map", new TravelExperience.MVC.ViewModels.MapViewModel() { ShowLocations = true })
     </div>
 
-
     <div style="flex-grow:1;">
 
-        @foreach (var accom in Model.Accommodations)
+        @if (Model.Accommodations != null && Model.Accommodations.Any())
         {
-            <div style="display: flex;">
-                @{ var firstThumb = @Model.ThumbnailOfAccommodations[accom].FirstOrDefault(); }
-                @Html.Partial("_AccommodationThumbnail", @firstThumb)
+            foreach (var accom in Model.Accommodations)
+            {
+                <div style="display: flex;">
+                    @{ var firstThumb = @Model.ThumbnailOfAccommodations[accom].FirstOrDefault(); }
+                    @Html.Partial("_AccommodationThumbnail", @firstThumb)
 
-                <div style="flex-grow: 1; margin: 5px 5px 0 5px; white-space: pre-line; float:right; text-align:center;">
-                    <strong>
-                        @Html.DisplayFor(modelItem => accom.Title)
-                    </strong>
+                    <div style="flex-grow: 1; margin: 5px 5px 0 5px; white-space: pre-line; float:right; text-align:center;">
+                        <strong>
+                            @Html.DisplayFor(modelItem => accom.Title)
+                        </strong>
 
-                    @Html.DisplayFor(modelItem => accom.MaxCapacity) Guests
-                    @Html.DisplayFor(modelItem => accom.Location.City) , @Html.DisplayFor(modelItem => accom.Location.Country)
-                    @Html.ActionLink("View Accommodation", "Details", "Accommodation", new { id = accom.AccommodationID }, new { @class = " view btn btn-default btn-md" })
+                        @Html.DisplayFor(modelItem => accom.MaxCapacity) Guests
+                        @Html.DisplayFor(modelItem => accom.Location.City) , @Html.DisplayFor(modelItem => accom.Location.Country)
+                        @Html.ActionLink("View Accommodation", "Details", "Accommodation", new { id = accom.AccommodationID }, new { @class = " view btn btn-default btn-md" })
+                    </div>
+
                 </div>
-            </div>
-            <hr />
+                <hr />
+            }
         }
+        else
+        {
+            <h3 align="center">Sorry no Results</h3>
+            }
     </div>
 
     <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
 </div>
 
-    
+
 
 <style>
-    .view.btn{
+    .view.btn {
         background-color: #d63e3e;
     }
 
@@ -53,16 +59,16 @@
         font-size: 16px;
         border: none;
         outline: none;
-        background-color:#4e4444;
+        background-color: #4e4444;
         color: white;
         cursor: pointer;
         padding: 15px;
         border-radius: 4px;
     }
 
-    #myBtn:hover {
-        background-color: #555;
-    }
+        #myBtn:hover {
+            background-color: #555;
+        }
 </style>
 
 <script>

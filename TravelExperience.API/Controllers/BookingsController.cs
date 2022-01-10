@@ -7,6 +7,7 @@ using TravelExperience.DTO.Dtos;
 
 namespace TravelExperience.API.Controllers
 {
+    [AllowAnonymous]
     public class BookingsController : ApiController
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -16,6 +17,13 @@ namespace TravelExperience.API.Controllers
         }
 
         // GET: api/Bookings
+        /// <summary>
+        /// Returns a all bookings
+        /// </summary>
+        /// <returns></returns>
+        [AllowAnonymous]
+        [Route("bookings")]
+        [HttpGet]
         public IHttpActionResult GetBookings()
         {
             var bookings = _unitOfWork
@@ -23,12 +31,18 @@ namespace TravelExperience.API.Controllers
                 .GetAll();
 
             var bookingsDto = bookings.Select(Mapper.Map<Booking, BookingDto>);
-            //bookingsDto = bookings.Select(x => x.User).Select(Mapper.Map<ApplicationUser, UserDto>);
 
             return Ok(bookingsDto);
         }
 
-        // GET: api/Accommodations/5
+        // GET: api/Bookings/5
+        /// <summary>
+        /// Returns a specific booking
+        /// </summary>
+        /// <returns></returns>
+        [AllowAnonymous]
+        [Route("bookings/{id}")]
+        [HttpGet]
         public IHttpActionResult GetBookings(int id)
         {
             var booking = _unitOfWork

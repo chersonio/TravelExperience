@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace TravelExperience.DataAccess.Core.Entities
 {
+    /// <summary>
+    /// Represents a wallet entry in the DB
+    /// </summary>
     public class Wallet
     {
         [Required]

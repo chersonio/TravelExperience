@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using TravelExperience.DataAccess.Core.Entities;
@@ -7,14 +9,23 @@ using TravelExperience.DTO.Dtos;
 
 namespace TravelExperience.API.Controllers
 {
+    [AllowAnonymous]
     public class AccommodationsController : ApiController
     {
         private readonly IUnitOfWork _unitOfWork;
+
         public AccommodationsController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
+        // GET: api/accommodations/
+        /// <summary>
+        /// Returns all accommodations
+        /// </summary>
+        /// <returns></returns>
+        [AllowAnonymous]
+        [Route("accommodations")]
         [HttpGet]
         public IHttpActionResult GetAccommodations()
         {
@@ -28,8 +39,15 @@ namespace TravelExperience.API.Controllers
             return Ok(accommodationsDto);
         }
 
+        // GET: api/accommodations/5
+        /// <summary>
+        /// Returns a specific accommodation
+        /// </summary>
+        /// <returns></returns>
+        [AllowAnonymous]
+        [Route("accommodations/{id}")]
         [HttpGet]
-        public IHttpActionResult GetAccommodation(int id)
+        public IHttpActionResult GetAccommodations(int id)
         {
             var accommodation = _unitOfWork
                .Accommodations
