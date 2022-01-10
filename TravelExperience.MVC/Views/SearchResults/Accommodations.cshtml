@@ -6,7 +6,7 @@
 
 <div class="container" style="display:grid; grid-template-columns: 1fr 1fr; grid-gap: 1px; margin-top:38px; padding:0;">
 
-    <div style="position: fixed;">
+    <div style="position: fixed; padding: 0 5px 0 0;">
         @Html.Partial("_Map", new TravelExperience.MVC.ViewModels.MapViewModel() { ShowLocations = true })
     </div>
 
@@ -20,7 +20,7 @@
                     @{ var firstThumb = @Model.ThumbnailOfAccommodations[accom].FirstOrDefault(); }
                     @Html.Partial("_AccommodationThumbnail", @firstThumb)
 
-                    <div style="flex-grow: 1; margin: 5px 5px 0 5px; white-space: pre-line; float:right; max-width: 200px; text-align:center;">
+                    <div style="flex-grow: 1; margin: 5px 5px 0 5px; white-space: pre-line; float:right; text-align:center;">
                         <strong>
                             @Html.DisplayFor(modelItem => accom.Title)
                         </strong>
@@ -29,6 +29,7 @@
                         @Html.DisplayFor(modelItem => accom.Location.City) , @Html.DisplayFor(modelItem => accom.Location.Country)
                         @Html.ActionLink("View Accommodation", "Details", "Accommodation", new { id = accom.AccommodationID }, new { @class = " view btn btn-default btn-md" })
                     </div>
+
                 </div>
                 <hr />
             }
