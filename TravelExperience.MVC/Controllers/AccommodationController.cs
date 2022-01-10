@@ -144,7 +144,7 @@ namespace TravelExperience.MVC.Controllers
             var storeImageMessage = StoreImage(viewModel);
 
             // TODO: this needs to redirect to the area of the hosts accommodations (Dashboard)
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("DashboardHost", "BecomeAHost");
         }
 
         /// <summary>
@@ -197,6 +197,7 @@ namespace TravelExperience.MVC.Controllers
 
             viewModel.Accommodation = _unitOfWork.Accommodations.GetById(id);
             viewModel.Utilities = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == id).ToList();
+            viewModel.Location = _unitOfWork.Locations.GetById(id);
 
             var path = ACCOMMODATIONS_IMAGE_PATH + viewModel.Accommodation.AccommodationID.ToString();
 

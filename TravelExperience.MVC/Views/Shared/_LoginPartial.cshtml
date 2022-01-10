@@ -7,8 +7,7 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
-
-        <ul class="navright">
+        <ul class="navright" id="navi-list">
             <li class="dropdown">
                 <a> Hosting</a>
                 <ul class="dropdown-menu">
@@ -29,7 +28,13 @@
                 <li> @Html.ActionLink("Hello " + userName + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
             }
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
+
         </ul>
+        <div class="menu" id="toggle-button">
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+        </div>
     }
 }
 else
@@ -39,3 +44,56 @@ else
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }
+
+<style>
+    .menu {
+        display:none;
+
+    }
+    .menu-line {
+        width: 20px;
+        height: 4px;
+        background-color: black;
+        margin-bottom: 4px;
+    }
+
+     @@media only screen and (max-width:760px) {
+        .navright {
+            flex-direction: column;
+            position: relative;
+            display: none;
+        }
+        .menu {
+                 display:block;
+                 position:absolute;
+                 right:15px;
+                 top:15px;
+        }
+
+        .navright li {
+            list-style-type: none;
+            width: 100%;
+            text-align: center;
+            padding-top: 10px;
+            display: block;
+            padding: 20px 10px;
+            border-top: 1px solid black;
+            
+        }
+        .active {
+            display: block;
+        }
+         }
+
+</style>
+
+<script>
+    const toggleButton = document.getElementById('toggle-button')
+    const naviList = document.getElementById('navi-list');
+
+    toggleButton.addEventListener('click', () => {
+        naviList.classList.toggle('active');
+    })
+
+
+</script>
