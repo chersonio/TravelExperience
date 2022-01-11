@@ -152,6 +152,10 @@ namespace TravelExperience.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Initializes Roles as they are needed for only the first user's registration.
+                if (_context.Roles.Select(x => x).Count() <= 0)
+                    _unitOfWork.Users.InitializeDBRoles();
+
                 // Creates a wallet with 1000 euros starting amount
                 var wallet = new Wallet(); 
                 wallet.WalletID = Guid.NewGuid(); 
