@@ -1,18 +1,17 @@
-# TravelExperience
-Group project for PeopleCert
-============================================
+# TravelExperience - Group project for PeopleCert
+
 Project contributors
-============================================
+--------------------------------
+
 1. Stavros Chersoniotakis (Team Coordinator, Back-End Developer, Database Developer)
     chersoniotakis.stavros@gmail.com
 2. Nikoleta Panagou (Back-End Developer, Database Developer)
     nikolpanagou@gmail.com
 3. Stavroula Parisi (Front-End Developer, Back-End Developer)
     stavroulaprs@gmail.com
-============================================
-
+    
 Business Logic
-
+-------------------------
 The main idea of the TravelExperience is that a User could become a Host(owner) and by giving space for rent and may have income from other users or Travelers in our case.
 
 Hosts can sign-in so they can place listings of Accommodations.
@@ -35,6 +34,7 @@ WebApi returns Read operations for accommodations locations and bookings.
 There is an also export a db tool that creates a copy of rows as sql insert statements for enhanced security and back-up. 
 
 Future goals: 
+------------------
 Experiences= the other half of our goal
 Advertisements= Paid Ads could be shown higher and/or more often at search results.
 Group booking= One person could book for itself, for other persons, or groups of persons.
@@ -42,6 +42,8 @@ Payment solutions= Paypal and E-banking implementation,
 Travel Agency= a middle guy manages accommodations and experiences
 Instant Messaging
 
+Technologies:
+--------------------
 a) The project's DB is based on MSSQL
 b) Front-End: HTML/CSS/JAVASCRIPT, JQuery, Bootstrap
 c) Back-End: C#, .NET Framework, Entity Framework, REST API: ASP .NET
@@ -50,4 +52,3 @@ d) Extra: Google maps api
 ---------------------------------
 For TravelExperience development there was also created a Jira ticketing system so there could be quicker and safer communication and for a better development experience.
 https://travelexperience.atlassian.net/jira/software/projects/TX/boards/1
----------------------------------
