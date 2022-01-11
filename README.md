@@ -1,5 +1,5 @@
 # TravelExperience - Group project for PeopleCert
-It all started from a "Hello World!",
+It all started from a "Hello World!".
 Now we give people the posibility to travel around the world!
 
 Project contributors
