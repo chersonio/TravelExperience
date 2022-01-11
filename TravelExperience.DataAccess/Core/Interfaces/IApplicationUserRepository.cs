@@ -9,5 +9,6 @@ namespace TravelExperience.DataAccess.Core.Interfaces
     {
         ApplicationUser GetById(string id);
         Wallet GetWalletOfUserFromUserID(string travelerID);
+        void InitializeDBRoles();
     }
 }
