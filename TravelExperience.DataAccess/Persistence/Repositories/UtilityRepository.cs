@@ -31,7 +31,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
             if (id == null)
                 throw new ArgumentException(nameof(id));
 
-            Utility utility = _context.Utilities.Find(id); // or .GetById()
+            Utility utility = _context.Utilities.Find(id); 
 
             if (utility == null)
                 throw new Exception("Utility not found");

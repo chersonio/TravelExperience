@@ -200,9 +200,9 @@
     <Compile Include="Persistence\Configurations\AccommodationConfiguration.cs" />
     <Compile Include="Persistence\Configurations\ApplicationUserConfiguration.cs" />
     <Compile Include="Persistence\Configurations\BookingConfiguration.cs" />
-    <Compile Include="Persistence\Migrations\202201100924017_Initial.cs" />
-    <Compile Include="Persistence\Migrations\202201100924017_Initial.designer.cs">
-      <DependentUpon>202201100924017_Initial.cs</DependentUpon>
+    <Compile Include="Persistence\Migrations\202201110051301_Initial.cs" />
+    <Compile Include="Persistence\Migrations\202201110051301_Initial.designer.cs">
+      <DependentUpon>202201110051301_Initial.cs</DependentUpon>
     </Compile>
     <!--// CHERSO
     <Compile Include="Persistence\Configurations\UtilitiesConfiguration.cs" />
@@ -245,8 +245,8 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Persistence\Migrations\202201100924017_Initial.resx">
-      <DependentUpon>202201100924017_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Persistence\Migrations\202201110051301_Initial.resx">
+      <DependentUpon>202201110051301_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -21,8 +21,6 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
             if (entity == null)
                 throw new ArgumentException(nameof(entity));
 
-            //entity.WalletID = Guid.NewGuid();
-            //entity.Amount = 1000;
             _context.Wallets.Add(entity);
         }
         public void Delete(int? id)

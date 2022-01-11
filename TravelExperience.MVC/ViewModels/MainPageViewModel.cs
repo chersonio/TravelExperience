@@ -14,7 +14,6 @@ namespace TravelExperience.MVC.ViewModels
         public IEnumerable<Booking> RandomBookings { get; set; }
         public List<Location> Locations { get; set; }
 
-        // Search Results
         public DateTime BookingStartDate { get; set; }
         public DateTime BookingEndDate { get; set; }
         public string LocationString { get; set; }

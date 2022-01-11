@@ -12,6 +12,8 @@ namespace TravelExperience.MVC.Controllers.HelperClasses
 {
     public class ImageHandler
     {
+        public ImageInfo ImageInfo { get; set; }
+
         /// <summary>
         /// Checks .thumbnail from input viewModel, <br/>
         /// Returns an error message if something went wrong, else null (For now)
@@ -50,7 +52,6 @@ namespace TravelExperience.MVC.Controllers.HelperClasses
             // Empty string means all went well.
             return "";
         }
-        public ImageInfo ImageInfo { get; set; }
 
         public static List<ImageInfo> GetImagesForAccommodationFromStorage(string path, Size? imageSize = null)
         {

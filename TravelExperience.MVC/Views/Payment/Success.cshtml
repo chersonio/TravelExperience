@@ -8,8 +8,6 @@
 
 <div class="container mt-3 rounded" style="margin-top: 50px; align-self: center; max-width: 500px; padding: 30px 30px 60px 30px; font-family: Helvetica; font-weight: 600; color: darkslategrey;">
 
-    @*<div class="container" style="display: flex; grid-template-columns: 1fr 1fr; grid-gap: 10px; ">*@
-
     <div class="card" style="box-shadow: 10px 10px 10px grey; border: groove; border-radius:5px; padding:5px;">
         <div class="col-md-8">
             <p>Dear Mr/Mrs @Html.DisplayFor(m => m.Host.FirstName),</p>
@@ -25,8 +23,6 @@
             </p><br />
             <p>We sent an email with the appropriate information covering your booking and host details. Have a great Experience!</p>
         </div><br /><br />
-        @*<input type="button" name="Return" value="Return to Home page" class="btn-danger" />*@
         <button class="btn btn-primary btn-lg" onclick="location.href='@Url.Action("Index", "Home")'">Return to Home page</button>
     </div>
 </div>
-@*</div>*@

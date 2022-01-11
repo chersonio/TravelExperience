@@ -32,11 +32,11 @@
                         </td>
                         <td>
                             @{ var totalBookings = Model.Bookings.Count(); }
-                            @Html.DisplayFor(m => totalBookings) @*need to reffer to the user*@
+                            @Html.DisplayFor(m => totalBookings)
                         </td>
                         <td>
                             @{ var totalPrice = Model.Bookings.Sum(x => x.Price); }
-                            @Html.DisplayFor(m => item.Price) @*need to refer to the price of bookings of that user*@
+                            @Html.DisplayFor(m => item.Price) 
                         </td>
                     </tr>
                 }

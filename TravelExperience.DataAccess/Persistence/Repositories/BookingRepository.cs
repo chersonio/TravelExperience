@@ -31,7 +31,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
             if (id == null)
                 throw new ArgumentException(nameof(id));
 
-            Booking booking = _context.Bookings.Find(id); // or .GetById()
+            Booking booking = _context.Bookings.Find(id);
 
             if (booking == null)
                 throw new Exception("Booking not found");
@@ -48,7 +48,6 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
         {
             return _context
                 .Bookings
-                //.Include(x => x.Accommodation)
                 .Include(x => x.User)
                 .ToList();
         }

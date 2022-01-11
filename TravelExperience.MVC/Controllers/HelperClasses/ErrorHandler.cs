@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using TravelExperience.MVC.ViewModels;
+﻿using TravelExperience.MVC.ViewModels;
 
 namespace TravelExperience.MVC.Controllers.HelperClasses
 {

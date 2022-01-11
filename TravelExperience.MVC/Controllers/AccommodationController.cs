@@ -40,6 +40,7 @@ namespace TravelExperience.MVC.Controllers
             viewModel.Utilities = new List<Utility>();
             viewModel.UtilitiesForCheckboxes = new List<AccommodationFormViewModel.UtilityForCheckbox>();
 
+            // Gets every utility for the initialisation of the view
             foreach (UtilitiesEnum utilEnum in Enum.GetValues(typeof(UtilitiesEnum)))
             {
                 viewModel.UtilitiesForCheckboxes.Add(new AccommodationFormViewModel.UtilityForCheckbox { UtilityName = utilEnum.ToString(), UtilitiesEnum = utilEnum, IsChecked = false });
@@ -101,6 +102,8 @@ namespace TravelExperience.MVC.Controllers
 
             location.Accommodations = new List<Accommodation>() { accommodation };
 
+
+            // Keeps every utility that is checked
             var utilities = new List<Utility>();
             foreach (var option in viewModel.UtilitiesForCheckboxes)
             {
@@ -125,7 +128,6 @@ namespace TravelExperience.MVC.Controllers
             if (accommodation.Description == null || accommodation.Title == null || accommodation.MaxCapacity == 0 ||
                 accommodation.Location == null || accommodation.Thumbnail == null)
             {
-                // me kapoio tropo na gemizei ta errors fields tou view
                 return View(viewModel);
             }
             try
@@ -143,7 +145,6 @@ namespace TravelExperience.MVC.Controllers
             // Store Image if successful, else return error message
             var storeImageMessage = StoreImage(viewModel);
 
-            // TODO: this needs to redirect to the area of the hosts accommodations (Dashboard)
             return RedirectToAction("DashboardHost", "BecomeAHost");
         }
 
@@ -237,6 +238,9 @@ namespace TravelExperience.MVC.Controllers
 
             var accommodation = _unitOfWork.Accommodations.GetById(accommodationID);
 
+            if (accommodation == null)
+                return Json(null);
+
             return Json(new {
                 BookingUnavailableDates = bookingUnavailableDates.Select(x=>x.ToString("yyyy-MM-dd")),
                 AccommodationAvailableFrom = accommodation.AvailableFromDate.ToString("yyyy-MM-dd"),
@@ -244,6 +248,7 @@ namespace TravelExperience.MVC.Controllers
                 JsonRequestBehavior.AllowGet);
         }
 
+        // was used for some details view validations. Check if needed else delete.
         [HttpPost]
         public ActionResult Details(BookingConfirmationDto bookingConfirmationDto)
         {
@@ -251,10 +256,6 @@ namespace TravelExperience.MVC.Controllers
             {
 
             }
-            //var controller = new PaymentController(_unitOfWork);
-            //return controller.Index(bookingConfirmationDto);
-
-            //return RedirectToAction("Index", "Payment", bookingConfirmationDto);
             return View(bookingConfirmationDto);
         }
     }

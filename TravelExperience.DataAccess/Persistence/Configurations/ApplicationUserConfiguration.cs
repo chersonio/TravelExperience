@@ -39,7 +39,6 @@ namespace TravelExperience.DataAccess.Persistence.Configurations
                 .IsRequired();
             Property(u => u.PostalCode)
                 .IsRequired();
-            // na dw ama xreiazetai na mpei relation
             Property(w => w.WalletID)
                 .IsRequired();
         }

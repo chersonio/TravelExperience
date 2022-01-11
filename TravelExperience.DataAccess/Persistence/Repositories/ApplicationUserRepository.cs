@@ -34,7 +34,7 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
             if (id == null)
                 throw new ArgumentException(nameof(id));
 
-            ApplicationUser user = _context.Users.Find(id); // or .GetById()
+            ApplicationUser user = _context.Users.Find(id); 
 
             if (user == null)
                 throw new Exception("User not found");
@@ -54,8 +54,6 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
         public IEnumerable<ApplicationUser> GetTravelersForAccommodationID(int? id)
         {
-            // maybe there needs to be a check
-
             return _context.Bookings.Where(x => x.AccommodationID == id)?.Select(x => x.User).ToList();
         }
 

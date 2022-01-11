@@ -15,7 +15,6 @@ namespace TravelExperience.MVC
 
             // for AutoFac
             ContainerConfig.RegisterContainerApi();
-            //GlobalConfiguration.Configure(WebApiConfig.Register);
 
             // For the API and the Dtos to work
             Mapper.Initialize(c => c.AddProfile<MappingProfile>());

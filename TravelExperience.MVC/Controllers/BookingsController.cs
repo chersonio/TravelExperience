@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using TravelExperience.DataAccess.Core.Entities;
 using TravelExperience.DataAccess.Core.Interfaces;
@@ -113,7 +109,6 @@ namespace TravelExperience.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                //_unitOfWork.Entry(booking).State = EntityState.Modified; // dont remember that 
                 _unitOfWork.Complete();
                 return RedirectToAction("Index");
             }

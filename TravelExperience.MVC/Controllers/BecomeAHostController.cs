@@ -3,7 +3,6 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -214,8 +213,6 @@ namespace TravelExperience.MVC.Controllers
                 return View(viewModel);
             }
 
-            
-
             accommodation.Title = viewModel.Accommodation.Title;
             accommodation.Description = viewModel.Accommodation.Description;
             accommodation.AccommodationType = viewModel.Accommodation.AccommodationType;
@@ -225,9 +222,6 @@ namespace TravelExperience.MVC.Controllers
             accommodation.PricePerNight = viewModel.Accommodation.PricePerNight;
             accommodation.AvailableFromDate = viewModel.Accommodation.AvailableFromDate;
             accommodation.AvailableToDate = viewModel.Accommodation.AvailableToDate;
-
-
-            
 
             location.Address = viewModel.Location.Address;
             location.AddressNo = viewModel.Location.AddressNo;
@@ -251,8 +245,6 @@ namespace TravelExperience.MVC.Controllers
             }
 
             accommodation.Utilities = utilities;
-
-
 
             _unitOfWork.Complete();
 
@@ -282,7 +274,6 @@ namespace TravelExperience.MVC.Controllers
         {
             var accommodation = _unitOfWork.Accommodations.GetById(id);
             var accommodationID = _unitOfWork.Accommodations.GetById(id).AccommodationID;
-            //var locationID = _unitOfWork.Accommodations.GetById(accommodationID).LocationID;
 
             var utilities = _unitOfWork.Utilities.GetAll().Where(a => a.AccommodationID == accommodation.AccommodationID).ToList();
 
@@ -291,7 +282,6 @@ namespace TravelExperience.MVC.Controllers
                 _unitOfWork.Utilities.Delete(item.UtilityID);
             }
 
-            //_unitOfWork.Locations.Delete(locationID);
             _unitOfWork.Accommodations.Delete(accommodationID);
             _unitOfWork.Complete();
 

@@ -24,7 +24,6 @@ namespace TravelExperience.DataAccess.Persistence
             return new AppDBContext();
         }
 
-        // Edw mpainoun ta Configurations gia to FluentApi
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new ApplicationUserConfiguration());

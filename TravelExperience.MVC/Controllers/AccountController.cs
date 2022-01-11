@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Linq;
@@ -7,7 +6,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TravelExperience.DataAccess.Core.Entities;
-using TravelExperience.DataAccess.Persistence.Repositories;
 using System;
 using TravelExperience.MVC.ViewModels;
 using TravelExperience.DataAccess.Core.Interfaces;
@@ -154,6 +152,7 @@ namespace TravelExperience.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Creates a wallet with 1000 euros starting amount
                 var wallet = new Wallet(); 
                 wallet.WalletID = Guid.NewGuid(); 
                 wallet.Amount = 1000; 
@@ -194,6 +193,7 @@ namespace TravelExperience.MVC.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
+                    // if the proccedure was successful it creates the wallet
                     _unitOfWork.Wallets.Create(wallet); 
                     _unitOfWork.Complete(); 
 
@@ -206,7 +206,6 @@ namespace TravelExperience.MVC.Controllers
             return View(model);
         }
 
-        //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
@@ -219,7 +218,6 @@ namespace TravelExperience.MVC.Controllers
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
-        //
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword()
@@ -227,7 +225,6 @@ namespace TravelExperience.MVC.Controllers
             return View();
         }
 
-        //
         // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]

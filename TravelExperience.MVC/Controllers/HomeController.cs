@@ -80,13 +80,6 @@ namespace TravelExperience.MVC.Controllers
             searchResultsViewModel.LocationString = viewModel.LocationString; // maybe this needs changing.. but for now it may work
             searchResultsViewModel.Location = viewModel.Location;
 
-            //ImageHandler imageHandler = new ImageHandler();
-
-            //foreach (var accom in searchResultsViewModel.Accommodations)
-            //{
-            //    searchResultsViewModel.ThumbnailOfAccommodations = imageHandler.GetDictionaryForImagesOfAccommodations(accom);
-            //}
-
             return RedirectToAction("Search", "SearchResults", searchResultsViewModel);
         }
     }
