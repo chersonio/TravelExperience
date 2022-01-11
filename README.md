@@ -3,11 +3,11 @@
 Project contributors
 --------------------------------
 
-1. Stavros Chersoniotakis (Team Coordinator, Back-End Developer, Database Developer)
+1. Chersoniotakis Stavros (Team Coordinator, Back-End Developer, Database Developer)
     chersoniotakis.stavros@gmail.com
-2. Nikoleta Panagou (Back-End Developer, Database Developer)
+2. Panagou Nikoleta (Back-End Developer, Database Developer)
     nikolpanagou@gmail.com
-3. Stavroula Parisi (Front-End Developer, Back-End Developer)
+3. Parisi Stavroula (Front-End Developer, Back-End Developer)
     stavroulaprs@gmail.com
     
 Business Logic
