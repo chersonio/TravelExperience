@@ -23,6 +23,7 @@ namespace TravelExperience.MVC.Controllers
 
         public AccountController()
         {
+            _context = new AppDBContext();
             _unitOfWork = new UnitOfWork(_context);
         }
 
