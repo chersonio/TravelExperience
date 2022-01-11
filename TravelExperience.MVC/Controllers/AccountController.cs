@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Linq;
@@ -9,6 +9,7 @@ using TravelExperience.DataAccess.Core.Entities;
 using System;
 using TravelExperience.MVC.ViewModels;
 using TravelExperience.DataAccess.Core.Interfaces;
+using TravelExperience.DataAccess.Persistence;
 
 namespace TravelExperience.MVC.Controllers
 {
@@ -18,11 +19,13 @@ namespace TravelExperience.MVC.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly AppDBContext _context;
 
-        public AccountController(IUnitOfWork unitOfWork)
+        public AccountController()
         {
-            _unitOfWork = unitOfWork;
+            _unitOfWork = new UnitOfWork(_context);
         }
+
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
