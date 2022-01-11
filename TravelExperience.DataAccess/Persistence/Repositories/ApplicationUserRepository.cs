@@ -100,5 +100,35 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
             return wallet;
         }
+        
+         /// <summary>
+        /// The first time that we run the application, the table UserRoles will be empty, so it initializes the roles
+        /// </summary>
+        public void InitializeDBRoles()
+        {
+            if (_context.Roles.Select(x => x).Count() <= 0)
+            {
+                var Admin = new IdentityRole
+                {
+                    Id = "baebe278-930a-404e-8745-f80ee8fa18ce",
+                    Name = "Administrator"
+                };
+                var Host = new IdentityRole
+                {
+                    Id = "5d977c33-3a65-468e-8ae7-19db2ba63631",
+                    Name = "Host"
+                };
+                var Traveler = new IdentityRole
+                {
+                    Id = "98548089-2d72-42cb-bfe6-9709a09db96a",
+                    Name = "Traveler"
+                };
+                _context.Roles.Add(Admin);
+                _context.Roles.Add(Host);
+                _context.Roles.Add(Traveler);
+                _context.SaveChanges();
+            }
+        }
+        
     }
 }
