@@ -43,7 +43,7 @@ namespace ImportExportDB
         // Constants
         const string FILEPATH = @"C:\TravelExperience\ImportExport\";
         const string FILETOSTORE = "ExportedDBTables.txt";
-        const string DATABASE = "TravelExperienceTEST";
+        const string DATABASE = "TravelExperience";
         
         #endregion
 
@@ -84,9 +84,9 @@ namespace ImportExportDB
             GetValues(users);
             WriteTableToFile(streamWriter, table, false);
 
-            table = "AspNetRoles";
-            GetValues(roles);
-            WriteTableToFile(streamWriter, table, false);
+            //table = "AspNetRoles";
+            //GetValues(roles);
+            //WriteTableToFile(streamWriter, table, false);
 
             table = "AspNetUserRoles";
             GetValues(userRoles);
