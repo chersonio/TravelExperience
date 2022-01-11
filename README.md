@@ -12,20 +12,20 @@ Project contributors
     
 Business Logic
 -------------------------
-The main idea of the TravelExperience is that a User could become a Host(owner) and by giving space for rent and may have income from other users or Travelers in our case.
+The main idea of the TravelExperience is that a simple User(Traveler) that has the ability to discover and book accommodations from all over the world, could become a Host(owner) and by giving space for rent and may have income from other users or Travelers in our case.
 
 Hosts can sign-in so they can place listings of Accommodations.
 The Accommodations that Hosts can create, or users can book, begin from a simple Room to a Hotel.
 Hosts can share a good represantation of their lovely place by uploading an image with just a simple click.
 
-Users can sign-in to search and book where to stay all over the world.
+Travelers can sign-in to search and book where to stay all over the world.
 They may review their upcoming or past bookings.
 They can start browsing in the default page by checking random accommodations around the world or near their location.
 The search filters are by address, dates or max guests. 
 
 Each individual Accommodation has Title, Description, Location, Utilities, Dates of availability, Cost per Night 
 
-When a user wants to book an accommodation at free dates, he may choose his private wallet to pay.
+When a traveler wants to book an accommodation at free dates, he may choose his private wallet to pay.
 A transaction is created keeping the available information
 As a last part of the successfull booking there is a confirmation page with a receipt and other booking info.
 
