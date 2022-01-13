@@ -53,4 +53,4 @@ d) Extra: Google maps api
 
 ---------------------------------
 For TravelExperience development there was also created a Jira ticketing system so there could be quicker and safer communication and for a better development experience.
-https://travelexperience.atlassian.net/jira/software/projects/TX/boards/1
+https://travelexperience.atlassian.net/browse/TX-40?jql=order%20by%20created%20DESC
