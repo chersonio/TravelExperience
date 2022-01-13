@@ -96,8 +96,8 @@ namespace TravelExperience.DataAccess.Persistence.Repositories
 
             var wallet = _context.Wallets.Find(traveler.WalletID);
 
-            if (wallet == null)
-                throw new ArgumentException(nameof(wallet));
+            //if (wallet == null)
+                //throw new ArgumentException(nameof(wallet));
 
             return wallet;
         }

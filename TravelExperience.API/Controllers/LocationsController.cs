@@ -22,7 +22,7 @@ namespace TravelExperience.API.Controllers
         /// </summary>
         /// <returns></returns>
         [AllowAnonymous]
-        [Route("bookings")]
+        [Route("locations")]
         [HttpGet]
         public IHttpActionResult GetLocations()
         {
@@ -42,7 +42,7 @@ namespace TravelExperience.API.Controllers
         /// </summary>
         /// <returns></returns>
         [AllowAnonymous]
-        [Route("bookings/{id}")]
+        [Route("locations/{id}")]
         [HttpGet]
         public IHttpActionResult GetLocations(int id)
         {

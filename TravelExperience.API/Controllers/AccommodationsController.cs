@@ -34,7 +34,7 @@ namespace TravelExperience.API.Controllers
                 .GetAll();
 
             var accommodationsDto = accommodations.Select(Mapper.Map<Accommodation, AccommodationDto>);
-            accommodationsDto.Select(a => a.Utilities = _unitOfWork.Utilities.GetAll().Where(u => u.AccommodationID == a.AccommodationID).Select(Mapper.Map<Utility, UtilityDto>).ToList());
+            //accommodationsDto.Select(a => a.Utilities = _unitOfWork.Utilities.GetAll().Where(u => u.AccommodationID == a.AccommodationID).Select(Mapper.Map<Utility, UtilityDto>).ToList());
 
             return Ok(accommodationsDto);
         }
