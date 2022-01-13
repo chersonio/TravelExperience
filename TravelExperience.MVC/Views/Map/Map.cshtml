@@ -23,7 +23,6 @@
                     for (var i = 0; i < data.length; i++) {
                         marker[i] = new google.maps.Marker({
                             position: new google.maps.LatLng(data[i].Xcoord, data[i].Ycoord),
-                               /* { lat: parseFloat(data[i].Xcoord), lng: parseFloat(data[i].Ycoord) },*/
                             map: map
                         });
                         contentString[i] = '<div id="content">' +
@@ -49,36 +48,7 @@
             }
     </script>
 
-    @*<script>
-            var map;
-            function initMap() {
-                map = new google.maps.Map(document.getElementById('map'), {
-                    center: { lat: 37.98096185419733, lng: 23.732283397775806 },
-                    zoom: 12
-                });
-                var marker1 = new google.maps.Marker({
-                    position: { lat: 37.98096185419733, lng: 23.7322833 },
-                    map: map
-                });
-                var marker2 = new google.maps.Marker({
-                    position: { lat: 37.983679, lng: 23.730461897775804 },
-                    map: map
-                });
-                var contentStringForMarker1 = '<div id="content">' +
-                    '<div id="siteNotice">' +
-                    '</div>' +
-                    '<h1 id="firstHeading" class="firstHeading>AccommodationName</h1>' +
-                    '<div id="bodyContent">' +
-                    '<p><b>AccommodationName</b>,  a small description  of the accommodation</p>' +
-                    '</div>';
-                var infowindow = new google.maps.InfoWindow({
-                    content: contentStringForMarker1
-                });
-                marker1.addListener('click', function () {
-                    infowindow.open(map, marker1);
-                });
-            }
-        </script>*@
+   
 
 </div>
 
